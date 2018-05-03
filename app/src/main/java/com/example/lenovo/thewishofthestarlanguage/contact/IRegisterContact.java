@@ -7,10 +7,12 @@ package com.example.lenovo.thewishofthestarlanguage.contact;
 public interface IRegisterContact {
 
     interface IRegisterView{
-
+        void showRegisterMsg(String string);
+        void showFirst(String string);
     }
 
     interface IRegisterPresenter{
-
+        void loadPhoneMsg(String phone);
+        void loadFirst(String phone,String phoneMsg);
     }
 }

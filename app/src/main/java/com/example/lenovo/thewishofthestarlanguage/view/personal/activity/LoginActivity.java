@@ -2,8 +2,6 @@ package com.example.lenovo.thewishofthestarlanguage.view.personal.activity;
 
 
 import android.content.Intent;
-import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -67,9 +65,11 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                 break;
             case R.id.login_register:
                 Intent intent = new Intent(this, RegisterActivity.class);
+                startActivity(intent);
                 break;
         }
     }
+
 
 
     @Override

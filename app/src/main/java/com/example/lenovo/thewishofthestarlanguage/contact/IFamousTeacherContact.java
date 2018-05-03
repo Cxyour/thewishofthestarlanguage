@@ -1,5 +1,7 @@
 package com.example.lenovo.thewishofthestarlanguage.contact;
 
+import com.example.lenovo.thewishofthestarlanguage.model.entity.FamousTeacherBean;
+
 /**
  * Created by Lenovo on 2018/5/3.
  */
@@ -7,9 +9,10 @@ package com.example.lenovo.thewishofthestarlanguage.contact;
 public interface IFamousTeacherContact {
 
     interface IFamousTeacherView{
+        void showFamousTecah(FamousTeacherBean famousTeacherBean);
 
     }
     interface IFamousTeacherPresenter{
-
+        void  loadFrmousBean();
     }
 }

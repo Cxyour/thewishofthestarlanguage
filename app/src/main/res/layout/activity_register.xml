@@ -8,6 +8,7 @@
     android:padding="25dp"
     tools:context=".view.personal.activity.RegisterActivity">
 
+
     <LinearLayout
         android:id="@+id/other_register"
         android:layout_width="match_parent"

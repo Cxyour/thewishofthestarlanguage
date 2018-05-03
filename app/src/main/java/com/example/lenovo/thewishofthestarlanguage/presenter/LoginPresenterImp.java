@@ -61,7 +61,7 @@ public class LoginPresenterImp implements ILoginContact.ILoginPresenter {
 
                     @Override
                     public void onComplete() {
-                        Log.e("------------------","----------------");
+                        Log.e("------------------","------------------");
                     }
                 });
     }

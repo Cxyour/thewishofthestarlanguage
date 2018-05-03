@@ -17,8 +17,9 @@ import android.widget.Toast;
 import com.example.lenovo.thewishofthestarlanguage.R;
 import com.example.lenovo.thewishofthestarlanguage.contact.IRegisterContract;
 import com.example.lenovo.thewishofthestarlanguage.presenter.RegusterPresenter;
+import com.example.lenovo.thewishofthestarlanguage.view.base.BaseActivity;
 
-public class RegisterActivity extends AppCompatActivity implements View.OnClickListener, IRegisterContract.IRegisterView {
+public class RegisterActivity extends BaseActivity implements View.OnClickListener, IRegisterContract.IRegisterView {
 
     private TextView register_hinttext;
     private TextView register_goto_weixin;
@@ -54,13 +55,12 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     private Runnable runnable;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_register);
-        initView();
+    protected int getLayoutId() {
+        return R.layout.activity_register;
     }
 
-    private void initView() {
+    @Override
+    protected void init() {
         register_hinttext = (TextView) findViewById(R.id.register_hinttext);
         register_goto_weixin = (TextView) findViewById(R.id.register_goto_weixin);
         register_goto_qq = (TextView) findViewById(R.id.register_goto_qq);
@@ -75,8 +75,11 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         register_close.setOnClickListener(this);
         register_close_password.setOnClickListener(this);
         register_register.setOnClickListener(this);
-        regusterPresenter = new RegusterPresenter(this);
+    }
 
+    @Override
+    protected void loadData() {
+        regusterPresenter = new RegusterPresenter(this);
     }
 
     @Override

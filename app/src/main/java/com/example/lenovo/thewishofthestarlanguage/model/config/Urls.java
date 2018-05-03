@@ -6,5 +6,5 @@ package com.example.lenovo.thewishofthestarlanguage.model.config;
 
 public class Urls {
 
-    public static final String UNIVSTARURL = "https://www.univstar.com/swagger-ui.html#/";
+    public static final String UNIVSTARURL = "https://www.univstar.com/";
 }

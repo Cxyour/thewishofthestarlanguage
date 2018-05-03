@@ -9,11 +9,15 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.lenovo.thewishofthestarlanguage.R;
+import com.example.lenovo.thewishofthestarlanguage.contact.ILoginContact;
+import com.example.lenovo.thewishofthestarlanguage.presenter.LoginPresenterImp;
+import com.example.lenovo.thewishofthestarlanguage.view.base.BaseActivity;
 
 
-public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
+public class LoginActivity extends BaseActivity implements View.OnClickListener, ILoginContact.ILoginView {
 
     private TextView login_goto_weixin;
     private TextView login_goto_qq;
@@ -26,15 +30,15 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private Button login_login;
     private TextView login_close;
     private TextView login_register;
+    private LoginPresenterImp loginPresenterImp;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
-        initView();
+    protected int getLayoutId() {
+        return R.layout.activity_login;
     }
 
-    private void initView() {
+    @Override
+    protected void init() {
         login_goto_weixin = (TextView) findViewById(R.id.login_goto_weixin);
         login_goto_qq = (TextView) findViewById(R.id.login_goto_qq);
         login_goto_sina = (TextView) findViewById(R.id.login_goto_sina);
@@ -51,16 +55,25 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
 
     @Override
+    protected void loadData() {
+        loginPresenterImp = new LoginPresenterImp(this);
+    }
+
+    @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.login_login:
-
+                loginPresenterImp.getLoginMessage(login_username.getText().toString().trim(), login_password.getText().toString().trim());
                 break;
             case R.id.login_register:
-                Intent intent = new Intent(this,RegisterActivity.class);
+                Intent intent = new Intent(this, RegisterActivity.class);
                 break;
         }
     }
 
 
+    @Override
+    public void showLoginMessage(String string) {
+        Toast.makeText(this, string, Toast.LENGTH_SHORT).show();
+    }
 }

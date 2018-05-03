@@ -6,11 +6,11 @@ package com.example.lenovo.thewishofthestarlanguage.contact;
 
 public interface ILoginContact {
 
-    interface ILoginView{
-
+    interface ILoginView {
+        void showLoginMessage(String string);
     }
 
-    interface ILoginPresenter{
-
+    interface ILoginPresenter {
+        void getLoginMessage(String userName, String passWord);
     }
 }

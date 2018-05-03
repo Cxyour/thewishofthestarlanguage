@@ -18,8 +18,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".view.login.LoginActivity" />
-        <activity android:name=".view.register.RegisterActivity" />
-        <activity android:name=".view.univstarservice.UnivStarServiceActivity"></activity>
+        <activity android:name=".view.personal.register.RegisterActivity" />
+        <activity android:name=".view.personal.activity.UnivStarHttpActivity"></activity>
     </application>
 
 </manifest>

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#eeeeee"
     android:padding="25dp"
-    tools:context="com.example.lenovo.thewishofthestarlanguage.view.register.RegisterActivity">
+    tools:context=".view.personal.register.RegisterActivity">
 
     <LinearLayout
         android:id="@+id/other_register"

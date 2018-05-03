@@ -1,6 +1,5 @@
 package com.example.lenovo.thewishofthestarlanguage.view.ui;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -9,7 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 
 import com.example.lenovo.thewishofthestarlanguage.R;
-import com.example.lenovo.thewishofthestarlanguage.view.login.LoginActivity;
+import com.example.lenovo.thewishofthestarlanguage.view.personal.activity.LoginActivity;
 
 public class MainActivity extends AppCompatActivity {
 

@@ -1,4 +1,4 @@
-package com.example.lenovo.thewishofthestarlanguage.view.register;
+package com.example.lenovo.thewishofthestarlanguage.view.personal.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;

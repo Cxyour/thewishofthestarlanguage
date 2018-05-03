@@ -1,11 +1,11 @@
-package com.example.lenovo.thewishofthestarlanguage.view.univstarservice;
+package com.example.lenovo.thewishofthestarlanguage.view.personal.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.example.lenovo.thewishofthestarlanguage.R;
 
-public class UnivStarServiceActivity extends AppCompatActivity {
+public class UnivStarHttpActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

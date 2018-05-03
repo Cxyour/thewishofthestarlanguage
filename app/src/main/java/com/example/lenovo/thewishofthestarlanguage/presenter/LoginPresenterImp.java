@@ -1,67 +1,90 @@
 package com.example.lenovo.thewishofthestarlanguage.presenter;
 
+import android.text.TextUtils;
 import android.util.Log;
 
-import com.example.lenovo.thewishofthestarlanguage.contact.ILoginContact;
+import com.example.lenovo.thewishofthestarlanguage.contact.ILoginContract;
 import com.example.lenovo.thewishofthestarlanguage.model.biz.LoginService;
+import com.example.lenovo.thewishofthestarlanguage.model.entity.UserBean;
 import com.example.lenovo.thewishofthestarlanguage.model.http.RetrofitUtils;
 
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import io.reactivex.Observable;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
-import okhttp3.ResponseBody;
 
 /**
  * Created by Lenovo on 2018/5/3.
  */
 
-public class LoginPresenterImp implements ILoginContact.ILoginPresenter {
+public class LoginPresenterImp implements ILoginContract.ILoginPresenter {
 
     private LoginService loginService;
-    private ILoginContact.ILoginView iLoginView;
+    private ILoginContract.ILoginView iLoginView;
 
-    public LoginPresenterImp(ILoginContact.ILoginView iLoginView) {
+    public LoginPresenterImp(ILoginContract.ILoginView iLoginView) {
         loginService = RetrofitUtils.getInstance().getLoginService();
         this.iLoginView = iLoginView;
     }
 
     @Override
-    public void getLoginMessage(String userName, String passWord) {
+    public boolean isUserName(String userName) {
+        iLoginView.showUserNameMessage(null);
+        if (TextUtils.isEmpty(userName)) {
+            iLoginView.showUserNameMessage("邮箱/手机号不能为空");
+            return false;
+        }
+        String tEmail = "^([a-zA-Z0-9_\\-\\.]+)@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.)|(([a-zA-Z0-9\\-]+\\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\\]?)$";
+        if (userName.indexOf("@") == -1) {
+            tEmail = "^1[3578]\\d{9}$";
+        }
+        Pattern pattern = Pattern
+                .compile(tEmail);
+        Matcher matcher = pattern.matcher(userName);
+        if (matcher.matches()) {
+            iLoginView.showUserNameMessage(null);
+            return true;
+        } else {
+            iLoginView.showUserNameMessage("邮箱/手机格式不正确");
+            return false;
+        }
+    }
+
+    @Override
+    public void goToLogin(String userName, String passWord) {
+        if (!isUserName(userName))
+            return;
         Map<String, String> paramsMap = new HashMap<>();
         paramsMap.put("mobile", userName);
         paramsMap.put("password", passWord);
-        Observable<ResponseBody> loginMessage = loginService.getLoginMessage(paramsMap);
+        Observable<UserBean> loginMessage = loginService.getLoginMessage(paramsMap);
         loginMessage.subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<ResponseBody>() {
+                .subscribe(new Observer<UserBean>() {
                     @Override
                     public void onSubscribe(Disposable d) {
-                        Log.e("------------------",d.toString());
+                        Log.e("------------------", d.toString());
                     }
 
                     @Override
-                    public void onNext(ResponseBody responseBody) {
-                        try {
-                            iLoginView.showLoginMessage(responseBody.string());
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
+                    public void onNext(UserBean userBean) {
+                        iLoginView.showLoginMessage(userBean);
                     }
 
                     @Override
                     public void onError(Throwable e) {
-                        Log.e("------------------",e.getMessage());
+                        Log.e("------------------", e.getMessage());
                     }
 
                     @Override
                     public void onComplete() {
-                        Log.e("------------------","------------------");
+                        Log.e("------------------", "------------------");
                     }
                 });
     }

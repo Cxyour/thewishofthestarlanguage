@@ -1,6 +1,6 @@
 package com.example.lenovo.thewishofthestarlanguage.presenter;
 
-import com.example.lenovo.thewishofthestarlanguage.contact.IFamousTeacherContact;
+import com.example.lenovo.thewishofthestarlanguage.contact.IFamousTeacherContract;
 import com.example.lenovo.thewishofthestarlanguage.model.biz.FamousTeacherService;
 import com.example.lenovo.thewishofthestarlanguage.model.entity.FamousTeacherBean;
 import com.example.lenovo.thewishofthestarlanguage.model.http.RetrofitUtils;
@@ -13,10 +13,10 @@ import io.reactivex.schedulers.Schedulers;
  * Created by 陈伟霆 on 2018/5/3.
  */
 
-public class FamousTeacherPresenter implements IFamousTeacherContact.IFamousTeacherPresenter{
-    IFamousTeacherContact.IFamousTeacherView view;
+public class FamousTeacherPresenter implements IFamousTeacherContract.IFamousTeacherPresenter{
+    IFamousTeacherContract.IFamousTeacherView view;
     FamousTeacherService famousTeacherService;
-    public FamousTeacherPresenter(IFamousTeacherContact.IFamousTeacherView view) {
+    public FamousTeacherPresenter(IFamousTeacherContract.IFamousTeacherView view) {
         this.view=view;
         famousTeacherService= RetrofitUtils.getInstance().getFamousTeacherService();
     }

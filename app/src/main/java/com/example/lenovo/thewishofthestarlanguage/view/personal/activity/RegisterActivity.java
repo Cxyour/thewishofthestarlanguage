@@ -38,13 +38,13 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         @Override
         public void handleMessage(Message msg) {
             if (msg.what == 3) {
-               int i= (int) msg.obj;
+                int i = (int) msg.obj;
                 register_close_password.setText(i + "");
                 if (i == 0) {
                     register_close_password.setText("获取验证码");
                     count = 60;
                     return;
-                }else {
+                } else {
                     handler.postDelayed(runnable, 1000);
                 }
             }
@@ -72,7 +72,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         register_checked_http = (TextView) findViewById(R.id.register_checked_http);
         register_register = (Button) findViewById(R.id.register_register);
         register_close = (ImageView) findViewById(R.id.register_close);
-
+        register_close.setOnClickListener(this);
         register_close_password.setOnClickListener(this);
         register_register.setOnClickListener(this);
         regusterPresenter = new RegusterPresenter(this);
@@ -105,6 +105,9 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                 edit.putString("mobile", register_username.getText().toString().trim());
                 Intent intent = new Intent(this, PerfectInformationActivity.class);
                 startActivity(intent);
+                break;
+            case R.id.register_close:
+                finish();
                 break;
         }
     }

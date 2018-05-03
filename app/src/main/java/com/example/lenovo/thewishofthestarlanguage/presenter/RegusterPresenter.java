@@ -1,5 +1,6 @@
 package com.example.lenovo.thewishofthestarlanguage.presenter;
 
+import android.text.TextUtils;
 import android.util.Log;
 
 import com.example.lenovo.thewishofthestarlanguage.contact.IRegisterContract;
@@ -8,6 +9,8 @@ import com.example.lenovo.thewishofthestarlanguage.model.http.RetrofitUtils;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -19,19 +22,45 @@ import okhttp3.ResponseBody;
  * Created by 陈伟霆 on 2018/5/3.
  */
 
-public class RegusterPresenter implements IRegisterContract.IRegisterPresenter{
-    IRegisterContract.IRegisterView view;
+public class RegusterPresenter implements IRegisterContract.IRegisterPresenter {
+    IRegisterContract.IRegisterView iRegisterView;
     RegisterService registerService;
-    public RegusterPresenter(IRegisterContract.IRegisterView view) {
-        this.view=view;
-        registerService= RetrofitUtils.getInstance().getRegisterService();
+
+    public RegusterPresenter(IRegisterContract.IRegisterView iRegisterView) {
+        this.iRegisterView = iRegisterView;
+        registerService = RetrofitUtils.getInstance().getRegisterService();
 
     }
 
     @Override
-    public void loadPhoneMsg(String phone) {
+    public boolean isUserName(String phoneNumber) {
+        iRegisterView.showPhoneNumberMessage(null);
+        if (TextUtils.isEmpty(phoneNumber)) {
+            iRegisterView.showPhoneNumberMessage("邮箱/手机号不能为空");
+            return false;
+        }
+        String tEmail = "^([a-zA-Z0-9_\\-\\.]+)@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.)|(([a-zA-Z0-9\\-]+\\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\\]?)$";
+        if (phoneNumber.indexOf("@") == -1) {
+            tEmail = "^1[3578]\\d{9}$";
+        }
+        Pattern pattern = Pattern
+                .compile(tEmail);
+        Matcher matcher = pattern.matcher(phoneNumber);
+        if (matcher.matches()) {
+            iRegisterView.showPhoneNumberMessage(null);
+            return true;
+        } else {
+            iRegisterView.showPhoneNumberMessage("邮箱/手机格式不正确");
+            return false;
+        }
+    }
+
+    @Override
+    public void loadPhoneMsg(String phoneNumber) {
+        if (!isUserName(phoneNumber))
+            return;
         HashMap<String, String> parmas = new HashMap<>();
-        parmas.put("mobile",phone);
+        parmas.put("mobile", phoneNumber);
 
         registerService.loadPhoneMSG(parmas)
                 .observeOn(AndroidSchedulers.mainThread())
@@ -45,7 +74,7 @@ public class RegusterPresenter implements IRegisterContract.IRegisterPresenter{
                     @Override
                     public void onNext(ResponseBody responseBody) {
                         try {
-                            view.showRegisterMsg(responseBody.string());
+                            iRegisterView.showRegisterMsg(responseBody.string());
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
@@ -64,10 +93,11 @@ public class RegusterPresenter implements IRegisterContract.IRegisterPresenter{
     }
 
     @Override
-    public void loadFirst(final String string, String phoneMsg) {
+    public void loadFirst(final String phoneNumber, String phoneCode) {
+        if (isUserName(phoneNumber)) ;
         HashMap<String, String> parmas = new HashMap<>();
-        parmas.put("mobile",string);
-        parmas.put("mobileValidCode",phoneMsg);
+        parmas.put("mobile", phoneNumber);
+        parmas.put("mobileValidCode", phoneCode);
         registerService.loadFirst(parmas)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.newThread())
@@ -81,7 +111,7 @@ public class RegusterPresenter implements IRegisterContract.IRegisterPresenter{
                     public void onNext(ResponseBody responseBody) {
                         try {
                             String string1 = responseBody.string();
-                            view.showFirst(string1);
+                            iRegisterView.showFirst(string1);
                         } catch (IOException e) {
 
 

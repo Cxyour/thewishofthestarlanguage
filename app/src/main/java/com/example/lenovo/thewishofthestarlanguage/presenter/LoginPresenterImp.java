@@ -58,7 +58,8 @@ public class LoginPresenterImp implements ILoginContract.ILoginPresenter {
 
     @Override
     public void goToLogin(String userName, String passWord) {
-        if (isUserName(userName));
+        if (!isUserName(userName))
+            return;
         Map<String, String> paramsMap = new HashMap<>();
         paramsMap.put("mobile", userName);
         paramsMap.put("password", passWord);

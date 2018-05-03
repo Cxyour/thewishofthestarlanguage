@@ -34,18 +34,18 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     private RegusterPresenter regusterPresenter;
     private Handler handler = new Handler() {
 
-        private int i;
 
         @Override
         public void handleMessage(Message msg) {
-            super.handleMessage(msg);
             if (msg.what == 3) {
-                i = (int) msg.obj;
+               int i= (int) msg.obj;
                 register_close_password.setText(i + "");
-                handler.postDelayed(runnable, 1000);
                 if (i == 0) {
-                    register_close_password.setText("获取短信验证码");
-                    i += 60;
+                    register_close_password.setText("获取验证码");
+                    count = 60;
+                    return;
+                }else {
+                    handler.postDelayed(runnable, 1000);
                 }
             }
         }
@@ -83,12 +83,12 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.register_close_password:
-                //    submit();
+                if (!regusterPresenter.isUserName(register_username.getText().toString().trim()))
+                    return;
                 regusterPresenter.loadPhoneMsg(register_username.getText().toString().trim());
                 runnable = new Runnable() {
                     @Override
                     public void run() {
-
                         if (count >= 0) {
                             Message message = handler.obtainMessage(3, count);
                             count--;
@@ -109,6 +109,13 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         }
     }
 
+
+    @Override
+    public void showPhoneNumberMessage(String phoneNumberMessage) {
+        if (phoneNumberMessage != null) {
+            Toast.makeText(this, phoneNumberMessage, Toast.LENGTH_SHORT).show();
+        }
+    }
 
     @Override
     public void showRegisterMsg(String string) {

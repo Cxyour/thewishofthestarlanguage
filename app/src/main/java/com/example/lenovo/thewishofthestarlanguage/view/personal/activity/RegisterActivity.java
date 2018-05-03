@@ -8,6 +8,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -28,7 +29,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     private Button register_close_password;
     private TextView register_checked_http;
     private Button register_register;
-    private TextView register_close;
+    private ImageView register_close;
     private RegusterPresenter regusterPresenter;
     private Handler handler =new Handler(){
 
@@ -69,7 +70,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         register_close_password = (Button) findViewById(R.id.register_close_password);
         register_checked_http = (TextView) findViewById(R.id.register_checked_http);
         register_register = (Button) findViewById(R.id.register_register);
-        register_close = (TextView) findViewById(R.id.register_close);
+        register_close = (ImageView) findViewById(R.id.register_close);
 
         register_close_password.setOnClickListener(this);
         register_register.setOnClickListener(this);

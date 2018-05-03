@@ -1,5 +1,7 @@
 package com.example.lenovo.thewishofthestarlanguage.model.biz;
 
+import com.example.lenovo.thewishofthestarlanguage.model.entity.UserBean;
+
 import java.util.Map;
 
 import io.reactivex.Observable;
@@ -17,5 +19,5 @@ public interface LoginService {
 
     @FormUrlEncoded
     @POST("v1/m/user/login/mobile")
-    Observable<ResponseBody> getLoginMessage(@FieldMap Map<String, String> paramsMap);
+    Observable<UserBean> getLoginMessage(@FieldMap Map<String, String> paramsMap);
 }

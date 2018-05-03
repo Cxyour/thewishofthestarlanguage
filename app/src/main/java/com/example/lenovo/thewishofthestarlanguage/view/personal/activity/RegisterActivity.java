@@ -1,10 +1,11 @@
 package com.example.lenovo.thewishofthestarlanguage.view.personal.activity;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
-import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,10 +15,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.lenovo.thewishofthestarlanguage.R;
-import com.example.lenovo.thewishofthestarlanguage.contact.IRegisterContact;
+import com.example.lenovo.thewishofthestarlanguage.contact.IRegisterContract;
 import com.example.lenovo.thewishofthestarlanguage.presenter.RegusterPresenter;
 
-public class RegisterActivity extends AppCompatActivity implements View.OnClickListener,IRegisterContact.IRegisterView{
+public class RegisterActivity extends AppCompatActivity implements View.OnClickListener, IRegisterContract.IRegisterView {
 
     private TextView register_hinttext;
     private TextView register_goto_weixin;
@@ -31,25 +32,25 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     private Button register_register;
     private ImageView register_close;
     private RegusterPresenter regusterPresenter;
-    private Handler handler =new Handler(){
+    private Handler handler = new Handler() {
 
         private int i;
 
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
-            if(msg.what==3){
+            if (msg.what == 3) {
                 i = (int) msg.obj;
-                register_close_password.setText(i +"");
+                register_close_password.setText(i + "");
                 handler.postDelayed(runnable, 1000);
-                if (i ==0){
+                if (i == 0) {
                     register_close_password.setText("获取短信验证码");
-                    i+=60;
+                    i += 60;
                 }
             }
         }
     };
-    private  int count=60;
+    private int count = 60;
     private Runnable runnable;
 
     @Override
@@ -82,46 +83,32 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.register_close_password:
-            //    submit();
+                //    submit();
                 regusterPresenter.loadPhoneMsg(register_username.getText().toString().trim());
                 runnable = new Runnable() {
                     @Override
                     public void run() {
 
-                        if (count>=0) {
+                        if (count >= 0) {
                             Message message = handler.obtainMessage(3, count);
                             count--;
                             handler.sendMessage(message);
                         }
                     }
                 };
-                handler.postDelayed(runnable,1000);
+                handler.postDelayed(runnable, 1000);
                 break;
             case R.id.register_register:
-                submit();
-                regusterPresenter.loadFirst(register_username.getText().toString(),register_password.getText().toString());
+                regusterPresenter.loadFirst(register_username.getText().toString(), register_password.getText().toString());
+                SharedPreferences preferences = getSharedPreferences("user", 0);
+                SharedPreferences.Editor edit = preferences.edit();
+                edit.putString("mobile", register_username.getText().toString().trim());
+                Intent intent = new Intent(this, PerfectInformationActivity.class);
+                startActivity(intent);
                 break;
         }
     }
 
-    private void submit() {
-        // validate
-        String username = register_username.getText().toString().trim();
-        if (TextUtils.isEmpty(username)) {
-            Toast.makeText(this, "手机号", Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        String password = register_password.getText().toString().trim();
-        if (TextUtils.isEmpty(password)) {
-            Toast.makeText(this, "密码", Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        // TODO validate success, do something
-
-
-    }
 
     @Override
     public void showRegisterMsg(String string) {

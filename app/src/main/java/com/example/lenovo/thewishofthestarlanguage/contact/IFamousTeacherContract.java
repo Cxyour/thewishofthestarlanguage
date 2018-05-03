@@ -6,7 +6,7 @@ import com.example.lenovo.thewishofthestarlanguage.model.entity.FamousTeacherBea
  * Created by Lenovo on 2018/5/3.
  */
 
-public interface IFamousTeacherContact {
+public interface IFamousTeacherContract {
 
     interface IFamousTeacherView{
         void showFamousTecah(FamousTeacherBean famousTeacherBean);

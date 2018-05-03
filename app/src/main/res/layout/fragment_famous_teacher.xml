@@ -4,9 +4,9 @@
     android:layout_height="match_parent"
     tools:context="com.example.lenovo.thewishofthestarlanguage.view.famousteacher.fragment.FamousTeacherFragment">
 
-    <com.androidkun.PullToRefreshRecyclerView
+   <!-- <com.androidkun.PullToRefreshRecyclerView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/famous_recycle"></com.androidkun.PullToRefreshRecyclerView>
+        android:id="@+id/famous_recycle"></com.androidkun.PullToRefreshRecyclerView>-->
 
 </FrameLayout>

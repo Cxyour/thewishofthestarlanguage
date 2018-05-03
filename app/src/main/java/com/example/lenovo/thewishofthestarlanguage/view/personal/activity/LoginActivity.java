@@ -2,6 +2,7 @@ package com.example.lenovo.thewishofthestarlanguage.view.personal.activity;
 
 
 import android.content.Intent;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -75,5 +76,6 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
     @Override
     public void showLoginMessage(String string) {
         Toast.makeText(this, string, Toast.LENGTH_SHORT).show();
+        Log.e("LoginActivity", string);
     }
 }

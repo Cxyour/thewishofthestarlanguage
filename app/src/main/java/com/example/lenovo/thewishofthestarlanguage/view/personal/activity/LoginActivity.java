@@ -60,6 +60,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
 
     @Override
     protected void loadData() {
+
         loginPresenterImp = new LoginPresenterImp(this);
     }
 

@@ -32,6 +32,7 @@ public class PerfectInformationActivity extends BaseActivity {
 
     @Override
     protected int getLayoutId() {
+
         return R.layout.activity_perfect_information;
     }
 

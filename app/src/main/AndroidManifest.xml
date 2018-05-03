@@ -3,6 +3,7 @@
     package="com.example.lenovo.thewishofthestarlanguage">
 
     <application
+        android:name=".model.config.App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -17,7 +18,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".view.login.LoginActivity" />
-        <activity android:name=".view.register.RegisterActivity"></activity>
+        <activity android:name=".view.register.RegisterActivity" />
+        <activity android:name=".view.univstarservice.UnivStarServiceActivity"></activity>
     </application>
 
 </manifest>

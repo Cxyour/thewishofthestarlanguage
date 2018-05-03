@@ -176,13 +176,11 @@
             android:textColor="#ffffff" />
     </LinearLayout>
 
-    <TextView
+    <ImageView
         android:id="@+id/register_close"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:text="关闭"
-        android:textColor="#444444"
-        android:textSize="18sp" />
+        android:background="@mipmap/return" />
 
 </RelativeLayout>

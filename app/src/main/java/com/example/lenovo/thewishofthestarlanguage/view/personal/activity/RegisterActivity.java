@@ -1,15 +1,23 @@
 package com.example.lenovo.thewishofthestarlanguage.view.personal.activity;
 
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-
 import com.example.lenovo.thewishofthestarlanguage.R;
+import com.example.lenovo.thewishofthestarlanguage.view.base.BaseActivity;
 
-public class RegisterActivity extends AppCompatActivity {
+public class RegisterActivity extends BaseActivity {
+
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_register);
+    protected int getLayoutId() {
+        return R.layout.activity_register;
+    }
+
+    @Override
+    protected void init() {
+
+    }
+
+    @Override
+    protected void loadData() {
+
     }
 }

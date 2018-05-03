@@ -2,6 +2,7 @@ package com.example.lenovo.thewishofthestarlanguage.model.http;
 
 import com.example.lenovo.thewishofthestarlanguage.model.biz.FamousTeacherService;
 import com.example.lenovo.thewishofthestarlanguage.model.biz.LoginService;
+import com.example.lenovo.thewishofthestarlanguage.model.biz.PerFectInforService;
 import com.example.lenovo.thewishofthestarlanguage.model.biz.PersonalService;
 import com.example.lenovo.thewishofthestarlanguage.model.biz.RegisterService;
 import com.example.lenovo.thewishofthestarlanguage.model.config.Urls;
@@ -51,5 +52,9 @@ public class RetrofitUtils {
 
     public FamousTeacherService getFamousTeacherService() {
         return retrofit.create(FamousTeacherService.class);
+    }
+    public PerFectInforService getPerFectInforService(){
+        PerFectInforService perFectInforService = retrofit.create(PerFectInforService.class);
+        return perFectInforService;
     }
 }

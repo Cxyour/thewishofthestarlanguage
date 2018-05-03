@@ -41,10 +41,13 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             if(msg.what==3){
                 i = (int) msg.obj;
                 register_close_password.setText(i +"");
-                handler.postDelayed(runnable, 1000);
+
                 if (i ==0){
                     register_close_password.setText("获取短信验证码");
-                    i+=60;
+                    count=60;
+                    return;
+                }else {
+                    handler.postDelayed(runnable, 1000);
                 }
             }
         }
@@ -87,10 +90,10 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                 runnable = new Runnable() {
                     @Override
                     public void run() {
-
-                        if (count>=0) {
+                        count--;
+                        if (count>=0&&count!=60) {
                             Message message = handler.obtainMessage(3, count);
-                            count--;
+
                             handler.sendMessage(message);
                         }
                     }
@@ -101,6 +104,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                 submit();
                 regusterPresenter.loadFirst(register_username.getText().toString(),register_password.getText().toString());
                 break;
+
         }
     }
 

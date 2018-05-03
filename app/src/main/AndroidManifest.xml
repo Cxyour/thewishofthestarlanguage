@@ -21,7 +21,8 @@
         </activity>
         <activity android:name=".view.personal.activity.LoginActivity" />
         <activity android:name=".view.personal.activity.RegisterActivity" />
-        <activity android:name=".view.personal.activity.UnivStarHttpActivity"></activity>
+        <activity android:name=".view.personal.activity.UnivStarHttpActivity" />
+        <activity android:name=".view.personal.activity.PerfectInformationActivity"></activity>
     </application>
 
 </manifest>

@@ -5,6 +5,7 @@ import android.text.TextUtils;
 import com.example.lenovo.thewishofthestarlanguage.contact.ILoginContract;
 import com.example.lenovo.thewishofthestarlanguage.model.biz.LoginService;
 import com.example.lenovo.thewishofthestarlanguage.model.entity.UserBean;
+import com.example.lenovo.thewishofthestarlanguage.model.http.RetrofitUtils;
 
 import java.util.HashMap;
 import java.util.Map;

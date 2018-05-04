@@ -3,6 +3,7 @@ package com.example.lenovo.thewishofthestarlanguage.presenter;
 import com.example.lenovo.thewishofthestarlanguage.contact.IPerFectInforMationContact;
 import com.example.lenovo.thewishofthestarlanguage.contact.IPerFectInforMationContact.IPerFectInPresenter;
 import com.example.lenovo.thewishofthestarlanguage.model.biz.PerFectInforService;
+import com.example.lenovo.thewishofthestarlanguage.model.http.RetrofitUtils;
 
 import java.util.HashMap;
 

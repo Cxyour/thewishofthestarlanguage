@@ -4,25 +4,25 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.PopupWindow;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.BitmapImageViewTarget;
 import com.example.lenovo.thewishofthestarlanguage.R;
 import com.example.lenovo.thewishofthestarlanguage.model.config.Constant;
 import com.example.lenovo.thewishofthestarlanguage.view.base.BaseActivity;
 
 import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 public class PerfectInformationActivity extends BaseActivity implements View.OnClickListener {
 
@@ -54,7 +54,6 @@ public class PerfectInformationActivity extends BaseActivity implements View.OnC
         perfect_information_album = findViewById(R.id.perfect_information_album);
         perfect_information_album.setOnClickListener(this);
         perfect_information_camera = findViewById(R.id.perfect_information_camera);
-        perfect_information_camera.setOnClickListener(this);
         perfect_information_name = findViewById(R.id.perfect_information_name);
         perfect_information_close_name = findViewById(R.id.perfect_information_close_name);
         perfect_information_man = findViewById(R.id.perfect_information_man);
@@ -142,6 +141,16 @@ public class PerfectInformationActivity extends BaseActivity implements View.OnC
             if (photo == null) {
                 perfect_information_album.setImageResource(R.mipmap.ic_launcher);
             } else {
+//                Glide.with(this).load(uri_xiangCe)
+//                        .asBitmap()
+//                        .into(new BitmapImageViewTarget(perfect_information_album){
+//                            @Override
+//                            protected void setResource(Bitmap bitmap) {
+//                                RoundedBitmapDrawable drawable = RoundedBitmapDrawableFactory.create(getResources(), bitmap);
+//                                drawable.setCircular(true);
+//                                perfect_information_album.setBackground(drawable);
+//                            }
+//                        });
                 perfect_information_album.setImageBitmap(photo);
             }
             ByteArrayOutputStream baos = null;

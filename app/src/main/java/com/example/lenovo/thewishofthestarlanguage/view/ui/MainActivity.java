@@ -8,7 +8,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 
 import com.example.lenovo.thewishofthestarlanguage.R;
-import com.example.lenovo.thewishofthestarlanguage.view.homeactivity.HomeActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -19,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void handleMessage(Message msg) {
             if (count == 0) {
-                Intent intent = new Intent(MainActivity.this, HomeActivity.class);
+                Intent intent = new Intent(MainActivity.this, ContainerActivity.class);
                 startActivity(intent);
             } else {
                 time.setText(String.valueOf(count));

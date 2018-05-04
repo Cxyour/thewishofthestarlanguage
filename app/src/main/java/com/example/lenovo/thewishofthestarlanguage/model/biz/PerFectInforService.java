@@ -14,7 +14,7 @@ import retrofit2.http.POST;
  */
 
 public interface PerFectInforService {
-    @FormUrlEncoded
+        @FormUrlEncoded
         @POST("/v1/m/user/saveCompleteUser")
         Observable<ResponseBody> loadIperFectMsg(@FieldMap Map<String,String> params);
 }

@@ -6,11 +6,13 @@ import android.util.Log;
 import com.example.lenovo.thewishofthestarlanguage.model.biz.AppTokenService;
 import com.example.lenovo.thewishofthestarlanguage.model.biz.FamousTeacherService;
 import com.example.lenovo.thewishofthestarlanguage.model.biz.LoginService;
+import com.example.lenovo.thewishofthestarlanguage.model.biz.PerFectInforService;
 import com.example.lenovo.thewishofthestarlanguage.model.biz.PersonalService;
 import com.example.lenovo.thewishofthestarlanguage.model.biz.RegisterService;
 import com.example.lenovo.thewishofthestarlanguage.model.config.App;
 import com.example.lenovo.thewishofthestarlanguage.model.config.Urls;
 import com.example.lenovo.thewishofthestarlanguage.model.entity.AppTokenBean;
+import com.example.lenovo.thewishofthestarlanguage.view.personal.activity.PerfectInformationActivity;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 
 import java.io.IOException;
@@ -63,7 +65,7 @@ public class RetrofitUtils {
             @Override
             public Response intercept(Chain chain) throws IOException {
                 Request.Builder builder = chain.request().newBuilder();
-                builder.addHeader("apptoken", user.getString("apptoken", null));
+                builder.addHeader("apptoken", user.getString("headerApptoken", null));
                 return chain.proceed(builder.build());
 
             }
@@ -91,6 +93,10 @@ public class RetrofitUtils {
         return retrofit.create(AppTokenService.class);
     }
 
+    public PerFectInforService getPerFectInforService() {
+        return retrofit.create(PerFectInforService.class);
+    }
+
     public void getToken() {
         Retrofit retrofit = new Retrofit.Builder()
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
@@ -103,16 +109,19 @@ public class RetrofitUtils {
                 .subscribe(new Observer<AppTokenBean>() {
                     @Override
                     public void onSubscribe(Disposable d) {
-                        Log.e("1", d.toString());
+
                     }
 
                     @Override
                     public void onNext(AppTokenBean appTokenBean) {
+                        long time = System.currentTimeMillis();
                         String appToken = appTokenBean.getData().getApptoken();
-                        Log.e("2", appToken);
+                        String desAppToken = EncryptUtil.encrypt(appToken);
+                        String headerApptoken = EncryptUtil.encrypt(time + desAppToken).replaceAll("\\n", "").toUpperCase();
                         user = App.context.getSharedPreferences("user", 0);
                         SharedPreferences.Editor edit = user.edit();
-                        edit.putString("apptoken", appToken);
+                        edit.putString("headerApptoken", headerApptoken + "." + time);
+                        Log.e("----------------",headerApptoken + "." + time);
                         edit.commit();
                     }
 

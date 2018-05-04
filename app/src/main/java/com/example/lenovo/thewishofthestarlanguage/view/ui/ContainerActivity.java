@@ -1,4 +1,4 @@
-package com.example.lenovo.thewishofthestarlanguage.view.homeactivity;
+package com.example.lenovo.thewishofthestarlanguage.view.ui;
 
 import android.app.FragmentManager;
 import android.view.View;
@@ -15,7 +15,7 @@ import com.example.lenovo.thewishofthestarlanguage.view.personal.fragment.Person
 import com.example.lenovo.thewishofthestarlanguage.view.preview.fragment.PreviewFragment;
 import com.example.lenovo.thewishofthestarlanguage.view.treasure.fragment.TreasureFragment;
 
-public class HomeActivity extends BaseActivity implements View.OnClickListener {
+public class ContainerActivity extends BaseActivity implements View.OnClickListener {
 
     private ImageView home_master_btn;
     private TextView home_master_tv;

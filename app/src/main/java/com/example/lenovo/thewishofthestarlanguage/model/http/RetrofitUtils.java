@@ -12,7 +12,6 @@ import com.example.lenovo.thewishofthestarlanguage.model.biz.RegisterService;
 import com.example.lenovo.thewishofthestarlanguage.model.config.App;
 import com.example.lenovo.thewishofthestarlanguage.model.config.Urls;
 import com.example.lenovo.thewishofthestarlanguage.model.entity.AppTokenBean;
-import com.example.lenovo.thewishofthestarlanguage.view.personal.activity.PerfectInformationActivity;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 
 import java.io.IOException;
@@ -56,6 +55,7 @@ public class RetrofitUtils {
                 }
             }
         }
+
         return retrofitUtils;
     }
 

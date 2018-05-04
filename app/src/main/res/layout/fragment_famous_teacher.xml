@@ -4,9 +4,8 @@
     android:layout_height="match_parent"
     tools:context="com.example.lenovo.thewishofthestarlanguage.view.famousteacher.fragment.FamousTeacherFragment">
 
-  <!--  <com.androidkun.PullToRefreshRecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/teacher_recycle"></com.androidkun.PullToRefreshRecyclerView>
--->
+<com.wuxiaolong.pullloadmorerecyclerview.PullLoadMoreRecyclerView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/teacher_recycle"></com.wuxiaolong.pullloadmorerecyclerview.PullLoadMoreRecyclerView>
 </LinearLayout>

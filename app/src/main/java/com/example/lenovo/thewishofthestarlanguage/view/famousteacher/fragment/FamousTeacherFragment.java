@@ -7,10 +7,12 @@ import com.example.lenovo.thewishofthestarlanguage.contact.IFamousTeacherContrac
 import com.example.lenovo.thewishofthestarlanguage.model.entity.FamousTeacherBean;
 import com.example.lenovo.thewishofthestarlanguage.presenter.FamousTeacherPresenter;
 import com.example.lenovo.thewishofthestarlanguage.view.base.BaseFragment;
+import com.wuxiaolong.pullloadmorerecyclerview.PullLoadMoreRecyclerView;
 
 public class FamousTeacherFragment extends BaseFragment implements IFamousTeacherContract.IFamousTeacherView{
+    private PullLoadMoreRecyclerView pullLoadMoreRecyclerView;
 
- //   private PullToRefreshRecyclerView famous_recycle;
+    //   private PullToRefreshRecyclerView famous_recycle;
 
     @Override
     protected int getLayoutId() {
@@ -22,6 +24,8 @@ public class FamousTeacherFragment extends BaseFragment implements IFamousTeache
 
         FamousTeacherPresenter famousTeacherPresenter = new FamousTeacherPresenter(this);
         famousTeacherPresenter.loadFrmousBean();
+        pullLoadMoreRecyclerView = view.findViewById(R.id.teacher_recycle);
+
     }
 
     @Override
@@ -34,6 +38,6 @@ public class FamousTeacherFragment extends BaseFragment implements IFamousTeache
     @Override
     public void showFamousTecah(FamousTeacherBean famousTeacherBean) {
         FamousTeacherBean.DataBean data = famousTeacherBean.getData();
-
+        
     }
 }

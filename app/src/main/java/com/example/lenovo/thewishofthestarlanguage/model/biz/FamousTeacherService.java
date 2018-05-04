@@ -14,5 +14,5 @@ import retrofit2.http.POST;
 
 public interface FamousTeacherService {
     @POST("/v1/m/home/alliance/list")
-    Observable<FamousTeacherBean> loadFamousBean(@HeaderMap Map<String,String> headerMap);
+    Observable<FamousTeacherBean> loadFamousBean();
 }

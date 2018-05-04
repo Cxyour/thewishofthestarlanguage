@@ -1,6 +1,11 @@
 package com.example.lenovo.thewishofthestarlanguage.model.http;
 
+import android.Manifest;
+import android.content.Context;
 import android.content.SharedPreferences;
+import android.os.Build;
+import android.support.v4.app.ActivityCompat;
+import android.text.TextUtils;
 import android.util.Log;
 
 import com.example.lenovo.thewishofthestarlanguage.model.biz.AppTokenService;
@@ -10,11 +15,13 @@ import com.example.lenovo.thewishofthestarlanguage.model.biz.PerFectInforService
 import com.example.lenovo.thewishofthestarlanguage.model.biz.PersonalService;
 import com.example.lenovo.thewishofthestarlanguage.model.biz.RegisterService;
 import com.example.lenovo.thewishofthestarlanguage.model.config.App;
+import com.example.lenovo.thewishofthestarlanguage.model.config.Constant;
 import com.example.lenovo.thewishofthestarlanguage.model.config.Urls;
 import com.example.lenovo.thewishofthestarlanguage.model.entity.AppTokenBean;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -38,12 +45,57 @@ public class RetrofitUtils {
     private SharedPreferences user;
 
     private RetrofitUtils() {
+        OkHttpClient okHttpClient = new OkHttpClient.Builder()
+//                .connectTimeout(15, TimeUnit.SECONDS)//链接超时
+//                .readTimeout(20,TimeUnit.SECONDS)//读取
+//                .writeTimeout(20,TimeUnit.SECONDS)//写
+//                .retryOnConnectionFailure(false)//目前关闭重复请求
+                .addInterceptor(new ReceivedCookiesInterceptor(App.context))
+                .addInterceptor(new AddCookiesInterceptor(App.context))
+                .build();
+
+        if(TextUtils.isEmpty(getAppToken(App.context))){
+            getToken();
+        }
+
         retrofit = new Retrofit.Builder()
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .baseUrl(Urls.UNIVSTARURL)
-                .client(getOkHttpClient())
+                .client(okHttpClient)
                 .build();
+
+        if (Build.VERSION.SDK_INT >= 23) {
+            String[] mPermissionList = new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.CALL_PHONE, Manifest.permission.READ_LOGS, Manifest.permission.READ_PHONE_STATE, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.SET_DEBUG_APP, Manifest.permission.SYSTEM_ALERT_WINDOW, Manifest.permission.GET_ACCOUNTS, Manifest.permission.WRITE_APN_SETTINGS};
+            ActivityCompat.requestPermissions(App.context, mPermissionList, 123);
+        }
+
+    }
+
+    public static String getAppToken(Context context){
+        if(context==null){
+            return "" ;
+        }
+        SharedPreferences sharedPreferences = context.getApplicationContext().getSharedPreferences(Constant.CookieSP, Context.MODE_PRIVATE);
+
+        String apptoken = sharedPreferences.getString(Constant.AppToken, "");
+        if(TextUtils.isEmpty(apptoken)){
+            return "";
+        }
+        //TODU测试id
+        return apptoken;
+
+    }
+
+    private void saveAppToken(Context context,String token ,long time){
+        if(context==null){
+            return ;
+        }
+        SharedPreferences sharedPreferences = context.getApplicationContext().getSharedPreferences(Constant.CookieSP, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        //存储的时候 转成大写后的token + "."  + 加上当前系统时间 组成最中的token
+        editor.putString(Constant.AppToken,token+"."+time);
+        editor.commit();
 
     }
 
@@ -57,20 +109,6 @@ public class RetrofitUtils {
         }
 
         return retrofitUtils;
-    }
-
-    public OkHttpClient getOkHttpClient() {
-        getToken();
-        Interceptor interceptor = new Interceptor() {
-            @Override
-            public Response intercept(Chain chain) throws IOException {
-                Request.Builder builder = chain.request().newBuilder();
-                builder.addHeader("apptoken", user.getString("headerApptoken", ""));
-                return chain.proceed(builder.build());
-
-            }
-        };
-        return new OkHttpClient.Builder().addNetworkInterceptor(interceptor).build();
     }
 
     public LoginService getLoginService() {
@@ -98,11 +136,22 @@ public class RetrofitUtils {
     }
 
     public void getToken() {
-        Retrofit retrofit = new Retrofit.Builder()
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .addConverterFactory(GsonConverterFactory.create())
-                .baseUrl(Urls.UNIVSTARURL)
+        OkHttpClient okHttpClient = new OkHttpClient.Builder()
+                .connectTimeout(15, TimeUnit.SECONDS)
+                .readTimeout(20,TimeUnit.SECONDS)
+                .writeTimeout(20,TimeUnit.SECONDS)
+                .retryOnConnectionFailure(false)
+                .addInterceptor(new ReceivedCookiesInterceptor(App.context))
+                .addInterceptor(new AddCookiesInterceptor(App.context))
                 .build();
+
+        Retrofit retrofit= new Retrofit.Builder()
+                .client(okHttpClient)
+                .baseUrl(Urls.UNIVSTARURL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .build();
+
         retrofit.create(AppTokenService.class).getAppToken()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -117,16 +166,17 @@ public class RetrofitUtils {
                         if(appTokenBean==null||appTokenBean.getData()==null){
                             return;
                         }
+
+                        String apptoken = appTokenBean.getData().getApptoken();
                         long time = System.currentTimeMillis();
-                        String appToken = appTokenBean.getData().getApptoken();
-                        Log.e("----------", appToken);
-                        String desAppToken = EncryptUtil.encrypt(appToken);
-                        String headerApptoken = EncryptUtil.encrypt(time + desAppToken).replaceAll("\\n", "").toUpperCase();
-                        user = App.context.getSharedPreferences("user", 0);
-                        SharedPreferences.Editor edit = user.edit();
-                        edit.putString("headerApptoken", headerApptoken + "." + time);
-                        Log.e("----------------", headerApptoken + "." + time);
-                        edit.commit();
+                        try {
+                            String desApptoken= EncryptUtil.decrypt(apptoken);//解码后的数据
+                            //解码后的数据拼接上当前系统时间 再编码 去掉换行 把所有字母转成大写
+                            String headerApptoken=EncryptUtil.encrypt(time + desApptoken).replaceAll("\\n","").toUpperCase();
+                            saveAppToken(App.context,headerApptoken,time);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
                     }
 
                     @Override

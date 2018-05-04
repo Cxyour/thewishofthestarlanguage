@@ -1,5 +1,6 @@
 package com.example.lenovo.thewishofthestarlanguage.view.personal.activity;
 
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.view.View;
 import android.widget.Button;
@@ -9,6 +10,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import com.example.lenovo.thewishofthestarlanguage.R;
+import com.example.lenovo.thewishofthestarlanguage.model.config.Constant;
 import com.example.lenovo.thewishofthestarlanguage.view.base.BaseActivity;
 
 public class PerfectInformationActivity extends BaseActivity {
@@ -65,12 +67,11 @@ public class PerfectInformationActivity extends BaseActivity {
         perfect_information_finish.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SharedPreferences user = getSharedPreferences("user", 0);
+                SharedPreferences user = getSharedPreferences(Constant.CookieSP, Context.MODE_PRIVATE);
                 SharedPreferences.Editor edit = user.edit();
-                edit.putString("name", perfect_information_name.getText().toString().trim());
-                edit.putString("sex", sex);
-                edit.putString("password", perfect_information_password.getText().toString().trim());
-                edit.putString("", "");
+                edit.putString(Constant.User_name, perfect_information_name.getText().toString().trim());
+                edit.putString(Constant.User_sex, sex);
+                edit.putString(Constant.User_pass, perfect_information_password.getText().toString().trim());
             }
         });
     }

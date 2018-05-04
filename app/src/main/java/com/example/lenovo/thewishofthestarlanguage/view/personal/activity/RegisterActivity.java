@@ -1,5 +1,6 @@
 package com.example.lenovo.thewishofthestarlanguage.view.personal.activity;
 
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Handler;
 import android.os.Message;
@@ -13,6 +14,7 @@ import android.widget.Toast;
 
 import com.example.lenovo.thewishofthestarlanguage.R;
 import com.example.lenovo.thewishofthestarlanguage.contact.IRegisterContract;
+import com.example.lenovo.thewishofthestarlanguage.model.config.Constant;
 import com.example.lenovo.thewishofthestarlanguage.presenter.RegusterPresenter;
 import com.example.lenovo.thewishofthestarlanguage.view.base.BaseActivity;
 
@@ -100,9 +102,9 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
                 break;
             case R.id.register_register:
                 regusterPresenter.loadFirst(register_username.getText().toString(), register_password.getText().toString());
-                SharedPreferences preferences = getSharedPreferences("user", 0);
+                SharedPreferences preferences = getSharedPreferences(Constant.CookieSP, Context.MODE_PRIVATE);
                 SharedPreferences.Editor edit = preferences.edit();
-                edit.putString("mobile", register_username.getText().toString().trim());
+                edit.putString(Constant.User_mobile, register_username.getText().toString().trim());
               //  Intent intent = new Intent(this, PerfectInformationActivity.class);
             //    startActivity(intent);
                 break;

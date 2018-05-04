@@ -19,23 +19,18 @@ public class Constant {
     public static final int SuccessCode = 0;
 
     public static final int RECODE_AUTH_SUCCESS = 11;
-
-
     /**
      * connectTimeout
      */
     public static final int ConnectTimeout = 15;
-
     /**
      * readTimeout
      */
     public static final int ReadTimeout = 20;
-
     /**
      * WriteTimeout
      */
     public static final int WriteTimeout = 20;
-
     /**
      * 列表显示条目数
      */
@@ -44,56 +39,44 @@ public class Constant {
      * 应用版本号
      */
     public static final String APP_VERSION = "1.0.0";
-
     /**
      * Cookie本地保存文件名字
      */
     public static final String CookieSP = "xyxy_cookiesp";
-
     /**
      * Cookie本地文件key
      */
     public static final String CookieName = "xyxy_cookiename";
-
     /**
      * apptoken
      */
     public static final String AppToken = "xyxy_apptoken";
-
-
     /**
      * 用户id
      */
     public static final String UserId = "xyxy_user_id";
-
     /**
      * app version本地文件key
      */
     public static final String VersionName = "xyxy_versionname";
-
     /**
      * 手机唯一标示 本地文件key
      */
     public static final String SoleName = "xyxy_solename";
 
     public static final String User_Agent = "xyxy_user_agent";
-
-
     /**
      * clientid 本地文件key
      */
     public static final String CidName = "xyxy_cidname";
-
     /**
      * 未度消息状态 N 已读 Y未读
      */
     public static final String NewMessage = "xyxy_newmessage";
-
     /**
      *
      */
     public static final String Jump_Phone = "jump_phone";
-
     /**
      * click time 防止连点时间
      */
@@ -102,16 +85,12 @@ public class Constant {
     public static final String Parse_json_key = "application/json; charset=utf-8";
 
     public static final String Root_url = "https://www.univstar.com/";
-
 //    public static final String Root_url = "http://test.univstar.com/";
-
 //    public static final String Root_url = "http://192.168.0.28:8080";
 //    public static final String Root_url = "http://192.168.0.45";
-
     public static final String Weixinlogin_url = "/v1/m/user/login/wechat";
 
     public static final String QQlogin_url = "v1/m/user/login/qq";
-
 
     //验证码
     public static final String Authcode_url = "/v1/m/user/authcode";

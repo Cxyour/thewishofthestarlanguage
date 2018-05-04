@@ -22,11 +22,11 @@ import okhttp3.ResponseBody;
  * Created by 陈伟霆 on 2018/5/3.
  */
 
-public class RegusterPresenter implements IRegisterContract.IRegisterPresenter {
+public class RegisterPresenter implements IRegisterContract.IRegisterPresenter {
     IRegisterContract.IRegisterView iRegisterView;
     RegisterService registerService;
 
-    public RegusterPresenter(IRegisterContract.IRegisterView iRegisterView) {
+    public RegisterPresenter(IRegisterContract.IRegisterView iRegisterView) {
         this.iRegisterView = iRegisterView;
         registerService = RetrofitUtils.getInstance().getRegisterService();
 
@@ -82,7 +82,7 @@ public class RegusterPresenter implements IRegisterContract.IRegisterPresenter {
 
                     @Override
                     public void onError(Throwable e) {
-                        Log.e("RegusterPresenter", "e:" + e);
+                        Log.e("RegisterPresenter", "e:" + e);
                     }
 
                     @Override
@@ -93,12 +93,12 @@ public class RegusterPresenter implements IRegisterContract.IRegisterPresenter {
     }
 
     @Override
-    public void loadFirst(final String phoneNumber, String phoneCode) {
+    public void goToRegister(final String phoneNumber, String phoneCode) {
         if (isUserName(phoneNumber)) ;
         HashMap<String, String> parmas = new HashMap<>();
         parmas.put("mobile", phoneNumber);
         parmas.put("mobileValidCode", phoneCode);
-        registerService.loadFirst(parmas)
+        registerService.goToRegister(parmas)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.newThread())
                 .subscribe(new Observer<ResponseBody>() {
@@ -120,7 +120,7 @@ public class RegusterPresenter implements IRegisterContract.IRegisterPresenter {
 
                     @Override
                     public void onError(Throwable e) {
-                        Log.e("RegusterPresenter", e.getMessage());
+                        Log.e("RegisterPresenter", e.getMessage());
                     }
 
                     @Override

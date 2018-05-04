@@ -1,6 +1,7 @@
 package com.example.lenovo.thewishofthestarlanguage.view.personal.activity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Handler;
 import android.os.Message;
@@ -15,7 +16,7 @@ import android.widget.Toast;
 import com.example.lenovo.thewishofthestarlanguage.R;
 import com.example.lenovo.thewishofthestarlanguage.contact.IRegisterContract;
 import com.example.lenovo.thewishofthestarlanguage.model.config.Constant;
-import com.example.lenovo.thewishofthestarlanguage.presenter.RegusterPresenter;
+import com.example.lenovo.thewishofthestarlanguage.presenter.RegisterPresenter;
 import com.example.lenovo.thewishofthestarlanguage.view.base.BaseActivity;
 
 public class RegisterActivity extends BaseActivity implements View.OnClickListener, IRegisterContract.IRegisterView {
@@ -31,7 +32,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
     private TextView register_checked_http;
     private Button register_register;
     private ImageView register_close;
-    private RegusterPresenter regusterPresenter;
+    private RegisterPresenter registerPresenter;
     private Handler handler = new Handler() {
 
 
@@ -78,16 +79,16 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
 
     @Override
     protected void loadData() {
-        regusterPresenter = new RegusterPresenter(this);
+        registerPresenter = new RegisterPresenter(this);
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.register_close_password:
-                if (!regusterPresenter.isUserName(register_username.getText().toString().trim()))
+                if (!registerPresenter.isUserName(register_username.getText().toString().trim()))
                     return;
-                regusterPresenter.loadPhoneMsg(register_username.getText().toString().trim());
+                registerPresenter.loadPhoneMsg(register_username.getText().toString().trim());
                 runnable = new Runnable() {
                     @Override
                     public void run() {
@@ -101,12 +102,12 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
                 handler.postDelayed(runnable, 1000);
                 break;
             case R.id.register_register:
-                regusterPresenter.loadFirst(register_username.getText().toString(), register_password.getText().toString());
+                registerPresenter.goToRegister(register_username.getText().toString(), register_password.getText().toString());
                 SharedPreferences preferences = getSharedPreferences(Constant.CookieSP, Context.MODE_PRIVATE);
                 SharedPreferences.Editor edit = preferences.edit();
                 edit.putString(Constant.User_mobile, register_username.getText().toString().trim());
-              //  Intent intent = new Intent(this, PerfectInformationActivity.class);
-            //    startActivity(intent);
+                Intent intent = new Intent(this, PerfectInformationActivity.class);
+                startActivity(intent);
                 break;
             case R.id.register_close:
                 finish();

@@ -36,7 +36,4 @@ dependencies {
     compile 'com.wuxiaolong.pullloadmorerecyclerview:library:1.0.4'
 
 
-
-
-
 }

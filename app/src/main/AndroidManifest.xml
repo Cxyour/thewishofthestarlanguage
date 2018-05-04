@@ -18,21 +18,16 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
-        <activity android:name=".view.personal.activity.UnivStarHttpActivity"></activity>
-        <activity android:name=".view.personal.activity.LoveActivity"></activity>
-        <activity android:name=".view.ui.ContainerActivity">
-
-        </activity>
-        <activity android:name=".view.personal.activity.LoginActivity">
-
-        </activity>
-        <activity android:name=".view.personal.activity.RegisterActivity"></activity>
-        <activity android:name=".view.personal.activity.PerfectInformationActivity">
-
-
-        </activity>
+        <activity android:name=".view.personal.activity.UnivStarHttpActivity" />
+        <activity android:name=".view.personal.activity.LoveActivity" />
+        <activity android:name=".view.ui.ContainerActivity" />
+        <activity android:name=".view.personal.activity.LoginActivity" />
+        <activity android:name=".view.personal.activity.RegisterActivity" />
+        <activity android:name=".view.personal.activity.PerfectInformationActivity" />
+        <activity android:name=".view.personal.activity.SetActivity" />
+        <activity android:name=".view.personal.activity.FindPassWordActivity" />
+        <activity android:name=".view.personal.activity.ResetPassWordActivity"></activity>
     </application>
 
 </manifest>

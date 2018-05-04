@@ -60,11 +60,12 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
         login_close_password.setOnClickListener(this);
         login_register.setOnClickListener(this);
         login_login.setOnClickListener(this);
+        login_close.setOnClickListener(this);
+        login_forget_password.setOnClickListener(this);
     }
 
     @Override
     protected void loadData() {
-
         loginPresenterImp = new LoginPresenterImp(this);
     }
 
@@ -73,6 +74,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
         switch (v.getId()) {
             case R.id.login_login:
                 loginPresenterImp.goToLogin(login_username.getText().toString().trim(), login_password.getText().toString().trim());
+
                 intent = new Intent(this, ContainerActivity.class);
                 startActivity(intent);
                 break;
@@ -85,6 +87,13 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                 break;
             case R.id.login_close_password:
                 login_password.setText("");
+                break;
+            case R.id.login_close:
+                finish();
+                break;
+            case R.id.login_forget_password:
+                intent = new Intent(this, FindPassWordActivity.class);
+                startActivity(intent);
                 break;
         }
     }
@@ -105,8 +114,6 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
         edit.putString(Constant.User_name, userBean.getData().getNickname());
         edit.putString(Constant.User_icon, userBean.getData().getPhoto());
         edit.putInt(Constant.UserId, userBean.getData().getId());
-
-
         edit.commit();
     }
 

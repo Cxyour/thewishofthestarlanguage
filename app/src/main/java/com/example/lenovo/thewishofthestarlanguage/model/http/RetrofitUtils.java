@@ -10,6 +10,7 @@ import android.util.Log;
 
 import com.example.lenovo.thewishofthestarlanguage.model.biz.AppTokenService;
 import com.example.lenovo.thewishofthestarlanguage.model.biz.FamousTeacherService;
+import com.example.lenovo.thewishofthestarlanguage.model.biz.HomeWorkService;
 import com.example.lenovo.thewishofthestarlanguage.model.biz.LoginService;
 import com.example.lenovo.thewishofthestarlanguage.model.biz.PerFectInforService;
 import com.example.lenovo.thewishofthestarlanguage.model.biz.PersonalService;
@@ -99,42 +100,6 @@ public class RetrofitUtils {
 
     }
 
-    public static RetrofitUtils getInstance() {
-        if (retrofitUtils == null) {
-            synchronized (RetrofitUtils.class) {
-                if (retrofitUtils == null) {
-                    retrofitUtils = new RetrofitUtils();
-                }
-            }
-        }
-
-        return retrofitUtils;
-    }
-
-    public LoginService getLoginService() {
-        return retrofit.create(LoginService.class);
-    }
-
-    public RegisterService getRegisterService() {
-        return retrofit.create(RegisterService.class);
-    }
-
-    public PersonalService getPersonalService() {
-        return retrofit.create(PersonalService.class);
-    }
-
-    public FamousTeacherService getFamousTeacherService() {
-        return retrofit.create(FamousTeacherService.class);
-    }
-
-    public AppTokenService getAppTokenService() {
-        return retrofit.create(AppTokenService.class);
-    }
-
-    public PerFectInforService getPerFectInforService() {
-        return retrofit.create(PerFectInforService.class);
-    }
-
     public void getToken() {
         OkHttpClient okHttpClient = new OkHttpClient.Builder()
                 .connectTimeout(15, TimeUnit.SECONDS)
@@ -190,4 +155,47 @@ public class RetrofitUtils {
                     }
                 });
     }
+
+    public static RetrofitUtils getInstance() {
+        if (retrofitUtils == null) {
+            synchronized (RetrofitUtils.class) {
+                if (retrofitUtils == null) {
+                    retrofitUtils = new RetrofitUtils();
+                }
+            }
+        }
+
+        return retrofitUtils;
+    }
+
+    public LoginService getLoginService() {
+        return retrofit.create(LoginService.class);
+    }
+
+    public RegisterService getRegisterService() {
+        return retrofit.create(RegisterService.class);
+    }
+
+    public PersonalService getPersonalService() {
+        return retrofit.create(PersonalService.class);
+    }
+
+    public FamousTeacherService getFamousTeacherService() {
+        return retrofit.create(FamousTeacherService.class);
+    }
+
+    public AppTokenService getAppTokenService() {
+        return retrofit.create(AppTokenService.class);
+    }
+
+    public PerFectInforService getPerFectInforService() {
+        return retrofit.create(PerFectInforService.class);
+    }
+
+    public HomeWorkService getHomeWorkService() {
+        return retrofit.create(HomeWorkService.class);
+    }
+
+
+
 }

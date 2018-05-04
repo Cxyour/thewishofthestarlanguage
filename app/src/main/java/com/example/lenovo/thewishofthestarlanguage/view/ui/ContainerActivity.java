@@ -72,7 +72,6 @@ public class ContainerActivity extends BaseActivity implements View.OnClickListe
     @Override
     protected void loadData() {
         setContentView(R.id.home_lay,FamousTeacherFragment.class,null);
-       // fragmentManager = getFragmentManager();
 
     }
 

@@ -70,6 +70,7 @@ public class RetrofitUtils {
                 Request.Builder builder = chain.request().newBuilder();
                 builder.addHeader("apptoken", user.getString("apptoken", null));
                 return chain.proceed(builder.build());
+
             }
         };
         return new OkHttpClient.Builder().addNetworkInterceptor(interceptor).build();

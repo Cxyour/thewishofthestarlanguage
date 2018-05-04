@@ -1,11 +1,8 @@
 package com.example.lenovo.thewishofthestarlanguage.view.personal.activity;
 
-import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -106,8 +103,8 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
                 SharedPreferences preferences = getSharedPreferences("user", 0);
                 SharedPreferences.Editor edit = preferences.edit();
                 edit.putString("mobile", register_username.getText().toString().trim());
-                Intent intent = new Intent(this, PerfectInformationActivity.class);
-                startActivity(intent);
+              //  Intent intent = new Intent(this, PerfectInformationActivity.class);
+            //    startActivity(intent);
                 break;
             case R.id.register_close:
                 finish();

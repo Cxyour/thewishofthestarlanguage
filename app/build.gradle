@@ -32,6 +32,6 @@ dependencies {
     compile 'com.squareup.retrofit2:retrofit:2.3.0'
     compile 'com.squareup.retrofit2:converter-gson:2.3.0'
 
-    compile 'com.androidkun:pulltorefreshrecyclerview:1.0.9'  //PullToRefreshRecyclerView
+
 
 }

@@ -31,7 +31,7 @@ public class FamousTeacherPresenter implements IFamousTeacherContract.IFamousTea
     public void loadFrmousBean() {
         HashMap<String, String> map = new HashMap<>();
         SharedPreferences user = App.context.getSharedPreferences("user", 0);
-        String headerApptoken = user.getString("headerApptoken", null);
+        String headerApptoken = user.getString("headerApptoken", "");
         Log.e("FamousTeacherPresenter", headerApptoken);
         map.put("apptoken",headerApptoken);
         famousTeacherService.loadFamousBean(map)

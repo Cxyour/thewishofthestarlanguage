@@ -65,7 +65,7 @@ public class RetrofitUtils {
             @Override
             public Response intercept(Chain chain) throws IOException {
                 Request.Builder builder = chain.request().newBuilder();
-                builder.addHeader("apptoken", user.getString("headerApptoken", null));
+                builder.addHeader("apptoken", user.getString("headerApptoken", ""));
                 return chain.proceed(builder.build());
 
             }
@@ -114,6 +114,9 @@ public class RetrofitUtils {
 
                     @Override
                     public void onNext(AppTokenBean appTokenBean) {
+                        if(appTokenBean==null||appTokenBean.getData()==null){
+                            return;
+                        }
                         long time = System.currentTimeMillis();
                         String appToken = appTokenBean.getData().getApptoken();
                         Log.e("----------", appToken);

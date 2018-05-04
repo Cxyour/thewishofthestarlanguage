@@ -15,6 +15,7 @@ import com.example.lenovo.thewishofthestarlanguage.contact.ILoginContract;
 import com.example.lenovo.thewishofthestarlanguage.model.entity.UserBean;
 import com.example.lenovo.thewishofthestarlanguage.presenter.LoginPresenterImp;
 import com.example.lenovo.thewishofthestarlanguage.view.base.BaseActivity;
+import com.example.lenovo.thewishofthestarlanguage.view.ui.ContainerActivity;
 
 
 public class LoginActivity extends BaseActivity implements View.OnClickListener, ILoginContract.ILoginView, View.OnFocusChangeListener {
@@ -31,6 +32,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
     private TextView login_close;
     private TextView login_register;
     private LoginPresenterImp loginPresenterImp;
+    private Intent intent;
 
     @Override
     protected int getLayoutId() {
@@ -69,9 +71,11 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
         switch (v.getId()) {
             case R.id.login_login:
                 loginPresenterImp.goToLogin(login_username.getText().toString().trim(), login_password.getText().toString().trim());
+                intent = new Intent(this, ContainerActivity.class);
+                startActivity(intent);
                 break;
             case R.id.login_register:
-                Intent intent = new Intent(this, RegisterActivity.class);
+                intent = new Intent(this, RegisterActivity.class);
                 startActivity(intent);
                 break;
             case R.id.login_close_username:

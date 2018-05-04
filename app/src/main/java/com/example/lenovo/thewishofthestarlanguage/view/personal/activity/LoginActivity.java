@@ -105,6 +105,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
         edit.putString(Constant.User_name, userBean.getData().getNickname());
         edit.putString(Constant.User_icon, userBean.getData().getPhoto());
         edit.putInt(Constant.UserId, userBean.getData().getId());
+
+
         edit.commit();
     }
 

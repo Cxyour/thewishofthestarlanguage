@@ -5,7 +5,6 @@ import android.util.Log;
 
 import com.example.lenovo.thewishofthestarlanguage.contact.IRegisterContract;
 import com.example.lenovo.thewishofthestarlanguage.model.biz.RegisterService;
-import com.example.lenovo.thewishofthestarlanguage.model.http.RetrofitUtils;
 
 import java.io.IOException;
 import java.util.HashMap;

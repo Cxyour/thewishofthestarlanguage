@@ -11,6 +11,7 @@ public class PersonalFragment extends BaseFragment {
     @Override
     protected int getLayoutId() {
         return R.layout.fragment_personal;
+
     }
 
     @Override

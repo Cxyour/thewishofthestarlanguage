@@ -7,7 +7,6 @@ import com.example.lenovo.thewishofthestarlanguage.contact.IFamousTeacherContrac
 import com.example.lenovo.thewishofthestarlanguage.model.biz.FamousTeacherService;
 import com.example.lenovo.thewishofthestarlanguage.model.config.App;
 import com.example.lenovo.thewishofthestarlanguage.model.entity.FamousTeacherBean;
-import com.example.lenovo.thewishofthestarlanguage.model.http.RetrofitUtils;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Consumer;

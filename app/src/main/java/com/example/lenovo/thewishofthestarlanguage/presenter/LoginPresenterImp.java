@@ -69,7 +69,7 @@ public class LoginPresenterImp implements ILoginContract.ILoginPresenter {
                 .subscribe(new Observer<UserBean>() {
                     @Override
                     public void onSubscribe(Disposable d) {
-                        Log.e("------------------", d.toString());
+
                     }
 
                     @Override
@@ -79,12 +79,12 @@ public class LoginPresenterImp implements ILoginContract.ILoginPresenter {
 
                     @Override
                     public void onError(Throwable e) {
-                        Log.e("------------------", e.getMessage());
+
                     }
 
                     @Override
                     public void onComplete() {
-                        Log.e("------------------", "------------------");
+
                     }
                 });
     }

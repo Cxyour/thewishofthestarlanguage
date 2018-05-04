@@ -10,6 +10,11 @@ public class PreviewFragment extends BaseFragment {
 
     @Override
     protected int getLayoutId() {
+
+
+
+
+
         return R.layout.fragment_preview;
     }
 

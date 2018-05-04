@@ -12,21 +12,27 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".view.ui.MainActivity"></activity>
-        <activity android:name=".view.personal.activity.UnivStarHttpActivity"></activity>
-        <activity android:name=".view.personal.activity.LoveActivity"></activity>
-        <activity android:name=".view.ui.ContainerActivity">
+        <activity android:name=".view.ui.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
+        </activity>
+        <activity android:name=".view.personal.activity.UnivStarHttpActivity"></activity>
+        <activity android:name=".view.personal.activity.LoveActivity"></activity>
+        <activity android:name=".view.ui.ContainerActivity">
+
         </activity>
         <activity android:name=".view.personal.activity.LoginActivity">
 
         </activity>
         <activity android:name=".view.personal.activity.RegisterActivity"></activity>
-        <activity android:name=".view.personal.activity.PerfectInformationActivity"></activity>
+        <activity android:name=".view.personal.activity.PerfectInformationActivity">
+
+
+        </activity>
     </application>
 
 </manifest>

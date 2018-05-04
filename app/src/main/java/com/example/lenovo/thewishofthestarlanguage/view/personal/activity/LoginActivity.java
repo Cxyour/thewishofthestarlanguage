@@ -58,6 +58,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
         login_password.setOnFocusChangeListener(this);
         login_close_username.setOnClickListener(this);
         login_close_password.setOnClickListener(this);
+
         login_register.setOnClickListener(this);
         login_login.setOnClickListener(this);
         login_close.setOnClickListener(this);

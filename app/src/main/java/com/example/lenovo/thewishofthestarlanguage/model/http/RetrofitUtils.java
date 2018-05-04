@@ -116,12 +116,13 @@ public class RetrofitUtils {
                     public void onNext(AppTokenBean appTokenBean) {
                         long time = System.currentTimeMillis();
                         String appToken = appTokenBean.getData().getApptoken();
+                        Log.e("----------", appToken);
                         String desAppToken = EncryptUtil.encrypt(appToken);
                         String headerApptoken = EncryptUtil.encrypt(time + desAppToken).replaceAll("\\n", "").toUpperCase();
                         user = App.context.getSharedPreferences("user", 0);
                         SharedPreferences.Editor edit = user.edit();
                         edit.putString("headerApptoken", headerApptoken + "." + time);
-                        Log.e("----------------",headerApptoken + "." + time);
+                        Log.e("----------------", headerApptoken + "." + time);
                         edit.commit();
                     }
 

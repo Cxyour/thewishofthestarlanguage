@@ -94,7 +94,8 @@ public class RegisterPresenter implements IRegisterContract.IRegisterPresenter {
 
     @Override
     public void goToRegister(final String phoneNumber, String phoneCode) {
-        if (isUserName(phoneNumber)) ;
+        if (!isUserName(phoneNumber))
+            return;
         HashMap<String, String> parmas = new HashMap<>();
         parmas.put("mobile", phoneNumber);
         parmas.put("mobileValidCode", phoneCode);

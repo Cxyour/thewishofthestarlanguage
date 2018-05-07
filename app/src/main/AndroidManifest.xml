@@ -16,18 +16,20 @@
         <activity android:name=".view.ui.ContainerActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
 
         </activity>
-        <activity android:name=".view.base.BaseActivity"/>
-        <activity android:name=".view.personal.activity.LoveActivity"/>
-        <activity android:name=".view.personal.activity.LoginActivity"/>
-        <activity android:name=".view.ui.MainActivity"/>
-        <activity android:name=".view.personal.activity.PerfectInformationActivity"/>
-        <activity android:name=".view.personal.activity.RegisterActivity"/>
-        <activity android:name=".view.personal.activity.UnivStarHttpActivity"/>
+        <activity android:name=".view.base.BaseActivity" />
+        <activity android:name=".view.personal.activity.LoveActivity" />
+        <activity android:name=".view.personal.activity.LoginActivity" />
+        <activity android:name=".view.ui.MainActivity" />
+        <activity android:name=".view.personal.activity.PerfectInformationActivity" />
+        <activity android:name=".view.personal.activity.RegisterActivity" />
+        <activity android:name=".view.personal.activity.UnivStarHttpActivity" />
+        <activity android:name=".view.personal.activity.SetActivity" />
+        <activity android:name=".view.personal.activity.ResetPassWordActivity" />
+        <activity android:name=".view.personal.activity.FindPassWordActivity" />
     </application>
 
 </manifest>

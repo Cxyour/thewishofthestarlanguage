@@ -18,7 +18,6 @@ import java.util.Map;
 public class FamousTeacherFragment extends BaseFragment implements IFamousTeacherContract.IFamousTeacherView {
     private PullLoadMoreRecyclerView pullLoadMoreRecyclerView;
 
-    //   private PullToRefreshRecyclerView famous_recycle;
     private ArrayList<Object> mRecycleaArray;
 
 
@@ -31,8 +30,8 @@ public class FamousTeacherFragment extends BaseFragment implements IFamousTeache
     protected void init(View view) {
 
         FamousTeacherPresenter famousTeacherPresenter = new FamousTeacherPresenter(this);
-        Map<String,String> params = new HashMap<>();
-         famousTeacherPresenter.loadFrmousBean();
+        Map<String, String> params = new HashMap<>();
+        famousTeacherPresenter.loadFrmousBean();
         mRecycleaArray = new ArrayList<>();
         pullLoadMoreRecyclerView = view.findViewById(R.id.teacher_recycle);
         pullLoadMoreRecyclerView.setLinearLayout();
@@ -44,7 +43,7 @@ public class FamousTeacherFragment extends BaseFragment implements IFamousTeache
 
             @Override
             public void onLoadMore() {
-                // pullLoadMoreRecyclerView.setIsLoadMore(false);
+
             }
         });
 
@@ -63,17 +62,11 @@ public class FamousTeacherFragment extends BaseFragment implements IFamousTeache
         mRecycleaArray.add(systemAds);
         List<FamousTeacherBean.DataBean.UsersBean> users = data.getUsers();
         mRecycleaArray.add(users);
-
         List<FamousTeacherBean.DataBean.LiveCoursesBean> liveCourses = data.getLiveCourses();
         mRecycleaArray.add(liveCourses);
-
-
-
         List<FamousTeacherBean.DataBean.HomewoksBean> homewoks = data.getHomewoks();
         mRecycleaArray.add(homewoks);
         FamousTecherAdapter famousTecherAdapter = new FamousTecherAdapter(data);
-          pullLoadMoreRecyclerView.setAdapter(famousTecherAdapter);
-
-
+        pullLoadMoreRecyclerView.setAdapter(famousTecherAdapter);
     }
 }

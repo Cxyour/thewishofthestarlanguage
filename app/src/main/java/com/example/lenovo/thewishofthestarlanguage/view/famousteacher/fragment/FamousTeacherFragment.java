@@ -38,7 +38,7 @@ public class FamousTeacherFragment extends BaseFragment implements IFamousTeache
         pullLoadMoreRecyclerView.setOnPullLoadMoreListener(new PullLoadMoreRecyclerView.PullLoadMoreListener() {
             @Override
             public void onRefresh() {
-                pullLoadMoreRecyclerView.setRefreshing(false);
+                pullLoadMoreRecyclerView.setPullLoadMoreCompleted();
             }
 
             @Override

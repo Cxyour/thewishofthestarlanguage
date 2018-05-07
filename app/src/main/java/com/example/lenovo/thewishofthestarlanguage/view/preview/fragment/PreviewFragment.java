@@ -2,18 +2,11 @@ package com.example.lenovo.thewishofthestarlanguage.view.preview.fragment;
 
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.Drawable;
-import android.view.ContextMenu;
-import android.view.Gravity;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.PopupWindow;
-import android.widget.TextView;
 
 import com.example.lenovo.thewishofthestarlanguage.R;
 import com.example.lenovo.thewishofthestarlanguage.contact.PreviewContract;
@@ -61,6 +54,18 @@ public class PreviewFragment extends BaseFragment implements PreviewContract.vie
             }
         });
         preview_recycle.setLinearLayout();
+        preview_recycle.setOnPullLoadMoreListener(new PullLoadMoreRecyclerView.PullLoadMoreListener() {
+            @Override
+            public void onRefresh() {
+                preview_recycle.setPullLoadMoreCompleted();
+
+            }
+
+            @Override
+            public void onLoadMore() {
+                preview_recycle.setPullLoadMoreCompleted();
+            }
+        });
 
     }
 

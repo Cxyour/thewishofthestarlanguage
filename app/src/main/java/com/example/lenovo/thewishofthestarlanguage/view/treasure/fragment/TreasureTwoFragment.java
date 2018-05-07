@@ -52,6 +52,18 @@ public class TreasureTwoFragment extends Fragment implements TreasureContact.vie
     private void initView(View inflate) {
         treasure_two_fly = (PullLoadMoreRecyclerView) inflate.findViewById(R.id.treasure_two_fly);
         treasure_two_fly.setLinearLayout();
+        treasure_two_fly.setOnPullLoadMoreListener(new PullLoadMoreRecyclerView.PullLoadMoreListener() {
+            @Override
+            public void onRefresh() {
+                treasure_two_fly.setPullLoadMoreCompleted();
+
+          }
+
+            @Override
+            public void onLoadMore() {
+                treasure_two_fly.setPullLoadMoreCompleted();
+            }
+        });
     }
 
     @Override

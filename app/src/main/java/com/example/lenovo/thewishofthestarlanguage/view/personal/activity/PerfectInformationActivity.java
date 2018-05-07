@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.Color;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -19,10 +18,12 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.target.BitmapImageViewTarget;
 import com.bumptech.glide.request.target.ImageViewTarget;
 import com.example.lenovo.thewishofthestarlanguage.R;
+import com.example.lenovo.thewishofthestarlanguage.contact.IPerFectInforMationContact;
 import com.example.lenovo.thewishofthestarlanguage.model.config.Constant;
+import com.example.lenovo.thewishofthestarlanguage.model.entity.PerFectInforBean;
+import com.example.lenovo.thewishofthestarlanguage.presenter.IPerFectInforPresenter;
 import com.example.lenovo.thewishofthestarlanguage.view.base.BaseActivity;
 
 import java.io.ByteArrayOutputStream;
@@ -30,7 +31,7 @@ import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class PerfectInformationActivity extends BaseActivity implements View.OnClickListener {
+public class PerfectInformationActivity extends BaseActivity implements View.OnClickListener,IPerFectInforMationContact.IPerFectInlView {
 
     private ImageView perfect_information_return;
     private ImageView perfect_information_album;
@@ -112,12 +113,18 @@ public class PerfectInformationActivity extends BaseActivity implements View.OnC
                 break;
 
             case R.id.perfect_information_album:
-                Intent i = new Intent(
-                        Intent.ACTION_PICK,
+                Intent i = new Intent(Intent.ACTION_PICK,
                         android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                 startActivityForResult(i, 100);
                 break;
             case R.id.perfect_information_return:
+                IPerFectInforPresenter iPerFectInforPresenter = new IPerFectInforPresenter(this);
+
+                String nikename = perfect_information_name.getText().toString().trim();
+                String pas = perfect_information_password.getText().toString().trim();
+                Intent intent = getIntent();
+                String phone = intent.getStringExtra("phone");
+         //       iPerFectInforPresenter.loadIperFectMsg(nikename,sex,,phone,pas);
                 finish();
                 break;
         }
@@ -135,6 +142,7 @@ public class PerfectInformationActivity extends BaseActivity implements View.OnC
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             photo.compress(Bitmap.CompressFormat.JPEG, 100, baos);
             byte[] datas = baos.toByteArray();
+
             Glide.with(this).load(datas)
                     .asBitmap()
                     .into(new ImageViewTarget<Bitmap>(perfect_information_album) {
@@ -145,6 +153,7 @@ public class PerfectInformationActivity extends BaseActivity implements View.OnC
                             perfect_information_album.setBackground(drawable);
                         }
                     });
+
 //            perfect_information_album.setImageBitmap(photo);
         }
         switch (requestCode) {
@@ -226,5 +235,10 @@ public class PerfectInformationActivity extends BaseActivity implements View.OnC
         intent.putExtra("outputY", 300);
         intent.putExtra("return-data", true);
         startActivityForResult(intent, 113);
+    }
+
+    @Override
+    public void showIperFect(PerFectInforBean responseBody) {
+
     }
 }

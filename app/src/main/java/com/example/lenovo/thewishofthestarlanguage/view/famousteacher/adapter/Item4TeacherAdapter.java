@@ -1,13 +1,14 @@
 package com.example.lenovo.thewishofthestarlanguage.view.famousteacher.adapter;
 
-import android.annotation.SuppressLint;
+import android.content.Context;
 import android.graphics.Bitmap;
+import android.support.annotation.NonNull;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.TextView;
@@ -25,66 +26,65 @@ import java.util.List;
  * Created by 陈伟霆 on 2018/5/5.
  */
 
-public class Item4TeacherAdapter extends BaseAdapter {
+public class Item4TeacherAdapter extends RecyclerView.Adapter<Item4TeacherAdapter.ViewHolder> {
     List<FamousTeacherBean.DataBean.HomewoksBean> homewoks;
-
+    Context context;
     public Item4TeacherAdapter(List<FamousTeacherBean.DataBean.HomewoksBean> homewoks) {
+
         this.homewoks = homewoks;
     }
 
+
+    @NonNull
     @Override
-    public int getCount() {
-        return homewoks.size();
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View inflate = LayoutInflater.from(parent.getContext()).inflate(R.layout.teacher_item3_item1, null);
+        context=parent.getContext();
+        return new ViewHolder(inflate);
     }
 
 
     @Override
-    public Object getItem(int position) {
-        return null;
-    }
-
-
-    @Override
-    public long getItemId(int position) {
-        return 0;
-    }
-
-
-    @SuppressLint("ViewHolder")
-    @Override
-    public View getView(int position, View convertView, final ViewGroup parent) {
-        final ViewHolder viewHolder;
-        if (convertView==null) {
-            convertView= LayoutInflater.from(parent.getContext()).inflate(R.layout.teacher_item3_item1, null);
-            viewHolder=new ViewHolder(convertView);
-            convertView.setTag(viewHolder);
-        }else {
-            viewHolder= (ViewHolder) convertView.getTag();
-        }
-        Glide.with(parent.getContext()).load(homewoks.get(position).getPhoto()).asBitmap()
-                .into(new BitmapImageViewTarget(viewHolder.work_img){
+    public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
+        Glide.with(context).load(homewoks.get(position).getPhoto()).asBitmap()
+                .into(new BitmapImageViewTarget(holder.work_img){
                     @Override
                     protected void setResource(Bitmap resource) {
                         super.setResource(resource);
-                        RoundedBitmapDrawable roundedBitmapDrawable = RoundedBitmapDrawableFactory.create(parent.getContext().getResources(), resource);
+                        RoundedBitmapDrawable roundedBitmapDrawable = RoundedBitmapDrawableFactory.create(context.getResources(), resource);
                         roundedBitmapDrawable.setCircular(true);
-                        viewHolder.work_img.setImageDrawable(roundedBitmapDrawable);
+                        holder.work_img.setImageDrawable(roundedBitmapDrawable);
                     }
                 });
-        viewHolder.work_name.setText(homewoks.get(position).getNickname());
+        holder.work_name.setText(homewoks.get(position).getNickname());
         Date date = new Date(homewoks.get(position).getCreateDate());
 
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MM-dd");
         String format = simpleDateFormat.format(date);
-        viewHolder.work_time.setText(format);
-        viewHolder.work_content.setText(homewoks.get(position).getContent());
-        Glide.with(parent.getContext()).load(homewoks.get(position).getCoverImg()).into(viewHolder.word_image);
-
-        return convertView;
+        holder.work_time.setText(format);
+        holder.work_content.setText(homewoks.get(position).getContent());
+        Glide.with(context).load(homewoks.get(position).getCoverImg()).into(holder.word_image);
 
     }
 
-    public static class ViewHolder {
+    @Override
+    public long getItemId(int position) {
+        return homewoks.size();
+    }
+
+    /**
+     * Returns the total number of items in the data set held by the adapter.
+     *
+     * @return The total number of items in this adapter.
+     */
+    @Override
+    public int getItemCount() {
+        return homewoks.size();
+    }
+
+
+
+    public static class ViewHolder extends RecyclerView.ViewHolder {
         public View rootView;
         public ImageView work_img;
         public TextView work_name;
@@ -99,6 +99,7 @@ public class Item4TeacherAdapter extends BaseAdapter {
         public RadioButton work_share;
 
         public ViewHolder(View rootView) {
+            super(rootView);
             this.rootView = rootView;
             this.work_img = (ImageView) rootView.findViewById(R.id.work_img);
             this.work_name = (TextView) rootView.findViewById(R.id.work_name);

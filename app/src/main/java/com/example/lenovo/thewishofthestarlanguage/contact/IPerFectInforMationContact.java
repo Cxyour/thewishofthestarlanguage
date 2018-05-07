@@ -12,6 +12,6 @@ public interface IPerFectInforMationContact {
     }
 
     interface IPerFectInPresenter{
-        void loadIperFectMsg(String nicknamen,String sex,String photo,String mobile,String psw);
+        void loadIperFectMsg(String nicknamen,Integer sex,String photo,String mobile,String psw);
     }
 }

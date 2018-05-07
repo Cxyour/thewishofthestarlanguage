@@ -6,6 +6,7 @@ import com.example.lenovo.thewishofthestarlanguage.model.entity.PerFectInforBean
 import java.util.Map;
 
 import io.reactivex.Observable;
+import retrofit2.http.Field;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.POST;
@@ -17,5 +18,5 @@ import retrofit2.http.POST;
 public interface PerFectInforService {
         @FormUrlEncoded
         @POST("/v1/m/user/saveCompleteUser")
-        Observable<PerFectInforBean> loadIperFectMsg(@FieldMap Map<String,String> params);
+        Observable<PerFectInforBean> loadIperFectMsg(@FieldMap Map<String,String> params, @Field("sex") Integer sex);
 }

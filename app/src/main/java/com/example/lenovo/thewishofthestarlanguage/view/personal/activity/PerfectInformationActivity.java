@@ -10,12 +10,14 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.ImageViewTarget;
@@ -23,7 +25,7 @@ import com.example.lenovo.thewishofthestarlanguage.R;
 import com.example.lenovo.thewishofthestarlanguage.contact.IPerFectInforMationContact;
 import com.example.lenovo.thewishofthestarlanguage.model.config.Constant;
 import com.example.lenovo.thewishofthestarlanguage.model.entity.PerFectInforBean;
-import com.example.lenovo.thewishofthestarlanguage.presenter.IPerFectInforPresenter;
+import com.example.lenovo.thewishofthestarlanguage.presenter.IPerFectInforPresenterImp;
 import com.example.lenovo.thewishofthestarlanguage.view.base.BaseActivity;
 
 import java.io.ByteArrayOutputStream;
@@ -96,12 +98,12 @@ public class PerfectInformationActivity extends BaseActivity implements View.OnC
             case R.id.perfect_information_man:
                 perfect_information_man.setTextColor(Color.parseColor("#0000ff"));
                 perfect_information_women.setTextColor(Color.parseColor("#000000"));
-                sex = "男";
+                sex = "0";
                 break;
             case R.id.perfect_information_women:
                 perfect_information_man.setTextColor(Color.parseColor("#000000"));
                 perfect_information_women.setTextColor(Color.parseColor("#0000ff"));
-                sex = "女";
+                sex = "1";
                 break;
             case R.id.perfect_information_finish:
                 SharedPreferences user = getSharedPreferences(Constant.CookieSP, Context.MODE_PRIVATE);
@@ -110,6 +112,15 @@ public class PerfectInformationActivity extends BaseActivity implements View.OnC
                 edit.putString(Constant.User_sex, sex);
                 edit.putString(Constant.User_icon, tempFile.getAbsolutePath());
                 edit.putString(Constant.User_pass, perfect_information_password.getText().toString().trim());
+                IPerFectInforPresenterImp iPerFectInforPresenter = new IPerFectInforPresenterImp(this);
+
+                String nikename = perfect_information_name.getText().toString().trim();
+                String pas = perfect_information_password.getText().toString().trim();
+                Intent intent = getIntent();
+                String phone = intent.getStringExtra("phone");
+                String photo = tempFile.getAbsolutePath();
+                int i1 = Integer.parseInt(sex);
+                iPerFectInforPresenter.loadIperFectMsg(nikename,i1,photo,phone,pas);
                 break;
 
             case R.id.perfect_information_album:
@@ -117,14 +128,9 @@ public class PerfectInformationActivity extends BaseActivity implements View.OnC
                         android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                 startActivityForResult(i, 100);
                 break;
-            case R.id.perfect_information_return:
-                IPerFectInforPresenter iPerFectInforPresenter = new IPerFectInforPresenter(this);
 
-                String nikename = perfect_information_name.getText().toString().trim();
-                String pas = perfect_information_password.getText().toString().trim();
-                Intent intent = getIntent();
-                String phone = intent.getStringExtra("phone");
-         //       iPerFectInforPresenter.loadIperFectMsg(nikename,sex,,phone,pas);
+            case R.id.perfect_information_return:
+
                 finish();
                 break;
         }
@@ -239,6 +245,19 @@ public class PerfectInformationActivity extends BaseActivity implements View.OnC
 
     @Override
     public void showIperFect(PerFectInforBean responseBody) {
+        Toast.makeText(this, responseBody.getMessage(), Toast.LENGTH_SHORT).show();
+        int id = responseBody.getData().getId();
+        String nickname = responseBody.getData().getNickname();
+        PerFectInforBean.DataBean data = responseBody.getData();
+        String mobile = (String) data.getMobile();
+        String photo = (String) data.getPhoto();
+        String token = data.getToken();
+        Log.e("nickname", nickname);
+        Log.e("id", id+"");
+        Log.e("mobile", mobile);
+        Log.e("photo", photo);
+        Log.e("token", token);
+
 
     }
 }

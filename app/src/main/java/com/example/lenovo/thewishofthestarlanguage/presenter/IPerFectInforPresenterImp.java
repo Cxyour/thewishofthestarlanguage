@@ -26,14 +26,13 @@ public class IPerFectInforPresenterImp implements IPerFectInPresenter {
     }
 
     @Override
-    public void loadIperFectMsg(String nicknamen, String sex, String photo, String mobile, String psw) {
+    public void loadIperFectMsg(String nicknamen, Integer sex, String photo, String mobile, String psw) {
         HashMap<String, String> map = new HashMap<>();
         map.put("nickname",nicknamen);
-        map.put("sex",sex);
         map.put("photo",photo);
         map.put("mobile",mobile);
         map.put("psw",psw);
-      perFectInforService.loadIperFectMsg(map)
+      perFectInforService.loadIperFectMsg(map,sex)
               .observeOn(AndroidSchedulers.mainThread())
               .subscribeOn(Schedulers.newThread())
               .subscribe(new Consumer<PerFectInforBean>() {
@@ -43,4 +42,6 @@ public class IPerFectInforPresenterImp implements IPerFectInPresenter {
                   }
               });
     }
+
+
 }

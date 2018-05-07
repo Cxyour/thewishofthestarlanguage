@@ -1,6 +1,6 @@
 package com.example.lenovo.thewishofthestarlanguage.contact;
 
-import com.example.lenovo.thewishofthestarlanguage.model.entity.Preview;
+import com.example.lenovo.thewishofthestarlanguage.model.entity.PreviewBean;
 
 /**
  * Created by 陈伟霆 on 2018/5/6.
@@ -8,7 +8,7 @@ import com.example.lenovo.thewishofthestarlanguage.model.entity.Preview;
 
 public interface PreviewContract {
     interface  view{
-        void showPreview(Preview preview);
+        void showPreview(PreviewBean preview);
     }
     interface  presenter{
         void loadPreview();

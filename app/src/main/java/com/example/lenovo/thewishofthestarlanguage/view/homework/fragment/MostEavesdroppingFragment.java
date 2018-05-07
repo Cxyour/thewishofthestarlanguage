@@ -7,7 +7,7 @@ import android.view.View;
 import com.example.lenovo.thewishofthestarlanguage.R;
 import com.example.lenovo.thewishofthestarlanguage.contact.MostEaveContract;
 import com.example.lenovo.thewishofthestarlanguage.model.entity.MostEavesdeoppBean;
-import com.example.lenovo.thewishofthestarlanguage.presenter.MostEavePresenter;
+import com.example.lenovo.thewishofthestarlanguage.presenter.MostEavePresenterImp;
 import com.example.lenovo.thewishofthestarlanguage.view.base.BaseFragment;
 import com.example.lenovo.thewishofthestarlanguage.view.homework.adapter.MostEavedroppingAdapter;
 import com.wuxiaolong.pullloadmorerecyclerview.PullLoadMoreRecyclerView;
@@ -33,7 +33,7 @@ public class MostEavesdroppingFragment extends BaseFragment implements MostEaveC
     protected void init(View view) {
         most_recycle = (PullLoadMoreRecyclerView) view.findViewById(R.id.most_recycle);
         most_recycle.setLinearLayout();
-        MostEavePresenter mostEavePresenter = new MostEavePresenter(this);
+        MostEavePresenterImp mostEavePresenter = new MostEavePresenterImp(this);
         mostEavePresenter.loadMostEavesdeopp();
     }
 

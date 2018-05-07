@@ -9,15 +9,15 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.lenovo.thewishofthestarlanguage.R;
-import com.example.lenovo.thewishofthestarlanguage.contact.TheLatesRevieCOntract;
+import com.example.lenovo.thewishofthestarlanguage.contact.TheLatesRevieContract;
 import com.example.lenovo.thewishofthestarlanguage.model.entity.MostEavesdeoppBean;
-import com.example.lenovo.thewishofthestarlanguage.presenter.TheLatesReviewPresenter;
+import com.example.lenovo.thewishofthestarlanguage.presenter.TheLatesReviewPresenterImp;
 import com.example.lenovo.thewishofthestarlanguage.view.homework.adapter.MostEavedroppingAdapter;
 
 import java.util.List;
 
 
-public class TheLatestReviewFragment extends Fragment implements TheLatesRevieCOntract.view{
+public class TheLatestReviewFragment extends Fragment implements TheLatesRevieContract.view{
 
     private RecyclerView thelate_recycle;
 
@@ -28,7 +28,7 @@ public class TheLatestReviewFragment extends Fragment implements TheLatesRevieCO
         View inflate = inflater.inflate(R.layout.fragment_the_latest_review, container, false);
         thelate_recycle=inflate.findViewById(R.id.thelate_recycle);
         thelate_recycle.setLayoutManager(new LinearLayoutManager(getContext()));
-        TheLatesReviewPresenter theLatesReviewPresenter = new TheLatesReviewPresenter(this);
+        TheLatesReviewPresenterImp theLatesReviewPresenter = new TheLatesReviewPresenterImp(this);
         theLatesReviewPresenter.loadMostEavesdeopp();
         return inflate;
     }

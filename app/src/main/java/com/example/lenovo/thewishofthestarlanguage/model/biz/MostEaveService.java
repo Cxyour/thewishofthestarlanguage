@@ -13,7 +13,7 @@ import retrofit2.http.POST;
  * Created by 陈伟霆 on 2018/5/5.
  */
 
-public interface MostEaveModel {
+public interface MostEaveService {
     @FormUrlEncoded
     @POST("/v1/m/homewok/home")
     Observable<MostEavesdeoppBean> loadMostBean(@FieldMap Map<String,String> pramas);

@@ -20,12 +20,12 @@ import okhttp3.ResponseBody;
  * Created by Lenovo on 2018/5/4.
  */
 
-public class ResetPassWordPresenter implements IResetPassWordContract.IResetPassWordPresenter {
+public class ResetPassWordPresenterImp implements IResetPassWordContract.IResetPassWordPresenter {
 
     private ResetPassWordService resetPassWordService;
     private IResetPassWordContract.IResetPassWordView iResetPassWordView;
 
-    public ResetPassWordPresenter(IResetPassWordContract.IResetPassWordView iResetPassWordView) {
+    public ResetPassWordPresenterImp(IResetPassWordContract.IResetPassWordView iResetPassWordView) {
         resetPassWordService = RetrofitUtils.getInstance().getResetService();
         this.iResetPassWordView = iResetPassWordView;
     }

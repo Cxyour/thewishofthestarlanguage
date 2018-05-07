@@ -11,7 +11,7 @@ import android.widget.Toast;
 import com.example.lenovo.thewishofthestarlanguage.R;
 import com.example.lenovo.thewishofthestarlanguage.contact.IFindPassWordContract;
 import com.example.lenovo.thewishofthestarlanguage.model.config.Constant;
-import com.example.lenovo.thewishofthestarlanguage.presenter.FindPassWordPresenter;
+import com.example.lenovo.thewishofthestarlanguage.presenter.FindPassWordPresenterImp;
 import com.example.lenovo.thewishofthestarlanguage.view.base.BaseActivity;
 
 public class FindPassWordActivity extends BaseActivity implements View.OnClickListener, IFindPassWordContract.IFindPassWordView {
@@ -21,7 +21,7 @@ public class FindPassWordActivity extends BaseActivity implements View.OnClickLi
     private EditText find_password_ed_phone_code;
     private TextView find_password_getPhoneCode;
     private Button find_password_goToNext;
-    private FindPassWordPresenter findPassWordPresenter;
+    private FindPassWordPresenterImp findPassWordPresenter;
 
 
     @Override
@@ -44,7 +44,7 @@ public class FindPassWordActivity extends BaseActivity implements View.OnClickLi
 
     @Override
     protected void loadData() {
-        findPassWordPresenter = new FindPassWordPresenter(this);
+        findPassWordPresenter = new FindPassWordPresenterImp(this);
     }
 
     @Override

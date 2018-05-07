@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.lenovo.thewishofthestarlanguage.R;
-import com.example.lenovo.thewishofthestarlanguage.model.entity.Preview;
+import com.example.lenovo.thewishofthestarlanguage.model.entity.PreviewBean;
 
 import java.sql.Date;
 import java.text.SimpleDateFormat;
@@ -21,10 +21,10 @@ import java.util.List;
  */
 
 public class PreviewAdapter extends RecyclerView.Adapter<PreviewAdapter.Holder> {
-    List<Preview.DataBean.ListBean> list;
+    List<PreviewBean.DataBean.ListBean> list;
     Context context;
 
-    public PreviewAdapter(List<Preview.DataBean.ListBean> list) {
+    public PreviewAdapter(List<PreviewBean.DataBean.ListBean> list) {
         this.list = list;
     }
 
@@ -39,7 +39,7 @@ public class PreviewAdapter extends RecyclerView.Adapter<PreviewAdapter.Holder> 
 
     @Override
     public void onBindViewHolder(Holder holder, int position) {
-        Preview.DataBean.ListBean listBean = list.get(position);
+        PreviewBean.DataBean.ListBean listBean = list.get(position);
         Glide.with(context).load(listBean.getCoverImg()).into(holder.title_img);
         holder.dizhi.setText("地址:"+listBean.getAddress());
         holder.yuyue.setText("已预约:"+listBean.getReservationNum()+"/"+listBean.getSubscribeNum());

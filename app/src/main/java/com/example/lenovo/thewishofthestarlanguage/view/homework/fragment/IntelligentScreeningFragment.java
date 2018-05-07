@@ -12,7 +12,7 @@ import android.view.ViewGroup;
 import com.example.lenovo.thewishofthestarlanguage.R;
 import com.example.lenovo.thewishofthestarlanguage.contact.IntelligentScreeContarct;
 import com.example.lenovo.thewishofthestarlanguage.model.entity.MostEavesdeoppBean;
-import com.example.lenovo.thewishofthestarlanguage.presenter.IntelligentScreePresenter;
+import com.example.lenovo.thewishofthestarlanguage.presenter.IntelligentScreePresenterImp;
 import com.example.lenovo.thewishofthestarlanguage.view.homework.adapter.MostEavedroppingAdapter;
 
 import java.util.List;
@@ -42,7 +42,7 @@ public class IntelligentScreeningFragment extends Fragment implements Intelligen
     private void initView(View inflate) {
         intell_recycle = (RecyclerView) inflate.findViewById(R.id.intell_recycle);
         intell_recycle.setLayoutManager(new LinearLayoutManager(getContext()));
-        IntelligentScreePresenter intelligentScreePresenter = new IntelligentScreePresenter(this);
+        IntelligentScreePresenterImp intelligentScreePresenter = new IntelligentScreePresenterImp(this);
         intelligentScreePresenter.loadMostEavesdeopp();
     }
 

@@ -1,7 +1,7 @@
 package com.example.lenovo.thewishofthestarlanguage.presenter;
 
 import com.example.lenovo.thewishofthestarlanguage.contact.IntelligentScreeContarct;
-import com.example.lenovo.thewishofthestarlanguage.model.biz.MostEaveModel;
+import com.example.lenovo.thewishofthestarlanguage.model.biz.MostEaveService;
 import com.example.lenovo.thewishofthestarlanguage.model.entity.MostEavesdeoppBean;
 import com.example.lenovo.thewishofthestarlanguage.model.http.RetrofitUtils;
 
@@ -15,10 +15,10 @@ import io.reactivex.schedulers.Schedulers;
  * Created by 陈伟霆 on 2018/5/6.
  */
 
-public class IntelligentScreePresenter implements IntelligentScreeContarct.presenter{
+public class IntelligentScreePresenterImp implements IntelligentScreeContarct.presenter{
     private  IntelligentScreeContarct.view view;
-    private MostEaveModel mostEaveModel;
-    public IntelligentScreePresenter(IntelligentScreeContarct.view view) {
+    private MostEaveService mostEaveModel;
+    public IntelligentScreePresenterImp(IntelligentScreeContarct.view view) {
         this.view=view;
         mostEaveModel= RetrofitUtils.getInstance().getMostEaveModel();
     }

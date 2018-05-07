@@ -12,10 +12,10 @@ import com.example.lenovo.thewishofthestarlanguage.model.biz.FamousTeacherServic
 import com.example.lenovo.thewishofthestarlanguage.model.biz.FindPassWordService;
 import com.example.lenovo.thewishofthestarlanguage.model.biz.HomeWorkService;
 import com.example.lenovo.thewishofthestarlanguage.model.biz.LoginService;
-import com.example.lenovo.thewishofthestarlanguage.model.biz.MostEaveModel;
+import com.example.lenovo.thewishofthestarlanguage.model.biz.MostEaveService;
 import com.example.lenovo.thewishofthestarlanguage.model.biz.PerFectInforService;
 import com.example.lenovo.thewishofthestarlanguage.model.biz.PersonalService;
-import com.example.lenovo.thewishofthestarlanguage.model.biz.PreviewModel;
+import com.example.lenovo.thewishofthestarlanguage.model.biz.PreviewService;
 import com.example.lenovo.thewishofthestarlanguage.model.biz.RegisterService;
 import com.example.lenovo.thewishofthestarlanguage.model.biz.ResetPassWordService;
 import com.example.lenovo.thewishofthestarlanguage.model.biz.TreaSureService;
@@ -203,11 +203,11 @@ public class RetrofitUtils {
     public ResetPassWordService getResetService() {
         return retrofit.create(ResetPassWordService.class);
     }
-    public MostEaveModel getMostEaveModel() {
-        return retrofit.create(MostEaveModel.class);
+    public MostEaveService getMostEaveModel() {
+        return retrofit.create(MostEaveService.class);
     }
-    public PreviewModel getPreviewModel() {
-        return retrofit.create(PreviewModel.class);
+    public PreviewService getPreviewModel() {
+        return retrofit.create(PreviewService.class);
     }
     public TreaSureService getTreaSureService(){
         return retrofit.create(TreaSureService.class);

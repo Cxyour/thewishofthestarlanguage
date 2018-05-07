@@ -15,10 +15,10 @@ import io.reactivex.schedulers.Schedulers;
  * Created by 陈伟霆 on 2018/5/3.
  */
 
-public class FamousTeacherPresenter implements IFamousTeacherContract.IFamousTeacherPresenter{
+public class FamousTeacherPresenterImp implements IFamousTeacherContract.IFamousTeacherPresenter{
     IFamousTeacherContract.IFamousTeacherView view;
     FamousTeacherService famousTeacherService;
-    public FamousTeacherPresenter(IFamousTeacherContract.IFamousTeacherView view) {
+    public FamousTeacherPresenterImp(IFamousTeacherContract.IFamousTeacherView view) {
         this.view=view;
         famousTeacherService= RetrofitUtils.getInstance().getFamousTeacherService();
     }

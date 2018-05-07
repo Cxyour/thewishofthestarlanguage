@@ -12,9 +12,9 @@ import android.widget.TextView;
 
 import com.example.lenovo.thewishofthestarlanguage.R;
 import com.example.lenovo.thewishofthestarlanguage.contact.TreasureContact;
-import com.example.lenovo.thewishofthestarlanguage.model.entity.TreaSure;
-import com.example.lenovo.thewishofthestarlanguage.model.entity.TreaSureLunBoTu;
-import com.example.lenovo.thewishofthestarlanguage.presenter.TreaSurePresenter;
+import com.example.lenovo.thewishofthestarlanguage.model.entity.TreaSureBean;
+import com.example.lenovo.thewishofthestarlanguage.model.entity.TreaSureLunBoTuBean;
+import com.example.lenovo.thewishofthestarlanguage.presenter.TreaSurePresenterImp;
 import com.example.lenovo.thewishofthestarlanguage.view.base.BaseFragment;
 import com.example.lenovo.thewishofthestarlanguage.view.treasure.adapter.TreaFragmentAdapter;
 import com.recker.flybanner.FlyBanner;
@@ -27,7 +27,7 @@ public class TreasureFragment extends BaseFragment implements TreasureContact.vi
 
 
 
-    private TreaSurePresenter treaSurePresenter;
+    private TreaSurePresenterImp treaSurePresenter;
     private FlyBanner treasure_fly;
 
     private ArrayList<String> title = new ArrayList<>();
@@ -47,7 +47,7 @@ public class TreasureFragment extends BaseFragment implements TreasureContact.vi
         treasure_fly = view.findViewById(R.id.treasure_fly);
        tres_tabla=view.findViewById(R.id.tres_tabla);
        treasure_viewpager=view.findViewById(R.id.treasure_viewpager);
-        treaSurePresenter = new TreaSurePresenter(this);
+        treaSurePresenter = new TreaSurePresenterImp(this);
         treaSurePresenter.loadLunbotu();
     }
 
@@ -58,13 +58,13 @@ public class TreasureFragment extends BaseFragment implements TreasureContact.vi
 
 
     @Override
-    public void showTreSure(TreaSure treaSure) {
-        TreaSure.DataBean data = treaSure.getData();
+    public void showTreSure(TreaSureBean treaSure) {
+        TreaSureBean.DataBean data = treaSure.getData();
         title.add("智能筛选");
         title.add("赞数最多");
         title.add("最新评论");
-        List<TreaSure.DataBean.ArtcircleCategoriesBean> artcircleCategories = data.getArtcircleCategories();
-        for (TreaSure.DataBean.ArtcircleCategoriesBean artcircleCategory : artcircleCategories) {
+        List<TreaSureBean.DataBean.ArtcircleCategoriesBean> artcircleCategories = data.getArtcircleCategories();
+        for (TreaSureBean.DataBean.ArtcircleCategoriesBean artcircleCategory : artcircleCategories) {
             String name = artcircleCategory.getName();
             title.add(name);
         }
@@ -143,10 +143,10 @@ public class TreasureFragment extends BaseFragment implements TreasureContact.vi
     }
 
     @Override
-    public void showLunbotu(TreaSureLunBoTu treaSureLunBoTu) {
+    public void showLunbotu(TreaSureLunBoTuBean treaSureLunBoTu) {
         ArrayList<String> imgurl = new ArrayList<>();
-        List<TreaSureLunBoTu.DataBean.ListBean> list = treaSureLunBoTu.getData().getList();
-        for (TreaSureLunBoTu.DataBean.ListBean listBean : list) {
+        List<TreaSureLunBoTuBean.DataBean.ListBean> list = treaSureLunBoTu.getData().getList();
+        for (TreaSureLunBoTuBean.DataBean.ListBean listBean : list) {
             String mobileImgUrl = listBean.getMobileImgUrl();
             imgurl.add(mobileImgUrl);
         }

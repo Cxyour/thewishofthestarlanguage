@@ -4,7 +4,6 @@ package com.example.lenovo.thewishofthestarlanguage.view.personal.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -18,8 +17,6 @@ import com.example.lenovo.thewishofthestarlanguage.model.config.Constant;
 import com.example.lenovo.thewishofthestarlanguage.model.entity.UserBean;
 import com.example.lenovo.thewishofthestarlanguage.presenter.LoginPresenterImp;
 import com.example.lenovo.thewishofthestarlanguage.view.base.BaseActivity;
-import com.example.lenovo.thewishofthestarlanguage.view.ui.ContainerActivity;
-import com.example.lenovo.thewishofthestarlanguage.view.ui.MainActivity;
 
 
 public class LoginActivity extends BaseActivity implements View.OnClickListener, ILoginContract.ILoginView, View.OnFocusChangeListener {

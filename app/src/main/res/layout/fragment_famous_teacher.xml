@@ -4,6 +4,7 @@
     android:layout_height="match_parent"
     tools:context="com.example.lenovo.thewishofthestarlanguage.view.famousteacher.fragment.FamousTeacherFragment">
 
+
     <com.wuxiaolong.pullloadmorerecyclerview.PullLoadMoreRecyclerView
         android:id="@+id/teacher_recycle"
         android:layout_width="match_parent"

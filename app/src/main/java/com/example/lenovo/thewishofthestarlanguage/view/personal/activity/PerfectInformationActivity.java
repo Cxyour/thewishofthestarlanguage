@@ -23,7 +23,7 @@ import com.example.lenovo.thewishofthestarlanguage.R;
 import com.example.lenovo.thewishofthestarlanguage.contact.IPerFectInforMationContact;
 import com.example.lenovo.thewishofthestarlanguage.model.config.Constant;
 import com.example.lenovo.thewishofthestarlanguage.model.entity.PerFectInforBean;
-import com.example.lenovo.thewishofthestarlanguage.presenter.IPerFectInforPresenter;
+import com.example.lenovo.thewishofthestarlanguage.presenter.IPerFectInforPresenterImp;
 import com.example.lenovo.thewishofthestarlanguage.view.base.BaseActivity;
 
 import java.io.ByteArrayOutputStream;
@@ -118,7 +118,7 @@ public class PerfectInformationActivity extends BaseActivity implements View.OnC
                 startActivityForResult(i, 100);
                 break;
             case R.id.perfect_information_return:
-                IPerFectInforPresenter iPerFectInforPresenter = new IPerFectInforPresenter(this);
+                IPerFectInforPresenterImp iPerFectInforPresenter = new IPerFectInforPresenterImp(this);
 
                 String nikename = perfect_information_name.getText().toString().trim();
                 String pas = perfect_information_password.getText().toString().trim();

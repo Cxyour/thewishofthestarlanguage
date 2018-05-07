@@ -5,6 +5,10 @@ import com.example.lenovo.thewishofthestarlanguage.model.biz.PreviewService;
 import com.example.lenovo.thewishofthestarlanguage.model.entity.PreviewBean;
 import com.example.lenovo.thewishofthestarlanguage.model.http.RetrofitUtils;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import io.reactivex.Observable;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
@@ -17,9 +21,10 @@ import io.reactivex.schedulers.Schedulers;
 public class PreviewPresenterImp implements PreviewContract.presenter {
     PreviewContract.view view;
     PreviewService model;
+
     public PreviewPresenterImp(PreviewContract.view view) {
-        this.view=view;
-        model= RetrofitUtils.getInstance().getPreviewModel();
+        this.view = view;
+        model = RetrofitUtils.getInstance().getPreviewModel();
     }
 
     @Override
@@ -35,6 +40,37 @@ public class PreviewPresenterImp implements PreviewContract.presenter {
                     @Override
                     public void onNext(PreviewBean preview) {
                         view.showPreview(preview);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+    }
+
+    @Override
+    public void screenTime(String startTime, String endTime) {
+        Map<String, String> paramsMap = new HashMap<>();
+        paramsMap.put("startDate", startTime);
+        paramsMap.put("endDate", endTime);
+        Observable<PreviewBean> previewBeanObservable = model.screenTime(paramsMap);
+        previewBeanObservable.subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<PreviewBean>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(PreviewBean previewBean) {
+                        view.showPreview(previewBean);
                     }
 
                     @Override

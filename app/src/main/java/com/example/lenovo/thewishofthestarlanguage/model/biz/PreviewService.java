@@ -2,7 +2,11 @@ package com.example.lenovo.thewishofthestarlanguage.model.biz;
 
 import com.example.lenovo.thewishofthestarlanguage.model.entity.PreviewBean;
 
+import java.util.Map;
+
 import io.reactivex.Observable;
+import retrofit2.http.FieldMap;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.POST;
 
 /**
@@ -12,4 +16,8 @@ import retrofit2.http.POST;
 public interface PreviewService {
     @POST("/v1/m/forthcoming/home")
     Observable<PreviewBean> loadPreview();
+
+    @FormUrlEncoded
+    @POST("/v1/m/forthcoming/home")
+    Observable<PreviewBean> screenTime(@FieldMap Map<String, String> paramsMap);
 }

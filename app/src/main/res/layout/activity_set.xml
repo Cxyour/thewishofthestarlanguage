@@ -33,6 +33,7 @@
     </RelativeLayout>
 
     <RelativeLayout
+        android:id="@+id/set_change_phone"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginTop="10dp"
@@ -70,6 +71,7 @@
     </RelativeLayout>
 
     <RelativeLayout
+        android:id="@+id/set_change_id"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="#ffffff"
@@ -105,6 +107,7 @@
     </RelativeLayout>
 
     <RelativeLayout
+        android:id="@+id/set_change_pass"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="#ffffff"
@@ -142,9 +145,9 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
+        android:layout_marginBottom="10dp"
         android:layout_marginTop="10dp"
         android:background="#ffffff"
-        android:layout_marginBottom="10dp"
         android:gravity="center">
 
         <ImageView
@@ -166,6 +169,7 @@
             android:textSize="15sp" />
 
         <TextView
+            android:id="@+id/set_close_catch"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_toLeftOf="@+id/set_go_change_catch"
@@ -177,6 +181,7 @@
     </RelativeLayout>
 
     <RelativeLayout
+        android:id="@+id/set_about_UnivStar"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="#ffffff"
@@ -196,13 +201,14 @@
             android:layout_height="match_parent"
             android:layout_toLeftOf="@+id/set_go_about_UnivStar"
             android:gravity="center_vertical"
-            android:text="关于UnivStar"
             android:padding="10dp"
+            android:text="关于UnivStar"
             android:textSize="15sp" />
 
     </RelativeLayout>
 
     <RelativeLayout
+        android:id="@+id/set_exit_login"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="#ffffff"
@@ -222,8 +228,8 @@
             android:layout_height="match_parent"
             android:layout_toLeftOf="@+id/set_go_close_login"
             android:gravity="center_vertical"
-            android:text="退出登录"
             android:padding="10dp"
+            android:text="退出登录"
             android:textSize="15sp" />
 
     </RelativeLayout>

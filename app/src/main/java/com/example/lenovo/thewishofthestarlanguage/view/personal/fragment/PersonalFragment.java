@@ -1,7 +1,14 @@
 package com.example.lenovo.thewishofthestarlanguage.view.personal.fragment;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,7 +18,10 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.ImageViewTarget;
 import com.example.lenovo.thewishofthestarlanguage.R;
+import com.example.lenovo.thewishofthestarlanguage.model.config.Constant;
 import com.example.lenovo.thewishofthestarlanguage.view.base.BaseFragment;
 import com.example.lenovo.thewishofthestarlanguage.view.personal.activity.LoginActivity;
 import com.example.lenovo.thewishofthestarlanguage.view.personal.activity.RegisterActivity;
@@ -20,47 +30,45 @@ import com.example.lenovo.thewishofthestarlanguage.view.personal.activity.SetAct
 public class PersonalFragment extends BaseFragment implements View.OnClickListener {
 
 
+    private Intent intent;
     private ImageView home_myselft_fragment_message;
     private ImageView home_myselft_fragment_message_newimg;
     private RelativeLayout home_myself_message;
     private ImageView home_myselft_fragment_setting;
     private ImageView home_myselft_notlogin_img;
     private RelativeLayout home_myselft_fragment_nologin_head;
-    private TextView home_myself_fragment_username;
-    private LinearLayout home_myself_fragment_userinfo_group;
-    private LinearLayout home_myselft_fragment_livebtn;
-    private RelativeLayout home_myselft_fragment_login_head;
+    private ImageView personal_myself_icon;
+    private TextView myself_message;
+    private RelativeLayout personal_myself_message;
+    private TextView personal_myself_nickName;
+    private LinearLayout personal_myself_personal_message;
     private Button home_myselft_register_btn;
     private Button home_myselft_login_btn;
     private LinearLayout home_myselft_fragment_nologin_body;
-    private TextView home_myselft_fragment_homewokCount_tv;
-    private TextView home_myselft_fragment_homewokCount_status;
-    private LinearLayout home_myselft_fragment_homewokCount_group;
-    private TextView home_myselft_fragment_artcircleCount_tv;
-    private LinearLayout home_myselft_fragment_tiezi_group;
-    private TextView home_myselft_fragment_attentionCount_tv;
-    private LinearLayout home_myselft_fragment_guanzhu_group;
-    private TextView home_myselft_fragment_fansCount_tv;
-    private LinearLayout home_myselft_fragment_fensi_group;
-    private LinearLayout home_myselft_fragment_teacher_daizhibo;
-    private LinearLayout home_myselft_fragment_teacher_daizuoye;
-    private LinearLayout home_myselft_fragment_teacher_daifudao;
-    private LinearLayout home_myselft_fragment_teacher_jiaoxue;
-    private LinearLayout home_myselft_fragment_teacher_toolline;
-    private LinearLayout home_myselft_fragment_student_fukuan;
-    private LinearLayout home_myselft_fragment_student_shiyong;
-    private LinearLayout home_myselft_fragment_student_tuiguo;
-    private LinearLayout home_myselft_fragment_student_dingdan;
-    private LinearLayout home_myselft_fragment_student_toolline;
-    private TextView home_myself_fragment_jindou_tv;
-    private RelativeLayout home_myself_fragment_jindou_group;
-    private RelativeLayout home_myselft_fragment_havegift_group;
-    private RelativeLayout home_myselft_fragment_favorites;
-    private RelativeLayout home_myself_fragment_selectmajor;
-    private TextView home_myself_fragment_isauth_tv;
-    private RelativeLayout home_myselft_fragment_approve;
-    private LinearLayout home_myselft_fragment_login_body;
-    private Intent intent;
+    private TextView personal_myself_works_count;
+    private LinearLayout personal_myself_works;
+    private TextView personal_myself_post_count;
+    private LinearLayout personal_myself_post;
+    private TextView personal_myself_follow_count;
+    private LinearLayout personal_myself_follow;
+    private TextView personal_myself_fans_count;
+    private LinearLayout personal_myself_fans;
+    private TextView personal_myself_substitute_payment;
+    private TextView personal_myself_substitute_for_use;
+    private TextView personal_myself_substitute_for_return;
+    private TextView personal_myself_my_order;
+    private LinearLayout personal_myself_function;
+    private ImageView personal_myself_recharge_center;
+    private TextView personal_myself_gold_bean_count;
+    private ImageView personal_myself_gold_bean;
+    private RelativeLayout personal_myself_voucher_center;
+    private RelativeLayout personal_myself_gift_center;
+    private RelativeLayout personal_myself_my_collection;
+    private RelativeLayout personal_myself_my_preference;
+    private ImageView personal_myself_authentication_go;
+    private RelativeLayout personal_myself_authentication;
+    private LinearLayout personal_login_message;
+    private SharedPreferences preferences;
 
     @Override
     protected int getLayoutId() {
@@ -75,49 +83,46 @@ public class PersonalFragment extends BaseFragment implements View.OnClickListen
         home_myselft_fragment_setting = (ImageView) view.findViewById(R.id.home_myselft_fragment_setting);
         home_myselft_notlogin_img = (ImageView) view.findViewById(R.id.home_myselft_notlogin_img);
         home_myselft_fragment_nologin_head = (RelativeLayout) view.findViewById(R.id.home_myselft_fragment_nologin_head);
-        home_myself_fragment_username = (TextView) view.findViewById(R.id.home_myself_fragment_username);
-        home_myself_fragment_userinfo_group = (LinearLayout) view.findViewById(R.id.home_myself_fragment_userinfo_group);
-        home_myselft_fragment_livebtn = (LinearLayout) view.findViewById(R.id.home_myselft_fragment_livebtn);
-        home_myselft_fragment_login_head = (RelativeLayout) view.findViewById(R.id.home_myselft_fragment_login_head);
+        personal_myself_icon = (ImageView) view.findViewById(R.id.personal_myself_icon);
+        myself_message = (TextView) view.findViewById(R.id.myself_message);
+        personal_myself_message = (RelativeLayout) view.findViewById(R.id.personal_myself_message);
+        personal_myself_nickName = (TextView) view.findViewById(R.id.personal_myself_nickName);
+        personal_myself_personal_message = (LinearLayout) view.findViewById(R.id.personal_myself_personal_message);
         home_myselft_register_btn = (Button) view.findViewById(R.id.home_myselft_register_btn);
         home_myselft_login_btn = (Button) view.findViewById(R.id.home_myselft_login_btn);
         home_myselft_fragment_nologin_body = (LinearLayout) view.findViewById(R.id.home_myselft_fragment_nologin_body);
-        home_myselft_fragment_homewokCount_tv = (TextView) view.findViewById(R.id.home_myselft_fragment_homewokCount_tv);
-        home_myselft_fragment_homewokCount_status = (TextView) view.findViewById(R.id.home_myselft_fragment_homewokCount_status);
-        home_myselft_fragment_homewokCount_group = (LinearLayout) view.findViewById(R.id.home_myselft_fragment_homewokCount_group);
-        home_myselft_fragment_artcircleCount_tv = (TextView) view.findViewById(R.id.home_myselft_fragment_artcircleCount_tv);
-        home_myselft_fragment_tiezi_group = (LinearLayout) view.findViewById(R.id.home_myselft_fragment_tiezi_group);
-        home_myselft_fragment_attentionCount_tv = (TextView) view.findViewById(R.id.home_myselft_fragment_attentionCount_tv);
-        home_myselft_fragment_guanzhu_group = (LinearLayout) view.findViewById(R.id.home_myselft_fragment_guanzhu_group);
-        home_myselft_fragment_fansCount_tv = (TextView) view.findViewById(R.id.home_myselft_fragment_fansCount_tv);
-        home_myselft_fragment_fensi_group = (LinearLayout) view.findViewById(R.id.home_myselft_fragment_fensi_group);
-        home_myselft_fragment_teacher_daizhibo = (LinearLayout) view.findViewById(R.id.home_myselft_fragment_teacher_daizhibo);
-        home_myselft_fragment_teacher_daizuoye = (LinearLayout) view.findViewById(R.id.home_myselft_fragment_teacher_daizuoye);
-        home_myselft_fragment_teacher_daifudao = (LinearLayout) view.findViewById(R.id.home_myselft_fragment_teacher_daifudao);
-        home_myselft_fragment_teacher_jiaoxue = (LinearLayout) view.findViewById(R.id.home_myselft_fragment_teacher_jiaoxue);
-        home_myselft_fragment_teacher_toolline = (LinearLayout) view.findViewById(R.id.home_myselft_fragment_teacher_toolline);
-        home_myselft_fragment_student_fukuan = (LinearLayout) view.findViewById(R.id.home_myselft_fragment_student_fukuan);
-        home_myselft_fragment_student_shiyong = (LinearLayout) view.findViewById(R.id.home_myselft_fragment_student_shiyong);
-        home_myselft_fragment_student_tuiguo = (LinearLayout) view.findViewById(R.id.home_myselft_fragment_student_tuiguo);
-        home_myselft_fragment_student_dingdan = (LinearLayout) view.findViewById(R.id.home_myselft_fragment_student_dingdan);
-        home_myselft_fragment_student_toolline = (LinearLayout) view.findViewById(R.id.home_myselft_fragment_student_toolline);
-        home_myself_fragment_jindou_tv = (TextView) view.findViewById(R.id.home_myself_fragment_jindou_tv);
-        home_myself_fragment_jindou_group = (RelativeLayout) view.findViewById(R.id.home_myself_fragment_jindou_group);
-        home_myselft_fragment_havegift_group = (RelativeLayout) view.findViewById(R.id.home_myselft_fragment_havegift_group);
-        home_myselft_fragment_favorites = (RelativeLayout) view.findViewById(R.id.home_myselft_fragment_favorites);
-        home_myself_fragment_selectmajor = (RelativeLayout) view.findViewById(R.id.home_myself_fragment_selectmajor);
-        home_myself_fragment_isauth_tv = (TextView) view.findViewById(R.id.home_myself_fragment_isauth_tv);
-        home_myselft_fragment_approve = (RelativeLayout) view.findViewById(R.id.home_myselft_fragment_approve);
-        home_myselft_fragment_login_body = (LinearLayout) view.findViewById(R.id.home_myselft_fragment_login_body);
-
+        personal_myself_works_count = (TextView) view.findViewById(R.id.personal_myself_works_count);
+        personal_myself_works = (LinearLayout) view.findViewById(R.id.personal_myself_works);
+        personal_myself_post_count = (TextView) view.findViewById(R.id.personal_myself_post_count);
+        personal_myself_post = (LinearLayout) view.findViewById(R.id.personal_myself_post);
+        personal_myself_follow_count = (TextView) view.findViewById(R.id.personal_myself_follow_count);
+        personal_myself_follow = (LinearLayout) view.findViewById(R.id.personal_myself_follow);
+        personal_myself_fans_count = (TextView) view.findViewById(R.id.personal_myself_fans_count);
+        personal_myself_fans = (LinearLayout) view.findViewById(R.id.personal_myself_fans);
+        personal_myself_substitute_payment = (TextView) view.findViewById(R.id.personal_myself_substitute_payment);
+        personal_myself_substitute_for_use = (TextView) view.findViewById(R.id.personal_myself_substitute_for_use);
+        personal_myself_substitute_for_return = (TextView) view.findViewById(R.id.personal_myself_substitute_for_return);
+        personal_myself_my_order = (TextView) view.findViewById(R.id.personal_myself_my_order);
+        personal_myself_function = (LinearLayout) view.findViewById(R.id.personal_myself_function);
+        personal_myself_recharge_center = (ImageView) view.findViewById(R.id.personal_myself_recharge_center);
+        personal_myself_gold_bean_count = (TextView) view.findViewById(R.id.personal_myself_gold_bean_count);
+        personal_myself_gold_bean = (ImageView) view.findViewById(R.id.personal_myself_gold_bean);
+        personal_myself_voucher_center = (RelativeLayout) view.findViewById(R.id.personal_myself_voucher_center);
+        personal_myself_gift_center = (RelativeLayout) view.findViewById(R.id.personal_myself_gift_center);
+        personal_myself_my_collection = (RelativeLayout) view.findViewById(R.id.personal_myself_my_collection);
+        personal_myself_my_preference = (RelativeLayout) view.findViewById(R.id.personal_myself_my_preference);
+        personal_myself_authentication_go = (ImageView) view.findViewById(R.id.personal_myself_authentication_go);
+        personal_myself_authentication = (RelativeLayout) view.findViewById(R.id.personal_myself_authentication);
+        personal_login_message = (LinearLayout) view.findViewById(R.id.personal_login_message);
+        home_myselft_fragment_setting.setOnClickListener(this);
         home_myselft_register_btn.setOnClickListener(this);
         home_myselft_login_btn.setOnClickListener(this);
-        home_myselft_fragment_setting.setOnClickListener(this);
+        home_myselft_fragment_message.setOnClickListener(this);
     }
 
     @Override
     protected void loadData() {
-
+        preferences = getActivity().getSharedPreferences(Constant.CookieSP, Context.MODE_PRIVATE);
     }
 
     @Override
@@ -129,13 +134,45 @@ public class PersonalFragment extends BaseFragment implements View.OnClickListen
                 break;
             case R.id.home_myselft_login_btn:
                 intent = new Intent(getContext(), LoginActivity.class);
-                getActivity().startActivity(intent);
+                startActivityForResult(intent, 10);
+                break;
+            case R.id.home_myselft_fragment_setting:
+                if (preferences.getString(Constant.User_mobile, null) == null) {
+                    intent = new Intent(getContext(), LoginActivity.class);
+                    startActivityForResult(intent, 10);
+                } else {
+                    intent = new Intent(getContext(), SetActivity.class);
+                    startActivity(intent);
+                }
                 break;
 
-            case R.id.home_myselft_fragment_setting:
-                intent = new Intent(getContext(), SetActivity.class);
-                startActivity(intent);
-                break;
         }
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (preferences.getString(Constant.User_mobile, "").equals("") || preferences.getString(Constant.User_mobile, "") == null) {
+            home_myselft_fragment_nologin_head.setVisibility(View.VISIBLE);
+            home_myselft_fragment_nologin_body.setVisibility(View.VISIBLE);
+            personal_myself_personal_message.setVisibility(View.GONE);
+            personal_login_message.setVisibility(View.GONE);
+        } else {
+            home_myselft_fragment_nologin_head.setVisibility(View.GONE);
+            home_myselft_fragment_nologin_body.setVisibility(View.GONE);
+            personal_myself_personal_message.setVisibility(View.VISIBLE);
+            personal_login_message.setVisibility(View.VISIBLE);
+            Glide.with(this).load(preferences.getString(Constant.User_icon, "")).asBitmap().into(new ImageViewTarget<Bitmap>(personal_myself_icon) {
+                @Override
+                protected void setResource(Bitmap bitmap) {
+                    RoundedBitmapDrawable drawable = RoundedBitmapDrawableFactory.create(getResources(), bitmap);
+                    drawable.setCircular(true);
+                    personal_myself_icon.setBackground(drawable);
+
+                }
+            });
+            personal_myself_nickName.setText(preferences.getString(Constant.User_name, ""));
+        }
+    }
+
 }

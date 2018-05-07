@@ -4,6 +4,7 @@ package com.example.lenovo.thewishofthestarlanguage.view.personal.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -18,6 +19,7 @@ import com.example.lenovo.thewishofthestarlanguage.model.entity.UserBean;
 import com.example.lenovo.thewishofthestarlanguage.presenter.LoginPresenterImp;
 import com.example.lenovo.thewishofthestarlanguage.view.base.BaseActivity;
 import com.example.lenovo.thewishofthestarlanguage.view.ui.ContainerActivity;
+import com.example.lenovo.thewishofthestarlanguage.view.ui.MainActivity;
 
 
 public class LoginActivity extends BaseActivity implements View.OnClickListener, ILoginContract.ILoginView, View.OnFocusChangeListener {
@@ -35,6 +37,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
     private TextView login_register;
     private LoginPresenterImp loginPresenterImp;
     private Intent intent;
+    private Intent iiii;
 
     @Override
     protected int getLayoutId() {
@@ -74,10 +77,10 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.login_login:
+                if (!loginPresenterImp.isUserName(login_username.getText().toString().trim()))
+                    return;
                 loginPresenterImp.goToLogin(login_username.getText().toString().trim(), login_password.getText().toString().trim());
 
-                intent = new Intent(this, ContainerActivity.class);
-                startActivity(intent);
                 break;
             case R.id.login_register:
                 intent = new Intent(this, RegisterActivity.class);
@@ -109,13 +112,19 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
 
     @Override
     public void showLoginMessage(UserBean userBean) {
-        SharedPreferences user = getSharedPreferences(Constant.CookieSP, Context.MODE_PRIVATE);
-        SharedPreferences.Editor edit = user.edit();
-        edit.putString(Constant.User_mobile, userBean.getData().getMobile());
-        edit.putString(Constant.User_name, userBean.getData().getNickname());
-        edit.putString(Constant.User_icon, userBean.getData().getPhoto());
-        edit.putInt(Constant.UserId, userBean.getData().getId());
-        edit.commit();
+        if (userBean.getMessage().equals("cid为空")) {
+            SharedPreferences user = getSharedPreferences(Constant.CookieSP, Context.MODE_PRIVATE);
+            SharedPreferences.Editor edit = user.edit();
+            edit.putString(Constant.User_mobile, userBean.getData().getMobile());
+            edit.putString(Constant.User_name, userBean.getData().getNickname());
+            edit.putString(Constant.User_icon, userBean.getData().getPhoto());
+            edit.putInt(Constant.UserId, userBean.getData().getId());
+            edit.commit();
+            finish();
+        } else {
+            Toast.makeText(this, userBean.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+
     }
 
     @Override

@@ -22,7 +22,7 @@ public class PreviewFragment extends BaseFragment implements PreviewContract.vie
 
     @Override
     protected void init(View view) {
-        preview_recycle=view.findViewById(R.id.treasure_recycle);
+        preview_recycle=view.findViewById(R.id.preview_recycle);
         preview_recycle.setLinearLayout();
 
     }

@@ -25,11 +25,11 @@ import okhttp3.ResponseBody;
  * Created by 陈伟霆 on 2018/5/3.
  */
 
-public class FindPassWordPresenter implements IFindPassWordContract.IFindPassWordPresenter {
+public class FindPassWordPresenterImp implements IFindPassWordContract.IFindPassWordPresenter {
     IFindPassWordContract.IFindPassWordView iFindPassWordView;
     FindPassWordService findPassWordService;
 
-    public FindPassWordPresenter(IFindPassWordContract.IFindPassWordView iFindPassWordView) {
+    public FindPassWordPresenterImp(IFindPassWordContract.IFindPassWordView iFindPassWordView) {
         this.iFindPassWordView = iFindPassWordView;
         findPassWordService = RetrofitUtils.getInstance().getFindPassWordService();
 
@@ -81,7 +81,7 @@ public class FindPassWordPresenter implements IFindPassWordContract.IFindPassWor
 
                     @Override
                     public void onError(Throwable e) {
-                        Log.e("RegisterPresenter", "e:" + e);
+                        Log.e("RegisterPresenterImp", "e:" + e);
                     }
 
                     @Override
@@ -121,7 +121,7 @@ public class FindPassWordPresenter implements IFindPassWordContract.IFindPassWor
 
                     @Override
                     public void onError(Throwable e) {
-                        Log.e("RegisterPresenter", e.getMessage());
+                        Log.e("RegisterPresenterImp", e.getMessage());
                     }
 
                     @Override

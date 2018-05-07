@@ -22,11 +22,11 @@ import okhttp3.ResponseBody;
  * Created by 陈伟霆 on 2018/5/3.
  */
 
-public class RegisterPresenter implements IRegisterContract.IRegisterPresenter {
+public class RegisterPresenterImp implements IRegisterContract.IRegisterPresenter {
     IRegisterContract.IRegisterView iRegisterView;
     RegisterService registerService;
 
-    public RegisterPresenter(IRegisterContract.IRegisterView iRegisterView) {
+    public RegisterPresenterImp(IRegisterContract.IRegisterView iRegisterView) {
         this.iRegisterView = iRegisterView;
         registerService = RetrofitUtils.getInstance().getRegisterService();
 
@@ -82,7 +82,7 @@ public class RegisterPresenter implements IRegisterContract.IRegisterPresenter {
 
                     @Override
                     public void onError(Throwable e) {
-                        Log.e("RegisterPresenter", "e:" + e);
+                        Log.e("RegisterPresenterImp", "e:" + e);
                     }
 
                     @Override
@@ -121,7 +121,7 @@ public class RegisterPresenter implements IRegisterContract.IRegisterPresenter {
 
                     @Override
                     public void onError(Throwable e) {
-                        Log.e("RegisterPresenter", e.getMessage());
+                        Log.e("RegisterPresenterImp", e.getMessage());
                     }
 
                     @Override

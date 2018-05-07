@@ -6,7 +6,7 @@ import java.util.List;
  * Created by 陈伟霆 on 2018/5/7.
  */
 
-public class TreaSureLunBoTu {
+public class TreaSureLunBoTuBean {
 
     /**
      * code : 0

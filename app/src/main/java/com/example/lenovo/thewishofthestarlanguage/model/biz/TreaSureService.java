@@ -1,7 +1,7 @@
 package com.example.lenovo.thewishofthestarlanguage.model.biz;
 
-import com.example.lenovo.thewishofthestarlanguage.model.entity.TreaSure;
-import com.example.lenovo.thewishofthestarlanguage.model.entity.TreaSureLunBoTu;
+import com.example.lenovo.thewishofthestarlanguage.model.entity.TreaSureBean;
+import com.example.lenovo.thewishofthestarlanguage.model.entity.TreaSureLunBoTuBean;
 
 import java.util.Map;
 
@@ -17,7 +17,7 @@ import retrofit2.http.POST;
 public interface TreaSureService {
     @FormUrlEncoded
     @POST("/v1/m/artcircle/home")
-    Observable<TreaSure> loadTreaSure(@FieldMap Map<String,Integer> map);
+    Observable<TreaSureBean> loadTreaSure(@FieldMap Map<String,Integer> map);
     @POST("/v1/m/artcircle/slideshow")
-    Observable<TreaSureLunBoTu> loadTreaSureLunBoTu();
+    Observable<TreaSureLunBoTuBean> loadTreaSureLunBoTu();
 }

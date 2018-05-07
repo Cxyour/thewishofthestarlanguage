@@ -16,10 +16,10 @@ import okhttp3.ResponseBody;
  * Created by 陈伟霆 on 2018/5/3.
  */
 
-public class IPerFectInforPresenter implements IPerFectInPresenter {
+public class IPerFectInforPresenterImp implements IPerFectInPresenter {
     IPerFectInforMationContact.IPerFectInlView view;
     PerFectInforService perFectInforService;
-    public IPerFectInforPresenter(IPerFectInforMationContact.IPerFectInlView view) {
+    public IPerFectInforPresenterImp(IPerFectInforMationContact.IPerFectInlView view) {
         this.view=view;
         perFectInforService= RetrofitUtils.getInstance().getPerFectInforService();
 

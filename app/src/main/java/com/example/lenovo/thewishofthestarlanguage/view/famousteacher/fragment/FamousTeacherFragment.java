@@ -5,7 +5,7 @@ import android.view.View;
 import com.example.lenovo.thewishofthestarlanguage.R;
 import com.example.lenovo.thewishofthestarlanguage.contact.IFamousTeacherContract;
 import com.example.lenovo.thewishofthestarlanguage.model.entity.FamousTeacherBean;
-import com.example.lenovo.thewishofthestarlanguage.presenter.FamousTeacherPresenter;
+import com.example.lenovo.thewishofthestarlanguage.presenter.FamousTeacherPresenterImp;
 import com.example.lenovo.thewishofthestarlanguage.view.base.BaseFragment;
 import com.example.lenovo.thewishofthestarlanguage.view.famousteacher.adapter.FamousTecherAdapter;
 import com.wuxiaolong.pullloadmorerecyclerview.PullLoadMoreRecyclerView;
@@ -29,7 +29,7 @@ public class FamousTeacherFragment extends BaseFragment implements IFamousTeache
     @Override
     protected void init(View view) {
 
-        FamousTeacherPresenter famousTeacherPresenter = new FamousTeacherPresenter(this);
+        FamousTeacherPresenterImp famousTeacherPresenter = new FamousTeacherPresenterImp(this);
         Map<String, String> params = new HashMap<>();
         famousTeacherPresenter.loadFrmousBean();
         mRecycleaArray = new ArrayList<>();

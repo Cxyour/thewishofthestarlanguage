@@ -6,7 +6,7 @@ import java.util.List;
  * Created by 陈伟霆 on 2018/5/6.
  */
 
-public class Preview {
+public class PreviewBean {
 
     /**
      * code : 0

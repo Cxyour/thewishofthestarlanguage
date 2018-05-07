@@ -2,8 +2,8 @@ package com.example.lenovo.thewishofthestarlanguage.presenter;
 
 import com.example.lenovo.thewishofthestarlanguage.contact.TreasureContact;
 import com.example.lenovo.thewishofthestarlanguage.model.biz.TreaSureService;
-import com.example.lenovo.thewishofthestarlanguage.model.entity.TreaSure;
-import com.example.lenovo.thewishofthestarlanguage.model.entity.TreaSureLunBoTu;
+import com.example.lenovo.thewishofthestarlanguage.model.entity.TreaSureBean;
+import com.example.lenovo.thewishofthestarlanguage.model.entity.TreaSureLunBoTuBean;
 import com.example.lenovo.thewishofthestarlanguage.model.http.RetrofitUtils;
 
 import java.util.HashMap;
@@ -16,10 +16,10 @@ import io.reactivex.schedulers.Schedulers;
  * Created by 陈伟霆 on 2018/5/7.
  */
 
-public class TreaSurePresenter implements TreasureContact.presenter {
+public class TreaSurePresenterImp implements TreasureContact.presenter {
     TreasureContact.view view;
     TreaSureService treaSureService;
-    public TreaSurePresenter( TreasureContact.view view) {
+    public TreaSurePresenterImp(TreasureContact.view view) {
         this.view=view;
         treaSureService= RetrofitUtils.getInstance().getTreaSureService();
     }
@@ -31,9 +31,9 @@ public class TreaSurePresenter implements TreasureContact.presenter {
         treaSureService.loadTreaSure(map)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Consumer<TreaSure>() {
+                .subscribe(new Consumer<TreaSureBean>() {
                     @Override
-                    public void accept(TreaSure treaSure) throws Exception {
+                    public void accept(TreaSureBean treaSure) throws Exception {
                         view.showTreSure(treaSure);
                     }
                 });
@@ -44,9 +44,9 @@ public class TreaSurePresenter implements TreasureContact.presenter {
         treaSureService.loadTreaSureLunBoTu()
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Consumer<TreaSureLunBoTu>() {
+                .subscribe(new Consumer<TreaSureLunBoTuBean>() {
                     @Override
-                    public void accept(TreaSureLunBoTu treaSureLunBoTu) throws Exception {
+                    public void accept(TreaSureLunBoTuBean treaSureLunBoTu) throws Exception {
                     view.showLunbotu(treaSureLunBoTu);
                     }
                 });

@@ -6,7 +6,7 @@ import com.example.lenovo.thewishofthestarlanguage.model.entity.MostEavesdeoppBe
  * Created by 陈伟霆 on 2018/5/6.
  */
 
-public interface TheLatesRevieCOntract {
+public interface TheLatesRevieContract {
     interface  view{
         void showMostEavesdeopp(MostEavesdeoppBean mostEavesdeoppBean);
     }

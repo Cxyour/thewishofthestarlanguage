@@ -1,8 +1,8 @@
 package com.example.lenovo.thewishofthestarlanguage.presenter;
 
 import com.example.lenovo.thewishofthestarlanguage.contact.PreviewContract;
-import com.example.lenovo.thewishofthestarlanguage.model.biz.PreviewModel;
-import com.example.lenovo.thewishofthestarlanguage.model.entity.Preview;
+import com.example.lenovo.thewishofthestarlanguage.model.biz.PreviewService;
+import com.example.lenovo.thewishofthestarlanguage.model.entity.PreviewBean;
 import com.example.lenovo.thewishofthestarlanguage.model.http.RetrofitUtils;
 
 import io.reactivex.Observer;
@@ -14,10 +14,10 @@ import io.reactivex.schedulers.Schedulers;
  * Created by 陈伟霆 on 2018/5/6.
  */
 
-public class PreviewPresenter implements PreviewContract.presenter {
+public class PreviewPresenterImp implements PreviewContract.presenter {
     PreviewContract.view view;
-    PreviewModel model;
-    public PreviewPresenter( PreviewContract.view view) {
+    PreviewService model;
+    public PreviewPresenterImp(PreviewContract.view view) {
         this.view=view;
         model= RetrofitUtils.getInstance().getPreviewModel();
     }
@@ -26,14 +26,14 @@ public class PreviewPresenter implements PreviewContract.presenter {
     public void loadPreview() {
         model.loadPreview().subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<Preview>() {
+                .subscribe(new Observer<PreviewBean>() {
                     @Override
                     public void onSubscribe(Disposable d) {
 
                     }
 
                     @Override
-                    public void onNext(Preview preview) {
+                    public void onNext(PreviewBean preview) {
                         view.showPreview(preview);
                     }
 

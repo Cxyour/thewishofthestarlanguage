@@ -16,7 +16,7 @@ import android.widget.Toast;
 import com.example.lenovo.thewishofthestarlanguage.R;
 import com.example.lenovo.thewishofthestarlanguage.contact.IRegisterContract;
 import com.example.lenovo.thewishofthestarlanguage.model.config.Constant;
-import com.example.lenovo.thewishofthestarlanguage.presenter.RegisterPresenter;
+import com.example.lenovo.thewishofthestarlanguage.presenter.RegisterPresenterImp;
 import com.example.lenovo.thewishofthestarlanguage.view.base.BaseActivity;
 
 public class RegisterActivity extends BaseActivity implements View.OnClickListener, IRegisterContract.IRegisterView {
@@ -32,7 +32,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
     private TextView register_checked_http;
     private Button register_register;
     private ImageView register_close;
-    private RegisterPresenter registerPresenter;
+    private RegisterPresenterImp registerPresenter;
     private Handler handler = new Handler() {
 
 
@@ -79,7 +79,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
 
     @Override
     protected void loadData() {
-        registerPresenter = new RegisterPresenter(this);
+        registerPresenter = new RegisterPresenterImp(this);
     }
 
     @Override

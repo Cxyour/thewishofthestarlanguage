@@ -16,7 +16,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.BitmapImageViewTarget;
 import com.example.lenovo.thewishofthestarlanguage.R;
-import com.example.lenovo.thewishofthestarlanguage.model.entity.TreaSure;
+import com.example.lenovo.thewishofthestarlanguage.model.entity.TreaSureBean;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -27,10 +27,10 @@ import java.util.List;
  */
 
 public class TreasureAdapter extends RecyclerView.Adapter<TreasureAdapter.Holder> {
-    List<TreaSure.DataBean.ArtcircleListBean.ListBean> list;
+    List<TreaSureBean.DataBean.ArtcircleListBean.ListBean> list;
     Context context;
 
-    public TreasureAdapter(List<TreaSure.DataBean.ArtcircleListBean.ListBean> list) {
+    public TreasureAdapter(List<TreaSureBean.DataBean.ArtcircleListBean.ListBean> list) {
         this.list = list;
     }
 
@@ -47,7 +47,7 @@ public class TreasureAdapter extends RecyclerView.Adapter<TreasureAdapter.Holder
 
     @Override
     public void onBindViewHolder(final Holder holder, int position) {
-        TreaSure.DataBean.ArtcircleListBean.ListBean listBean = list.get(position);
+        TreaSureBean.DataBean.ArtcircleListBean.ListBean listBean = list.get(position);
         Glide.with(context).load(listBean.getPhoto()).asBitmap().into(new BitmapImageViewTarget(holder.photo){
             @Override
             protected void setResource(Bitmap resource) {

@@ -24,7 +24,6 @@
             android:layout_height="match_parent"
             android:layout_marginRight="10dp"
             android:gravity="center"
-            android:hint="2015-11-04"
             android:textSize="15sp" />
 
         <TextView
@@ -39,7 +38,6 @@
             android:layout_height="match_parent"
             android:layout_marginLeft="10dp"
             android:gravity="center"
-            android:hint="2015-11-04"
             android:textSize="15sp" />
 
     </LinearLayout>

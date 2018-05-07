@@ -9,9 +9,9 @@ import android.view.ViewGroup;
 
 import com.example.lenovo.thewishofthestarlanguage.R;
 import com.example.lenovo.thewishofthestarlanguage.contact.TreasureContact;
-import com.example.lenovo.thewishofthestarlanguage.model.entity.TreaSure;
-import com.example.lenovo.thewishofthestarlanguage.model.entity.TreaSureLunBoTu;
-import com.example.lenovo.thewishofthestarlanguage.presenter.TreaSurePresenter;
+import com.example.lenovo.thewishofthestarlanguage.model.entity.TreaSureBean;
+import com.example.lenovo.thewishofthestarlanguage.model.entity.TreaSureLunBoTuBean;
+import com.example.lenovo.thewishofthestarlanguage.presenter.TreaSurePresenterImp;
 import com.example.lenovo.thewishofthestarlanguage.view.treasure.adapter.TreasureAdapter;
 import com.wuxiaolong.pullloadmorerecyclerview.PullLoadMoreRecyclerView;
 
@@ -24,7 +24,7 @@ public class TreasureTwoFragment extends Fragment implements TreasureContact.vie
 
 
     private PullLoadMoreRecyclerView treasure_two_fly;
-    private TreaSurePresenter treaSurePresenter;
+    private TreaSurePresenterImp treaSurePresenter;
 
     public TreasureTwoFragment() {
         // Required empty public constructor
@@ -37,7 +37,7 @@ public class TreasureTwoFragment extends Fragment implements TreasureContact.vie
         // Inflate the layout for this fragment
         View inflate = inflater.inflate(R.layout.fragment_treasure_two, container, false);
         initView(inflate);
-        treaSurePresenter = new TreaSurePresenter(this);
+        treaSurePresenter = new TreaSurePresenterImp(this);
         Bundle arguments = getArguments();
         if (arguments != null) {
             int id = arguments.getInt("id");
@@ -67,15 +67,15 @@ public class TreasureTwoFragment extends Fragment implements TreasureContact.vie
     }
 
     @Override
-    public void showTreSure(TreaSure treaSure) {
-        TreaSure.DataBean.ArtcircleListBean artcircleList = treaSure.getData().getArtcircleList();
-        List<TreaSure.DataBean.ArtcircleListBean.ListBean> list = artcircleList.getList();
+    public void showTreSure(TreaSureBean treaSure) {
+        TreaSureBean.DataBean.ArtcircleListBean artcircleList = treaSure.getData().getArtcircleList();
+        List<TreaSureBean.DataBean.ArtcircleListBean.ListBean> list = artcircleList.getList();
         TreasureAdapter treasureAdapter = new TreasureAdapter(list);
         treasure_two_fly.setAdapter(treasureAdapter);
     }
 
     @Override
-    public void showLunbotu(TreaSureLunBoTu treaSureLunBoTu) {
+    public void showLunbotu(TreaSureLunBoTuBean treaSureLunBoTu) {
 
     }
 }

@@ -7,7 +7,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.lenovo.thewishofthestarlanguage.R;
@@ -100,8 +99,11 @@ public class FamousTecherAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         }
         if (holder instanceof HomeWorkHolder){
             List<FamousTeacherBean.DataBean.HomewoksBean> homewoks = data.getHomewoks();
+           // ScrollDisabledListView scrollDisabledListView = new ScrollDisabledListView(context);
+            ((HomeWorkHolder) holder).work_recycle.setLayoutManager(new LinearLayoutManager(context));
             Item4TeacherAdapter item4TeacherAdapter = new Item4TeacherAdapter(homewoks);
             ((HomeWorkHolder) holder).work_recycle.setAdapter(item4TeacherAdapter);
+
         }
     }
 
@@ -163,13 +165,13 @@ public class FamousTecherAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     public static class HomeWorkHolder extends RecyclerView.ViewHolder {
         public View rootView;
         public TextView gengduo;
-        public ListView work_recycle;
+        public RecyclerView work_recycle;
 
         public HomeWorkHolder(View rootView) {
             super(rootView);
             this.rootView = rootView;
             this.gengduo = (TextView) rootView.findViewById(R.id.gengduo);
-            this.work_recycle = (ListView) rootView.findViewById(R.id.work_recycle);
+            this.work_recycle = (RecyclerView) rootView.findViewById(R.id.work_recycle);
         }
 
     }

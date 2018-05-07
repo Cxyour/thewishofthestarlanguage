@@ -43,7 +43,7 @@ public class FamousTeacherFragment extends BaseFragment implements IFamousTeache
 
             @Override
             public void onLoadMore() {
-
+                pullLoadMoreRecyclerView.setPullLoadMoreCompleted();
             }
         });
 

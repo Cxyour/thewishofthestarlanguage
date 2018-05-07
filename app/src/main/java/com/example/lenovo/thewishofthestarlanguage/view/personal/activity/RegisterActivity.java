@@ -109,6 +109,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
                 SharedPreferences.Editor edit = preferences.edit();
                 edit.putString(Constant.User_mobile, register_username.getText().toString().trim());
                 Intent intent = new Intent(this, PerfectInformationActivity.class);
+                intent.putExtra("phone",register_username.getText().toString().trim());
                 startActivity(intent);
                 break;
             case R.id.register_close:

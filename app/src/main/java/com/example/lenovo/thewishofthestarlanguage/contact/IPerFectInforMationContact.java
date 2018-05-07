@@ -1,6 +1,6 @@
 package com.example.lenovo.thewishofthestarlanguage.contact;
 
-import okhttp3.ResponseBody;
+import com.example.lenovo.thewishofthestarlanguage.model.entity.PerFectInforBean;
 
 /**
  * Created by 陈伟霆 on 2018/5/3.
@@ -8,7 +8,7 @@ import okhttp3.ResponseBody;
 
 public interface IPerFectInforMationContact {
     interface IPerFectInlView{
-        void showIperFect(ResponseBody responseBody);
+        void showIperFect(PerFectInforBean responseBody);
     }
 
     interface IPerFectInPresenter{

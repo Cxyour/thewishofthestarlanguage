@@ -9,14 +9,13 @@ import android.text.TextUtils;
 
 import com.example.lenovo.thewishofthestarlanguage.model.biz.AppTokenService;
 import com.example.lenovo.thewishofthestarlanguage.model.biz.FamousTeacherService;
+import com.example.lenovo.thewishofthestarlanguage.model.biz.FindPassWordService;
 import com.example.lenovo.thewishofthestarlanguage.model.biz.HomeWorkService;
 import com.example.lenovo.thewishofthestarlanguage.model.biz.LoginService;
-import com.example.lenovo.thewishofthestarlanguage.model.biz.MostEaveModel;
 import com.example.lenovo.thewishofthestarlanguage.model.biz.PerFectInforService;
 import com.example.lenovo.thewishofthestarlanguage.model.biz.PersonalService;
-import com.example.lenovo.thewishofthestarlanguage.model.biz.PreviewModel;
 import com.example.lenovo.thewishofthestarlanguage.model.biz.RegisterService;
-import com.example.lenovo.thewishofthestarlanguage.model.biz.TreaSureService;
+import com.example.lenovo.thewishofthestarlanguage.model.biz.ResetPassWordService;
 import com.example.lenovo.thewishofthestarlanguage.model.config.App;
 import com.example.lenovo.thewishofthestarlanguage.model.config.Constant;
 import com.example.lenovo.thewishofthestarlanguage.model.config.Urls;
@@ -179,8 +178,7 @@ public class RetrofitUtils {
     }
 
     public FamousTeacherService getFamousTeacherService() {
-        FamousTeacherService famousTeacherService = retrofit.create(FamousTeacherService.class);
-        return famousTeacherService;
+        return retrofit.create(FamousTeacherService.class);
     }
 
     public AppTokenService getAppTokenService() {
@@ -195,14 +193,12 @@ public class RetrofitUtils {
         return retrofit.create(HomeWorkService.class);
     }
 
-    public MostEaveModel getMostEaveModel(){
-        return  retrofit.create(MostEaveModel.class);
+    public FindPassWordService getFindPassWordService() {
+        return retrofit.create(FindPassWordService.class);
     }
 
-    public PreviewModel getPreviewModel(){
-        return retrofit.create(PreviewModel.class);
+    public ResetPassWordService getResetService() {
+        return retrofit.create(ResetPassWordService.class);
     }
-    public TreaSureService getTreaSureService(){
-        return  retrofit.create(TreaSureService.class);
-    }
+
 }

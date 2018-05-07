@@ -71,10 +71,8 @@ public class ContainerActivity extends BaseActivity implements View.OnClickListe
 
     @Override
     protected void loadData() {
-      setContentView(R.id.home_lay,FamousTeacherFragment.class,null);
-
+        setContentView(R.id.home_lay,FamousTeacherFragment.class,null);
     }
-
 
     /**
      * Called when a view has been clicked.

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.lenovo.thewishofthestarlanguage.view.personal.activity.ResetPassWordActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="重置密码"
+            android:textColor="#000000" />
+
+        <ImageView
+            android:id="@+id/reset_password_close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:background="@mipmap/activity_return" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:orientation="vertical"
+        android:paddingLeft="80dp"
+        android:paddingRight="80dp">
+
+        <EditText
+            android:id="@+id/reset_password_new_password"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/bg_edittext"
+            android:hint="请输入新密码"
+            android:textSize="15sp" />
+
+
+        <EditText
+            android:id="@+id/reset_password_new_password_again"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/bg_edittext"
+            android:hint="请确认新密码"
+            android:textSize="15sp" />
+
+
+        <Button
+            android:id="@+id/reset_password_finish"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:background="#2222ff"
+            android:text="完成"
+            android:textColor="#ffffff" />
+
+    </LinearLayout>
+
+
+</LinearLayout>

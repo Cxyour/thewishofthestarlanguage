@@ -17,7 +17,7 @@ import retrofit2.http.POST;
 public interface TreaSureService {
     @FormUrlEncoded
     @POST("/v1/m/artcircle/home")
-    Observable<TreaSure> loadTreaSure(@FieldMap Map<String,String> map);
+    Observable<TreaSure> loadTreaSure(@FieldMap Map<String,Integer> map);
     @POST("/v1/m/artcircle/slideshow")
     Observable<TreaSureLunBoTu> loadTreaSureLunBoTu();
 }

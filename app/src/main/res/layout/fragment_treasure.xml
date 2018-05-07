@@ -1,19 +1,94 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.lenovo.thewishofthestarlanguage.view.treasure.fragment.TreasureFragment">
-    <com.recker.flybanner.FlyBanner
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:id="@+id/treasure_fly"></com.recker.flybanner.FlyBanner>
-        <com.wuxiaolong.pullloadmorerecyclerview.PullLoadMoreRecyclerView
+
+
+    <android.support.design.widget.CoordinatorLayout
+
+
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/scrollview"
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:background="#ffffff"
+
+        >
+
+        <!-- 第二部分:缩放控件-->
+        <android.support.design.widget.AppBarLayout
+            android:id="@+id/id_appbarlayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <android.support.design.widget.CollapsingToolbarLayout
+                android:id="@+id/collapsing_tool_bar_test_ctl"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fitsSystemWindows="true"
+                app:contentScrim="?attr/colorPrimary"
+                app:expandedTitleMarginEnd="64dp"
+                app:expandedTitleMarginStart="48dp"
+                app:layout_scrollFlags="scroll">
+
+
+                    <com.recker.flybanner.FlyBanner
+                        android:layout_width="match_parent"
+                        android:layout_height="100dp"
+                        android:id="@+id/treasure_fly"></com.recker.flybanner.FlyBanner>
+
+
+
+            </android.support.design.widget.CollapsingToolbarLayout>
+
+
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <android.support.design.widget.TabLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#dedcdc"
+                    android:id="@+id/tres_tabla"
+                    app:tabMode="scrollable"></android.support.design.widget.TabLayout>
+
+            </LinearLayout>
+        </android.support.design.widget.AppBarLayout>
+
+
+        <!-- 第三部分:Your Scroll View-->
+        <android.support.v4.widget.NestedScrollView
+            android:id="@+id/myMainScrollView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/treasure_recycle"></com.wuxiaolong.pullloadmorerecyclerview.PullLoadMoreRecyclerView>
+            android:overScrollMode="always"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+            <!--- app:layout_behavior="@string/appbar_scrolling_view_behavior"-->
+
+            <LinearLayout
+                android:id="@+id/mainLinearLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
 
+                <!--<FrameLayout-->
+                <!--android:id="@+id/myFrameContainer"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="fill_parent"></FrameLayout>-->
+            </LinearLayout>
+        </android.support.v4.widget.NestedScrollView>
+        <android.support.v4.view.ViewPager
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/treasure_viewpager"></android.support.v4.view.ViewPager>
+    </android.support.design.widget.CoordinatorLayout>
 
 
 </LinearLayout>

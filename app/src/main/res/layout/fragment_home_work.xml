@@ -4,155 +4,238 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".view.homework.fragment.HomeWorkFragment">
-    <RelativeLayout
-
-        android:layout_width="match_parent"
-        android:layout_height="90dp"
-        android:background="#fff"
-        android:gravity="center">
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
 
 
-            <LinearLayout
-                android:id="@+id/home_work_fragment_publishwok_group"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="26dp"
-                    android:src="@mipmap/commit_work" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:text="提交课程作业"
-                    android:textColor="#b3b3b3"
-                    android:textSize="13sp" />
-
-            </LinearLayout>
 
 
-            <LinearLayout
-                android:id="@+id/home_work_fragment_publishaskwok_group"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="67dp"
-                android:gravity="center_horizontal"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:text="发布求教作品"
-                    android:textColor="#b3b3b3"
-                    android:textSize="13sp" />
-
-            </LinearLayout>
-
-        </LinearLayout>
-
-    </RelativeLayout>
 
 
-   <RadioGroup
-        android:background="#d7d2d2"
-       android:weightSum="3"
-       android:orientation="horizontal"
-       android:layout_width="match_parent"
-       android:layout_height="30dp">
-       <LinearLayout
-           android:layout_weight="1"
-           android:orientation="vertical"
-           android:layout_width="0dp"
-           android:layout_height="wrap_content">
-       <RadioButton
-           android:id="@+id/intelig_But"
-           android:textColor="#817979"
-           android:layout_gravity="center"
-            android:gravity="center"
-           android:button="@null"
-           android:text="智能筛选"
 
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content" />
-           <TextView
-               android:layout_marginTop="4dp"
-               android:layout_gravity="center"
 
-               android:id="@+id/home_work_fragment_capacity_line"
-               android:layout_width="20dp"
-               android:layout_height="3dp"
-               android:layout_alignParentBottom="true"
-               android:layout_centerHorizontal="true"
-               android:background="#FFD235"
-               android:visibility="visible" />
 
-       </LinearLayout>
-       <LinearLayout
-           android:layout_weight="1"
-           android:orientation="vertical"
-           android:layout_width="0dp"
-           android:layout_height="wrap_content">
-       <RadioButton
-           android:textColor="#817979"
-            android:id="@+id/mostEave_But"
-           android:layout_gravity="center"
-           android:gravity="center"
-           android:button="@null"
-           android:text="偷听最多"
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content" />
-       <TextView
-           android:layout_marginTop="4dp"
-           android:layout_gravity="center"
-           android:id="@+id/home_work_fragment_capacity_line2"
-           android:layout_width="20dp"
-           android:layout_height="3dp"
-           android:layout_alignParentBottom="true"
-           android:layout_centerHorizontal="true"
-           android:background="#FFD235"
-           android:visibility="gone" />
-       </LinearLayout>
-       <LinearLayout
-           android:layout_weight="1"
-           android:orientation="vertical"
-           android:layout_width="0dp"
-           android:layout_height="wrap_content">
-       <RadioButton
-           android:textColor="#817979"
-            android:id="@+id/theLatesr_But"
-           android:layout_gravity="center"
-           android:gravity="center"
-           android:button="@null"
-           android:text="最新点评"
 
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content" />
-           <TextView
-               android:layout_marginTop="4dp"
-               android:layout_gravity="center"
-               android:id="@+id/home_work_fragment_capacity_line3"
-               android:layout_width="20dp"
-               android:layout_height="3dp"
-               android:layout_alignParentBottom="true"
-               android:layout_centerHorizontal="true"
-               android:background="#FFD235"
-               android:visibility="gone" />
-       </LinearLayout>
-   </RadioGroup>
 
-    <FrameLayout
-        android:layout_width="match_parent"
+
+
+
+
+
+
+
+
+
+    <!-- 第一部分:CoordinatorLayout -->
+    <android.support.design.widget.CoordinatorLayout
+
+
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/scrollview"
+        android:layout_width="fill_parent"
         android:layout_height="match_parent"
-        android:id="@+id/homework_frame"></FrameLayout>
+        android:background="#ffffff"
+
+        >
+
+        <!-- 第二部分:缩放控件-->
+        <android.support.design.widget.AppBarLayout
+            android:id="@+id/id_appbarlayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <android.support.design.widget.CollapsingToolbarLayout
+                android:id="@+id/collapsing_tool_bar_test_ctl"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fitsSystemWindows="true"
+                app:contentScrim="?attr/colorPrimary"
+                app:expandedTitleMarginEnd="64dp"
+                app:expandedTitleMarginStart="48dp"
+                app:layout_scrollFlags="scroll">
+                <RelativeLayout
+
+                    android:layout_width="match_parent"
+                    android:layout_height="90dp"
+                    android:background="#fff"
+                    android:gravity="center">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+
+                        <LinearLayout
+                            android:id="@+id/home_work_fragment_publishwok_group"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_horizontal"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:layout_width="24dp"
+                                android:layout_height="26dp"
+                                android:src="@mipmap/commit_work" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:text="提交课程作业"
+                                android:textColor="#b3b3b3"
+                                android:textSize="13sp" />
+
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:id="@+id/home_work_fragment_publishaskwok_group"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="67dp"
+                            android:gravity="center_horizontal"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:text="发布求教作品"
+                                android:textColor="#b3b3b3"
+                                android:textSize="13sp" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </RelativeLayout>
+            </android.support.design.widget.CollapsingToolbarLayout>
+
+
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <RadioGroup
+                    android:background="#d7d2d2"
+                    android:weightSum="3"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp">
+                    <LinearLayout
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content">
+                        <RadioButton
+                            android:id="@+id/intelig_But"
+                            android:textColor="#817979"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:button="@null"
+                            android:text="智能筛选"
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                        <TextView
+                            android:layout_marginTop="4dp"
+                            android:layout_gravity="center"
+
+                            android:id="@+id/home_work_fragment_capacity_line"
+                            android:layout_width="20dp"
+                            android:layout_height="3dp"
+                            android:layout_alignParentBottom="true"
+                            android:layout_centerHorizontal="true"
+                            android:background="#FFD235"
+                            android:visibility="visible" />
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content">
+                        <RadioButton
+                            android:textColor="#817979"
+                            android:id="@+id/mostEave_But"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:button="@null"
+                            android:text="偷听最多"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                        <TextView
+                            android:layout_marginTop="4dp"
+                            android:layout_gravity="center"
+                            android:id="@+id/home_work_fragment_capacity_line2"
+                            android:layout_width="20dp"
+                            android:layout_height="3dp"
+                            android:layout_alignParentBottom="true"
+                            android:layout_centerHorizontal="true"
+                            android:background="#FFD235"
+                            android:visibility="gone" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content">
+                        <RadioButton
+                            android:textColor="#817979"
+                            android:id="@+id/theLatesr_But"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:button="@null"
+                            android:text="最新点评"
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                        <TextView
+                            android:layout_marginTop="4dp"
+                            android:layout_gravity="center"
+                            android:id="@+id/home_work_fragment_capacity_line3"
+                            android:layout_width="20dp"
+                            android:layout_height="3dp"
+                            android:layout_alignParentBottom="true"
+                            android:layout_centerHorizontal="true"
+                            android:background="#FFD235"
+                            android:visibility="gone" />
+                    </LinearLayout>
+                </RadioGroup>
+            </LinearLayout>
+        </android.support.design.widget.AppBarLayout>
+
+
+        <!-- 第三部分:Your Scroll View-->
+        <android.support.v4.widget.NestedScrollView
+            android:id="@+id/myMainScrollView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:overScrollMode="always"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+            <!--- app:layout_behavior="@string/appbar_scrolling_view_behavior"-->
+
+
+            <LinearLayout
+                android:id="@+id/mainLinearLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:orientation="vertical">
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/homework_frame"></FrameLayout>
+
+                <!--<FrameLayout-->
+                <!--android:id="@+id/myFrameContainer"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="fill_parent"></FrameLayout>-->
+
+            </LinearLayout>
+        </android.support.v4.widget.NestedScrollView>
+    </android.support.design.widget.CoordinatorLayout>
 
 </LinearLayout>

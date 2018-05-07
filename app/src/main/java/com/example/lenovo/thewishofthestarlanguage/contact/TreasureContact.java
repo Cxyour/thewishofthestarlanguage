@@ -13,7 +13,7 @@ public interface TreasureContact  {
         void showLunbotu(TreaSureLunBoTu treaSureLunBoTu);
     }
     interface  presenter{
-        void loadTreSure();
+        void loadTreSure(int index);
         void loadLunbotu();
     }
 }

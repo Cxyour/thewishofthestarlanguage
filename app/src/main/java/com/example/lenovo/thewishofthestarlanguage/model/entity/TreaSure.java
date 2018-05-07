@@ -1,5 +1,6 @@
 package com.example.lenovo.thewishofthestarlanguage.model.entity;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -77,7 +78,7 @@ public class TreaSure {
             this.systemAds = systemAds;
         }
 
-        public static class ArtcircleListBean {
+        public static class ArtcircleListBean implements Serializable{
             /**
              * pageNum : 1
              * pageSize : 20

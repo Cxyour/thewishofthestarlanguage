@@ -25,9 +25,9 @@ public class TreaSurePresenter implements TreasureContact.presenter {
     }
 
     @Override
-    public void loadTreSure() {
-        HashMap<String, String> map = new HashMap<>();
-        map.put("sortord","0");
+    public void loadTreSure(int index) {
+        HashMap<String, Integer> map = new HashMap<>();
+        map.put("sortord",index);
         treaSureService.loadTreaSure(map)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())

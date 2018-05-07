@@ -40,7 +40,6 @@ public class FamousTecherAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         LayoutInflater layoutInflater = LayoutInflater.from(context);
         RecyclerView.ViewHolder holder = null;
         if (viewType == 0) {
-
             View teacher_item0 = layoutInflater.inflate(R.layout.teacher_item0, parent, false);
             holder = new SYSCHolder(teacher_item0);
         } else if (viewType == 1) {
@@ -84,7 +83,6 @@ public class FamousTecherAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                 String pcImgUrl = systemAd.getPcImgUrl();
                 strings.add(pcImgUrl);
             }
-
             ((SYSCHolder) holder).teacher_fly.setImagesUrl(strings);
         }
         if (holder instanceof UserHolder) {

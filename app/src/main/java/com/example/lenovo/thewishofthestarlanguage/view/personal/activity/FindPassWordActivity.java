@@ -39,6 +39,7 @@ public class FindPassWordActivity extends BaseActivity implements View.OnClickLi
 
         find_password_getPhoneCode.setOnClickListener(this);
         find_password_goToNext.setOnClickListener(this);
+        find_password_close.setOnClickListener(this);
     }
 
     @Override
@@ -54,18 +55,22 @@ public class FindPassWordActivity extends BaseActivity implements View.OnClickLi
                     return;
                 findPassWordPresenter.goToResetPassWord(find_password_ed_phone_number.getText().toString().trim(), find_password_ed_phone_code.getText().toString().trim());
                 Intent intent = new Intent(this, ResetPassWordActivity.class);
-                intent.putExtra(Constant.User_mobile,find_password_ed_phone_number.getText().toString().trim());
+                intent.putExtra(Constant.User_mobile, find_password_ed_phone_number.getText().toString().trim());
                 startActivity(intent);
                 break;
             case R.id.find_password_getPhoneCode:
                 findPassWordPresenter.loadPhoneMsg(find_password_ed_phone_number.getText().toString().trim());
+                break;
+
+            case R.id.find_password_close:
+                finish();
                 break;
         }
     }
 
     @Override
     public void showPhoneNumberMessage(String phoneNumberMessage) {
-        if (phoneNumberMessage != null){
+        if (phoneNumberMessage != null) {
             Toast.makeText(this, phoneNumberMessage, Toast.LENGTH_SHORT).show();
         }
     }

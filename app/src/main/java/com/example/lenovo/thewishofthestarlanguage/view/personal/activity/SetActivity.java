@@ -82,8 +82,6 @@ public class SetActivity extends BaseActivity implements View.OnClickListener {
                 break;
             case R.id.set_close:
                 finish();
-
-
                 break;
 
         }

@@ -7,8 +7,9 @@
 
     <ImageView
         android:id="@+id/img"
-        android:layout_width="120dp"
-        android:layout_height="80dp"
+        android:layout_width="150dp"
+        android:layout_height="100dp"
+        android:scaleType="fitXY"
         android:src="@mipmap/ic_launcher" />
 
     <LinearLayout
@@ -25,7 +26,8 @@
                 android:id="@+id/nickname"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="刘德华" />
+                android:text="刘德华"
+                android:textColor="#ffffff"/>
 
             <ImageView
                 android:id="@+id/level"
@@ -38,7 +40,7 @@
         <TextView
             android:layout_marginTop="-7dp"
             android:text="张无忌"
-
+            android:textColor="#ffffff"
             android:id="@+id/intro"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />

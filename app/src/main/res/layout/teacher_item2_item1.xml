@@ -1,64 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    android:orientation="vertical"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     android:layout_gravity="center"
     android:gravity="center"
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:orientation="vertical"
+    android:paddingLeft="50dp"
+    android:paddingRight="50dp"
+    android:paddingTop="20dp">
 
     <RelativeLayout
-
-        android:layout_width="180dp"
+        android:layout_width="match_parent"
         android:layout_height="120dp">
+
         <ImageView
             android:id="@+id/coverImg"
-            android:src="@mipmap/ic_launcher"
-            android:scaleType="fitXY"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_centerInParent="true"/>
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:scaleType="fitXY"
+            android:src="@mipmap/ic_launcher" />
+
         <TextView
-            android:layout_alignParentRight="true"
-            android:text="讲堂"
-            android:textColor="#fdf"
-            android:background="#0540af"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:background="#0540af"
+            android:text="讲堂"
+            android:textColor="#fdf" />
 
     </RelativeLayout>
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
         <TextView
-            android:text="刘德华"
             android:id="@+id/nickname"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:text="刘德华" />
+
         <ImageView
             android:id="@+id/level"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:layout_marginLeft="5dp"
             android:layout_toRightOf="@+id/nickname"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@mipmap/home_level_vip_red"/>
+            android:src="@mipmap/home_level_vip_red" />
+
         <TextView
-            android:layout_alignParentRight="true"
-            android:text="表演"
-            android:layout_marginRight="5dp"
             android:id="@+id/biaoyan"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="5dp"
+            android:text="表演" />
     </RelativeLayout>
+
     <LinearLayout
-        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="开播时间:"/>
+            android:text="开播时间:" />
+
         <TextView
             android:id="@+id/startDate"
             android:layout_width="wrap_content"

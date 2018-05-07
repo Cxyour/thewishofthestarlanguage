@@ -100,6 +100,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                 login_password.setText("");
                 break;
             case R.id.login_close:
+
                 finish();
                 break;
             case R.id.login_forget_password:

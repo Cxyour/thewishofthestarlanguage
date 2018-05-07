@@ -1,7 +1,6 @@
 package com.example.lenovo.thewishofthestarlanguage.model.config;
 
 import android.app.Application;
-import android.content.SharedPreferences;
 
 import com.example.lenovo.thewishofthestarlanguage.view.base.BaseActivity;
 
@@ -12,5 +11,5 @@ import com.example.lenovo.thewishofthestarlanguage.view.base.BaseActivity;
 public class App extends Application {
 
     public static BaseActivity context;
-        
+
 }

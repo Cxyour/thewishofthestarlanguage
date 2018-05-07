@@ -42,6 +42,7 @@
             android:layout_marginTop="20dp"
             android:background="@drawable/bg_edittext"
             android:hint="请输入新密码"
+            android:inputType="textPassword"
             android:textSize="15sp" />
 
 
@@ -52,6 +53,7 @@
             android:layout_marginTop="20dp"
             android:background="@drawable/bg_edittext"
             android:hint="请确认新密码"
+            android:inputType="textPassword"
             android:textSize="15sp" />
 
 

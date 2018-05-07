@@ -1,13 +1,35 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.lenovo.thewishofthestarlanguage.view.preview.fragment.PreviewFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <View
+        android:layout_marginTop="3dp"
+        android:background="#c9c6c6"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="1dp"
+        />
+    <TextView
+        android:textColor="#4786f4"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:gravity="center"
+        android:text="时间筛选" />
+    <View
+        android:layout_marginTop="3dp"
+        android:background="#c9c6c6"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        />
 
-</FrameLayout>
+    <com.wuxiaolong.pullloadmorerecyclerview.PullLoadMoreRecyclerView
+        android:id="@+id/preview_recycle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></com.wuxiaolong.pullloadmorerecyclerview.PullLoadMoreRecyclerView>
+
+</LinearLayout>

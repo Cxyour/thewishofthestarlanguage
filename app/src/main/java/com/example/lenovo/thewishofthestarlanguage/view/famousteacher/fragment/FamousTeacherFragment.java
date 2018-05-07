@@ -7,12 +7,20 @@ import com.example.lenovo.thewishofthestarlanguage.contact.IFamousTeacherContrac
 import com.example.lenovo.thewishofthestarlanguage.model.entity.FamousTeacherBean;
 import com.example.lenovo.thewishofthestarlanguage.presenter.FamousTeacherPresenter;
 import com.example.lenovo.thewishofthestarlanguage.view.base.BaseFragment;
+import com.example.lenovo.thewishofthestarlanguage.view.famousteacher.adapter.FamousTecherAdapter;
 import com.wuxiaolong.pullloadmorerecyclerview.PullLoadMoreRecyclerView;
 
-public class FamousTeacherFragment extends BaseFragment implements IFamousTeacherContract.IFamousTeacherView{
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+public class FamousTeacherFragment extends BaseFragment implements IFamousTeacherContract.IFamousTeacherView {
     private PullLoadMoreRecyclerView pullLoadMoreRecyclerView;
 
     //   private PullToRefreshRecyclerView famous_recycle;
+    private ArrayList<Object> mRecycleaArray;
+
 
     @Override
     protected int getLayoutId() {
@@ -23,8 +31,22 @@ public class FamousTeacherFragment extends BaseFragment implements IFamousTeache
     protected void init(View view) {
 
         FamousTeacherPresenter famousTeacherPresenter = new FamousTeacherPresenter(this);
-        famousTeacherPresenter.loadFrmousBean();
+        Map<String,String> params = new HashMap<>();
+         famousTeacherPresenter.loadFrmousBean();
+        mRecycleaArray = new ArrayList<>();
         pullLoadMoreRecyclerView = view.findViewById(R.id.teacher_recycle);
+        pullLoadMoreRecyclerView.setLinearLayout();
+        pullLoadMoreRecyclerView.setOnPullLoadMoreListener(new PullLoadMoreRecyclerView.PullLoadMoreListener() {
+            @Override
+            public void onRefresh() {
+                pullLoadMoreRecyclerView.setRefreshing(false);
+            }
+
+            @Override
+            public void onLoadMore() {
+                // pullLoadMoreRecyclerView.setIsLoadMore(false);
+            }
+        });
 
     }
 
@@ -33,11 +55,25 @@ public class FamousTeacherFragment extends BaseFragment implements IFamousTeache
 
     }
 
-    
 
     @Override
     public void showFamousTecah(FamousTeacherBean famousTeacherBean) {
         FamousTeacherBean.DataBean data = famousTeacherBean.getData();
-        
+        List<FamousTeacherBean.DataBean.SystemAdsBean> systemAds = data.getSystemAds();
+        mRecycleaArray.add(systemAds);
+        List<FamousTeacherBean.DataBean.UsersBean> users = data.getUsers();
+        mRecycleaArray.add(users);
+
+        List<FamousTeacherBean.DataBean.LiveCoursesBean> liveCourses = data.getLiveCourses();
+        mRecycleaArray.add(liveCourses);
+
+
+
+        List<FamousTeacherBean.DataBean.HomewoksBean> homewoks = data.getHomewoks();
+        mRecycleaArray.add(homewoks);
+        FamousTecherAdapter famousTecherAdapter = new FamousTecherAdapter(data);
+          pullLoadMoreRecyclerView.setAdapter(famousTecherAdapter);
+
+
     }
 }

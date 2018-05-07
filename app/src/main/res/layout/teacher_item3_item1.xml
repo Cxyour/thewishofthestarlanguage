@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <ImageView
+        android:id="@+id/work_img"
+        android:scaleType="fitXY"
+        android:src="@mipmap/ic_launcher"
+        android:layout_width="40dp"
+        android:layout_height="40dp" />
+    <TextView
+        android:id="@+id/work_name"
+        android:text="严超"
+        android:textColor="#080808"
+        android:textSize="15sp"
+        android:layout_toRightOf="@+id/work_img"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/work_time"
+        android:layout_toRightOf="@+id/work_img"
+        android:text="04/13"
+        android:layout_below="@+id/work_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/laizi"
+        android:text="来自"
+        android:layout_marginLeft="5dp"
+        android:layout_alignBottom="@+id/work_img"
+        android:layout_toRightOf="@+id/work_time"
+        android:layout_alignRight="@+id/work_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/work_from"
+        android:textColor="#080808"
+        android:text="课堂作业"
+        android:layout_marginLeft="5dp"
+        android:layout_toRightOf="@+id/laizi"
+        android:layout_alignRight="@+id/work_time"
+        android:layout_alignBottom="@+id/work_img"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/work_content"
+        android:ellipsize="end"
+        android:lines="5"
+        android:textSize="18sp"
+        android:textColor="#080808"
+        android:layout_below="@+id/work_time"
+        android:layout_toRightOf="@+id/work_img"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <ImageView
+        android:id="@+id/word_image"
+        android:layout_toRightOf="@+id/work_img"
+        android:layout_below="@+id/work_content"
+        android:scaleType="fitXY"
+        android:layout_width="260dp"
+        android:layout_height="260dp" />
+    <RadioGroup
+        android:layout_below="@+id/word_image"
+        android:weightSum="4"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <RadioButton
+            android:drawableTop="@mipmap/reply_normal"
+            android:id="@+id/work_comment"
+            android:button="@null"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content" />
+        <RadioButton
+            android:drawableTop="@mipmap/praise_normal"
+            android:id="@+id/work_zan"
+            android:button="@null"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content" />
+        <RadioButton
+            android:drawableTop="@mipmap/reward_active"
+            android:id="@+id/work_shang"
+            android:button="@null"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content" />
+        <RadioButton
+            android:drawableTop="@mipmap/share_default"
+            android:id="@+id/work_share"
+            android:button="@null"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content" />
+    </RadioGroup>
+
+</RelativeLayout>

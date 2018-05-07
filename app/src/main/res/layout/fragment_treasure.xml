@@ -1,13 +1,19 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.lenovo.thewishofthestarlanguage.view.treasure.fragment.TreasureFragment">
-
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <com.recker.flybanner.FlyBanner
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="200dp"
+        android:id="@+id/treasure_fly"></com.recker.flybanner.FlyBanner>
+        <com.wuxiaolong.pullloadmorerecyclerview.PullLoadMoreRecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/treasure_recycle"></com.wuxiaolong.pullloadmorerecyclerview.PullLoadMoreRecyclerView>
 
-</FrameLayout>
+
+
+
+</LinearLayout>

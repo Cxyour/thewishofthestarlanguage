@@ -6,32 +6,30 @@ import android.content.SharedPreferences;
 import android.os.Build;
 import android.support.v4.app.ActivityCompat;
 import android.text.TextUtils;
-import android.util.Log;
 
 import com.example.lenovo.thewishofthestarlanguage.model.biz.AppTokenService;
 import com.example.lenovo.thewishofthestarlanguage.model.biz.FamousTeacherService;
 import com.example.lenovo.thewishofthestarlanguage.model.biz.HomeWorkService;
 import com.example.lenovo.thewishofthestarlanguage.model.biz.LoginService;
+import com.example.lenovo.thewishofthestarlanguage.model.biz.MostEaveModel;
 import com.example.lenovo.thewishofthestarlanguage.model.biz.PerFectInforService;
 import com.example.lenovo.thewishofthestarlanguage.model.biz.PersonalService;
+import com.example.lenovo.thewishofthestarlanguage.model.biz.PreviewModel;
 import com.example.lenovo.thewishofthestarlanguage.model.biz.RegisterService;
+import com.example.lenovo.thewishofthestarlanguage.model.biz.TreaSureService;
 import com.example.lenovo.thewishofthestarlanguage.model.config.App;
 import com.example.lenovo.thewishofthestarlanguage.model.config.Constant;
 import com.example.lenovo.thewishofthestarlanguage.model.config.Urls;
 import com.example.lenovo.thewishofthestarlanguage.model.entity.AppTokenBean;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 
-import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
-import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -181,7 +179,8 @@ public class RetrofitUtils {
     }
 
     public FamousTeacherService getFamousTeacherService() {
-        return retrofit.create(FamousTeacherService.class);
+        FamousTeacherService famousTeacherService = retrofit.create(FamousTeacherService.class);
+        return famousTeacherService;
     }
 
     public AppTokenService getAppTokenService() {
@@ -196,6 +195,14 @@ public class RetrofitUtils {
         return retrofit.create(HomeWorkService.class);
     }
 
+    public MostEaveModel getMostEaveModel(){
+        return  retrofit.create(MostEaveModel.class);
+    }
 
-
+    public PreviewModel getPreviewModel(){
+        return retrofit.create(PreviewModel.class);
+    }
+    public TreaSureService getTreaSureService(){
+        return  retrofit.create(TreaSureService.class);
+    }
 }

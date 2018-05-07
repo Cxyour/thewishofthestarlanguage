@@ -2,10 +2,7 @@ package com.example.lenovo.thewishofthestarlanguage.model.biz;
 
 import com.example.lenovo.thewishofthestarlanguage.model.entity.FamousTeacherBean;
 
-import java.util.Map;
-
 import io.reactivex.Observable;
-import retrofit2.http.HeaderMap;
 import retrofit2.http.POST;
 
 /**
@@ -13,6 +10,7 @@ import retrofit2.http.POST;
  */
 
 public interface FamousTeacherService {
-    @POST("/v1/m/home/alliance/list")
+
+    @POST("v1/m/home/list")
     Observable<FamousTeacherBean> loadFamousBean();
 }

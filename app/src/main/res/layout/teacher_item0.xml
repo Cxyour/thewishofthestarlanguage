@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <com.recker.flybanner.FlyBanner
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:id="@+id/teacher_fly"></com.recker.flybanner.FlyBanner>
+
+    <LinearLayout
+        android:weightSum="5"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+            <TextView
+                android:id="@+id/zhaoTecher"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:text="找老师"
+                android:layout_height="match_parent"
+                android:drawableTop="@mipmap/home_master_find_shape"/>
+
+        <TextView
+            android:id="@+id/lineclass"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:text="线上课"
+            android:layout_height="match_parent"
+            android:drawableTop="@mipmap/home_master_look_shape"/>
+        <TextView
+            android:id="@+id/jiaowork"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:text="交作业"
+            android:layout_height="match_parent"
+            android:drawableTop="@mipmap/home_master_work_shape"/>
+        <TextView
+            android:id="@+id/liaoYK"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:text="聊艺考"
+            android:layout_height="match_parent"
+            android:drawableTop="@mipmap/home_master_chat_shape"/>
+        <TextView
+            android:id="@+id/xianXK"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:text="线下课"
+            android:layout_height="match_parent"
+            android:drawableTop="@mipmap/home_master_learn_shape"/>
+    </LinearLayout>
+</LinearLayout>

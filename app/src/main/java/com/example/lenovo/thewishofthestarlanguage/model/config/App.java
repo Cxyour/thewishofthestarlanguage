@@ -12,4 +12,5 @@ import com.example.lenovo.thewishofthestarlanguage.view.base.BaseActivity;
 public class App extends Application {
 
     public static BaseActivity context;
+        
 }

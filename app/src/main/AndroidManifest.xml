@@ -29,6 +29,7 @@
         <activity android:name=".view.personal.activity.SetActivity"></activity>
         <activity android:name=".view.personal.activity.ResetPassWordActivity"></activity>
         <activity android:name=".view.personal.activity.FindPassWordActivity"></activity>
+
     </application>
 
 </manifest>

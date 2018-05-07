@@ -20,8 +20,8 @@ public class MainActivity extends AppCompatActivity {
             if (count == 0) {
                 Intent intent = new Intent(MainActivity.this, ContainerActivity.class);
                 startActivity(intent);
+                finish();
             } else {
-                time.setText(String.valueOf(count));
                 handler.postDelayed(runnable, 1000);
             }
         }
@@ -31,8 +31,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        initView();
         runnable = new Runnable() {
             @Override
             public void run() {
@@ -43,10 +41,6 @@ public class MainActivity extends AppCompatActivity {
             }
         };
         handler.postDelayed(runnable, 1000);
-    }
-
-    private void initView() {
-        time = (TextView) findViewById(R.id.time);
     }
 
 

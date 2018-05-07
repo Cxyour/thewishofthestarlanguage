@@ -12,5 +12,6 @@ public interface PreviewContract {
     }
     interface  presenter{
         void loadPreview();
+        void screenTime(String startTime, String endTime);
     }
 }

@@ -77,6 +77,7 @@ public class PreviewFragment extends BaseFragment implements PreviewContract.vie
             @Override
             public void onClick(View v) {
                 previewPresenter.screenTime(popup_start_time.getText().toString(), popup_end_time.getText().toString());
+                popupWindow.dismiss();
             }
         });
         preview_cb_time_screen.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {

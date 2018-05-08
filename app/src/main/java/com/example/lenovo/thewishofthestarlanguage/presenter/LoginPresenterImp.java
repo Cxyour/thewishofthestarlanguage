@@ -5,6 +5,7 @@ import android.text.TextUtils;
 import com.example.lenovo.thewishofthestarlanguage.contact.ILoginContract;
 import com.example.lenovo.thewishofthestarlanguage.model.biz.LoginService;
 import com.example.lenovo.thewishofthestarlanguage.model.entity.UserBean;
+import com.example.lenovo.thewishofthestarlanguage.model.entity.UserSuccessBean;
 import com.example.lenovo.thewishofthestarlanguage.model.http.RetrofitUtils;
 
 import java.util.HashMap;
@@ -62,7 +63,7 @@ public class LoginPresenterImp implements ILoginContract.ILoginPresenter {
         Map<String, String> paramsMap = new HashMap<>();
         paramsMap.put("mobile", userName);
         paramsMap.put("password", passWord);
-        Observable<UserBean> loginMessage = loginService.getLoginMessage(paramsMap);
+        Observable<UserBean> loginMessage = loginService.gotoLogin(paramsMap);
         loginMessage.subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<UserBean>() {
@@ -73,7 +74,35 @@ public class LoginPresenterImp implements ILoginContract.ILoginPresenter {
 
                     @Override
                     public void onNext(UserBean userBean) {
-                        iLoginView.showLoginMessage(userBean);
+                        getLoginMessage(userBean.getData().getId());
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+    }
+
+    @Override
+    public void getLoginMessage(int userId) {
+        Observable<UserSuccessBean> loginMsg = loginService.getLoginMsg(userId);
+        loginMsg.subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<UserSuccessBean>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(UserSuccessBean userSuccessBean) {
+                        iLoginView.showLoginMessage(userSuccessBean);
                     }
 
                     @Override

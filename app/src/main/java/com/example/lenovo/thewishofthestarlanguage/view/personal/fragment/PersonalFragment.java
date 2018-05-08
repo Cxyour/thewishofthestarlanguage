@@ -137,11 +137,11 @@ public class PersonalFragment extends BaseFragment implements View.OnClickListen
                 startActivityForResult(intent, 10);
                 break;
             case R.id.home_myselft_fragment_setting:
-                if (preferences.getString(Constant.User_mobile, null) == null) {
-                    intent = new Intent(getContext(), LoginActivity.class);
-                    startActivityForResult(intent, 10);
-                } else {
+                if (preferences.getBoolean("isLogin", false)) {
                     intent = new Intent(getContext(), SetActivity.class);
+                    startActivity(intent);
+                } else {
+                    intent = new Intent(getContext(), LoginActivity.class);
                     startActivity(intent);
                 }
                 break;
@@ -152,12 +152,7 @@ public class PersonalFragment extends BaseFragment implements View.OnClickListen
     @Override
     public void onResume() {
         super.onResume();
-        if (preferences.getString(Constant.User_mobile, "").equals("") || preferences.getString(Constant.User_mobile, "") == null) {
-            home_myselft_fragment_nologin_head.setVisibility(View.VISIBLE);
-            home_myselft_fragment_nologin_body.setVisibility(View.VISIBLE);
-            personal_myself_personal_message.setVisibility(View.GONE);
-            personal_login_message.setVisibility(View.GONE);
-        } else {
+        if (preferences.getBoolean("isLogin", false)) {
             home_myselft_fragment_nologin_head.setVisibility(View.GONE);
             home_myselft_fragment_nologin_body.setVisibility(View.GONE);
             personal_myself_personal_message.setVisibility(View.VISIBLE);
@@ -172,6 +167,11 @@ public class PersonalFragment extends BaseFragment implements View.OnClickListen
                 }
             });
             personal_myself_nickName.setText(preferences.getString(Constant.User_name, ""));
+        } else {
+            home_myselft_fragment_nologin_head.setVisibility(View.VISIBLE);
+            home_myselft_fragment_nologin_body.setVisibility(View.VISIBLE);
+            personal_myself_personal_message.setVisibility(View.GONE);
+            personal_login_message.setVisibility(View.GONE);
         }
     }
 

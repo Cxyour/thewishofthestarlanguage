@@ -1,6 +1,7 @@
 package com.example.lenovo.thewishofthestarlanguage.contact;
 
 import com.example.lenovo.thewishofthestarlanguage.model.entity.UserBean;
+import com.example.lenovo.thewishofthestarlanguage.model.entity.UserSuccessBean;
 
 /**
  * Created by Lenovo on 2018/5/3.
@@ -10,16 +11,14 @@ public interface ILoginContract {
 
     interface ILoginView {
         /**
-         *
          * @param string
          */
         void showUserNameMessage(String string);
 
         /**
-         *
-         * @param userBean
+         * @param userSuccessBean
          */
-        void showLoginMessage(UserBean userBean);
+        void showLoginMessage(UserSuccessBean userSuccessBean);
     }
 
     interface ILoginPresenter {
@@ -29,6 +28,7 @@ public interface ILoginContract {
          * @param userName
          */
         boolean isUserName(String userName);
+
         /**
          * 去登陆
          *
@@ -36,5 +36,8 @@ public interface ILoginContract {
          * @param passWord
          */
         void goToLogin(String userName, String passWord);
+
+
+        void getLoginMessage(int userId);
     }
 }

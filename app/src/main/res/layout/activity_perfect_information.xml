@@ -126,6 +126,7 @@
                 android:layout_centerVertical="true"
                 android:background="@drawable/bg_edittext"
                 android:hint="请输入密码"
+                android:inputType="textPassword"
                 android:padding="10dp" />
 
             <ImageView

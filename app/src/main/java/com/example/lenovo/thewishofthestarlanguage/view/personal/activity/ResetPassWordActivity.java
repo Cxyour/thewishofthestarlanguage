@@ -29,14 +29,13 @@ public class ResetPassWordActivity extends BaseActivity implements View.OnClickL
     protected int getLayoutId() {
         return R.layout.activity_reset;
     }
-
+    
     @Override
     protected void init() {
         reset_password_close = (ImageView) findViewById(R.id.reset_password_close);
         reset_password_new_password = (EditText) findViewById(R.id.reset_password_new_password);
         reset_password_new_password_again = (EditText) findViewById(R.id.reset_password_new_password_again);
         reset_password_finish = (Button) findViewById(R.id.reset_password_finish);
-
         reset_password_finish.setOnClickListener(this);
     }
 

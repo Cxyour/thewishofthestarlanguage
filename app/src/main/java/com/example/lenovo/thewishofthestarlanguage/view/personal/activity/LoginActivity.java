@@ -2,8 +2,14 @@ package com.example.lenovo.thewishofthestarlanguage.view.personal.activity;
 
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
+import android.support.v7.app.AlertDialog;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -11,12 +17,16 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.ImageViewTarget;
 import com.example.lenovo.thewishofthestarlanguage.R;
 import com.example.lenovo.thewishofthestarlanguage.contact.ILoginContract;
 import com.example.lenovo.thewishofthestarlanguage.model.config.Constant;
 import com.example.lenovo.thewishofthestarlanguage.model.entity.UserBean;
 import com.example.lenovo.thewishofthestarlanguage.presenter.LoginPresenterImp;
 import com.example.lenovo.thewishofthestarlanguage.view.base.BaseActivity;
+
+import java.util.Map;
 
 
 public class LoginActivity extends BaseActivity implements View.OnClickListener, ILoginContract.ILoginView, View.OnFocusChangeListener {
@@ -34,7 +44,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
     private TextView login_register;
     private LoginPresenterImp loginPresenterImp;
     private Intent intent;
-    private Intent iiii;
+    private String loginstatus;
 
     @Override
     protected int getLayoutId() {
@@ -90,6 +100,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                 login_password.setText("");
                 break;
             case R.id.login_close:
+
                 finish();
                 break;
             case R.id.login_forget_password:
@@ -143,4 +154,5 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                 break;
         }
     }
+
 }

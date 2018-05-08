@@ -1,6 +1,9 @@
 package com.example.lenovo.thewishofthestarlanguage.view.ui;
 
 import android.app.FragmentManager;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -9,9 +12,11 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.lenovo.thewishofthestarlanguage.R;
+import com.example.lenovo.thewishofthestarlanguage.model.config.Constant;
 import com.example.lenovo.thewishofthestarlanguage.view.base.BaseActivity;
 import com.example.lenovo.thewishofthestarlanguage.view.famousteacher.fragment.FamousTeacherFragment;
 import com.example.lenovo.thewishofthestarlanguage.view.homework.fragment.HomeWorkFragment;
+import com.example.lenovo.thewishofthestarlanguage.view.personal.activity.LoginActivity;
 import com.example.lenovo.thewishofthestarlanguage.view.personal.fragment.PersonalFragment;
 import com.example.lenovo.thewishofthestarlanguage.view.preview.fragment.PreviewFragment;
 import com.example.lenovo.thewishofthestarlanguage.view.treasure.fragment.TreasureFragment;
@@ -40,6 +45,9 @@ public class ContainerActivity extends BaseActivity implements View.OnClickListe
     private ImageView home_master_shape;
     private ImageView home_publish_valuable;
     private RelativeLayout home_title;
+    private SharedPreferences user;
+    private SharedPreferences.Editor edit;
+    private Intent intent;
 
 
     @Override
@@ -80,7 +88,10 @@ public class ContainerActivity extends BaseActivity implements View.OnClickListe
 
     @Override
     protected void loadData() {
+        home_publish_valuable.setVisibility(View.GONE);
         setContentView(R.id.home_lay, FamousTeacherFragment.class, null);
+        user = getSharedPreferences(Constant.CookieSP, Context.MODE_PRIVATE);
+        edit = user.edit();
     }
 
     /**
@@ -93,21 +104,26 @@ public class ContainerActivity extends BaseActivity implements View.OnClickListe
         switch (v.getId()) {
             case R.id.home_master_tab:
                 //名师
+                home_title.setVisibility(View.VISIBLE);
                 home_publish_valuable.setVisibility(View.GONE);
                 setContentView(R.id.home_lay, HomeWorkFragment.class, null);
                 setContentView(R.id.home_lay, FamousTeacherFragment.class, null);
                 break;
             case R.id.home_work_tab:
                 //作业
+                home_title.setVisibility(View.VISIBLE);
                 home_publish_valuable.setVisibility(View.GONE);
                 setContentView(R.id.home_lay, HomeWorkFragment.class, null);
                 break;
             case R.id.home_valuable_tab:
                 //宝典
+                home_title.setVisibility(View.VISIBLE);
+                home_publish_valuable.setVisibility(View.VISIBLE);
                 setContentView(R.id.home_lay, TreasureFragment.class, null);
                 break;
             case R.id.home_notice_tab:
                 //预告
+                home_title.setVisibility(View.VISIBLE);
                 home_publish_valuable.setVisibility(View.GONE);
                 setContentView(R.id.home_lay, PreviewFragment.class, null);
                 break;
@@ -118,9 +134,18 @@ public class ContainerActivity extends BaseActivity implements View.OnClickListe
                 break;
 
             case R.id.home_master_shape:
+                if (user.getBoolean("isLogin",false)){
+                    intent = new Intent(this, MessageActivity.class);
+                    startActivity(intent);
+                }else {
+                    intent = new Intent(this, LoginActivity.class);
+                    startActivity(intent);
+                }
+
                 break;
 
             case R.id.home_publish_valuable:
+
                 break;
         }
     }

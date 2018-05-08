@@ -1,11 +1,14 @@
 package com.example.lenovo.thewishofthestarlanguage.model.http;
 
 import android.Manifest;
+import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.support.v4.app.ActivityCompat;
 import android.text.TextUtils;
+import android.widget.DatePicker;
+import android.widget.TextView;
 
 import com.example.lenovo.thewishofthestarlanguage.model.biz.AppTokenService;
 import com.example.lenovo.thewishofthestarlanguage.model.biz.FamousTeacherService;
@@ -27,6 +30,7 @@ import com.example.lenovo.thewishofthestarlanguage.model.config.Urls;
 import com.example.lenovo.thewishofthestarlanguage.model.entity.AppTokenBean;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 
+import java.util.Calendar;
 import java.util.concurrent.TimeUnit;
 
 import io.reactivex.Observer;
@@ -191,6 +195,8 @@ public class RetrofitUtils {
     }
 
     public PerFectInforService getPerFectInforService() {
+        OkHttpClient okHttpClient = new OkHttpClient();
+
         return retrofit.create(PerFectInforService.class);
     }
 
@@ -220,4 +226,5 @@ public class RetrofitUtils {
     public PrevieDetailsService getPrevieDetailsService(){
         return retrofit.create(PrevieDetailsService.class);
     }
+
 }

@@ -164,7 +164,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
 
     @Override
     public void showLoginMessage(UserSuccessBean userSuccessBean) {
-        Log.e("--========-", String.valueOf(userSuccessBean.getData().getSex()));
+        Log.e("--========-", String.valueOf(userSuccessBean.getData().getId()));
         if (userSuccessBean.getMessage().equals("成功")) {
             SharedPreferences user = getSharedPreferences(Constant.CookieSP, Context.MODE_PRIVATE);
             SharedPreferences.Editor edit = user.edit();

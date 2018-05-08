@@ -4,14 +4,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
-import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
-import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -26,6 +21,8 @@ import com.example.lenovo.thewishofthestarlanguage.view.base.BaseFragment;
 import com.example.lenovo.thewishofthestarlanguage.view.personal.activity.LoginActivity;
 import com.example.lenovo.thewishofthestarlanguage.view.personal.activity.RegisterActivity;
 import com.example.lenovo.thewishofthestarlanguage.view.personal.activity.SetActivity;
+import com.example.lenovo.thewishofthestarlanguage.view.personal.activity.mymessage.MyselfMessageActivity;
+import com.example.lenovo.thewishofthestarlanguage.view.ui.MessageActivity;
 
 public class PersonalFragment extends BaseFragment implements View.OnClickListener {
 
@@ -118,6 +115,7 @@ public class PersonalFragment extends BaseFragment implements View.OnClickListen
         home_myselft_register_btn.setOnClickListener(this);
         home_myselft_login_btn.setOnClickListener(this);
         home_myselft_fragment_message.setOnClickListener(this);
+        personal_myself_message.setOnClickListener(this);
     }
 
     @Override
@@ -146,6 +144,19 @@ public class PersonalFragment extends BaseFragment implements View.OnClickListen
                 }
                 break;
 
+            case R.id.personal_myself_message:
+                intent = new Intent(getContext(), MyselfMessageActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.home_myselft_fragment_message:
+                if (preferences.getBoolean("isLogin",false)){
+                    intent = new Intent(getContext(), MessageActivity.class);
+                    startActivity(intent);
+                }else {
+                    intent = new Intent(getContext(), LoginActivity.class);
+                    startActivity(intent);
+                }
+                break;
         }
     }
 
@@ -157,7 +168,7 @@ public class PersonalFragment extends BaseFragment implements View.OnClickListen
             home_myselft_fragment_nologin_body.setVisibility(View.GONE);
             personal_myself_personal_message.setVisibility(View.VISIBLE);
             personal_login_message.setVisibility(View.VISIBLE);
-            Glide.with(this).load(preferences.getString(Constant.User_icon, "")).asBitmap().into(new ImageViewTarget<Bitmap>(personal_myself_icon) {
+            Glide.with(this).load(preferences.getString("photo", "")).asBitmap().into(new ImageViewTarget<Bitmap>(personal_myself_icon) {
                 @Override
                 protected void setResource(Bitmap bitmap) {
                     RoundedBitmapDrawable drawable = RoundedBitmapDrawableFactory.create(getResources(), bitmap);
@@ -166,7 +177,7 @@ public class PersonalFragment extends BaseFragment implements View.OnClickListen
 
                 }
             });
-            personal_myself_nickName.setText(preferences.getString(Constant.User_name, ""));
+            personal_myself_nickName.setText(preferences.getString("nickname", ""));
         } else {
             home_myselft_fragment_nologin_head.setVisibility(View.VISIBLE);
             home_myselft_fragment_nologin_body.setVisibility(View.VISIBLE);

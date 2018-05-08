@@ -13,10 +13,10 @@ import io.reactivex.schedulers.Schedulers;
  * Created by 陈伟霆 on 2018/5/7.
  */
 
-public class PreviewActivityPresenterImg implements IPreviewDetailsContact.presenter{
+public class PreviewActivityPresenterImp implements IPreviewDetailsContact.presenter{
     IPreviewDetailsContact.view view;
     PrevieDetailsService previeDetailsService;
-    public PreviewActivityPresenterImg(IPreviewDetailsContact.view view) {
+    public PreviewActivityPresenterImp(IPreviewDetailsContact.view view) {
         this.view=view;
         previeDetailsService= RetrofitUtils.getInstance().getPrevieDetailsService();
     }

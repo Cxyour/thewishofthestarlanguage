@@ -21,7 +21,6 @@ import com.example.lenovo.thewishofthestarlanguage.view.base.BaseActivity;
 
 public class RegisterActivity extends BaseActivity implements View.OnClickListener, IRegisterContract.IRegisterView {
 
-    private TextView register_hinttext;
     private TextView register_goto_weixin;
     private TextView register_goto_qq;
     private TextView register_goto_sina;
@@ -34,8 +33,6 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
     private ImageView register_close;
     private RegisterPresenterImp registerPresenter;
     private Handler handler = new Handler() {
-
-
         @Override
         public void handleMessage(Message msg) {
             if (msg.what == 3) {
@@ -61,7 +58,6 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
 
     @Override
     protected void init() {
-        register_hinttext = (TextView) findViewById(R.id.register_hinttext);
         register_goto_weixin = (TextView) findViewById(R.id.register_goto_weixin);
         register_goto_qq = (TextView) findViewById(R.id.register_goto_qq);
         register_goto_sina = (TextView) findViewById(R.id.register_goto_sina);
@@ -86,6 +82,8 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.register_close_password:
+                if (!register_close_password.getText().equals("获取验证码"))
+                    return;
                 if (!registerPresenter.isUserName(register_username.getText().toString().trim()))
                     return;
                 registerPresenter.loadPhoneMsg(register_username.getText().toString().trim());
@@ -109,7 +107,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
                 SharedPreferences.Editor edit = preferences.edit();
                 edit.putString(Constant.User_mobile, register_username.getText().toString().trim());
                 Intent intent = new Intent(this, PerfectInformationActivity.class);
-                intent.putExtra("phone",register_username.getText().toString().trim());
+                intent.putExtra("phone", register_username.getText().toString().trim());
                 startActivity(intent);
                 break;
             case R.id.register_close:
@@ -117,7 +115,6 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
                 break;
         }
     }
-
 
     @Override
     public void showPhoneNumberMessage(String phoneNumberMessage) {

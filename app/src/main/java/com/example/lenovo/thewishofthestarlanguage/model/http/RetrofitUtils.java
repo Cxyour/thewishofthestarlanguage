@@ -15,10 +15,12 @@ import com.example.lenovo.thewishofthestarlanguage.model.biz.LoginService;
 import com.example.lenovo.thewishofthestarlanguage.model.biz.MostEaveService;
 import com.example.lenovo.thewishofthestarlanguage.model.biz.PerFectInforService;
 import com.example.lenovo.thewishofthestarlanguage.model.biz.PersonalService;
+import com.example.lenovo.thewishofthestarlanguage.model.biz.PrevieDetailsService;
 import com.example.lenovo.thewishofthestarlanguage.model.biz.PreviewService;
 import com.example.lenovo.thewishofthestarlanguage.model.biz.RegisterService;
 import com.example.lenovo.thewishofthestarlanguage.model.biz.ResetPassWordService;
 import com.example.lenovo.thewishofthestarlanguage.model.biz.TreaSureService;
+import com.example.lenovo.thewishofthestarlanguage.model.biz.TreasureDetailsServiece;
 import com.example.lenovo.thewishofthestarlanguage.model.config.App;
 import com.example.lenovo.thewishofthestarlanguage.model.config.Constant;
 import com.example.lenovo.thewishofthestarlanguage.model.config.Urls;
@@ -212,5 +214,10 @@ public class RetrofitUtils {
     public TreaSureService getTreaSureService(){
         return retrofit.create(TreaSureService.class);
     }
-
+    public TreasureDetailsServiece getPreviewDetailsServiece(){
+        return retrofit.create(TreasureDetailsServiece.class);
+    }
+    public PrevieDetailsService getPrevieDetailsService(){
+        return retrofit.create(PrevieDetailsService.class);
+    }
 }

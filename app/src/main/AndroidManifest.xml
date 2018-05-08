@@ -4,7 +4,6 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
 
-
     <application
         android:name=".model.config.App"
         android:allowBackup="true"
@@ -13,22 +12,28 @@
         android:roundIcon="@mipmap/launcher"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".view.ui.ContainerActivity"></activity>
-        <activity android:name=".view.base.BaseActivity"></activity>
-        <activity android:name=".view.personal.activity.LoveActivity"></activity>
-        <activity android:name=".view.personal.activity.LoginActivity"></activity>
+        <activity android:name=".view.ui.ContainerActivity" />
+        <activity android:name=".view.base.BaseActivity" />
+        <activity android:name=".view.personal.activity.LoveActivity" />
+        <activity android:name=".view.personal.activity.LoginActivity" />
         <activity android:name=".view.ui.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".view.personal.activity.PerfectInformationActivity"></activity>
-        <activity android:name=".view.personal.activity.RegisterActivity"></activity>
-        <activity android:name=".view.personal.activity.UnivStarHttpActivity"></activity>
-        <activity android:name=".view.personal.activity.SetActivity"></activity>
-        <activity android:name=".view.personal.activity.ResetPassWordActivity"></activity>
-        <activity android:name=".view.personal.activity.FindPassWordActivity"></activity>
+        <activity android:name=".view.personal.activity.PerfectInformationActivity" />
+        <activity android:name=".view.personal.activity.RegisterActivity" />
+        <activity android:name=".view.personal.activity.UnivStarHttpActivity" />
+        <activity android:name=".view.personal.activity.SetActivity" />
+        <activity android:name=".view.personal.activity.ResetPassWordActivity" />
+        <activity android:name=".view.personal.activity.FindPassWordActivity" />
+        <activity
+            android:name=".view.treasure.activity.TreasureDetailsActivity"
+            android:label="@string/title_activity_preview_details"
+            android:theme="@style/AppTheme" />
+        <activity android:name=".view.preview.activity.PrevieDetailsActivity"></activity>
     </application>
 
 </manifest>

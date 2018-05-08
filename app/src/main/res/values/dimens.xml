@@ -198,5 +198,6 @@
     <dimen name="ts_1dp">1dp</dimen>
 
     <dimen name="ts_1">1px</dimen>
+    <dimen name="fab_margin">16dp</dimen>
 
 </resources>

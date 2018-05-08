@@ -1,6 +1,7 @@
 package com.example.lenovo.thewishofthestarlanguage.view.treasure.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
@@ -17,6 +18,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.BitmapImageViewTarget;
 import com.example.lenovo.thewishofthestarlanguage.R;
 import com.example.lenovo.thewishofthestarlanguage.model.entity.TreaSureBean;
+import com.example.lenovo.thewishofthestarlanguage.view.treasure.activity.TreasureDetailsActivity;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -67,6 +69,7 @@ public class TreasureAdapter extends RecyclerView.Adapter<TreasureAdapter.Holder
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MM-dd");
         String format = simpleDateFormat.format(date);
         holder.createDate.setText(format);
+        holder.rootView.setTag(position);
 
     }
 
@@ -115,6 +118,18 @@ public class TreasureAdapter extends RecyclerView.Adapter<TreasureAdapter.Holder
             this.home_valuable_list_item_praise_cb = (CheckBox) rootView.findViewById(R.id.home_valuable_list_item_praise_cb);
             this.home_valuable_list_item_praise_group = (LinearLayout) rootView.findViewById(R.id.home_valuable_list_item_praise_group);
             this.home_valuable_list_item_share = (LinearLayout) rootView.findViewById(R.id.home_valuable_list_item_share);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int tag = (int) v.getTag();
+                    TreaSureBean.DataBean.ArtcircleListBean.ListBean listBean = list.get(tag);
+
+                    int id = listBean.getId();
+                    Intent intent = new Intent(context, TreasureDetailsActivity.class);
+                    intent.putExtra("id",id);
+                    context.startActivity(intent);
+                }
+            });
         }
     }
 

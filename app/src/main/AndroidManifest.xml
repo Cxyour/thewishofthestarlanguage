@@ -33,7 +33,8 @@
             android:name=".view.treasure.activity.TreasureDetailsActivity"
             android:label="@string/title_activity_preview_details"
             android:theme="@style/AppTheme" />
-        <activity android:name=".view.preview.activity.PrevieDetailsActivity"></activity>
+        <activity android:name=".view.preview.activity.PrevieDetailsActivity" />
+        <activity android:name=".view.personal.activity.mymessage.MyselfMessageActivity"></activity>
     </application>
 
 </manifest>

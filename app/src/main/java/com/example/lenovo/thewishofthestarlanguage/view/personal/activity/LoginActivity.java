@@ -13,6 +13,7 @@ import android.support.v7.app.AlertDialog;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
@@ -163,14 +164,18 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
 
     @Override
     public void showLoginMessage(UserSuccessBean userSuccessBean) {
+        Log.e("--========-", String.valueOf(userSuccessBean.getData().getSex()));
         if (userSuccessBean.getMessage().equals("成功")) {
             SharedPreferences user = getSharedPreferences(Constant.CookieSP, Context.MODE_PRIVATE);
             SharedPreferences.Editor edit = user.edit();
             edit.putBoolean("isLogin", true);
-            edit.putString(Constant.User_mobile, userSuccessBean.getData().getMobile());
-            edit.putString(Constant.User_name, userSuccessBean.getData().getNickname());
-            edit.putString(Constant.User_icon, userSuccessBean.getData().getPhoto());
-            edit.putInt(Constant.UserId, userSuccessBean.getData().getId());
+            edit.putString("mobile", userSuccessBean.getData().getMobile());
+            edit.putString("nickname", userSuccessBean.getData().getNickname());
+            edit.putString("photo", userSuccessBean.getData().getPhoto());
+            edit.putInt("user_id", userSuccessBean.getData().getId());
+            edit.putString("address", (String) userSuccessBean.getData().getAddress());
+            edit.putLong("birthday", userSuccessBean.getData().getBirthday());
+            edit.putInt("sex", userSuccessBean.getData().getSex());
             edit.commit();
             finish();
         } else {

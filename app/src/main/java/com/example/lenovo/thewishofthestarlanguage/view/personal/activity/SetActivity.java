@@ -76,7 +76,7 @@ public class SetActivity extends BaseActivity implements View.OnClickListener {
             case R.id.set_exit_login:
                 SharedPreferences sharedPreferences = getSharedPreferences(Constant.CookieSP, Context.MODE_PRIVATE);
                 SharedPreferences.Editor edit = sharedPreferences.edit();
-                edit.putString(Constant.User_mobile, null);
+                edit.putBoolean("isLogin", false);
                 edit.commit();
                 finish();
                 break;

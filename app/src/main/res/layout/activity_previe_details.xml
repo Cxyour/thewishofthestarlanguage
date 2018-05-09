@@ -3,10 +3,11 @@
 
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     tools:context="com.example.lenovo.thewishofthestarlanguage.view.preview.activity.PrevieDetailsActivity">
     <RelativeLayout
-        android:background="#fff"
+
+        android:background="#00ff"
         android:layout_alignParentTop="true"
         android:id="@+id/titlelan"
         android:layout_width="match_parent"
@@ -61,9 +62,11 @@
             android:background="#171ede"/>
     </LinearLayout>
     <ListView
-        android:layout_alignParentTop="true"
+
+        android:layout_above="@+id/prvie_liner"
+
         android:layout_below="@+id/titlelan"
         android:id="@+id/preview_list"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"></ListView>
+        android:layout_height="match_parent"></ListView>
 </RelativeLayout>

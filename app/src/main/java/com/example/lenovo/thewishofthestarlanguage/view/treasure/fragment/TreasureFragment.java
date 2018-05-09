@@ -11,7 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.lenovo.thewishofthestarlanguage.R;
-import com.example.lenovo.thewishofthestarlanguage.contact.TreasureContact;
+import com.example.lenovo.thewishofthestarlanguage.contact.ITreasureContact;
 import com.example.lenovo.thewishofthestarlanguage.model.entity.GoodOnClickBean;
 import com.example.lenovo.thewishofthestarlanguage.model.entity.TreaSureBean;
 import com.example.lenovo.thewishofthestarlanguage.model.entity.TreaSureLunBoTuBean;
@@ -24,7 +24,7 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TreasureFragment extends BaseFragment implements TreasureContact.view {
+public class TreasureFragment extends BaseFragment implements ITreasureContact.view {
 
 
 

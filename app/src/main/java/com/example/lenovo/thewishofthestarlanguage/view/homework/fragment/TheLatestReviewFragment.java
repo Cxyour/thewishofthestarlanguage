@@ -6,7 +6,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.lenovo.thewishofthestarlanguage.R;
-import com.example.lenovo.thewishofthestarlanguage.contact.MostEaveContract;
+import com.example.lenovo.thewishofthestarlanguage.contact.IMostEaveContract;
 import com.example.lenovo.thewishofthestarlanguage.model.entity.GoodOnClickBean;
 import com.example.lenovo.thewishofthestarlanguage.model.entity.MostEavesdeoppBean;
 import com.example.lenovo.thewishofthestarlanguage.presenter.MostEavePresenterImp;
@@ -16,7 +16,7 @@ import com.example.lenovo.thewishofthestarlanguage.view.homework.adapter.MostEav
 import java.util.List;
 
 
-public class TheLatestReviewFragment extends BaseFragment implements MostEaveContract.view{
+public class TheLatestReviewFragment extends BaseFragment implements IMostEaveContract.view{
 
     private RecyclerView thelate_recycle;
     private MostEavePresenterImp mostEavePresenterImp;

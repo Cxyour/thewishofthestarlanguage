@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.lenovo.thewishofthestarlanguage.R;
-import com.example.lenovo.thewishofthestarlanguage.contact.MostEaveContract;
+import com.example.lenovo.thewishofthestarlanguage.contact.IMostEaveContract;
 import com.example.lenovo.thewishofthestarlanguage.model.entity.GoodOnClickBean;
 import com.example.lenovo.thewishofthestarlanguage.model.entity.MostEavesdeoppBean;
 import com.example.lenovo.thewishofthestarlanguage.presenter.MostEavePresenterImp;
@@ -20,7 +20,7 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class MostEavesdroppingFragment extends BaseFragment implements MostEaveContract.view{
+public class MostEavesdroppingFragment extends BaseFragment implements IMostEaveContract.view{
 
 
     private RecyclerView most_recycle;

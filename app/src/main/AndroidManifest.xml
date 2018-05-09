@@ -43,6 +43,11 @@
         <activity android:name=".view.personal.activity.FollowActivity" />
         <activity android:name=".view.personal.activity.FansActivity" />
         <activity android:name=".view.personal.activity.MyOrderActivity"></activity>
+        <activity android:name=".view.famousteacher.activity.MasterDetailActivity"/>
+        <activity android:name=".view.famousteacher.activity.LiveDetailsActivity"/>
+        <activity android:name=".view.famousteacher.activity.FamousTeacherActivity"/>
+        <activity android:name=".view.famousteacher.activity.LiveingActivity"/>
+        <activity android:name=".view.famousteacher.activity.OperationDetailsActivity"/>
     </application>
 
 </manifest>

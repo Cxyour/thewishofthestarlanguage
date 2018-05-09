@@ -9,7 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.lenovo.thewishofthestarlanguage.R;
-import com.example.lenovo.thewishofthestarlanguage.contact.TheLatesRevieContract;
+import com.example.lenovo.thewishofthestarlanguage.contact.ITheLatesRevieContract;
 import com.example.lenovo.thewishofthestarlanguage.model.entity.MostEavesdeoppBean;
 import com.example.lenovo.thewishofthestarlanguage.presenter.TheLatesReviewPresenterImp;
 import com.example.lenovo.thewishofthestarlanguage.view.homework.adapter.MostEavedroppingAdapter;
@@ -17,7 +17,7 @@ import com.example.lenovo.thewishofthestarlanguage.view.homework.adapter.MostEav
 import java.util.List;
 
 
-public class TheLatestReviewFragment extends Fragment implements TheLatesRevieContract.view{
+public class TheLatestReviewFragment extends Fragment implements ITheLatesRevieContract.view{
 
     private RecyclerView thelate_recycle;
 

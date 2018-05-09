@@ -1,6 +1,6 @@
 package com.example.lenovo.thewishofthestarlanguage.presenter;
 
-import com.example.lenovo.thewishofthestarlanguage.contact.TreasureContact;
+import com.example.lenovo.thewishofthestarlanguage.contact.ITreasureContact;
 import com.example.lenovo.thewishofthestarlanguage.model.biz.TreaSureService;
 import com.example.lenovo.thewishofthestarlanguage.model.entity.TreaSureBean;
 import com.example.lenovo.thewishofthestarlanguage.model.entity.TreaSureLunBoTuBean;
@@ -16,18 +16,19 @@ import io.reactivex.schedulers.Schedulers;
  * Created by 陈伟霆 on 2018/5/7.
  */
 
-public class TreaSurePresenterImp implements TreasureContact.presenter {
-    TreasureContact.view view;
+public class TreaSurePresenterImp implements ITreasureContact.presenter {
+    ITreasureContact.view view;
     TreaSureService treaSureService;
-    public TreaSurePresenterImp(TreasureContact.view view) {
-        this.view=view;
-        treaSureService= RetrofitUtils.getInstance().getTreaSureService();
+
+    public TreaSurePresenterImp(ITreasureContact.view view) {
+        this.view = view;
+        treaSureService = RetrofitUtils.getInstance().getTreaSureService();
     }
 
     @Override
     public void loadTreSure(int index) {
         HashMap<String, Integer> map = new HashMap<>();
-        map.put("sortord",index);
+        map.put("sortord", index);
         treaSureService.loadTreaSure(map)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -47,7 +48,7 @@ public class TreaSurePresenterImp implements TreasureContact.presenter {
                 .subscribe(new Consumer<TreaSureLunBoTuBean>() {
                     @Override
                     public void accept(TreaSureLunBoTuBean treaSureLunBoTu) throws Exception {
-                    view.showLunbotu(treaSureLunBoTu);
+                        view.showLunbotu(treaSureLunBoTu);
                     }
                 });
     }

@@ -15,6 +15,7 @@ import com.example.lenovo.thewishofthestarlanguage.model.biz.FamousTeacherServic
 import com.example.lenovo.thewishofthestarlanguage.model.biz.FindPassWordService;
 import com.example.lenovo.thewishofthestarlanguage.model.biz.HomeWorkService;
 import com.example.lenovo.thewishofthestarlanguage.model.biz.LoginService;
+import com.example.lenovo.thewishofthestarlanguage.model.biz.LovesService;
 import com.example.lenovo.thewishofthestarlanguage.model.biz.MostEaveService;
 import com.example.lenovo.thewishofthestarlanguage.model.biz.MyOrderService;
 import com.example.lenovo.thewishofthestarlanguage.model.biz.PerFectInforService;
@@ -235,6 +236,10 @@ public class RetrofitUtils {
 
     public MyOrderService getMyOrderService() {
         return retrofit.create(MyOrderService.class);
+    }
+
+    public LovesService getLovesService() {
+        return retrofit.create(LovesService.class);
     }
 
 }

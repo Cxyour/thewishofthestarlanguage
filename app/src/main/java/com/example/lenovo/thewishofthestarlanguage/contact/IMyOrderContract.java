@@ -8,7 +8,7 @@ import java.util.List;
  * Created by Lenovo on 2018/5/8.
  */
 
-public interface MyOrderContract {
+public interface IMyOrderContract {
 
 
     interface MyOrderView {

@@ -1,6 +1,6 @@
 package com.example.lenovo.thewishofthestarlanguage.presenter;
 
-import com.example.lenovo.thewishofthestarlanguage.contact.MostEaveContract;
+import com.example.lenovo.thewishofthestarlanguage.contact.IMostEaveContract;
 import com.example.lenovo.thewishofthestarlanguage.model.biz.MostEaveService;
 import com.example.lenovo.thewishofthestarlanguage.model.entity.MostEavesdeoppBean;
 import com.example.lenovo.thewishofthestarlanguage.model.http.RetrofitUtils;
@@ -15,10 +15,10 @@ import io.reactivex.schedulers.Schedulers;
  * Created by 陈伟霆 on 2018/5/5.
  */
 
-public class MostEavePresenterImp implements MostEaveContract.presenter {
-    private  MostEaveContract.view view;
+public class MostEavePresenterImp implements IMostEaveContract.presenter {
+    private  IMostEaveContract.view view;
     private MostEaveService mostEaveModel;
-    public MostEavePresenterImp(MostEaveContract.view view) {
+    public MostEavePresenterImp(IMostEaveContract.view view) {
         this.view=view;
         mostEaveModel= RetrofitUtils.getInstance().getMostEaveModel();
     }

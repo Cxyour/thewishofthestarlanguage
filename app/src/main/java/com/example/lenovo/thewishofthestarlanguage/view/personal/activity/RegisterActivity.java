@@ -100,15 +100,15 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
                 handler.postDelayed(runnable, 1000);
                 break;
             case R.id.register_register:
-//                if (!registerPresenter.isUserName(register_username.getText().toString().trim()))
-//                    return;
+                if (!registerPresenter.isUserName(register_username.getText().toString().trim()))
+                    return;
                 registerPresenter.goToRegister(register_username.getText().toString(), register_password.getText().toString());
                 SharedPreferences preferences = getSharedPreferences(Constant.CookieSP, Context.MODE_PRIVATE);
                 SharedPreferences.Editor edit = preferences.edit();
-                edit.putString(Constant.User_mobile, register_username.getText().toString().trim());
+                edit.putString("mobile", register_username.getText().toString().trim());
                 Intent intent = new Intent(this, PerfectInformationActivity.class);
-                intent.putExtra("phone", register_username.getText().toString().trim());
                 startActivity(intent);
+                finish();
                 break;
             case R.id.register_close:
                 finish();

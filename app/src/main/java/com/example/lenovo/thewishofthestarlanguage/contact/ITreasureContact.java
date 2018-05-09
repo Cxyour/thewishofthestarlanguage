@@ -7,13 +7,16 @@ import com.example.lenovo.thewishofthestarlanguage.model.entity.TreaSureLunBoTuB
  * Created by 陈伟霆 on 2018/5/7.
  */
 
-public interface TreasureContact  {
-    interface view{
+public interface ITreasureContact {
+    interface view {
         void showTreSure(TreaSureBean treaSure);
+
         void showLunbotu(TreaSureLunBoTuBean treaSureLunBoTu);
     }
-    interface  presenter{
+
+    interface presenter {
         void loadTreSure(int index);
+
         void loadLunbotu();
     }
 }

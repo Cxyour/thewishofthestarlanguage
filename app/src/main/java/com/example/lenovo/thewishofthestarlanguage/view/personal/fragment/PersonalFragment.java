@@ -17,20 +17,17 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.ImageViewTarget;
 import com.example.lenovo.thewishofthestarlanguage.R;
 import com.example.lenovo.thewishofthestarlanguage.model.config.Constant;
-import com.example.lenovo.thewishofthestarlanguage.model.entity.UserSuccessBean;
 import com.example.lenovo.thewishofthestarlanguage.view.base.BaseFragment;
 import com.example.lenovo.thewishofthestarlanguage.view.personal.activity.LoginActivity;
 import com.example.lenovo.thewishofthestarlanguage.view.personal.activity.RegisterActivity;
 import com.example.lenovo.thewishofthestarlanguage.view.personal.activity.SetActivity;
-import com.example.lenovo.thewishofthestarlanguage.view.personal.activity.myloves.FansActivity;
-import com.example.lenovo.thewishofthestarlanguage.view.personal.activity.myloves.FollowActivity;
-import com.example.lenovo.thewishofthestarlanguage.view.personal.activity.myloves.PostActivity;
-import com.example.lenovo.thewishofthestarlanguage.view.personal.activity.myloves.WorksActivity;
-import com.example.lenovo.thewishofthestarlanguage.view.personal.activity.mymessage.MyselfMessageActivity;
-import com.example.lenovo.thewishofthestarlanguage.view.personal.activity.myorder.activity.MyOrderActivity;
+import com.example.lenovo.thewishofthestarlanguage.view.personal.activity.FansActivity;
+import com.example.lenovo.thewishofthestarlanguage.view.personal.activity.FollowActivity;
+import com.example.lenovo.thewishofthestarlanguage.view.personal.activity.PostActivity;
+import com.example.lenovo.thewishofthestarlanguage.view.personal.activity.WorksActivity;
+import com.example.lenovo.thewishofthestarlanguage.view.personal.activity.MyselfMessageActivity;
+import com.example.lenovo.thewishofthestarlanguage.view.personal.activity.MyOrderActivity;
 import com.example.lenovo.thewishofthestarlanguage.view.ui.MessageActivity;
-
-import java.io.Serializable;
 
 public class PersonalFragment extends BaseFragment implements View.OnClickListener {
 

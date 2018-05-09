@@ -1,4 +1,4 @@
-package com.example.lenovo.thewishofthestarlanguage.view.personal.activity.myloves;
+package com.example.lenovo.thewishofthestarlanguage.view.personal.activity;
 
 import android.os.Bundle;
 import android.view.View;

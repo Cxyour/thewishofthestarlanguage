@@ -1,4 +1,4 @@
-package com.example.lenovo.thewishofthestarlanguage.view.personal.activity.myloves;
+package com.example.lenovo.thewishofthestarlanguage.view.personal.activity;
 
 import android.os.Bundle;
 import android.view.View;
@@ -7,19 +7,19 @@ import android.widget.ImageView;
 import com.example.lenovo.thewishofthestarlanguage.R;
 import com.example.lenovo.thewishofthestarlanguage.view.base.BaseActivity;
 
-public class FollowActivity extends BaseActivity implements View.OnClickListener {
+public class PostActivity extends BaseActivity implements View.OnClickListener {
 
-    private ImageView follow_return;
+    private ImageView post_return;
 
     @Override
     protected int getLayoutId() {
-        return R.layout.activity_follow;
+        return R.layout.activity_post;
     }
 
     @Override
     protected void init() {
-        follow_return = findViewById(R.id.follow_return);
-        follow_return.setOnClickListener(this);
+        post_return = findViewById(R.id.post_return);
+        post_return.setOnClickListener(this);
 
     }
 
@@ -31,7 +31,7 @@ public class FollowActivity extends BaseActivity implements View.OnClickListener
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.follow_return:
+            case R.id.post_return:
                 finish();
                 break;
         }

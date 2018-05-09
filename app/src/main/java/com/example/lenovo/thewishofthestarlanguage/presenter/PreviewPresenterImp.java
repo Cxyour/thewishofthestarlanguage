@@ -1,6 +1,6 @@
 package com.example.lenovo.thewishofthestarlanguage.presenter;
 
-import com.example.lenovo.thewishofthestarlanguage.contact.PreviewContract;
+import com.example.lenovo.thewishofthestarlanguage.contact.IPreviewContract;
 import com.example.lenovo.thewishofthestarlanguage.model.biz.PreviewService;
 import com.example.lenovo.thewishofthestarlanguage.model.entity.PreviewBean;
 import com.example.lenovo.thewishofthestarlanguage.model.http.RetrofitUtils;
@@ -18,11 +18,11 @@ import io.reactivex.schedulers.Schedulers;
  * Created by 陈伟霆 on 2018/5/6.
  */
 
-public class PreviewPresenterImp implements PreviewContract.presenter {
-    PreviewContract.view view;
+public class PreviewPresenterImp implements IPreviewContract.presenter {
+    IPreviewContract.view view;
     PreviewService model;
 
-    public PreviewPresenterImp(PreviewContract.view view) {
+    public PreviewPresenterImp(IPreviewContract.view view) {
         this.view = view;
         model = RetrofitUtils.getInstance().getPreviewModel();
     }

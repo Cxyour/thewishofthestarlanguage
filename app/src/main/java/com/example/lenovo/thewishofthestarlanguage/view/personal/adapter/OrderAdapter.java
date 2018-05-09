@@ -1,6 +1,5 @@
-package com.example.lenovo.thewishofthestarlanguage.view.personal.activity.myorder.adapter;
+package com.example.lenovo.thewishofthestarlanguage.view.personal.adapter;
 
-import android.content.Context;
 import android.graphics.Color;
 import android.view.View;
 import android.view.ViewGroup;
@@ -73,6 +72,7 @@ public class OrderAdapter extends BaseAdapter {
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
+
         holder.item_title.setText(list.get(position).getTitle());
         Glide.with(App.context).load(list.get(position).getCoverImg()).into(holder.item_img);
         holder.item_start_time.setText("体验开播:" + new SimpleDateFormat("yyyy-MM-dd hh:mm").format(new Date(list.get(position).getStartDate())));
@@ -97,12 +97,12 @@ public class OrderAdapter extends BaseAdapter {
     }
 
     class ViewHolder {
-        public TextView item_title;
-        public TextView item_pay_status;
-        public Button item_pay_btn;
-        public ImageView item_img;
-        public TextView item_start_time;
-        public TextView item_price;
+        private TextView item_title;
+        private TextView item_pay_status;
+        private Button item_pay_btn;
+        private ImageView item_img;
+        private TextView item_start_time;
+        private TextView item_price;
     }
 
 

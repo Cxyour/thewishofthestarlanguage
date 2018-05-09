@@ -50,8 +50,8 @@ public class PerFectInforBean {
          */
 
         private String nickname;
-        private Object mobile;
-        private Object photo;
+        private String mobile;
+        private String photo;
         private int id;
         private String token;
 
@@ -63,19 +63,19 @@ public class PerFectInforBean {
             this.nickname = nickname;
         }
 
-        public Object getMobile() {
+        public String getMobile() {
             return mobile;
         }
 
-        public void setMobile(Object mobile) {
+        public void setMobile(String mobile) {
             this.mobile = mobile;
         }
 
-        public Object getPhoto() {
+        public String getPhoto() {
             return photo;
         }
 
-        public void setPhoto(Object photo) {
+        public void setPhoto(String photo) {
             this.photo = photo;
         }
 

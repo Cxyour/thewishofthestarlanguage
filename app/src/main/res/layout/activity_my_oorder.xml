@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.lenovo.thewishofthestarlanguage.view.personal.activity.myorder.activity.MyOrderActivity">
+    tools:context="com.example.lenovo.thewishofthestarlanguage.view.personal.activity.MyOrderActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"

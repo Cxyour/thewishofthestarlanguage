@@ -1,4 +1,4 @@
-package com.example.lenovo.thewishofthestarlanguage.view.personal.activity.myorder.adapter;
+package com.example.lenovo.thewishofthestarlanguage.view.personal.adapter;
 
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;

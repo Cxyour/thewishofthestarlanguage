@@ -3,10 +3,10 @@ package com.example.lenovo.thewishofthestarlanguage.contact;
 import com.example.lenovo.thewishofthestarlanguage.model.entity.MostEavesdeoppBean;
 
 /**
- * Created by 陈伟霆 on 2018/5/6.
+ * Created by 陈伟霆 on 2018/5/5.
  */
 
-public interface TheLatesRevieContract {
+public interface IMostEaveContract {
     interface  view{
         void showMostEavesdeopp(MostEavesdeoppBean mostEavesdeoppBean);
     }

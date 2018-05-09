@@ -5,7 +5,7 @@ import android.support.v4.app.Fragment;
 import android.view.View;
 
 import com.example.lenovo.thewishofthestarlanguage.R;
-import com.example.lenovo.thewishofthestarlanguage.contact.MostEaveContract;
+import com.example.lenovo.thewishofthestarlanguage.contact.IMostEaveContract;
 import com.example.lenovo.thewishofthestarlanguage.model.entity.MostEavesdeoppBean;
 import com.example.lenovo.thewishofthestarlanguage.presenter.MostEavePresenterImp;
 import com.example.lenovo.thewishofthestarlanguage.view.base.BaseFragment;
@@ -17,7 +17,7 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class MostEavesdroppingFragment extends BaseFragment implements MostEaveContract.view{
+public class MostEavesdroppingFragment extends BaseFragment implements IMostEaveContract.view{
 
 
     private PullLoadMoreRecyclerView most_recycle;

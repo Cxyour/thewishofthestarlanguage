@@ -8,7 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.lenovo.thewishofthestarlanguage.R;
-import com.example.lenovo.thewishofthestarlanguage.contact.TreasureContact;
+import com.example.lenovo.thewishofthestarlanguage.contact.ITreasureContact;
 import com.example.lenovo.thewishofthestarlanguage.model.entity.TreaSureBean;
 import com.example.lenovo.thewishofthestarlanguage.model.entity.TreaSureLunBoTuBean;
 import com.example.lenovo.thewishofthestarlanguage.presenter.TreaSurePresenterImp;
@@ -20,7 +20,7 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class TreasureTwoFragment extends Fragment implements TreasureContact.view{
+public class TreasureTwoFragment extends Fragment implements ITreasureContact.view{
 
 
     private PullLoadMoreRecyclerView treasure_two_fly;

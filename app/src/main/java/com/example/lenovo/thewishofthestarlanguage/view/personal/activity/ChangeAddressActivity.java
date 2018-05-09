@@ -1,4 +1,4 @@
-package com.example.lenovo.thewishofthestarlanguage.view.personal.activity.mymessage;
+package com.example.lenovo.thewishofthestarlanguage.view.personal.activity;
 
 import android.content.Intent;
 import android.view.View;

@@ -11,13 +11,13 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.ImageViewTarget;
@@ -25,23 +25,14 @@ import com.example.lenovo.thewishofthestarlanguage.R;
 import com.example.lenovo.thewishofthestarlanguage.contact.IPerFectInforMationContact;
 import com.example.lenovo.thewishofthestarlanguage.model.config.Constant;
 import com.example.lenovo.thewishofthestarlanguage.model.entity.PerFectInforBean;
-import com.example.lenovo.thewishofthestarlanguage.presenter.IPerFectInforPresenterImp;
+import com.example.lenovo.thewishofthestarlanguage.presenter.PerFectInforPresenterImp;
 import com.example.lenovo.thewishofthestarlanguage.view.base.BaseActivity;
 
-import java.io.BufferedInputStream;
-import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
-import okhttp3.MediaType;
 
 public class PerfectInformationActivity extends BaseActivity implements View.OnClickListener, IPerFectInforMationContact.IPerFectInlView {
 
@@ -56,13 +47,16 @@ public class PerfectInformationActivity extends BaseActivity implements View.OnC
     private EditText perfect_information_password;
     private ImageView perfect_information_close_password;
     private Button perfect_information_finish;
-    private String sex;
-    String imageId_xiangCe;
-    Uri uri_xiangCe;
+    private int sex;
+    private String imageId_xiangCe;
+    private Uri uri_xiangCe;
     private static final int PHOTO_REQUEST_GALLERY = 2;
     private static final int PHOTO_REQUEST_CUT = 3;
-    private IPerFectInforPresenterImp iPerFectInforPresenter;
+    private PerFectInforPresenterImp iPerFectInforPresenter;
     private File image_file;
+    private Intent intent;
+    private SharedPreferences user;
+    private SharedPreferences.Editor edit;
 
     @Override
     protected int getLayoutId() {
@@ -92,7 +86,9 @@ public class PerfectInformationActivity extends BaseActivity implements View.OnC
 
     @Override
     protected void loadData() {
-        iPerFectInforPresenter = new IPerFectInforPresenterImp(this);
+        user = getSharedPreferences(Constant.CookieSP, Context.MODE_PRIVATE);
+        edit = user.edit();
+        iPerFectInforPresenter = new PerFectInforPresenterImp(this);
 
     }
 
@@ -111,34 +107,34 @@ public class PerfectInformationActivity extends BaseActivity implements View.OnC
             case R.id.perfect_information_man:
                 perfect_information_man.setTextColor(Color.parseColor("#0000ff"));
                 perfect_information_women.setTextColor(Color.parseColor("#000000"));
-                sex = "男";
+                sex = 0;
                 break;
             case R.id.perfect_information_women:
                 perfect_information_man.setTextColor(Color.parseColor("#000000"));
                 perfect_information_women.setTextColor(Color.parseColor("#0000ff"));
-                sex = "女";
+                sex = 1;
                 break;
             case R.id.perfect_information_finish:
 //                iPerFectInforPresenter.loadBitmapUrl(getPhotoFileName());
-                SharedPreferences user = getSharedPreferences(Constant.CookieSP, Context.MODE_PRIVATE);
-                SharedPreferences.Editor edit = user.edit();
-                edit.putString(Constant.User_name, perfect_information_name.getText().toString().trim());
-                edit.putString(Constant.User_sex, sex);
-                edit.putString(Constant.User_icon, getPhotoFileName().getAbsolutePath());
-                edit.putString(Constant.User_pass, perfect_information_password.getText().toString().trim());
+                edit.putString("nickname", perfect_information_name.getText().toString().trim());
+                edit.putString("photo", getPhotoFileName().getAbsolutePath());
+                edit.putString("pass", perfect_information_password.getText().toString().trim());
+                edit.putInt("sex", sex);
+                iPerFectInforPresenter.loadIperFectMsg(perfect_information_name.getText().toString().trim(), sex, getPhotoFileName().getAbsolutePath(), user.getString("mobile", ""), perfect_information_password.getText().toString().trim());
+                intent = new Intent(this, LoveActivity.class);
+                startActivity(intent);
                 finish();
                 break;
 
             case R.id.perfect_information_album:
-                Intent i = new Intent(Intent.ACTION_PICK,
+                intent = new Intent(Intent.ACTION_PICK,
                         MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                startActivityForResult(i, 100);
-
+                startActivityForResult(intent, 100);
                 break;
             case R.id.perfect_information_return:
                 String nikename = perfect_information_name.getText().toString().trim();
                 String pas = perfect_information_password.getText().toString().trim();
-                Intent intent = getIntent();
+                intent = getIntent();
                 String phone = intent.getStringExtra("phone");
                 finish();
                 break;
@@ -270,7 +266,10 @@ public class PerfectInformationActivity extends BaseActivity implements View.OnC
 
     @Override
     public void showIperFect(PerFectInforBean responseBody) {
-
+        edit.putString("mobile", responseBody.getData().getMobile());
+        edit.putString("nickname", responseBody.getData().getNickname());
+        edit.putString("photo", responseBody.getData().getPhoto());
+        edit.putInt("user_id", responseBody.getData().getId());
     }
 
     @Override

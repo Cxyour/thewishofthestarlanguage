@@ -1,4 +1,4 @@
-package com.example.lenovo.thewishofthestarlanguage.view.personal.activity.mymessage;
+package com.example.lenovo.thewishofthestarlanguage.view.personal.activity;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
@@ -12,7 +12,6 @@ import android.os.Environment;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;

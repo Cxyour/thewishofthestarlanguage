@@ -30,11 +30,11 @@ import okhttp3.RequestBody;
  * Created by 陈伟霆 on 2018/5/3.
  */
 
-public class IPerFectInforPresenterImp implements IPerFectInPresenter {
+public class PerFectInforPresenterImp implements IPerFectInPresenter {
     IPerFectInforMationContact.IPerFectInlView view;
     PerFectInforService perFectInforService;
 
-    public IPerFectInforPresenterImp(IPerFectInforMationContact.IPerFectInlView view) {
+    public PerFectInforPresenterImp(IPerFectInforMationContact.IPerFectInlView view) {
         this.view = view;
         perFectInforService = RetrofitUtils.getInstance().getPerFectInforService();
 
@@ -50,10 +50,25 @@ public class IPerFectInforPresenterImp implements IPerFectInPresenter {
         perFectInforService.loadIperFectMsg(map, sex)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.newThread())
-                .subscribe(new Consumer<PerFectInforBean>() {
+                .subscribe(new Observer<PerFectInforBean>() {
                     @Override
-                    public void accept(PerFectInforBean perFectInforBean) throws Exception {
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(PerFectInforBean perFectInforBean) {
                         view.showIperFect(perFectInforBean);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
                     }
                 });
     }

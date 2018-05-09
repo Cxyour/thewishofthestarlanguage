@@ -1,7 +1,14 @@
 apply plugin: 'com.android.application'
 
 android {
-
+    signingConfigs {
+        config {
+            keyAlias 'xyxy'
+            keyPassword '123456'
+            storeFile file('F:/xyxy.jks')
+            storePassword '123456'
+        }
+    }
     compileSdkVersion 26
     defaultConfig {
         applicationId "com.example.lenovo.thewishofthestarlanguage"
@@ -10,16 +17,13 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-
+        signingConfig signingConfigs.config
     }
     buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        debug {
+            signingConfig signingConfigs.config
         }
-
     }
-
     productFlavors {
     }
 }
@@ -44,5 +48,4 @@ dependencies {
     implementation 'com.android.support:recyclerview-v7:26+'
     //noinspection GradleCompatible
     implementation 'com.android.support:design:27.+'
-
 }

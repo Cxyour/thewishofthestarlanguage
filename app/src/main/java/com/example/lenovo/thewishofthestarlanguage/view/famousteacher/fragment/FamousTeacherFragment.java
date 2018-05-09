@@ -31,7 +31,6 @@ public class FamousTeacherFragment extends BaseFragment implements IFamousTeache
 
     @Override
     protected void init(View view) {
-
         famousTeacherPresenter = new FamousTeacherPresenterImp(this);
         Map<String, String> params = new HashMap<>();
         famousTeacherPresenter.loadFrmousBean();
@@ -69,18 +68,18 @@ public class FamousTeacherFragment extends BaseFragment implements IFamousTeache
         mRecycleaArray.add(liveCourses);
         List<FamousTeacherBean.DataBean.HomewoksBean> homewoks = data.getHomewoks();
         mRecycleaArray.add(homewoks);
-        FamousTecherAdapter famousTecherAdapter = new FamousTecherAdapter(famousTeacherPresenter,data);
+        FamousTecherAdapter famousTecherAdapter = new FamousTecherAdapter(famousTeacherPresenter, data);
         pullLoadMoreRecyclerView.setAdapter(famousTecherAdapter);
     }
 
     @Override
     public void showGoodBean(GoodOnClickBean goodOnClickBean) {
-                Toast.makeText(getContext(), goodOnClickBean.getMessage(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(getContext(), goodOnClickBean.getMessage(), Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void showCancelthePraise(GoodOnClickBean goodOnClickBean) {
-        Toast.makeText(getContext(), "取消"+goodOnClickBean.getMessage(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(getContext(), "取消" + goodOnClickBean.getMessage(), Toast.LENGTH_SHORT).show();
 
     }
 }

@@ -137,7 +137,7 @@ public class Item4TeacherAdapter extends RecyclerView.Adapter<Item4TeacherAdapte
                 int userId = listBean.getTUserId();
                 int id = listBean.getId();
                 String worksType = listBean.getWorksType();
-                int xyxy_user_id = sp.getInt("xyxy_user_id", 0);
+                int xyxy_user_id = sp.getInt("user_id", 0);
                 HashMap<String, String> parmas = new HashMap<>();
                 parmas.put("userId", String.valueOf(userId));
                 parmas.put("id", String.valueOf(id));

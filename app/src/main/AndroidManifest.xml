@@ -37,7 +37,12 @@
         <activity android:name=".view.personal.activity.mymessage.MyselfMessageActivity" />
         <activity android:name=".view.personal.activity.mymessage.ChangeNickNameActivity" />
         <activity android:name=".view.personal.activity.mymessage.ChangeAddressActivity" />
-        <activity android:name=".view.ui.MessageActivity"></activity>
+        <activity android:name=".view.ui.MessageActivity" />
+        <activity android:name=".view.personal.activity.myloves.WorksActivity" />
+        <activity android:name=".view.personal.activity.myloves.PostActivity" />
+        <activity android:name=".view.personal.activity.myloves.FollowActivity" />
+        <activity android:name=".view.personal.activity.myloves.FansActivity" />
+        <activity android:name=".view.personal.activity.myorder.activity.MyOrderActivity"></activity>
     </application>
 
 </manifest>

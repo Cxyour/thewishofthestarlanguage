@@ -17,12 +17,20 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.ImageViewTarget;
 import com.example.lenovo.thewishofthestarlanguage.R;
 import com.example.lenovo.thewishofthestarlanguage.model.config.Constant;
+import com.example.lenovo.thewishofthestarlanguage.model.entity.UserSuccessBean;
 import com.example.lenovo.thewishofthestarlanguage.view.base.BaseFragment;
 import com.example.lenovo.thewishofthestarlanguage.view.personal.activity.LoginActivity;
 import com.example.lenovo.thewishofthestarlanguage.view.personal.activity.RegisterActivity;
 import com.example.lenovo.thewishofthestarlanguage.view.personal.activity.SetActivity;
+import com.example.lenovo.thewishofthestarlanguage.view.personal.activity.myloves.FansActivity;
+import com.example.lenovo.thewishofthestarlanguage.view.personal.activity.myloves.FollowActivity;
+import com.example.lenovo.thewishofthestarlanguage.view.personal.activity.myloves.PostActivity;
+import com.example.lenovo.thewishofthestarlanguage.view.personal.activity.myloves.WorksActivity;
 import com.example.lenovo.thewishofthestarlanguage.view.personal.activity.mymessage.MyselfMessageActivity;
+import com.example.lenovo.thewishofthestarlanguage.view.personal.activity.myorder.activity.MyOrderActivity;
 import com.example.lenovo.thewishofthestarlanguage.view.ui.MessageActivity;
+
+import java.io.Serializable;
 
 public class PersonalFragment extends BaseFragment implements View.OnClickListener {
 
@@ -66,6 +74,8 @@ public class PersonalFragment extends BaseFragment implements View.OnClickListen
     private RelativeLayout personal_myself_authentication;
     private LinearLayout personal_login_message;
     private SharedPreferences preferences;
+    private int id;
+    private SharedPreferences.Editor edit;
 
     @Override
     protected int getLayoutId() {
@@ -116,11 +126,22 @@ public class PersonalFragment extends BaseFragment implements View.OnClickListen
         home_myselft_login_btn.setOnClickListener(this);
         home_myselft_fragment_message.setOnClickListener(this);
         personal_myself_message.setOnClickListener(this);
+
+        personal_myself_works.setOnClickListener(this);
+        personal_myself_post.setOnClickListener(this);
+        personal_myself_follow.setOnClickListener(this);
+        personal_myself_fans.setOnClickListener(this);
+
+        personal_myself_substitute_payment.setOnClickListener(this);
+        personal_myself_substitute_for_use.setOnClickListener(this);
+        personal_myself_substitute_for_return.setOnClickListener(this);
+        personal_myself_my_order.setOnClickListener(this);
     }
 
     @Override
     protected void loadData() {
         preferences = getActivity().getSharedPreferences(Constant.CookieSP, Context.MODE_PRIVATE);
+        edit = preferences.edit();
     }
 
     @Override
@@ -149,13 +170,49 @@ public class PersonalFragment extends BaseFragment implements View.OnClickListen
                 startActivity(intent);
                 break;
             case R.id.home_myselft_fragment_message:
-                if (preferences.getBoolean("isLogin",false)){
+                if (preferences.getBoolean("isLogin", false)) {
                     intent = new Intent(getContext(), MessageActivity.class);
                     startActivity(intent);
-                }else {
+                } else {
                     intent = new Intent(getContext(), LoginActivity.class);
                     startActivity(intent);
                 }
+                break;
+            case R.id.personal_myself_works:
+                intent = new Intent(getContext(), WorksActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.personal_myself_post:
+                intent = new Intent(getContext(), PostActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.personal_myself_follow:
+                intent = new Intent(getContext(), FollowActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.personal_myself_fans:
+                intent = new Intent(getContext(), FansActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.personal_myself_substitute_payment:
+                intent = new Intent(getContext(), MyOrderActivity.class);
+                intent.putExtra("position", 1);
+                startActivity(intent);
+                break;
+            case R.id.personal_myself_substitute_for_use:
+                intent = new Intent(getContext(), MyOrderActivity.class);
+                intent.putExtra("position", 2);
+                startActivity(intent);
+                break;
+            case R.id.personal_myself_substitute_for_return:
+                intent = new Intent(getContext(), MyOrderActivity.class);
+                intent.putExtra("position", 3);
+                startActivity(intent);
+                break;
+            case R.id.personal_myself_my_order:
+                intent = new Intent(getContext(), MyOrderActivity.class);
+                intent.putExtra("position", 0);
+                startActivity(intent);
                 break;
         }
     }
@@ -174,7 +231,6 @@ public class PersonalFragment extends BaseFragment implements View.OnClickListen
                     RoundedBitmapDrawable drawable = RoundedBitmapDrawableFactory.create(getResources(), bitmap);
                     drawable.setCircular(true);
                     personal_myself_icon.setBackground(drawable);
-
                 }
             });
             personal_myself_nickName.setText(preferences.getString("nickname", ""));

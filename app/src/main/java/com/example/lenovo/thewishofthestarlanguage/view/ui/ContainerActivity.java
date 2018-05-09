@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -23,23 +24,17 @@ import com.example.lenovo.thewishofthestarlanguage.view.treasure.fragment.Treasu
 
 public class ContainerActivity extends BaseActivity implements View.OnClickListener {
 
-    private ImageView home_master_btn;
-    private TextView home_master_tv;
-    private RelativeLayout home_master_tab;
-    private ImageView home_work_btn;
-    private TextView home_work_tv;
-    private RelativeLayout home_work_tab;
-    private ImageView home_valuable_btn;
-    private TextView home_valuable_tv;
-    private RelativeLayout home_valuable_tab;
-    private ImageView home_notice_btn;
-    private TextView home_notice_tv;
-    private RelativeLayout home_notice_tab;
-    private ImageView home_myself_btn;
-    private TextView home_myself_tv;
-    private RelativeLayout home_myself_tab;
-    private LinearLayout home_bottom_layout;
 
+    private RadioButton home_master_tab;
+
+    private RadioButton home_work_tab;
+
+    private RadioButton home_valuable_tab;
+
+    private RadioButton home_notice_tab;
+
+    private RadioButton home_myself_tab;
+    private LinearLayout home_bottom_layout;
     private LinearLayout home_bo;
     private FragmentManager fragmentManager;
     private ImageView home_master_shape;
@@ -57,20 +52,14 @@ public class ContainerActivity extends BaseActivity implements View.OnClickListe
 
     @Override
     protected void init() {
-        home_master_btn = findViewById(R.id.home_master_btn);
-        home_master_tv = findViewById(R.id.home_master_tv);
+
         home_master_tab = findViewById(R.id.home_master_tab);
-        home_work_btn = findViewById(R.id.home_work_btn);
-        home_work_tv = findViewById(R.id.home_work_tv);
+
         home_work_tab = findViewById(R.id.home_work_tab);
-        home_valuable_btn = findViewById(R.id.home_valuable_btn);
-        home_valuable_tv = findViewById(R.id.home_valuable_tv);
+
         home_valuable_tab = findViewById(R.id.home_valuable_tab);
-        home_notice_btn = findViewById(R.id.home_notice_btn);
-        home_notice_tv = findViewById(R.id.home_notice_tv);
+
         home_notice_tab = findViewById(R.id.home_notice_tab);
-        home_myself_btn = findViewById(R.id.home_myself_btn);
-        home_myself_tv = findViewById(R.id.home_myself_tv);
         home_myself_tab = findViewById(R.id.home_myself_tab);
         home_bottom_layout = findViewById(R.id.home_bottom_layout);
         home_master_shape = findViewById(R.id.home_master_shape);
@@ -134,10 +123,10 @@ public class ContainerActivity extends BaseActivity implements View.OnClickListe
                 break;
 
             case R.id.home_master_shape:
-                if (user.getBoolean("isLogin",false)){
+                if (user.getBoolean("isLogin", false)) {
                     intent = new Intent(this, MessageActivity.class);
                     startActivity(intent);
-                }else {
+                } else {
                     intent = new Intent(this, LoginActivity.class);
                     startActivity(intent);
                 }

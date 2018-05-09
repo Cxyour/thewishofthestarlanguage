@@ -34,157 +34,74 @@
 
     </RelativeLayout>
 
-    <LinearLayout
+    <RadioGroup
         android:id="@+id/home_bottom_layout"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_alignParentBottom="true"
         android:background="#ffffff"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:weightSum="5">
 
-        <RelativeLayout
+        <RadioButton
             android:id="@+id/home_master_tab"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:button="@null"
+            android:checked="true"
+            android:drawableTop="@drawable/famous_teacher"
+            android:gravity="center"
+            android:text="名师"
+            android:textColor="@drawable/home_bottombar_tv_bg" />
 
-            <ImageView
-                android:id="@+id/home_master_btn"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="8dp"
-                android:background="@drawable/home_master_btn_bg" />
-
-            <TextView
-                android:id="@+id/home_master_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/home_master_btn"
-                android:layout_centerHorizontal="true"
-                android:layout_marginBottom="2dp"
-                android:layout_marginTop="2dp"
-                android:text="名师"
-                android:textColor="@drawable/home_bottombar_tv_bg"
-                android:textSize="11dp" />
-        </RelativeLayout>
-
-        <RelativeLayout
+        <RadioButton
             android:id="@+id/home_work_tab"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:button="@null"
+            android:drawableTop="@drawable/home_work"
+            android:gravity="center"
+            android:text="作业"
+            android:textColor="@drawable/home_bottombar_tv_bg" />
 
-            <ImageView
-                android:id="@+id/home_work_btn"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="8dp"
-                android:background="@drawable/home_work_btn_bg" />
-
-            <TextView
-                android:id="@+id/home_work_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/home_work_btn"
-                android:layout_centerHorizontal="true"
-                android:layout_marginBottom="2dp"
-                android:layout_marginTop="2dp"
-                android:text="作业"
-                android:textColor="@drawable/home_bottombar_tv_bg"
-                android:textSize="11dp" />
-
-        </RelativeLayout>
-
-        <RelativeLayout
+        <RadioButton
             android:id="@+id/home_valuable_tab"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:button="@null"
+            android:drawableTop="@drawable/treasure"
+            android:gravity="center"
+            android:text="宝典"
+            android:textColor="@drawable/home_bottombar_tv_bg" />
 
-            <ImageView
-                android:id="@+id/home_valuable_btn"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="8dp"
-                android:background="@drawable/home_valuable_btn_bg" />
 
-            <TextView
-                android:id="@+id/home_valuable_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/home_valuable_btn"
-                android:layout_centerHorizontal="true"
-                android:layout_marginBottom="2dp"
-                android:layout_marginTop="2dp"
-                android:text="宝典"
-                android:textColor="@drawable/home_bottombar_tv_bg"
-                android:textSize="11dp" />
-        </RelativeLayout>
-
-        <RelativeLayout
+        <RadioButton
             android:id="@+id/home_notice_tab"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:button="@null"
+            android:drawableTop="@drawable/preview"
+            android:gravity="center"
+            android:text="预告"
+            android:textColor="@drawable/home_bottombar_tv_bg" />
 
-            <ImageView
-                android:id="@+id/home_notice_btn"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="8dp"
-                android:background="@drawable/home_notice_btn_bg" />
 
-            <TextView
-                android:id="@+id/home_notice_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/home_notice_btn"
-                android:layout_centerHorizontal="true"
-                android:layout_marginBottom="2dp"
-                android:layout_marginTop="2dp"
-                android:text="预告"
-                android:textColor="@drawable/home_bottombar_tv_bg"
-                android:textSize="11dp" />
-
-        </RelativeLayout>
-
-        <RelativeLayout
+        <RadioButton
             android:id="@+id/home_myself_tab"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:button="@null"
+            android:drawableTop="@drawable/myself"
+            android:gravity="center"
+            android:text="我的"
+            android:textColor="@drawable/home_bottombar_tv_bg" />
 
-            <ImageView
-                android:id="@+id/home_myself_btn"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="8dp"
-                android:background="@drawable/home_myself_btn_bg" />
-
-            <TextView
-                android:id="@+id/home_myself_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/home_myself_btn"
-                android:layout_centerHorizontal="true"
-                android:layout_marginBottom="2dp"
-                android:layout_marginTop="2dp"
-                android:text="我的"
-                android:textColor="@drawable/home_bottombar_tv_bg"
-                android:textSize="11dp" />
-
-        </RelativeLayout>
-    </LinearLayout>
+    </RadioGroup>
 
     <FrameLayout
         android:id="@+id/home_lay"

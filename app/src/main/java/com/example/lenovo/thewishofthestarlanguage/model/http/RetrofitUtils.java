@@ -16,6 +16,7 @@ import com.example.lenovo.thewishofthestarlanguage.model.biz.FindPassWordService
 import com.example.lenovo.thewishofthestarlanguage.model.biz.HomeWorkService;
 import com.example.lenovo.thewishofthestarlanguage.model.biz.LoginService;
 import com.example.lenovo.thewishofthestarlanguage.model.biz.MostEaveService;
+import com.example.lenovo.thewishofthestarlanguage.model.biz.MyOrderService;
 import com.example.lenovo.thewishofthestarlanguage.model.biz.PerFectInforService;
 import com.example.lenovo.thewishofthestarlanguage.model.biz.PersonalService;
 import com.example.lenovo.thewishofthestarlanguage.model.biz.PrevieDetailsService;
@@ -61,7 +62,7 @@ public class RetrofitUtils {
                 .addInterceptor(new AddCookiesInterceptor(App.context))
                 .build();
 
-        if(TextUtils.isEmpty(getAppToken(App.context))){
+        if (TextUtils.isEmpty(getAppToken(App.context))) {
             getToken();
         }
 
@@ -79,14 +80,14 @@ public class RetrofitUtils {
 
     }
 
-    public static String getAppToken(Context context){
-        if(context==null){
-            return "" ;
+    public static String getAppToken(Context context) {
+        if (context == null) {
+            return "";
         }
         SharedPreferences sharedPreferences = context.getApplicationContext().getSharedPreferences(Constant.CookieSP, Context.MODE_PRIVATE);
 
         String apptoken = sharedPreferences.getString(Constant.AppToken, "");
-        if(TextUtils.isEmpty(apptoken)){
+        if (TextUtils.isEmpty(apptoken)) {
             return "";
         }
         //TODU测试id
@@ -94,14 +95,14 @@ public class RetrofitUtils {
 
     }
 
-    private void saveAppToken(Context context,String token ,long time){
-        if(context==null){
-            return ;
+    private void saveAppToken(Context context, String token, long time) {
+        if (context == null) {
+            return;
         }
         SharedPreferences sharedPreferences = context.getApplicationContext().getSharedPreferences(Constant.CookieSP, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         //存储的时候 转成大写后的token + "."  + 加上当前系统时间 组成最中的token
-        editor.putString(Constant.AppToken,token+"."+time);
+        editor.putString(Constant.AppToken, token + "." + time);
         editor.commit();
 
     }
@@ -109,14 +110,14 @@ public class RetrofitUtils {
     public void getToken() {
         OkHttpClient okHttpClient = new OkHttpClient.Builder()
                 .connectTimeout(15, TimeUnit.SECONDS)
-                .readTimeout(20,TimeUnit.SECONDS)
-                .writeTimeout(20,TimeUnit.SECONDS)
+                .readTimeout(20, TimeUnit.SECONDS)
+                .writeTimeout(20, TimeUnit.SECONDS)
                 .retryOnConnectionFailure(false)
                 .addInterceptor(new ReceivedCookiesInterceptor(App.context))
                 .addInterceptor(new AddCookiesInterceptor(App.context))
                 .build();
 
-        Retrofit retrofit= new Retrofit.Builder()
+        Retrofit retrofit = new Retrofit.Builder()
                 .client(okHttpClient)
                 .baseUrl(Urls.UNIVSTARURL)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -134,17 +135,17 @@ public class RetrofitUtils {
 
                     @Override
                     public void onNext(AppTokenBean appTokenBean) {
-                        if(appTokenBean==null||appTokenBean.getData()==null){
+                        if (appTokenBean == null || appTokenBean.getData() == null) {
                             return;
                         }
 
                         String apptoken = appTokenBean.getData().getApptoken();
                         long time = System.currentTimeMillis();
                         try {
-                            String desApptoken= EncryptUtil.decrypt(apptoken);//解码后的数据
+                            String desApptoken = EncryptUtil.decrypt(apptoken);//解码后的数据
                             //解码后的数据拼接上当前系统时间 再编码 去掉换行 把所有字母转成大写
-                            String headerApptoken=EncryptUtil.encrypt(time + desApptoken).replaceAll("\\n","").toUpperCase();
-                            saveAppToken(App.context,headerApptoken,time);
+                            String headerApptoken = EncryptUtil.encrypt(time + desApptoken).replaceAll("\\n", "").toUpperCase();
+                            saveAppToken(App.context, headerApptoken, time);
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
@@ -211,20 +212,29 @@ public class RetrofitUtils {
     public ResetPassWordService getResetService() {
         return retrofit.create(ResetPassWordService.class);
     }
+
     public MostEaveService getMostEaveModel() {
         return retrofit.create(MostEaveService.class);
     }
+
     public PreviewService getPreviewModel() {
         return retrofit.create(PreviewService.class);
     }
-    public TreaSureService getTreaSureService(){
+
+    public TreaSureService getTreaSureService() {
         return retrofit.create(TreaSureService.class);
     }
-    public TreasureDetailsServiece getPreviewDetailsServiece(){
+
+    public TreasureDetailsServiece getPreviewDetailsServiece() {
         return retrofit.create(TreasureDetailsServiece.class);
     }
-    public PrevieDetailsService getPrevieDetailsService(){
+
+    public PrevieDetailsService getPrevieDetailsService() {
         return retrofit.create(PrevieDetailsService.class);
+    }
+
+    public MyOrderService getMyOrderService() {
+        return retrofit.create(MyOrderService.class);
     }
 
 }

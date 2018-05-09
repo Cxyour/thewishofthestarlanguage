@@ -1,18 +1,17 @@
 package com.example.lenovo.thewishofthestarlanguage.model.http;
 
 import android.Manifest;
-import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.support.v4.app.ActivityCompat;
 import android.text.TextUtils;
-import android.widget.DatePicker;
-import android.widget.TextView;
 
 import com.example.lenovo.thewishofthestarlanguage.model.biz.AppTokenService;
 import com.example.lenovo.thewishofthestarlanguage.model.biz.FamousTeacherService;
+import com.example.lenovo.thewishofthestarlanguage.model.biz.FansService;
 import com.example.lenovo.thewishofthestarlanguage.model.biz.FindPassWordService;
+import com.example.lenovo.thewishofthestarlanguage.model.biz.FollowService;
 import com.example.lenovo.thewishofthestarlanguage.model.biz.HomeWorkService;
 import com.example.lenovo.thewishofthestarlanguage.model.biz.LoginService;
 import com.example.lenovo.thewishofthestarlanguage.model.biz.LovesService;
@@ -32,7 +31,6 @@ import com.example.lenovo.thewishofthestarlanguage.model.config.Urls;
 import com.example.lenovo.thewishofthestarlanguage.model.entity.AppTokenBean;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 
-import java.util.Calendar;
 import java.util.concurrent.TimeUnit;
 
 import io.reactivex.Observer;
@@ -241,5 +239,14 @@ public class RetrofitUtils {
     public LovesService getLovesService() {
         return retrofit.create(LovesService.class);
     }
+
+    public FollowService getFollowService() {
+        return retrofit.create(FollowService.class);
+    }
+
+    public FansService getFansService() {
+        return retrofit.create(FansService.class);
+    }
+
 
 }

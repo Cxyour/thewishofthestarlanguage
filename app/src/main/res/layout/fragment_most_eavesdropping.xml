@@ -4,8 +4,9 @@
     android:layout_height="match_parent"
     tools:context="com.example.lenovo.thewishofthestarlanguage.view.homework.fragment.MostEavesdroppingFragment">
 
-    <com.wuxiaolong.pullloadmorerecyclerview.PullLoadMoreRecyclerView
+    <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/most_recycle"></com.wuxiaolong.pullloadmorerecyclerview.PullLoadMoreRecyclerView>
+        android:id="@+id/most_recycle"></android.support.v7.widget.RecyclerView>
+
 </FrameLayout>

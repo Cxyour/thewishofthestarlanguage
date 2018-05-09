@@ -1,6 +1,7 @@
 package com.example.lenovo.thewishofthestarlanguage.view.famousteacher.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.example.lenovo.thewishofthestarlanguage.R;
 import com.example.lenovo.thewishofthestarlanguage.model.entity.FamousTeacherBean;
+import com.example.lenovo.thewishofthestarlanguage.view.famousteacher.activity.LiveDetailsActivity;
 
 import java.util.List;
 
@@ -39,9 +41,18 @@ public class Item3TechaerAdapter extends RecyclerView.Adapter<Item3TechaerAdapte
 
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(ViewHolder holder, final int position) {
             holder.nickname.setText(liveCoursesBeans.get(position).getNickname());
         Glide.with(context).load(liveCoursesBeans.get(position).getCoverImg()).into(holder.coverImg);
+      holder.rootView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, LiveDetailsActivity.class);
+                int userId = liveCoursesBeans.get(position).getId();
+                intent.putExtra("id",userId);
+                context.startActivity(intent);
+            }
+        });
     }
 
 

@@ -1,6 +1,7 @@
 package com.example.lenovo.thewishofthestarlanguage.view.famousteacher.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -10,7 +11,16 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.lenovo.thewishofthestarlanguage.R;
+import com.example.lenovo.thewishofthestarlanguage.model.config.App;
 import com.example.lenovo.thewishofthestarlanguage.model.entity.FamousTeacherBean;
+import com.example.lenovo.thewishofthestarlanguage.presenter.FamousTeacherPresenterImp;
+import com.example.lenovo.thewishofthestarlanguage.view.famousteacher.activity.FamousTeacherActivity;
+import com.example.lenovo.thewishofthestarlanguage.view.famousteacher.activity.LiveDetailsActivity;
+import com.example.lenovo.thewishofthestarlanguage.view.famousteacher.activity.LiveingActivity;
+import com.example.lenovo.thewishofthestarlanguage.view.homework.fragment.HomeWorkFragment;
+import com.example.lenovo.thewishofthestarlanguage.view.preview.activity.PrevieDetailsActivity;
+import com.example.lenovo.thewishofthestarlanguage.view.preview.fragment.PreviewFragment;
+import com.example.lenovo.thewishofthestarlanguage.view.treasure.fragment.TreasureFragment;
 import com.recker.flybanner.FlyBanner;
 
 import java.util.ArrayList;
@@ -21,7 +31,7 @@ import java.util.List;
  */
 
 public class FamousTecherAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-
+    FamousTeacherPresenterImp famousTeacherPresenter;
     private final int LIVEC = 2;
     private final int HOMEWORK = 3;
     private final int SYSTEMASD = 0;
@@ -29,7 +39,8 @@ public class FamousTecherAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     private Context context;
     FamousTeacherBean.DataBean data;
 
-    public FamousTecherAdapter(FamousTeacherBean.DataBean data) {
+    public FamousTecherAdapter(FamousTeacherPresenterImp famousTeacherPresenter, FamousTeacherBean.DataBean data) {
+        this.famousTeacherPresenter = famousTeacherPresenter;
         this.data = data;
     }
 
@@ -72,17 +83,69 @@ public class FamousTecherAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
         if (holder instanceof SYSCHolder) {
             //    List<FamousTeacherBean.DataBean.SystemAdsBean>  liveCoursesBean = (List<FamousTeacherBean.DataBean.SystemAdsBean>) mRecycleaArray.get(SYSTEMASD);
 
-            ArrayList<String> strings = new ArrayList<>();
-            List<FamousTeacherBean.DataBean.SystemAdsBean> systemAds = data.getSystemAds();
+            final ArrayList<String> strings = new ArrayList<>();
+            final List<FamousTeacherBean.DataBean.SystemAdsBean> systemAds = data.getSystemAds();
             for (FamousTeacherBean.DataBean.SystemAdsBean systemAd : systemAds) {
                 String pcImgUrl = systemAd.getPcImgUrl();
                 strings.add(pcImgUrl);
             }
             ((SYSCHolder) holder).teacher_fly.setImagesUrl(strings);
+            ((SYSCHolder) holder).teacher_fly.setOnItemClickListener(new FlyBanner.OnItemClickListener() {
+                @Override
+                public void onItemClick(int position1) {
+                    FamousTeacherBean.DataBean.SystemAdsBean systemAdsBean = systemAds.get(position1);
+                    String urlType = systemAdsBean.getUrlType();
+                    String mobileUrl = systemAdsBean.getMobileUrl();
+                    if (urlType.equals("3")){
+                        Intent intent = new Intent(context, PrevieDetailsActivity.class);
+                        intent.putExtra("id",Integer.parseInt(mobileUrl));
+                        context.startActivity(intent);
+                    }else {
+                        Intent intent = new Intent(context, LiveDetailsActivity.class);
+                        intent.putExtra("id",Integer.parseInt(mobileUrl));
+                        context.startActivity(intent);
+                    }
+                }
+            });
+            ((SYSCHolder) holder).lineclass.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(context, LiveingActivity.class);
+                    context.startActivity(intent);
+                }
+            });
+            ((SYSCHolder) holder).zhaoTecher.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(context, FamousTeacherActivity.class);
+                    context.startActivity(intent);
+                }
+            });
+            ((SYSCHolder) holder).jiaowork.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    App.context.setContentView(R.id.home_lay, HomeWorkFragment.class, null);
+
+                }
+        });
+            ((SYSCHolder) holder).liaoYK.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    App.context.setContentView(R.id.home_lay, TreasureFragment.class, null);
+
+                }
+            });
+            ((SYSCHolder) holder).xianXK.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    App.context.setContentView(R.id.home_lay, PreviewFragment.class, null);
+                }
+            });
+
         }
         if (holder instanceof UserHolder) {
             LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context);
@@ -90,19 +153,40 @@ public class FamousTecherAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             ((UserHolder) holder).teacher_list.setLayoutManager(linearLayoutManager);
             Item2TeacherAdapter item2TeacherAdapter = new Item2TeacherAdapter(data.getUsers());
             ((UserHolder) holder).teacher_list.setAdapter(item2TeacherAdapter);
+            ((UserHolder) holder).gengduo.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(context, FamousTeacherActivity.class);
+                    context.startActivity(intent);
+                }
+            });
 
         }
         if (holder instanceof LIVECHolder) {
             Item3TechaerAdapter item3TechaerAdapter = new Item3TechaerAdapter(data.getLiveCourses());
             ((LIVECHolder) holder).kecheng_grid.setLayoutManager(new GridLayoutManager(context, 2));
             ((LIVECHolder) holder).kecheng_grid.setAdapter(item3TechaerAdapter);
+            ((LIVECHolder) holder).gengduo.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(context, LiveingActivity.class);
+                    context.startActivity(intent);
+                }
+            });
+
         }
         if (holder instanceof HomeWorkHolder){
             List<FamousTeacherBean.DataBean.HomewoksBean> homewoks = data.getHomewoks();
            // ScrollDisabledListView scrollDisabledListView = new ScrollDisabledListView(context);
             ((HomeWorkHolder) holder).work_recycle.setLayoutManager(new LinearLayoutManager(context));
-            Item4TeacherAdapter item4TeacherAdapter = new Item4TeacherAdapter(homewoks);
+            Item4TeacherAdapter item4TeacherAdapter = new Item4TeacherAdapter(homewoks,famousTeacherPresenter);
             ((HomeWorkHolder) holder).work_recycle.setAdapter(item4TeacherAdapter);
+            ((HomeWorkHolder) holder).gengduo.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    App.context.setContentView(R.id.home_lay, HomeWorkFragment.class, null);
+                }
+            });
 
         }
     }
@@ -112,7 +196,7 @@ public class FamousTecherAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         return 4;
     }
 
-    public static class SYSCHolder extends RecyclerView.ViewHolder {
+     class SYSCHolder extends RecyclerView.ViewHolder {
         public View rootView;
         public FlyBanner teacher_fly;
         public TextView zhaoTecher;
@@ -130,11 +214,12 @@ public class FamousTecherAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             this.jiaowork = (TextView) rootView.findViewById(R.id.jiaowork);
             this.liaoYK = (TextView) rootView.findViewById(R.id.liaoYK);
             this.xianXK = (TextView) rootView.findViewById(R.id.xianXK);
+
         }
 
     }
 
-    public static class UserHolder extends RecyclerView.ViewHolder {
+   class UserHolder extends RecyclerView.ViewHolder {
         public View rootView;
         public TextView gengduo;
         public RecyclerView teacher_list;
@@ -148,7 +233,7 @@ public class FamousTecherAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
     }
 
-    public static class LIVECHolder extends RecyclerView.ViewHolder {
+    class LIVECHolder extends RecyclerView.ViewHolder {
         public View rootView;
         public TextView gengduo;
         public RecyclerView kecheng_grid;
@@ -162,7 +247,7 @@ public class FamousTecherAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
     }
 
-    public static class HomeWorkHolder extends RecyclerView.ViewHolder {
+  class HomeWorkHolder extends RecyclerView.ViewHolder {
         public View rootView;
         public TextView gengduo;
         public RecyclerView work_recycle;
@@ -172,6 +257,7 @@ public class FamousTecherAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             this.rootView = rootView;
             this.gengduo = (TextView) rootView.findViewById(R.id.gengduo);
             this.work_recycle = (RecyclerView) rootView.findViewById(R.id.work_recycle);
+
         }
 
     }

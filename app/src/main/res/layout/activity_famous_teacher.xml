@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.lenovo.thewishofthestarlanguage.view.famousteacher.activity.FamousTeacherActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:src="@mipmap/activity_return" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="10dp"
+            android:text="名师"
+            android:textColor="#076fef"
+            android:textSize="20dp" />
+    </RelativeLayout>
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <RadioGroup
+            android:background="#d7d2d2"
+            android:weightSum="3"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="30dp">
+            <LinearLayout
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content">
+                <RadioButton
+                    android:id="@+id/intelig_But"
+                    android:textColor="#817979"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:button="@null"
+                    android:text="大师"
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:layout_marginTop="4dp"
+                    android:layout_gravity="center"
+
+                    android:id="@+id/home_work_fragment_capacity_line"
+                    android:layout_width="20dp"
+                    android:layout_height="3dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:background="#FFD235"
+                    android:visibility="visible" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content">
+                <RadioButton
+                    android:textColor="#817979"
+                    android:id="@+id/mostEave_But"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:button="@null"
+                    android:text="名师"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:layout_marginTop="4dp"
+                    android:layout_gravity="center"
+                    android:id="@+id/home_work_fragment_capacity_line2"
+                    android:layout_width="20dp"
+                    android:layout_height="3dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:background="#FFD235"
+                    android:visibility="gone" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content">
+                <RadioButton
+                    android:textColor="#817979"
+                    android:id="@+id/theLatesr_But"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:button="@null"
+                    android:text="达人"
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:layout_marginTop="4dp"
+                    android:layout_gravity="center"
+                    android:id="@+id/home_work_fragment_capacity_line3"
+                    android:layout_width="20dp"
+                    android:layout_height="3dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:background="#FFD235"
+                    android:visibility="gone" />
+            </LinearLayout>
+        </RadioGroup>
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/famous_activity"></FrameLayout>
+</LinearLayout>

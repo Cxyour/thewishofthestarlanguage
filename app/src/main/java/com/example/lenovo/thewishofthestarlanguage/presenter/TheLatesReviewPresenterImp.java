@@ -25,8 +25,8 @@ public class TheLatesReviewPresenterImp implements TheLatesRevieContract.present
 
     @Override
     public void loadMostEavesdeopp() {
-        HashMap<String, String> parmas= new HashMap<>();
-        parmas.put("sortord","2");
+        HashMap<String, Integer> parmas= new HashMap<>();
+        parmas.put("sortord",2);
         mostEaveModel.loadMostBean(parmas)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())

@@ -1,5 +1,6 @@
 package com.example.lenovo.thewishofthestarlanguage.model.biz;
 
+import com.example.lenovo.thewishofthestarlanguage.model.entity.GoodOnClickBean;
 import com.example.lenovo.thewishofthestarlanguage.model.entity.MostEavesdeoppBean;
 
 import java.util.Map;
@@ -16,5 +17,21 @@ import retrofit2.http.POST;
 public interface MostEaveService {
     @FormUrlEncoded
     @POST("/v1/m/homewok/home")
-    Observable<MostEavesdeoppBean> loadMostBean(@FieldMap Map<String,String> pramas);
+    Observable<MostEavesdeoppBean> loadMostBean(@FieldMap Map<String,Integer> pramas);
+    //点赞
+    @FormUrlEncoded
+    @POST("/v1/m/user/praise")
+    Observable<GoodOnClickBean> loadGoodBean(@FieldMap Map<String,String> map);
+    //取消赞
+    @FormUrlEncoded
+    @POST("/v1/m/user/praise/cancel")
+    Observable<GoodOnClickBean> CancelthePraise(@FieldMap Map<String,String> map);
+    //收藏
+    @FormUrlEncoded
+    @POST("/v1/m/user/favorite")
+    Observable<GoodOnClickBean> Collection(@FieldMap Map<String,String> map);
+    //取消收藏
+    @FormUrlEncoded
+    @POST("/v1/m/user/favorite/cancel")
+    Observable<GoodOnClickBean>   CancelTheCollection(@FieldMap Map<String,String> map);
 }

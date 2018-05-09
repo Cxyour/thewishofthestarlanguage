@@ -11,8 +11,12 @@ import com.example.lenovo.thewishofthestarlanguage.model.biz.AppTokenService;
 import com.example.lenovo.thewishofthestarlanguage.model.biz.FamousTeacherService;
 import com.example.lenovo.thewishofthestarlanguage.model.biz.FindPassWordService;
 import com.example.lenovo.thewishofthestarlanguage.model.biz.HomeWorkService;
+import com.example.lenovo.thewishofthestarlanguage.model.biz.LiveIngService;
 import com.example.lenovo.thewishofthestarlanguage.model.biz.LoginService;
+import com.example.lenovo.thewishofthestarlanguage.model.biz.MasterHomeService;
+import com.example.lenovo.thewishofthestarlanguage.model.biz.MasterService;
 import com.example.lenovo.thewishofthestarlanguage.model.biz.MostEaveService;
+import com.example.lenovo.thewishofthestarlanguage.model.biz.OperationService;
 import com.example.lenovo.thewishofthestarlanguage.model.biz.PerFectInforService;
 import com.example.lenovo.thewishofthestarlanguage.model.biz.PersonalService;
 import com.example.lenovo.thewishofthestarlanguage.model.biz.PrevieDetailsService;
@@ -219,5 +223,17 @@ public class RetrofitUtils {
     }
     public PrevieDetailsService getPrevieDetailsService(){
         return retrofit.create(PrevieDetailsService.class);
+    }
+    public OperationService getOperationService(){
+        return retrofit.create(OperationService.class);
+    }
+    public LiveIngService getLiveIngService(){
+        return retrofit.create(LiveIngService.class);
+    }
+    public MasterService getMasterService(){
+        return retrofit.create(MasterService.class);
+    }
+    public MasterHomeService getMasterHomeService(){
+        return retrofit.create(MasterHomeService.class);
     }
 }

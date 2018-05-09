@@ -2,7 +2,6 @@ package com.example.lenovo.thewishofthestarlanguage.view.treasure.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.CheckBox;
@@ -16,9 +15,10 @@ import com.example.lenovo.thewishofthestarlanguage.R;
 import com.example.lenovo.thewishofthestarlanguage.contact.IDetailsContract;
 import com.example.lenovo.thewishofthestarlanguage.model.entity.TreasurteActiviyBean;
 import com.example.lenovo.thewishofthestarlanguage.presenter.DetailsPresenterImp;
+import com.example.lenovo.thewishofthestarlanguage.view.base.BaseActivity;
 import com.example.lenovo.thewishofthestarlanguage.view.treasure.adapter.TreasureListViewAdapter;
 
-public class TreasureDetailsActivity extends AppCompatActivity implements IDetailsContract.view {
+public class TreasureDetailsActivity extends BaseActivity implements IDetailsContract.view {
 
     private ImageView fanhui;
     private RelativeLayout preview_title;
@@ -28,11 +28,24 @@ public class TreasureDetailsActivity extends AppCompatActivity implements IDetai
     private CheckBox home_valuable_list_item_praise_cb;
     private ListView detalist;
 
+    private ImageView masterdetail_aty_share;
+    private RelativeLayout titlelan;
+
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_preview_details);
+    protected int getLayoutId() {
+        //宝典
+        return R.layout.activity_preview_details;
+
+    }
+
+    @Override
+    protected void init() {
         initView();
+    }
+
+    @Override
+    protected void loadData() {
 
     }
 
@@ -42,8 +55,10 @@ public class TreasureDetailsActivity extends AppCompatActivity implements IDetai
         pinglun = (EditText) findViewById(R.id.pinglun);
         home_valuable_list_item_collect_cb = (CheckBox) findViewById(R.id.home_valuable_list_item_collect_cb);
         home_valuable_list_item_praise_cb2 = (CheckBox) findViewById(R.id.home_valuable_list_item_praise_cb2);
+
         home_valuable_list_item_praise_cb = (CheckBox) findViewById(R.id.home_valuable_list_item_praise_cb);
         detalist = (ListView) findViewById(R.id.detalist);
+
         Intent intent = getIntent();
         int id = intent.getIntExtra("id", 0);
         DetailsPresenterImp detailsPresenterImp = new DetailsPresenterImp(this);
@@ -51,7 +66,7 @@ public class TreasureDetailsActivity extends AppCompatActivity implements IDetai
         fanhui.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                    finish();
             }
         });
 
@@ -74,6 +89,12 @@ public class TreasureDetailsActivity extends AppCompatActivity implements IDetai
     public void showPreviewActiviyBean(TreasurteActiviyBean previewActiviyBean) {
         TreasurteActiviyBean.DataBean.ArtcircleBean artcircle = previewActiviyBean.getData().getArtcircle();
         TreasureListViewAdapter previewListViewAdapter = new TreasureListViewAdapter(artcircle);
-    detalist.setAdapter(previewListViewAdapter);
+        detalist.setAdapter(previewListViewAdapter);
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        // TODO: add setContentView(...) and run LayoutCreator again
     }
 }

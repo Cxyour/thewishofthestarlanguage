@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.example.lenovo.thewishofthestarlanguage.R;
 import com.example.lenovo.thewishofthestarlanguage.contact.TreasureContact;
+import com.example.lenovo.thewishofthestarlanguage.model.entity.GoodOnClickBean;
 import com.example.lenovo.thewishofthestarlanguage.model.entity.TreaSureBean;
 import com.example.lenovo.thewishofthestarlanguage.model.entity.TreaSureLunBoTuBean;
 import com.example.lenovo.thewishofthestarlanguage.presenter.TreaSurePresenterImp;
@@ -153,6 +154,15 @@ public class TreasureFragment extends BaseFragment implements TreasureContact.vi
         treasure_fly.setImagesUrl(imgurl);
     }
 
+    @Override
+    public void showGoodBean(GoodOnClickBean goodOnClickBean) {
+
+    }
+
+    @Override
+    public void showCancelthePraise(GoodOnClickBean goodOnClickBean) {
+
+    }
 
 
 }

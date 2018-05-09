@@ -5,6 +5,8 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -23,6 +25,12 @@ import java.util.Date;
 public class PreviewListViewAdapter extends BaseAdapter {
     PreviewActivityBean.DataBean data;
     private Context context;
+    int index;
+
+    public PreviewListViewAdapter(PreviewActivityBean.DataBean data, int index) {
+        this.data = data;
+        this.index = index;
+    }
 
     public PreviewListViewAdapter(PreviewActivityBean.DataBean data) {
         this.data = data;
@@ -67,9 +75,29 @@ public class PreviewListViewAdapter extends BaseAdapter {
         viewHolder.dizhi.setText(data.getAddress());
         viewHolder.yuyue.setText("已预约:"+data.getReservationNum()+"/"+data.getSubscribeNum());
         viewHolder.qian.setText(data.getPrice()+"");
-        viewHolder.courseContent.setText(data.getCourseContent());
+
+
+        //again_NameTeacherContent.loadUrl(String.format(webUrl,id));
+        //again_NameTeacherContent.setWebViewClient(new WebViewClient());
+        //声明WebSettings子类
+        WebSettings webSettings = viewHolder.courseContent.getSettings();
+        //如果访问的页面中要与Javascript交互，则webview必须设置支持Javascript
+        webSettings.setJavaScriptEnabled(true);
+        //设置自适应屏幕，两者合用
+        webSettings.setUseWideViewPort(true); //将图片调整到适合webview的大小
+        webSettings.setLoadWithOverviewMode(true); // 缩放至屏幕的大小
+        webSettings.setSupportZoom(true); //支持缩放，默认为true。是下面那个的前提。
+        webSettings.setBuiltInZoomControls(true); //设置内置的缩放控件。若为false，则该WebView不可缩放
+        webSettings.setDisplayZoomControls(false); //隐藏原生的缩放控件
+        webSettings.setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK); //关闭webview中缓存
+        webSettings.setAllowFileAccess(true); //设置可以访问文件
+        webSettings.setJavaScriptCanOpenWindowsAutomatically(true); //支持通过JS打开新窗口
+        webSettings.setLoadsImagesAutomatically(true); //支持自动加载图片
+        webSettings.setDefaultTextEncodingName("utf-8");//设置编码格式
+        viewHolder.courseContent.loadUrl(String.format("http://share.univstar.com/view/course.html?courseid=%s", index));
         return convertView;
     }
+
 
     public static class ViewHolder {
         public View rootView;
@@ -78,7 +106,7 @@ public class PreviewListViewAdapter extends BaseAdapter {
         public TextView dizhi;
         public TextView yuyue;
         public TextView qian;
-        public TextView courseContent;
+        public WebView courseContent;
 
         public ViewHolder(View rootView) {
             this.rootView = rootView;
@@ -87,7 +115,7 @@ public class PreviewListViewAdapter extends BaseAdapter {
             this.dizhi = (TextView) rootView.findViewById(R.id.dizhi);
             this.yuyue = (TextView) rootView.findViewById(R.id.yuyue);
             this.qian = (TextView) rootView.findViewById(R.id.qian);
-            this.courseContent = (TextView) rootView.findViewById(R.id.courseContent);
+            this.courseContent = (WebView) rootView.findViewById(R.id.courseContent);
         }
 
     }

@@ -1,13 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.lenovo.thewishofthestarlanguage.view.preview.activity.PrevieDetailsActivity">
+    <RelativeLayout
+        android:background="#fff"
+        android:layout_alignParentTop="true"
+        android:id="@+id/titlelan"
+        android:layout_width="match_parent"
+        android:layout_marginTop="@dimen/ts_26"
+        android:gravity="center_vertical"
+        android:layout_height="@dimen/ts_44">
+
+        <ImageView
+            android:id="@+id/back"
+            android:layout_width="@dimen/ts_32"
+            android:src="@mipmap/detail_back"
+            android:layout_marginLeft="@dimen/ts_12"
+            android:layout_height="@dimen/ts_32" />
 
 
+        <ImageView
+            android:id="@+id/masterdetail_aty_share"
+            android:layout_width="@dimen/ts_32"
+            android:src="@mipmap/detail_share"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/ts_12"
+            android:layout_height="@dimen/ts_32" />
+
+    </RelativeLayout>
     <LinearLayout
 
 
@@ -38,9 +61,9 @@
             android:background="#171ede"/>
     </LinearLayout>
     <ListView
-
-        android:layout_above="@+id/prvie_liner"
+        android:layout_alignParentTop="true"
+        android:layout_below="@+id/titlelan"
         android:id="@+id/preview_list"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"></ListView>
+        android:layout_height="wrap_content"></ListView>
 </RelativeLayout>

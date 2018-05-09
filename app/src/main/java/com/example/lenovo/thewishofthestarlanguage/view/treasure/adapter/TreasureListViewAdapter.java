@@ -83,6 +83,7 @@ public class TreasureListViewAdapter extends BaseAdapter {
         viewHolder.createDate.setText(format);
         Glide.with(context).load(artcircle.getCoverImg()).into(viewHolder.coverImg);
         viewHolder.content.setText(artcircle.getContent());
+        viewHolder.nickname.setText(artcircle.getNickname());
         return convertView;
     }
 

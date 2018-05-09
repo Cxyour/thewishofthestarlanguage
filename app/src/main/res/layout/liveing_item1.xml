@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    >
+    <ImageView
+        android:scaleType="fitXY"
+        android:src="@mipmap/ic_launcher"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/coverImg"/>
+
+    <TextView
+        android:background="#d6cccc"
+        android:textColor="#ffffff"
+        android:id="@+id/startDate"
+        android:layout_marginTop="-20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/coverImg"
+        android:text="1200000" />
+</RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/realname"
+            android:layout_width="wrap_content"
+            android:text="张芮瑜"
+            android:layout_height="wrap_content" />
+        <ImageView
+            android:layout_marginLeft="5dp"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/home_level_vip_yellow"
+            android:id="@+id/vvv"
+            android:layout_toRightOf="@+id/realname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:textColor="#2a52f1"
+            android:layout_marginRight="10dp"
+            android:layout_alignParentRight="true"
+            android:text="表演"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <TextView
+        android:id="@+id/isSubscribe"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/replay"
+
+        android:layout_alignParentRight="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+</RelativeLayout>
+</LinearLayout>

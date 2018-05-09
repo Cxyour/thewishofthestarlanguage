@@ -6,9 +6,11 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.lenovo.thewishofthestarlanguage.R;
 import com.example.lenovo.thewishofthestarlanguage.contact.TreasureContact;
+import com.example.lenovo.thewishofthestarlanguage.model.entity.GoodOnClickBean;
 import com.example.lenovo.thewishofthestarlanguage.model.entity.TreaSureBean;
 import com.example.lenovo.thewishofthestarlanguage.model.entity.TreaSureLunBoTuBean;
 import com.example.lenovo.thewishofthestarlanguage.presenter.TreaSurePresenterImp;
@@ -70,12 +72,22 @@ public class TreasureTwoFragment extends Fragment implements TreasureContact.vie
     public void showTreSure(TreaSureBean treaSure) {
         TreaSureBean.DataBean.ArtcircleListBean artcircleList = treaSure.getData().getArtcircleList();
         List<TreaSureBean.DataBean.ArtcircleListBean.ListBean> list = artcircleList.getList();
-        TreasureAdapter treasureAdapter = new TreasureAdapter(list);
+        TreasureAdapter treasureAdapter = new TreasureAdapter(list,treaSurePresenter);
         treasure_two_fly.setAdapter(treasureAdapter);
     }
 
     @Override
     public void showLunbotu(TreaSureLunBoTuBean treaSureLunBoTu) {
 
+    }
+
+    @Override
+    public void showGoodBean(GoodOnClickBean goodOnClickBean) {
+     //  Toast.makeText(getContext(), goodOnClickBean.getMessage(), Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void showCancelthePraise(GoodOnClickBean goodOnClickBean) {
+        Toast.makeText(getContext(), goodOnClickBean.getMessage(), Toast.LENGTH_SHORT).show();
     }
 }

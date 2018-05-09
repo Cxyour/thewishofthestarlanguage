@@ -1,10 +1,12 @@
 package com.example.lenovo.thewishofthestarlanguage.view.famousteacher.fragment;
 
 import android.view.View;
+import android.widget.Toast;
 
 import com.example.lenovo.thewishofthestarlanguage.R;
 import com.example.lenovo.thewishofthestarlanguage.contact.IFamousTeacherContract;
 import com.example.lenovo.thewishofthestarlanguage.model.entity.FamousTeacherBean;
+import com.example.lenovo.thewishofthestarlanguage.model.entity.GoodOnClickBean;
 import com.example.lenovo.thewishofthestarlanguage.presenter.FamousTeacherPresenterImp;
 import com.example.lenovo.thewishofthestarlanguage.view.base.BaseFragment;
 import com.example.lenovo.thewishofthestarlanguage.view.famousteacher.adapter.FamousTecherAdapter;
@@ -19,6 +21,7 @@ public class FamousTeacherFragment extends BaseFragment implements IFamousTeache
     private PullLoadMoreRecyclerView pullLoadMoreRecyclerView;
 
     private ArrayList<Object> mRecycleaArray;
+    private FamousTeacherPresenterImp famousTeacherPresenter;
 
 
     @Override
@@ -29,7 +32,7 @@ public class FamousTeacherFragment extends BaseFragment implements IFamousTeache
     @Override
     protected void init(View view) {
 
-        FamousTeacherPresenterImp famousTeacherPresenter = new FamousTeacherPresenterImp(this);
+        famousTeacherPresenter = new FamousTeacherPresenterImp(this);
         Map<String, String> params = new HashMap<>();
         famousTeacherPresenter.loadFrmousBean();
         mRecycleaArray = new ArrayList<>();
@@ -66,7 +69,18 @@ public class FamousTeacherFragment extends BaseFragment implements IFamousTeache
         mRecycleaArray.add(liveCourses);
         List<FamousTeacherBean.DataBean.HomewoksBean> homewoks = data.getHomewoks();
         mRecycleaArray.add(homewoks);
-        FamousTecherAdapter famousTecherAdapter = new FamousTecherAdapter(data);
+        FamousTecherAdapter famousTecherAdapter = new FamousTecherAdapter(famousTeacherPresenter,data);
         pullLoadMoreRecyclerView.setAdapter(famousTecherAdapter);
+    }
+
+    @Override
+    public void showGoodBean(GoodOnClickBean goodOnClickBean) {
+                Toast.makeText(getContext(), goodOnClickBean.getMessage(), Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void showCancelthePraise(GoodOnClickBean goodOnClickBean) {
+        Toast.makeText(getContext(), "取消"+goodOnClickBean.getMessage(), Toast.LENGTH_SHORT).show();
+
     }
 }

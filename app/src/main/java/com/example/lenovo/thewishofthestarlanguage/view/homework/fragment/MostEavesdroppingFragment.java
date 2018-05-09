@@ -2,15 +2,18 @@ package com.example.lenovo.thewishofthestarlanguage.view.homework.fragment;
 
 
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.Toast;
 
 import com.example.lenovo.thewishofthestarlanguage.R;
 import com.example.lenovo.thewishofthestarlanguage.contact.MostEaveContract;
+import com.example.lenovo.thewishofthestarlanguage.model.entity.GoodOnClickBean;
 import com.example.lenovo.thewishofthestarlanguage.model.entity.MostEavesdeoppBean;
 import com.example.lenovo.thewishofthestarlanguage.presenter.MostEavePresenterImp;
 import com.example.lenovo.thewishofthestarlanguage.view.base.BaseFragment;
 import com.example.lenovo.thewishofthestarlanguage.view.homework.adapter.MostEavedroppingAdapter;
-import com.wuxiaolong.pullloadmorerecyclerview.PullLoadMoreRecyclerView;
 
 import java.util.List;
 
@@ -20,8 +23,8 @@ import java.util.List;
 public class MostEavesdroppingFragment extends BaseFragment implements MostEaveContract.view{
 
 
-    private PullLoadMoreRecyclerView most_recycle;
-
+    private RecyclerView most_recycle;
+    private MostEavePresenterImp mostEavePresenter;
 
 
     @Override
@@ -31,23 +34,34 @@ public class MostEavesdroppingFragment extends BaseFragment implements MostEaveC
 
     @Override
     protected void init(View view) {
-        most_recycle = (PullLoadMoreRecyclerView) view.findViewById(R.id.most_recycle);
-        most_recycle.setLinearLayout();
-        MostEavePresenterImp mostEavePresenter = new MostEavePresenterImp(this);
-        mostEavePresenter.loadMostEavesdeopp();
+        most_recycle = view.findViewById(R.id.most_recycle);
+        most_recycle.setLayoutManager(new LinearLayoutManager(getContext()));
+
     }
 
     @Override
     protected void loadData() {
-
+        mostEavePresenter = new MostEavePresenterImp(this);
+        mostEavePresenter.loadMostEavesdeopp(1);
     }
 
 
 
     @Override
     public void showMostEavesdeopp(MostEavesdeoppBean mostEavesdeoppBean) {
+
         List<MostEavesdeoppBean.DataBean.ListBean> list = mostEavesdeoppBean.getData().getList();
-        MostEavedroppingAdapter mostEavedroppingAdapter = new MostEavedroppingAdapter(list);
+        MostEavedroppingAdapter mostEavedroppingAdapter = new MostEavedroppingAdapter(list,mostEavePresenter);
         most_recycle.setAdapter(mostEavedroppingAdapter);
+    }
+
+    @Override
+    public void showGoodBean(GoodOnClickBean goodOnClickBean) {
+        Toast.makeText(getContext(), goodOnClickBean.getMessage(), Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void showCancelthePraise(GoodOnClickBean goodOnClickBean) {
+        Toast.makeText(getContext(), "取消"+goodOnClickBean.getMessage(), Toast.LENGTH_SHORT).show();
     }
 }

@@ -33,7 +33,12 @@
             android:name=".view.treasure.activity.TreasureDetailsActivity"
             android:label="@string/title_activity_preview_details"
             android:theme="@style/AppTheme" />
-        <activity android:name=".view.preview.activity.PrevieDetailsActivity"></activity>
+        <activity android:name=".view.preview.activity.PrevieDetailsActivity" />
+        <activity android:name=".view.famousteacher.activity.OperationDetailsActivity" />
+        <activity android:name=".view.famousteacher.activity.LiveingActivity" />
+        <activity android:name=".view.famousteacher.activity.LiveDetailsActivity" />
+        <activity android:name=".view.famousteacher.activity.FamousTeacherActivity" />
+        <activity android:name=".view.famousteacher.activity.MasterDetailActivity"></activity>
     </application>
 
 </manifest>

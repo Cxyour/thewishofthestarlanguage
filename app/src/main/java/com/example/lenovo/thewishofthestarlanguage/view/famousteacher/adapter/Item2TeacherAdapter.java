@@ -1,6 +1,7 @@
 package com.example.lenovo.thewishofthestarlanguage.view.famousteacher.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.example.lenovo.thewishofthestarlanguage.R;
 import com.example.lenovo.thewishofthestarlanguage.model.entity.FamousTeacherBean;
+import com.example.lenovo.thewishofthestarlanguage.view.famousteacher.activity.MasterDetailActivity;
 
 import java.util.List;
 
@@ -40,11 +42,18 @@ public class Item2TeacherAdapter extends RecyclerView.Adapter<Item2TeacherAdapte
 
 
     @Override
-    public void onBindViewHolder(Holder holder, int position) {
+    public void onBindViewHolder(Holder holder, final int position) {
         holder.nickname_item.setText(list.get(position).getNickname());
         holder.intro_item.setText(list.get(position).getIntro());
         Glide.with(context).load(list.get(position).getImages()).into(holder.img_item);
-
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, MasterDetailActivity.class);
+                intent.putExtra("teacherId",list.get(position).getId());
+                context.startActivity(intent);
+            }
+        });
     }
 
 

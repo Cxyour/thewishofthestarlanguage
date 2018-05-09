@@ -25,8 +25,8 @@ public class IntelligentScreePresenterImp implements IntelligentScreeContarct.pr
 
     @Override
     public void loadMostEavesdeopp() {
-        HashMap<String, String> parmas= new HashMap<>();
-        parmas.put("sortord","1");
+        HashMap<String, Integer> parmas= new HashMap<>();
+        parmas.put("sortord",1);
         mostEaveModel.loadMostBean(parmas)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())

@@ -16,7 +16,10 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.ImageViewTarget;
 import com.example.lenovo.thewishofthestarlanguage.R;
+import com.example.lenovo.thewishofthestarlanguage.contact.IPersonalContract;
 import com.example.lenovo.thewishofthestarlanguage.model.config.Constant;
+import com.example.lenovo.thewishofthestarlanguage.model.entity.MyBean;
+import com.example.lenovo.thewishofthestarlanguage.presenter.PersonalPresenterImp;
 import com.example.lenovo.thewishofthestarlanguage.view.base.BaseFragment;
 import com.example.lenovo.thewishofthestarlanguage.view.personal.activity.LoginActivity;
 import com.example.lenovo.thewishofthestarlanguage.view.personal.activity.RegisterActivity;
@@ -29,7 +32,7 @@ import com.example.lenovo.thewishofthestarlanguage.view.personal.activity.Myself
 import com.example.lenovo.thewishofthestarlanguage.view.personal.activity.MyOrderActivity;
 import com.example.lenovo.thewishofthestarlanguage.view.ui.MessageActivity;
 
-public class PersonalFragment extends BaseFragment implements View.OnClickListener {
+public class PersonalFragment extends BaseFragment implements View.OnClickListener, IPersonalContract.IPersonalView {
 
 
     private Intent intent;
@@ -217,20 +220,13 @@ public class PersonalFragment extends BaseFragment implements View.OnClickListen
     @Override
     public void onResume() {
         super.onResume();
+        PersonalPresenterImp personalPresenterImp = new PersonalPresenterImp(this);
+        personalPresenterImp.loadMyBean(preferences.getInt("user_id", 0));
         if (preferences.getBoolean("isLogin", false)) {
             home_myselft_fragment_nologin_head.setVisibility(View.GONE);
             home_myselft_fragment_nologin_body.setVisibility(View.GONE);
             personal_myself_personal_message.setVisibility(View.VISIBLE);
             personal_login_message.setVisibility(View.VISIBLE);
-            Glide.with(this).load(preferences.getString("photo", "")).asBitmap().into(new ImageViewTarget<Bitmap>(personal_myself_icon) {
-                @Override
-                protected void setResource(Bitmap bitmap) {
-                    RoundedBitmapDrawable drawable = RoundedBitmapDrawableFactory.create(getResources(), bitmap);
-                    drawable.setCircular(true);
-                    personal_myself_icon.setBackground(drawable);
-                }
-            });
-            personal_myself_nickName.setText(preferences.getString("nickname", ""));
         } else {
             home_myselft_fragment_nologin_head.setVisibility(View.VISIBLE);
             home_myselft_fragment_nologin_body.setVisibility(View.VISIBLE);
@@ -239,4 +235,24 @@ public class PersonalFragment extends BaseFragment implements View.OnClickListen
         }
     }
 
+    @Override
+    public void showMyBean(MyBean myBean) {
+        //帖子
+        personal_myself_post_count.setText(String.valueOf(myBean.getData().getArtcircleCount()));
+        //关注
+        personal_myself_follow_count.setText(String.valueOf(myBean.getData().getAttentionCount()));
+        //粉丝
+        personal_myself_fans_count.setText(String.valueOf(myBean.getData().getFansCount()));
+        //作品
+        personal_myself_works_count.setText(String.valueOf(myBean.getData().getHomewokCount()));
+        Glide.with(this).load(myBean.getData().getPhoto()).asBitmap().into(new ImageViewTarget<Bitmap>(personal_myself_icon) {
+            @Override
+            protected void setResource(Bitmap bitmap) {
+                RoundedBitmapDrawable drawable = RoundedBitmapDrawableFactory.create(getResources(), bitmap);
+                drawable.setCircular(true);
+                personal_myself_icon.setBackground(drawable);
+            }
+        });
+        personal_myself_nickName.setText(myBean.getData().getNickname());
+    }
 }

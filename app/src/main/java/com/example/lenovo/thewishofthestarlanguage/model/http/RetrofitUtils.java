@@ -248,5 +248,4 @@ public class RetrofitUtils {
         return retrofit.create(FansService.class);
     }
 
-
 }

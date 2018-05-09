@@ -1,9 +1,12 @@
 package com.example.lenovo.thewishofthestarlanguage.view.personal.adapter;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -15,10 +18,19 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.ImageViewTarget;
 import com.example.lenovo.thewishofthestarlanguage.R;
+import com.example.lenovo.thewishofthestarlanguage.model.biz.FollowService;
 import com.example.lenovo.thewishofthestarlanguage.model.config.App;
+import com.example.lenovo.thewishofthestarlanguage.model.config.Constant;
 import com.example.lenovo.thewishofthestarlanguage.model.entity.FansBean;
+import com.example.lenovo.thewishofthestarlanguage.model.entity.SaveBean;
+import com.example.lenovo.thewishofthestarlanguage.model.http.RetrofitUtils;
 
 import java.util.List;
+
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
 
 /**
  * Created by Lenovo on 2018/5/9.
@@ -27,10 +39,14 @@ import java.util.List;
 public class FansListAdapter extends BaseAdapter {
 
     private List<FansBean.DataBean.ListBean> listBeans;
-
+    private final SharedPreferences user;
+    private final SharedPreferences.Editor edit;
+    private final FollowService followService;
 
     public FansListAdapter(List<FansBean.DataBean.ListBean> listBeans) {
-
+        user = App.context.getSharedPreferences(Constant.CookieSP, Context.MODE_PRIVATE);
+        edit = user.edit();
+        followService = RetrofitUtils.getInstance().getFollowService();
         this.listBeans = listBeans;
     }
 
@@ -69,10 +85,59 @@ public class FansListAdapter extends BaseAdapter {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     finalHolder.follow_item_btn.setText("已关注");
-                    finalHolder.follow_item_btn.setBackgroundColor(Color.parseColor("#ffffff"));
+
+                    followService.follow(listBeans.get(position).getFansId(), user.getInt("user_id", 0))
+                            .subscribeOn(Schedulers.newThread())
+                            .observeOn(AndroidSchedulers.mainThread())
+                            .subscribe(new Observer<SaveBean>() {
+                                @Override
+                                public void onSubscribe(Disposable d) {
+                                    Log.e("-------------------", d.toString());
+                                }
+
+                                @Override
+                                public void onNext(SaveBean saveBean) {
+                                    Log.e("-------------------", saveBean.getMessage());
+                                }
+
+                                @Override
+                                public void onError(Throwable e) {
+                                    Log.e("-------------------", e.getMessage().toString());
+                                }
+
+                                @Override
+                                public void onComplete() {
+
+                                }
+                            });
+
                 } else {
                     finalHolder.follow_item_btn.setText("关注");
-                    finalHolder.follow_item_btn.setBackgroundColor(Color.parseColor("#0000ff"));
+                    followService.abolishConcern(listBeans.get(position).getFansId(), user.getInt("user_id", 0))
+                            .subscribeOn(Schedulers.newThread())
+                            .observeOn(AndroidSchedulers.mainThread())
+                            .subscribe(new Observer<SaveBean>() {
+                                @Override
+                                public void onSubscribe(Disposable d) {
+                                    Log.e("-------------------", d.toString());
+                                }
+
+                                @Override
+                                public void onNext(SaveBean saveBean) {
+                                    Log.e("-------------------", saveBean.getMessage());
+
+                                }
+
+                                @Override
+                                public void onError(Throwable e) {
+                                    Log.e("-------------------", e.getMessage().toString());
+                                }
+
+                                @Override
+                                public void onComplete() {
+
+                                }
+                            });
                 }
             }
         });

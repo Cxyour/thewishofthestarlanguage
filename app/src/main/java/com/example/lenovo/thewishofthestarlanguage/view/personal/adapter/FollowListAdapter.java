@@ -84,34 +84,6 @@ public class FollowListAdapter extends BaseAdapter {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     finalHolder.follow_item_btn.setText("已关注");
-                    followService.abolishConcern(listBeans.get(position).getAttentionId(), user.getInt("user_id", 0))
-                            .subscribeOn(Schedulers.newThread())
-                            .observeOn(AndroidSchedulers.mainThread())
-                            .subscribe(new Observer<SaveBean>() {
-                                @Override
-                                public void onSubscribe(Disposable d) {
-                                    Log.e("-------------------", d.toString());
-                                }
-
-                                @Override
-                                public void onNext(SaveBean saveBean) {
-                                    Log.e("-------------------", saveBean.getMessage());
-
-                                }
-
-                                @Override
-                                public void onError(Throwable e) {
-                                    Log.e("-------------------", e.getMessage().toString());
-                                }
-
-                                @Override
-                                public void onComplete() {
-
-                                }
-                            });
-                    finalHolder.follow_item_btn.setBackgroundColor(Color.parseColor("#ffffff"));
-                } else {
-                    finalHolder.follow_item_btn.setText("关注");
                     followService.follow(listBeans.get(position).getAttentionId(), user.getInt("user_id", 0))
                             .subscribeOn(Schedulers.newThread())
                             .observeOn(AndroidSchedulers.mainThread())
@@ -137,7 +109,34 @@ public class FollowListAdapter extends BaseAdapter {
                                 }
                             });
 
-                    finalHolder.follow_item_btn.setBackgroundColor(Color.parseColor("#0000ff"));
+                } else {
+                    finalHolder.follow_item_btn.setText("关注");
+                    followService.abolishConcern(listBeans.get(position).getAttentionId(), user.getInt("user_id", 0))
+                            .subscribeOn(Schedulers.newThread())
+                            .observeOn(AndroidSchedulers.mainThread())
+                            .subscribe(new Observer<SaveBean>() {
+                                @Override
+                                public void onSubscribe(Disposable d) {
+                                    Log.e("-------------------", d.toString());
+                                }
+
+                                @Override
+                                public void onNext(SaveBean saveBean) {
+                                    Log.e("-------------------", saveBean.getMessage());
+
+                                }
+
+                                @Override
+                                public void onError(Throwable e) {
+                                    Log.e("-------------------", e.getMessage().toString());
+                                }
+
+                                @Override
+                                public void onComplete() {
+
+                                }
+                            });
+
                 }
             }
         });

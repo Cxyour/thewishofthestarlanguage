@@ -1,10 +1,12 @@
 package com.example.lenovo.thewishofthestarlanguage.model.entity;
 
+import java.io.Serializable;
+
 /**
  * Created by Lenovo on 2018/5/8.
  */
 
-public class UserSuccessBean {
+public class UserSuccessBean implements Serializable {
 
     /**
      * code : 0

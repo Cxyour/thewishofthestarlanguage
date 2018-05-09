@@ -1,26 +1,25 @@
 package com.example.lenovo.thewishofthestarlanguage.view.preview.fragment;
 
 import android.app.DatePickerDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.DatePicker;
-import android.widget.EditText;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.example.lenovo.thewishofthestarlanguage.R;
-import com.example.lenovo.thewishofthestarlanguage.contact.PreviewContract;
+import com.example.lenovo.thewishofthestarlanguage.contact.IPreviewContract;
 import com.example.lenovo.thewishofthestarlanguage.model.entity.PreviewBean;
 import com.example.lenovo.thewishofthestarlanguage.presenter.PreviewPresenterImp;
 import com.example.lenovo.thewishofthestarlanguage.view.base.BaseFragment;
 import com.example.lenovo.thewishofthestarlanguage.view.preview.adapter.PreviewAdapter;
-import com.example.lenovo.thewishofthestarlanguage.view.ui.MainActivity;
 import com.wuxiaolong.pullloadmorerecyclerview.PullLoadMoreRecyclerView;
 
 import java.util.Calendar;
@@ -29,7 +28,7 @@ import java.util.List;
 /**
  *
  */
-public class PreviewFragment extends BaseFragment implements PreviewContract.view {
+public class PreviewFragment extends BaseFragment implements IPreviewContract.view {
     private PullLoadMoreRecyclerView preview_recycle;
     private CheckBox preview_cb_time_screen;
     private View inflate;
@@ -39,6 +38,7 @@ public class PreviewFragment extends BaseFragment implements PreviewContract.vie
     public TextView popup_end_time;
     public TextView popup_start_time;
     private PreviewPresenterImp previewPresenter;
+    private Dialog dialog;
 
     @Override
     protected int getLayoutId() {
@@ -85,6 +85,15 @@ public class PreviewFragment extends BaseFragment implements PreviewContract.vie
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     preview_cb_time_screen.setText("取消");
+//                    dialog = new Dialog(getContext());
+//                    dialog.setContentView(inflate);
+//                    dialog.show();
+//                    dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+//                        @Override
+//                        public void onDismiss(DialogInterface dialog) {
+//                            preview_cb_time_screen.setText("时间筛选");
+//                        }
+//                    });
                     popupWindow = new PopupWindow(inflate, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT, false);
                     popupWindow.setOutsideTouchable(true);
                     popupWindow.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#ffffff")));
@@ -131,7 +140,7 @@ public class PreviewFragment extends BaseFragment implements PreviewContract.vie
         preview_recycle.setAdapter(previewAdapter);
     }
 
-    protected void showDatePickDlg(final TextView textView) {
+    private void showDatePickDlg(final TextView textView) {
         Calendar calendar = Calendar.getInstance();
         DatePickerDialog datePickerDialog = new DatePickerDialog(getContext(), new DatePickerDialog.OnDateSetListener() {
             @Override
@@ -140,7 +149,6 @@ public class PreviewFragment extends BaseFragment implements PreviewContract.vie
             }
         }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
         datePickerDialog.show();
-
 
     }
 }

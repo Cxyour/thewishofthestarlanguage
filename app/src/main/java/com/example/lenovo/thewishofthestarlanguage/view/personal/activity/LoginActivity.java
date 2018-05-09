@@ -6,10 +6,15 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v7.app.AlertDialog;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
+import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -26,11 +31,14 @@ import com.example.lenovo.thewishofthestarlanguage.model.entity.UserBean;
 import com.example.lenovo.thewishofthestarlanguage.model.entity.UserSuccessBean;
 import com.example.lenovo.thewishofthestarlanguage.presenter.LoginPresenterImp;
 import com.example.lenovo.thewishofthestarlanguage.view.base.BaseActivity;
+import com.example.lenovo.thewishofthestarlanguage.view.ui.ContainerActivity;
 
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
-public class LoginActivity extends BaseActivity implements View.OnClickListener, ILoginContract.ILoginView, View.OnFocusChangeListener {
+public class LoginActivity extends BaseActivity implements View.OnClickListener, ILoginContract.ILoginView {
 
     private TextView login_goto_weixin;
     private TextView login_goto_qq;
@@ -65,11 +73,48 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
         login_login = (Button) findViewById(R.id.login_login);
         login_close = (TextView) findViewById(R.id.login_close);
         login_register = (TextView) findViewById(R.id.login_register);
-        login_username.setOnFocusChangeListener(this);
-        login_password.setOnFocusChangeListener(this);
+        login_username.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (s.toString().trim().length() != 0) {
+                    login_close_username.setVisibility(View.VISIBLE);
+                } else {
+                    login_close_username.setVisibility(View.GONE);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        login_password.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (s.toString().trim().length() != 0) {
+                    login_close_password.setVisibility(View.VISIBLE);
+                } else {
+                    login_close_password.setVisibility(View.GONE);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
         login_close_username.setOnClickListener(this);
         login_close_password.setOnClickListener(this);
-
         login_register.setOnClickListener(this);
         login_login.setOnClickListener(this);
         login_close.setOnClickListener(this);
@@ -101,7 +146,6 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                 login_password.setText("");
                 break;
             case R.id.login_close:
-
                 finish();
                 break;
             case R.id.login_forget_password:
@@ -121,40 +165,24 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
 
     @Override
     public void showLoginMessage(UserSuccessBean userSuccessBean) {
+        Log.e("--========-", String.valueOf(userSuccessBean.getData().getId()));
         if (userSuccessBean.getMessage().equals("成功")) {
             SharedPreferences user = getSharedPreferences(Constant.CookieSP, Context.MODE_PRIVATE);
             SharedPreferences.Editor edit = user.edit();
             edit.putBoolean("isLogin", true);
-            edit.putString(Constant.User_mobile, userSuccessBean.getData().getMobile());
-            edit.putString(Constant.User_name, userSuccessBean.getData().getNickname());
-            edit.putString(Constant.User_icon, userSuccessBean.getData().getPhoto());
-            edit.putInt(Constant.UserId, userSuccessBean.getData().getId());
+            edit.putString("mobile", userSuccessBean.getData().getMobile());
+            edit.putString("nickname", userSuccessBean.getData().getNickname());
+            edit.putString("photo", userSuccessBean.getData().getPhoto());
+            edit.putInt("user_id", userSuccessBean.getData().getId());
+            edit.putString("address", (String) userSuccessBean.getData().getAddress());
+            edit.putLong("birthday", userSuccessBean.getData().getBirthday());
+            edit.putInt("sex", userSuccessBean.getData().getSex());
             edit.commit();
             finish();
         } else {
             Toast.makeText(this, userSuccessBean.getMessage(), Toast.LENGTH_SHORT).show();
         }
 
-    }
-
-    @Override
-    public void onFocusChange(View v, boolean hasFocus) {
-        switch (v.getId()) {
-            case R.id.login_username:
-                if (hasFocus) {
-                    login_close_username.setVisibility(View.VISIBLE);
-                } else {
-                    login_close_username.setVisibility(View.GONE);
-                }
-                break;
-            case R.id.login_password:
-                if (hasFocus) {
-                    login_close_password.setVisibility(View.VISIBLE);
-                } else {
-                    login_close_password.setVisibility(View.GONE);
-                }
-                break;
-        }
     }
 
 }

@@ -8,6 +8,7 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.provider.MediaStore;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.view.View;
@@ -16,6 +17,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.ImageViewTarget;
@@ -23,15 +25,16 @@ import com.example.lenovo.thewishofthestarlanguage.R;
 import com.example.lenovo.thewishofthestarlanguage.contact.IPerFectInforMationContact;
 import com.example.lenovo.thewishofthestarlanguage.model.config.Constant;
 import com.example.lenovo.thewishofthestarlanguage.model.entity.PerFectInforBean;
-import com.example.lenovo.thewishofthestarlanguage.presenter.IPerFectInforPresenterImp;
+import com.example.lenovo.thewishofthestarlanguage.presenter.PerFectInforPresenterImp;
 import com.example.lenovo.thewishofthestarlanguage.view.base.BaseActivity;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class PerfectInformationActivity extends BaseActivity implements View.OnClickListener,IPerFectInforMationContact.IPerFectInlView {
+public class PerfectInformationActivity extends BaseActivity implements View.OnClickListener, IPerFectInforMationContact.IPerFectInlView {
 
     private ImageView perfect_information_return;
     private ImageView perfect_information_album;
@@ -44,13 +47,16 @@ public class PerfectInformationActivity extends BaseActivity implements View.OnC
     private EditText perfect_information_password;
     private ImageView perfect_information_close_password;
     private Button perfect_information_finish;
-    private String sex;
-    String imageId_xiangCe;
-    Uri uri_xiangCe;
+    private int sex;
+    private String imageId_xiangCe;
+    private Uri uri_xiangCe;
     private static final int PHOTO_REQUEST_GALLERY = 2;
     private static final int PHOTO_REQUEST_CUT = 3;
-    private File tempFile = new File(Environment.getExternalStorageDirectory(),
-            getPhotoFileName());
+    private PerFectInforPresenterImp iPerFectInforPresenter;
+    private File image_file;
+    private Intent intent;
+    private SharedPreferences user;
+    private SharedPreferences.Editor edit;
 
     @Override
     protected int getLayoutId() {
@@ -73,21 +79,26 @@ public class PerfectInformationActivity extends BaseActivity implements View.OnC
         perfect_information_password = findViewById(R.id.perfect_information_password);
         perfect_information_close_password = findViewById(R.id.perfect_information_close_password);
         perfect_information_finish = findViewById(R.id.perfect_information_finish);
+        perfect_information_finish.setEnabled(true);
         perfect_information_finish.setOnClickListener(this);
         perfect_information_return.setOnClickListener(this);
     }
 
     @Override
     protected void loadData() {
+        user = getSharedPreferences(Constant.CookieSP, Context.MODE_PRIVATE);
+        edit = user.edit();
+        iPerFectInforPresenter = new PerFectInforPresenterImp(this);
 
     }
 
     // 使用系统当前日期加以调整作为照片的名称
-    private String getPhotoFileName() {
+    private File getPhotoFileName() {
         Date date = new Date(System.currentTimeMillis());
         SimpleDateFormat dateFormat = new SimpleDateFormat(
                 "'IMG'_yyyyMMdd_HHmmss");
-        return dateFormat.format(date) + ".jpg";
+//        MediaType.parse("multipart/form-data"), image_file
+        return new File(Environment.getExternalStorageDirectory() + File.separator + dateFormat.format(date) + ".jpg");
     }
 
     @Override
@@ -96,35 +107,35 @@ public class PerfectInformationActivity extends BaseActivity implements View.OnC
             case R.id.perfect_information_man:
                 perfect_information_man.setTextColor(Color.parseColor("#0000ff"));
                 perfect_information_women.setTextColor(Color.parseColor("#000000"));
-                sex = "男";
+                sex = 0;
                 break;
             case R.id.perfect_information_women:
                 perfect_information_man.setTextColor(Color.parseColor("#000000"));
                 perfect_information_women.setTextColor(Color.parseColor("#0000ff"));
-                sex = "女";
+                sex = 1;
                 break;
             case R.id.perfect_information_finish:
-                SharedPreferences user = getSharedPreferences(Constant.CookieSP, Context.MODE_PRIVATE);
-                SharedPreferences.Editor edit = user.edit();
-                edit.putString(Constant.User_name, perfect_information_name.getText().toString().trim());
-                edit.putString(Constant.User_sex, sex);
-                edit.putString(Constant.User_icon, tempFile.getAbsolutePath());
-                edit.putString(Constant.User_pass, perfect_information_password.getText().toString().trim());
+//                iPerFectInforPresenter.loadBitmapUrl(getPhotoFileName());
+                edit.putString("nickname", perfect_information_name.getText().toString().trim());
+                edit.putString("photo", getPhotoFileName().getAbsolutePath());
+                edit.putString("pass", perfect_information_password.getText().toString().trim());
+                edit.putInt("sex", sex);
+                iPerFectInforPresenter.loadIperFectMsg(perfect_information_name.getText().toString().trim(), sex, getPhotoFileName().getAbsolutePath(), user.getString("mobile", ""), perfect_information_password.getText().toString().trim());
+                intent = new Intent(this, LoveActivity.class);
+                startActivity(intent);
+                finish();
                 break;
 
             case R.id.perfect_information_album:
-                Intent i = new Intent(Intent.ACTION_PICK,
-                        android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                startActivityForResult(i, 100);
+                intent = new Intent(Intent.ACTION_PICK,
+                        MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                startActivityForResult(intent, 100);
                 break;
             case R.id.perfect_information_return:
-                IPerFectInforPresenterImp iPerFectInforPresenter = new IPerFectInforPresenterImp(this);
-
                 String nikename = perfect_information_name.getText().toString().trim();
                 String pas = perfect_information_password.getText().toString().trim();
-                Intent intent = getIntent();
+                intent = getIntent();
                 String phone = intent.getStringExtra("phone");
-         //       iPerFectInforPresenter.loadIperFectMsg(nikename,sex,,phone,pas);
                 finish();
                 break;
         }
@@ -142,7 +153,7 @@ public class PerfectInformationActivity extends BaseActivity implements View.OnC
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             photo.compress(Bitmap.CompressFormat.JPEG, 100, baos);
             byte[] datas = baos.toByteArray();
-
+            System.out.println("Make Picture success,Please find image in " + "D://Android//ShiXun//a.jpg");
             Glide.with(this).load(datas)
                     .asBitmap()
                     .into(new ImageViewTarget<Bitmap>(perfect_information_album) {
@@ -154,7 +165,7 @@ public class PerfectInformationActivity extends BaseActivity implements View.OnC
                         }
                     });
 
-//            perfect_information_album.setImageBitmap(photo);
+
         }
         switch (requestCode) {
             case PHOTO_REQUEST_GALLERY:
@@ -171,12 +182,18 @@ public class PerfectInformationActivity extends BaseActivity implements View.OnC
     private void startPhotoZoom(Uri uri) {
         Intent intent = new Intent("com.android.camera.action.CROP");
         intent.setDataAndType(uri, "image/*");
+        // crop为true是设置在开启的intent中设置显示的view可以剪裁
         intent.putExtra("crop", "true");
+        // aspectX aspectY 是宽高的比例
         intent.putExtra("aspectX", 1);
         intent.putExtra("aspectY", 1);
-        intent.putExtra("outputX", 300);
-        intent.putExtra("outputY", 300);
+        // outputX,outputY 是剪裁图片的宽高
+        intent.putExtra("outputX", 160);
+        intent.putExtra("outputY", 160);
         intent.putExtra("return-data", true);
+        image_file = getPhotoFileName();
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(image_file));
+        intent.putExtra("outputFormat", Bitmap.CompressFormat.JPEG.toString());
         intent.putExtra("noFaceDetection", true);
         startActivityForResult(intent, PHOTO_REQUEST_CUT);
     }
@@ -188,6 +205,16 @@ public class PerfectInformationActivity extends BaseActivity implements View.OnC
             ByteArrayOutputStream bao = new ByteArrayOutputStream();
             photo.compress(Bitmap.CompressFormat.JPEG, 100, bao);
             byte[] datas = bao.toByteArray();
+            try {
+                File file = new File("D://Android//ShiXun//a.jpg");
+                FileOutputStream imageOutput = new FileOutputStream(file);
+                imageOutput.write(datas, 0, datas.length);
+                imageOutput.close();
+                System.out.println("Make Picture success,Please find image in " + "D://Android//ShiXun//a.jpg");
+            } catch (Exception ex) {
+                System.out.println("Exception: " + ex);
+                ex.printStackTrace();
+            }
             if (photo == null) {
                 perfect_information_album.setImageResource(R.mipmap.ic_launcher);
             } else {
@@ -201,13 +228,13 @@ public class PerfectInformationActivity extends BaseActivity implements View.OnC
                                 perfect_information_album.setBackground(drawable);
                             }
                         });
-//                perfect_information_album.setImageBitmap(photo);
             }
             ByteArrayOutputStream baos = null;
             try {
                 baos = new ByteArrayOutputStream();
                 photo.compress(Bitmap.CompressFormat.JPEG, 100, baos);
                 byte[] photodata = baos.toByteArray();
+
                 System.out.println(photodata.toString());
             } catch (Exception e) {
                 e.getStackTrace();
@@ -239,6 +266,14 @@ public class PerfectInformationActivity extends BaseActivity implements View.OnC
 
     @Override
     public void showIperFect(PerFectInforBean responseBody) {
+        edit.putString("mobile", responseBody.getData().getMobile());
+        edit.putString("nickname", responseBody.getData().getNickname());
+        edit.putString("photo", responseBody.getData().getPhoto());
+        edit.putInt("user_id", responseBody.getData().getId());
+    }
+
+    @Override
+    public void showBitmapUrl(String url) {
 
     }
 }

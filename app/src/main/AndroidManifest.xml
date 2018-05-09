@@ -34,11 +34,15 @@
             android:label="@string/title_activity_preview_details"
             android:theme="@style/AppTheme" />
         <activity android:name=".view.preview.activity.PrevieDetailsActivity" />
-        <activity android:name=".view.famousteacher.activity.OperationDetailsActivity" />
-        <activity android:name=".view.famousteacher.activity.LiveingActivity" />
-        <activity android:name=".view.famousteacher.activity.LiveDetailsActivity" />
-        <activity android:name=".view.famousteacher.activity.FamousTeacherActivity" />
-        <activity android:name=".view.famousteacher.activity.MasterDetailActivity"></activity>
+        <activity android:name=".view.personal.activity.MyselfMessageActivity" />
+        <activity android:name=".view.personal.activity.ChangeNickNameActivity" />
+        <activity android:name=".view.personal.activity.ChangeAddressActivity" />
+        <activity android:name=".view.ui.MessageActivity" />
+        <activity android:name=".view.personal.activity.WorksActivity" />
+        <activity android:name=".view.personal.activity.PostActivity" />
+        <activity android:name=".view.personal.activity.FollowActivity" />
+        <activity android:name=".view.personal.activity.FansActivity" />
+        <activity android:name=".view.personal.activity.MyOrderActivity"></activity>
     </application>
 
 </manifest>

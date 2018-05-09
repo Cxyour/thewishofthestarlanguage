@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="80dp">
+
+    <ImageView
+        android:id="@+id/follow_item_img"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_margin="10dp"
+        android:background="@mipmap/ic_launcher" />
+
+    <CheckBox
+        android:id="@+id/follow_item_btn"
+        android:layout_width="70dp"
+        android:layout_height="30dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/follow_check_bg"
+        android:button="@null"
+        android:checked="true"
+        android:gravity="center"
+        android:text="已关注"
+        android:textSize="15sp" />
+
+    <TextView
+        android:id="@+id/follow_item_nickname"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_toLeftOf="@+id/follow_item_btn"
+        android:layout_toRightOf="@+id/follow_item_img"
+        android:gravity="center_vertical"
+        android:text="大爷"
+        android:textColor="#000000"
+        android:textSize="20sp" />
+
+</RelativeLayout>

@@ -4,14 +4,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
-import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
-import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -21,13 +16,23 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.ImageViewTarget;
 import com.example.lenovo.thewishofthestarlanguage.R;
+import com.example.lenovo.thewishofthestarlanguage.contact.IPersonalContract;
 import com.example.lenovo.thewishofthestarlanguage.model.config.Constant;
+import com.example.lenovo.thewishofthestarlanguage.model.entity.MyBean;
+import com.example.lenovo.thewishofthestarlanguage.presenter.PersonalPresenterImp;
 import com.example.lenovo.thewishofthestarlanguage.view.base.BaseFragment;
 import com.example.lenovo.thewishofthestarlanguage.view.personal.activity.LoginActivity;
 import com.example.lenovo.thewishofthestarlanguage.view.personal.activity.RegisterActivity;
 import com.example.lenovo.thewishofthestarlanguage.view.personal.activity.SetActivity;
+import com.example.lenovo.thewishofthestarlanguage.view.personal.activity.FansActivity;
+import com.example.lenovo.thewishofthestarlanguage.view.personal.activity.FollowActivity;
+import com.example.lenovo.thewishofthestarlanguage.view.personal.activity.PostActivity;
+import com.example.lenovo.thewishofthestarlanguage.view.personal.activity.WorksActivity;
+import com.example.lenovo.thewishofthestarlanguage.view.personal.activity.MyselfMessageActivity;
+import com.example.lenovo.thewishofthestarlanguage.view.personal.activity.MyOrderActivity;
+import com.example.lenovo.thewishofthestarlanguage.view.ui.MessageActivity;
 
-public class PersonalFragment extends BaseFragment implements View.OnClickListener {
+public class PersonalFragment extends BaseFragment implements View.OnClickListener, IPersonalContract.IPersonalView {
 
 
     private Intent intent;
@@ -69,6 +74,8 @@ public class PersonalFragment extends BaseFragment implements View.OnClickListen
     private RelativeLayout personal_myself_authentication;
     private LinearLayout personal_login_message;
     private SharedPreferences preferences;
+    private int id;
+    private SharedPreferences.Editor edit;
 
     @Override
     protected int getLayoutId() {
@@ -118,11 +125,23 @@ public class PersonalFragment extends BaseFragment implements View.OnClickListen
         home_myselft_register_btn.setOnClickListener(this);
         home_myselft_login_btn.setOnClickListener(this);
         home_myselft_fragment_message.setOnClickListener(this);
+        personal_myself_message.setOnClickListener(this);
+
+        personal_myself_works.setOnClickListener(this);
+        personal_myself_post.setOnClickListener(this);
+        personal_myself_follow.setOnClickListener(this);
+        personal_myself_fans.setOnClickListener(this);
+
+        personal_myself_substitute_payment.setOnClickListener(this);
+        personal_myself_substitute_for_use.setOnClickListener(this);
+        personal_myself_substitute_for_return.setOnClickListener(this);
+        personal_myself_my_order.setOnClickListener(this);
     }
 
     @Override
     protected void loadData() {
         preferences = getActivity().getSharedPreferences(Constant.CookieSP, Context.MODE_PRIVATE);
+        edit = preferences.edit();
     }
 
     @Override
@@ -146,27 +165,68 @@ public class PersonalFragment extends BaseFragment implements View.OnClickListen
                 }
                 break;
 
+            case R.id.personal_myself_message:
+                intent = new Intent(getContext(), MyselfMessageActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.home_myselft_fragment_message:
+                if (preferences.getBoolean("isLogin", false)) {
+                    intent = new Intent(getContext(), MessageActivity.class);
+                    startActivity(intent);
+                } else {
+                    intent = new Intent(getContext(), LoginActivity.class);
+                    startActivity(intent);
+                }
+                break;
+            case R.id.personal_myself_works:
+                intent = new Intent(getContext(), WorksActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.personal_myself_post:
+                intent = new Intent(getContext(), PostActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.personal_myself_follow:
+                intent = new Intent(getContext(), FollowActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.personal_myself_fans:
+                intent = new Intent(getContext(), FansActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.personal_myself_substitute_payment:
+                intent = new Intent(getContext(), MyOrderActivity.class);
+                intent.putExtra("position", 1);
+                startActivity(intent);
+                break;
+            case R.id.personal_myself_substitute_for_use:
+                intent = new Intent(getContext(), MyOrderActivity.class);
+                intent.putExtra("position", 2);
+                startActivity(intent);
+                break;
+            case R.id.personal_myself_substitute_for_return:
+                intent = new Intent(getContext(), MyOrderActivity.class);
+                intent.putExtra("position", 3);
+                startActivity(intent);
+                break;
+            case R.id.personal_myself_my_order:
+                intent = new Intent(getContext(), MyOrderActivity.class);
+                intent.putExtra("position", 0);
+                startActivity(intent);
+                break;
         }
     }
 
     @Override
     public void onResume() {
         super.onResume();
+        PersonalPresenterImp personalPresenterImp = new PersonalPresenterImp(this);
+        personalPresenterImp.loadMyBean(preferences.getInt("user_id", 0));
         if (preferences.getBoolean("isLogin", false)) {
             home_myselft_fragment_nologin_head.setVisibility(View.GONE);
             home_myselft_fragment_nologin_body.setVisibility(View.GONE);
             personal_myself_personal_message.setVisibility(View.VISIBLE);
             personal_login_message.setVisibility(View.VISIBLE);
-            Glide.with(this).load(preferences.getString(Constant.User_icon, "")).asBitmap().into(new ImageViewTarget<Bitmap>(personal_myself_icon) {
-                @Override
-                protected void setResource(Bitmap bitmap) {
-                    RoundedBitmapDrawable drawable = RoundedBitmapDrawableFactory.create(getResources(), bitmap);
-                    drawable.setCircular(true);
-                    personal_myself_icon.setBackground(drawable);
-
-                }
-            });
-            personal_myself_nickName.setText(preferences.getString(Constant.User_name, ""));
         } else {
             home_myselft_fragment_nologin_head.setVisibility(View.VISIBLE);
             home_myselft_fragment_nologin_body.setVisibility(View.VISIBLE);
@@ -175,4 +235,24 @@ public class PersonalFragment extends BaseFragment implements View.OnClickListen
         }
     }
 
+    @Override
+    public void showMyBean(MyBean myBean) {
+        //帖子
+        personal_myself_post_count.setText(String.valueOf(myBean.getData().getArtcircleCount()));
+        //关注
+        personal_myself_follow_count.setText(String.valueOf(myBean.getData().getAttentionCount()));
+        //粉丝
+        personal_myself_fans_count.setText(String.valueOf(myBean.getData().getFansCount()));
+        //作品
+        personal_myself_works_count.setText(String.valueOf(myBean.getData().getHomewokCount()));
+        Glide.with(this).load(myBean.getData().getPhoto()).asBitmap().into(new ImageViewTarget<Bitmap>(personal_myself_icon) {
+            @Override
+            protected void setResource(Bitmap bitmap) {
+                RoundedBitmapDrawable drawable = RoundedBitmapDrawableFactory.create(getResources(), bitmap);
+                drawable.setCircular(true);
+                personal_myself_icon.setBackground(drawable);
+            }
+        });
+        personal_myself_nickName.setText(myBean.getData().getNickname());
+    }
 }

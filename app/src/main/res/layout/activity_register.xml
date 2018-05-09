@@ -1,152 +1,102 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#eeeeee"
+    android:background="#ffffff"
+    android:orientation="vertical"
     android:padding="25dp"
     tools:context=".view.personal.activity.RegisterActivity">
 
 
-    <LinearLayout
-        android:id="@+id/other_register"
-        android:layout_width="match_parent"
+    <ImageView
+        android:id="@+id/register_close"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:orientation="vertical">
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/register_hinttext"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                android:text="其他注册方式"
-                android:textColor="#333333"
-                android:textSize="18sp" />
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_toLeftOf="@+id/register_hinttext"
-                android:background="@drawable/bg_text"
-                android:scaleType="fitXY" />
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_toRightOf="@+id/register_hinttext"
-                android:background="@drawable/bg_text"
-                android:scaleType="fitXY" />
-        </RelativeLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:orientation="horizontal"
-            android:weightSum="3">
-
-            <TextView
-                android:id="@+id/register_goto_weixin"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:drawablePadding="10dp"
-                android:drawableTop="@mipmap/weixin"
-                android:gravity="center"
-                android:text="微信" />
-
-            <TextView
-                android:id="@+id/register_goto_qq"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:drawablePadding="10dp"
-                android:drawableTop="@mipmap/qq"
-                android:gravity="center"
-                android:text="QQ" />
-
-            <TextView
-                android:id="@+id/register_goto_sina"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:drawablePadding="10dp"
-                android:drawableTop="@mipmap/weibo"
-                android:gravity="center"
-                android:text="微博" />
-        </LinearLayout>
-    </LinearLayout>
+        android:layout_alignParentLeft="true"
+        android:background="@mipmap/activity_return" />
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
         android:layout_above="@+id/other_register"
+        android:layout_gravity="center"
         android:gravity="center"
         android:orientation="vertical">
+
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
             android:text="输入手机号，快速注册"
-            android:textColor="#000000"
-            android:textSize="20sp" />
-
+            android:textColor="#222222"
+            android:textSize="15sp" />
 
         <EditText
             android:id="@+id/register_username"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:layout_marginTop="30dp"
-            android:background="@drawable/bg_edittext"
+            android:layout_marginTop="50dp"
+            android:background="@null"
             android:hint="手机号"
-            android:padding="10dp" />
+            android:paddingBottom="15dp"
+            android:paddingTop="15dp"
+            android:textSize="15sp" />
 
-
-        <RelativeLayout
+        <TextView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="2dp"
+            android:background="#dddddd" />
 
-            <EditText
-                android:id="@+id/register_password"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:layout_marginTop="15dp"
-                android:background="@drawable/bg_edittext"
-                android:hint="验证码"
-                android:padding="10dp" />
-
-            <Button
-                android:id="@+id/register_close_password"
-                android:layout_width="wrap_content"
-                android:layout_height="30dp"
-                android:layout_alignParentRight="true"
-                android:layout_centerInParent="true"
-                android:background="#ffffff"
-                android:text="获取验证码"
-                android:textColor="#0000ff" />
-        </RelativeLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="15dp"
+                android:paddingTop="15dp">
+
+                <EditText
+                    android:id="@+id/register_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:background="@null"
+                    android:hint="验证码"
+                    android:textSize="15sp" />
+
+
+                <Button
+                    android:id="@+id/register_close_password"
+                    android:layout_width="50dp"
+                    android:layout_height="30dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerInParent="true"
+                    android:background="#ffffff"
+                    android:gravity="center"
+                    android:text="获取验证码"
+                    android:textColor="#025efd"
+                    android:textSize="10sp" />
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="#dddddd" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
@@ -156,14 +106,16 @@
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
                 android:text="注册表示你同意"
-                android:textColor="#aaaaaa" />
+                android:textColor="#aaaaaa"
+                android:textSize="10sp" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
                 android:text="UnivStar服务使用协议"
-                android:textColor="#000000" />
+                android:textColor="#000000"
+                android:textSize="10sp" />
         </LinearLayout>
 
 
@@ -171,17 +123,52 @@
             android:id="@+id/register_register"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:background="#0000dd"
+            android:layout_marginTop="40dp"
+            android:background="#025efd"
             android:text="注册"
             android:textColor="#ffffff" />
     </LinearLayout>
 
-    <ImageView
-        android:id="@+id/register_close"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="180dp"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:background="@mipmap/activity_return" />
+        android:layout_gravity="center"
+        android:layout_marginTop="60dp"
+        android:orientation="horizontal"
+        android:weightSum="3">
 
-</RelativeLayout>
+        <TextView
+            android:id="@+id/register_goto_weixin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:drawablePadding="10dp"
+            android:drawableTop="@mipmap/weixin"
+            android:gravity="center"
+            android:text="微信" />
+
+        <TextView
+            android:id="@+id/register_goto_qq"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:drawablePadding="10dp"
+            android:drawableTop="@mipmap/qq"
+            android:gravity="center"
+            android:text="QQ" />
+
+        <TextView
+            android:id="@+id/register_goto_sina"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:drawablePadding="10dp"
+            android:drawableTop="@mipmap/weibo"
+            android:gravity="center"
+            android:text="微博" />
+    </LinearLayout>
+
+</LinearLayout>

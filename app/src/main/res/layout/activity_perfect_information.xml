@@ -33,8 +33,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:paddingLeft="70dp"
-        android:paddingRight="70dp"
+        android:paddingLeft="120dp"
+        android:paddingRight="120dp"
         android:paddingTop="40dp">
 
         <RelativeLayout
@@ -47,10 +47,10 @@
                 android:id="@+id/perfect_information_album"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:scaleType="fitXY"
                 android:layout_centerInParent="true"
-                android:src="@drawable/home_myself_normal"
-                android:background="@drawable/bg_circle"/>
+                android:background="@drawable/bg_circle"
+                android:scaleType="fitXY"
+                android:src="@drawable/home_myself_normal" />
 
             <ImageView
                 android:id="@+id/perfect_information_camera"
@@ -61,31 +61,39 @@
                 android:background="@drawable/camera" />
         </RelativeLayout>
 
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp">
-
-            <EditText
-                android:id="@+id/perfect_information_name"
+            android:orientation="vertical">
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:background="@drawable/bg_edittext"
-                android:hint="请输入昵称"
-                android:padding="10dp" />
+                android:layout_marginTop="20dp">
 
-            <ImageView
-                android:id="@+id/perfect_information_close_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:background="@drawable/ed_close"
-                android:visibility="gone" />
+                <EditText
+                    android:id="@+id/perfect_information_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:background="@null"
+                    android:hint="请输入昵称"
+                    android:padding="15dp" />
 
-        </RelativeLayout>
+                <ImageView
+                    android:id="@+id/perfect_information_close_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/ed_close"
+                    android:visibility="gone" />
 
+            </RelativeLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="#dddddd"/>
+        </LinearLayout>
 
         <RadioGroup
             android:id="@+id/perfect_information_rg"
@@ -101,6 +109,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:button="@null"
+                android:checked="true"
+                android:drawableLeft="@drawable/rb_checked_man"
                 android:gravity="center"
                 android:text="我是男神"
                 android:textColor="#0000ee" />
@@ -111,41 +121,52 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:button="@null"
+                android:drawableLeft="@drawable/rb_checked_woman"
                 android:gravity="center"
                 android:text="我是女神" />
         </RadioGroup>
 
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <EditText
-                android:id="@+id/perfect_information_password"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:background="@drawable/bg_edittext"
-                android:hint="请输入密码"
-                android:inputType="textPassword"
-                android:padding="10dp" />
+                android:layout_height="wrap_content">
 
-            <ImageView
-                android:id="@+id/perfect_information_close_password"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:background="@drawable/ed_close"
-                android:visibility="gone" />
+                <EditText
+                    android:id="@+id/perfect_information_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:background="@null"
+                    android:hint="请输入密码"
+                    android:inputType="textPassword"
+                    android:padding="15dp" />
 
-        </RelativeLayout>
+                <ImageView
+                    android:id="@+id/perfect_information_close_password"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/ed_close"
+                    android:visibility="gone" />
+
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="#dddddd"/>
+        </LinearLayout>
 
         <Button
             android:id="@+id/perfect_information_finish"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="50dp"
-            android:background="#88aaff"
+            android:background="#86abf7"
             android:text="完成"
             android:textColor="#ffffff" />
 

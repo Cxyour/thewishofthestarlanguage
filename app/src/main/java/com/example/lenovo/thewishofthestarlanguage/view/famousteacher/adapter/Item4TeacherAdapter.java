@@ -143,6 +143,7 @@ public class Item4TeacherAdapter extends RecyclerView.Adapter<Item4TeacherAdapte
                 parmas.put("id", String.valueOf(id));
                 parmas.put("loginUserId", String.valueOf(xyxy_user_id));
                 parmas.put("type", "学生作业");
+
                 if (isLogin==true){
                     if (isChecked==true) {
                         famousTeacherPresenter.loadGoodBean(parmas);

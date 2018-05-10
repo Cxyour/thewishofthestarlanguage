@@ -5,11 +5,11 @@
 
     <ImageView
         android:id="@+id/follow_item_img"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
         android:layout_centerVertical="true"
         android:layout_margin="10dp"
-        android:background="@mipmap/ic_launcher" />
+        android:background="@mipmap/user_head_portrait" />
 
     <CheckBox
         android:id="@+id/follow_item_btn"

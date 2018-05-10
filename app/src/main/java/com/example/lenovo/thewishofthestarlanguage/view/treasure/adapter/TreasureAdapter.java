@@ -125,10 +125,10 @@ public class TreasureAdapter extends RecyclerView.Adapter<TreasureAdapter.Holder
                 int id = listBean.getId();
                 SharedPreferences sp = context.getSharedPreferences(Constant.CookieSP, Context.MODE_PRIVATE);
                 boolean isLogin = sp.getBoolean("isLogin", false);
-                int xyxy_user_id = sp.getInt("xyxy_user_id", 0);
+                int user_id = sp.getInt("user_id", 0);
                 HashMap<String, String> parmas = new HashMap<>();
                 parmas.put("id", String.valueOf(id));
-                parmas.put("loginUserId", String.valueOf(xyxy_user_id));
+                parmas.put("loginUserId", String.valueOf(user_id));
                 parmas.put("type", "艺考圈作品");
                 if (isLogin==true){
                     if (isChecked==true) {
@@ -158,11 +158,11 @@ public class TreasureAdapter extends RecyclerView.Adapter<TreasureAdapter.Holder
                 int userId = listBean.getUserId();
                 int id = listBean.getId();
                 String worksType = listBean.getWorksType();
-                int xyxy_user_id = sp.getInt("xyxy_user_id", 0);
+                int user_id = sp.getInt("user_id", 0);
                 HashMap<String, String> parmas = new HashMap<>();
                 parmas.put("userId", String.valueOf(userId));
                 parmas.put("id", String.valueOf(id));
-                parmas.put("loginUserId", String.valueOf(xyxy_user_id));
+                parmas.put("loginUserId", String.valueOf(user_id));
                 parmas.put("type", "艺考圈作品");
                 if (isLogin==true){
                     if (isChecked==true) {

@@ -1,5 +1,6 @@
 package com.example.lenovo.thewishofthestarlanguage.view.homework.fragment;
 
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.view.View;
@@ -26,6 +27,7 @@ public class HomeWorkFragment extends BaseFragment implements View.OnClickListen
     private TextView home_work_fragment_capacity_line2;
     private TextView home_work_fragment_capacity_line3;
     private FrameLayout homework_frame;
+    private FragmentTransaction transaction;
 
     @Override
     protected int getLayoutId() {
@@ -37,49 +39,40 @@ public class HomeWorkFragment extends BaseFragment implements View.OnClickListen
         intelig_But = view.findViewById(R.id.intelig_But);
         mostEave_But = view.findViewById(R.id.mostEave_But);
         theLatesr_But = view.findViewById(R.id.theLatesr_But);
-        home_work_fragment_capacity_line=view.findViewById(R.id.home_work_fragment_capacity_line);
-        home_work_fragment_capacity_line2=view.findViewById(R.id.home_work_fragment_capacity_line2);
-        home_work_fragment_capacity_line3=view.findViewById(R.id.home_work_fragment_capacity_line3);
+        home_work_fragment_capacity_line = view.findViewById(R.id.home_work_fragment_capacity_line);
+        home_work_fragment_capacity_line2 = view.findViewById(R.id.home_work_fragment_capacity_line2);
+        home_work_fragment_capacity_line3 = view.findViewById(R.id.home_work_fragment_capacity_line3);
         intelig_But.setOnClickListener(this);
         mostEave_But.setOnClickListener(this);
         theLatesr_But.setOnClickListener(this);
         home_work_fragment_capacity_line3.setOnClickListener(this);
         home_work_fragment_capacity_line2.setOnClickListener(this);
         home_work_fragment_capacity_line.setOnClickListener(this);
-
+        supportFragmentManager = getActivity().getSupportFragmentManager();
     }
 
     @Override
     protected void loadData() {
-        supportFragmentManager = App.context.getSupportFragmentManager();
-        FragmentTransaction transaction = supportFragmentManager.beginTransaction();
-        transaction.add(R.id.homework_frame, new IntelligentScreeningFragment());
-        transaction.commit();
+        changeFragment(new IntelligentScreeningFragment());
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.intelig_But:
-                FragmentTransaction transaction = supportFragmentManager.beginTransaction();
-                transaction.replace(R.id.homework_frame, new IntelligentScreeningFragment());
-                transaction.commit();
+                changeFragment(new IntelligentScreeningFragment());
                 home_work_fragment_capacity_line.setVisibility(View.VISIBLE);
                 home_work_fragment_capacity_line2.setVisibility(View.GONE);
                 home_work_fragment_capacity_line3.setVisibility(View.GONE);
                 break;
             case R.id.mostEave_But:
-                FragmentTransaction transaction2 = supportFragmentManager.beginTransaction();
-                transaction2.replace(R.id.homework_frame, new MostEavesdroppingFragment());
-                transaction2.commit();
+                changeFragment(new MostEavesdroppingFragment());
                 home_work_fragment_capacity_line.setVisibility(View.GONE);
                 home_work_fragment_capacity_line2.setVisibility(View.VISIBLE);
                 home_work_fragment_capacity_line3.setVisibility(View.GONE);
                 break;
             case R.id.theLatesr_But:
-                FragmentTransaction transaction3 = supportFragmentManager.beginTransaction();
-                transaction3.replace(R.id.homework_frame, new TheLatestReviewFragment());
-                transaction3.commit();
+                changeFragment(new TheLatestReviewFragment());
                 home_work_fragment_capacity_line.setVisibility(View.GONE);
                 home_work_fragment_capacity_line2.setVisibility(View.GONE);
                 home_work_fragment_capacity_line3.setVisibility(View.VISIBLE);
@@ -87,5 +80,10 @@ public class HomeWorkFragment extends BaseFragment implements View.OnClickListen
         }
     }
 
+    private void changeFragment(Fragment fragment) {
+        transaction = supportFragmentManager.beginTransaction();
+        transaction.add(R.id.homework_frame, fragment);
+        transaction.commit();
+    }
 
 }

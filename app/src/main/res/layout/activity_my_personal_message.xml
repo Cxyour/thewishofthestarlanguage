@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.lenovo.thewishofthestarlanguage.view.personal.activity.PersonalMessageActivity">
+
+    <RelativeLayout
+        android:id="@+id/my_personal_message_head"
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:background="@mipmap/person_info_bg"
+        android:padding="15dp">
+
+        <ImageView
+            android:id="@+id/my_personal_message_return"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@mipmap/detail_back" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/my_personal_message_return"
+            android:layout_marginTop="15dp"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/my_personal_message_icon"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_centerVertical="true"
+                    android:background="@mipmap/ic_launcher" />
+
+                <CheckBox
+                    android:id="@+id/my_personal_message_follow"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/follow_check_bg"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:paddingBottom="5dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:paddingTop="5dp"
+                    android:text="关注"
+                    android:textColor="#ffffff"
+                    android:textSize="15sp" />
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_toLeftOf="@+id/my_personal_message_follow"
+                    android:layout_toRightOf="@+id/my_personal_message_icon"
+                    android:padding="10dp">
+
+                    <TextView
+                        android:id="@+id/my_personal_message_nickname"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="大爷"
+                        android:textColor="#ffffff"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:id="@+id/my_personal_message_follow_count_num"
+                        android:layout_width="30dp"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/my_personal_message_nickname"
+                        android:layout_marginTop="10dp"
+                        android:gravity="center"
+                        android:paddingBottom="5dp"
+                        android:text="1"
+                        android:textColor="#ffffff"
+                        android:textSize="10sp" />
+
+                    <TextView
+                        android:layout_width="30dp"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/my_personal_message_follow_count_num"
+                        android:gravity="center"
+                        android:text="关注"
+                        android:textColor="#ffffff"
+                        android:textSize="10sp" />
+
+                    <TextView
+                        android:id="@+id/my_personal_message_gang"
+                        android:layout_width="30dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="35dp"
+                        android:layout_toRightOf="@+id/my_personal_message_follow_count_num"
+                        android:gravity="center"
+                        android:text="|"
+                        android:textColor="#ffffff" />
+
+
+                    <TextView
+                        android:id="@+id/my_personal_message_fans_count_num"
+                        android:layout_width="30dp"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/my_personal_message_nickname"
+                        android:layout_marginTop="10dp"
+                        android:layout_toRightOf="@+id/my_personal_message_gang"
+                        android:gravity="center"
+                        android:paddingBottom="5dp"
+                        android:text="1"
+                        android:textColor="#ffffff"
+                        android:textSize="10sp" />
+
+                    <TextView
+                        android:layout_width="30dp"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/my_personal_message_fans_count_num"
+                        android:layout_toRightOf="@+id/my_personal_message_gang"
+                        android:gravity="center"
+                        android:text="粉丝"
+                        android:textColor="#ffffff"
+                        android:textSize="10sp" />
+
+                </RelativeLayout>
+
+            </RelativeLayout>
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="2">
+
+        <LinearLayout
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <RadioButton
+                android:id="@+id/my_personal_message_works_change"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:button="@null"
+                android:gravity="center"
+                android:text="作品" />
+
+            <TextView
+                android:id="@+id/my_personal_message_works_x"
+                android:layout_width="20dp"
+                android:layout_height="2dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="2dp"
+                android:background="@color/yellow_arlt" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <RadioButton
+                android:id="@+id/my_personal_message_post_change"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:button="@null"
+                android:gravity="center"
+                android:text="帖子" />
+
+            <TextView
+                android:id="@+id/my_personal_message_post_x"
+                android:layout_width="20dp"
+                android:layout_height="2dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="2dp"
+                android:background="@color/yellow_arlt"
+                android:visibility="gone" />
+
+        </LinearLayout>
+
+
+    </RadioGroup>
+
+    <FrameLayout
+        android:id="@+id/my_personal_message_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></FrameLayout>
+</LinearLayout>

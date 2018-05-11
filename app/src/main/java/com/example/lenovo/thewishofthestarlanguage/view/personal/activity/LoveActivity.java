@@ -66,7 +66,6 @@ public class LoveActivity extends BaseActivity implements ILovesContract.ILovesV
         MajorsAdapter majorsAdapter = new MajorsAdapter(majorsBeans);
         loves_major_check.setAdapter(majorsAdapter);
         loves_major_check.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 int majorsId = majorsBeans.get(position).getId();

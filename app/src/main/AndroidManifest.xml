@@ -42,12 +42,17 @@
         <activity android:name=".view.personal.activity.PostActivity" />
         <activity android:name=".view.personal.activity.FollowActivity" />
         <activity android:name=".view.personal.activity.FansActivity" />
-        <activity android:name=".view.personal.activity.MyOrderActivity"></activity>
-        <activity android:name=".view.famousteacher.activity.MasterDetailActivity"/>
-        <activity android:name=".view.famousteacher.activity.LiveDetailsActivity"/>
-        <activity android:name=".view.famousteacher.activity.FamousTeacherActivity"/>
-        <activity android:name=".view.famousteacher.activity.LiveingActivity"/>
-        <activity android:name=".view.famousteacher.activity.OperationDetailsActivity"/>
+        <activity android:name=".view.personal.activity.MyOrderActivity" />
+        <activity android:name=".view.famousteacher.activity.MasterDetailActivity" />
+        <activity android:name=".view.famousteacher.activity.LiveDetailsActivity" />
+        <activity android:name=".view.famousteacher.activity.FamousTeacherActivity" />
+        <activity android:name=".view.famousteacher.activity.LiveingActivity" />
+        <activity android:name=".view.famousteacher.activity.OperationDetailsActivity" />
+        <activity android:name=".view.personal.activity.PersonalMessageActivity" />
+        <activity android:name=".view.personal.activity.VoucherCenterActivity" />
+        <activity android:name=".view.personal.activity.GiftCenterActivity" />
+        <activity android:name=".view.personal.activity.MyCollectionActivity" />
+        <activity android:name=".view.personal.activity.CertifiedActivity"></activity>
     </application>
 
 </manifest>

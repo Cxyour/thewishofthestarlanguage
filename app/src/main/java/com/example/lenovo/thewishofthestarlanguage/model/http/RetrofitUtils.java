@@ -19,16 +19,20 @@ import com.example.lenovo.thewishofthestarlanguage.model.biz.LovesService;
 import com.example.lenovo.thewishofthestarlanguage.model.biz.MasterHomeService;
 import com.example.lenovo.thewishofthestarlanguage.model.biz.MasterService;
 import com.example.lenovo.thewishofthestarlanguage.model.biz.MostEaveService;
+import com.example.lenovo.thewishofthestarlanguage.model.biz.MyCollectionService;
 import com.example.lenovo.thewishofthestarlanguage.model.biz.MyOrderService;
+import com.example.lenovo.thewishofthestarlanguage.model.biz.PersonalMessageService;
 import com.example.lenovo.thewishofthestarlanguage.model.biz.OperationService;
 import com.example.lenovo.thewishofthestarlanguage.model.biz.PerFectInforService;
 import com.example.lenovo.thewishofthestarlanguage.model.biz.PersonalService;
+import com.example.lenovo.thewishofthestarlanguage.model.biz.PostService;
 import com.example.lenovo.thewishofthestarlanguage.model.biz.PrevieDetailsService;
 import com.example.lenovo.thewishofthestarlanguage.model.biz.PreviewService;
 import com.example.lenovo.thewishofthestarlanguage.model.biz.RegisterService;
 import com.example.lenovo.thewishofthestarlanguage.model.biz.ResetPassWordService;
 import com.example.lenovo.thewishofthestarlanguage.model.biz.TreaSureService;
 import com.example.lenovo.thewishofthestarlanguage.model.biz.TreasureDetailsServiece;
+import com.example.lenovo.thewishofthestarlanguage.model.biz.VoucherCenterService;
 import com.example.lenovo.thewishofthestarlanguage.model.config.App;
 import com.example.lenovo.thewishofthestarlanguage.model.config.Constant;
 import com.example.lenovo.thewishofthestarlanguage.model.config.Urls;
@@ -264,5 +268,20 @@ public class RetrofitUtils {
 
     public OperationService getOperationService() {
         return retrofit.create(OperationService.class);
+    }
+
+    public PostService getPostService() {
+        return retrofit.create(PostService.class);
+    }
+
+    public PersonalMessageService getMyPersonalMessageService() {
+        return retrofit.create(PersonalMessageService.class);
+    }
+
+    public VoucherCenterService getVoucherCenterService() {
+        return retrofit.create(VoucherCenterService.class);
+    }
+    public MyCollectionService getMyCollectionService() {
+        return retrofit.create(MyCollectionService.class);
     }
 }

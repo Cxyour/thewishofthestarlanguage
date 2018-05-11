@@ -1,18 +1,11 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.lenovo.thewishofthestarlanguage.view.personal.fragment.AllFragment">
-
-    <ListView
-        android:id="@+id/all_list"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"></ListView>
+    tools:context="com.example.lenovo.thewishofthestarlanguage.view.personal.fragment.EavesdroppingHomeworkFragment">
 
     <LinearLayout
-        android:id="@+id/all_nothing"
-        android:visibility="gone"
+        android:id="@+id/eaves_droppong_fragment_nothing"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
@@ -35,4 +28,4 @@
 
     </LinearLayout>
 
-</RelativeLayout>
+</FrameLayout>

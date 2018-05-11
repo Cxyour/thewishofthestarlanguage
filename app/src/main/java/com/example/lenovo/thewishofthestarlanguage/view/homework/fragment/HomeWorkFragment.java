@@ -82,7 +82,7 @@ public class HomeWorkFragment extends BaseFragment implements View.OnClickListen
 
     private void changeFragment(Fragment fragment) {
         transaction = supportFragmentManager.beginTransaction();
-        transaction.add(R.id.homework_frame, fragment);
+        transaction.replace(R.id.homework_frame, fragment);
         transaction.commit();
     }
 

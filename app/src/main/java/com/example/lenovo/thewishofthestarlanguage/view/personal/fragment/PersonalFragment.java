@@ -21,12 +21,18 @@ import com.example.lenovo.thewishofthestarlanguage.model.config.Constant;
 import com.example.lenovo.thewishofthestarlanguage.model.entity.MyBean;
 import com.example.lenovo.thewishofthestarlanguage.presenter.PersonalPresenterImp;
 import com.example.lenovo.thewishofthestarlanguage.view.base.BaseFragment;
+import com.example.lenovo.thewishofthestarlanguage.view.personal.activity.CertifiedActivity;
+import com.example.lenovo.thewishofthestarlanguage.view.personal.activity.GiftCenterActivity;
 import com.example.lenovo.thewishofthestarlanguage.view.personal.activity.LoginActivity;
+import com.example.lenovo.thewishofthestarlanguage.view.personal.activity.LoveActivity;
+import com.example.lenovo.thewishofthestarlanguage.view.personal.activity.MyCollectionActivity;
+import com.example.lenovo.thewishofthestarlanguage.view.personal.activity.PersonalMessageActivity;
 import com.example.lenovo.thewishofthestarlanguage.view.personal.activity.RegisterActivity;
 import com.example.lenovo.thewishofthestarlanguage.view.personal.activity.SetActivity;
 import com.example.lenovo.thewishofthestarlanguage.view.personal.activity.FansActivity;
 import com.example.lenovo.thewishofthestarlanguage.view.personal.activity.FollowActivity;
 import com.example.lenovo.thewishofthestarlanguage.view.personal.activity.PostActivity;
+import com.example.lenovo.thewishofthestarlanguage.view.personal.activity.VoucherCenterActivity;
 import com.example.lenovo.thewishofthestarlanguage.view.personal.activity.WorksActivity;
 import com.example.lenovo.thewishofthestarlanguage.view.personal.activity.MyselfMessageActivity;
 import com.example.lenovo.thewishofthestarlanguage.view.personal.activity.MyOrderActivity;
@@ -136,6 +142,13 @@ public class PersonalFragment extends BaseFragment implements View.OnClickListen
         personal_myself_substitute_for_use.setOnClickListener(this);
         personal_myself_substitute_for_return.setOnClickListener(this);
         personal_myself_my_order.setOnClickListener(this);
+
+        personal_myself_icon.setOnClickListener(this);
+        personal_myself_voucher_center.setOnClickListener(this);
+        personal_myself_gift_center.setOnClickListener(this);
+        personal_myself_my_collection.setOnClickListener(this);
+        personal_myself_my_preference.setOnClickListener(this);
+        personal_myself_authentication.setOnClickListener(this);
     }
 
     @Override
@@ -164,7 +177,6 @@ public class PersonalFragment extends BaseFragment implements View.OnClickListen
                     startActivity(intent);
                 }
                 break;
-
             case R.id.personal_myself_message:
                 intent = new Intent(getContext(), MyselfMessageActivity.class);
                 startActivity(intent);
@@ -214,6 +226,31 @@ public class PersonalFragment extends BaseFragment implements View.OnClickListen
                 intent.putExtra("position", 0);
                 startActivity(intent);
                 break;
+            case R.id.personal_myself_icon:
+                intent = new Intent(getContext(), PersonalMessageActivity.class);
+                intent.putExtra("id", preferences.getInt("user_id", 0));
+                startActivity(intent);
+                break;
+            case R.id.personal_myself_voucher_center:
+                intent = new Intent(getContext(), VoucherCenterActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.personal_myself_gift_center:
+                intent = new Intent(getContext(), GiftCenterActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.personal_myself_my_collection:
+                intent = new Intent(getContext(), MyCollectionActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.personal_myself_my_preference:
+                intent = new Intent(getContext(), LoveActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.personal_myself_authentication:
+                intent = new Intent(getContext(), CertifiedActivity.class);
+                startActivity(intent);
+                break;
         }
     }
 
@@ -254,5 +291,6 @@ public class PersonalFragment extends BaseFragment implements View.OnClickListen
             }
         });
         personal_myself_nickName.setText(myBean.getData().getNickname());
+        personal_myself_gold_bean_count.setText(myBean.getData().getBeanAmount() + "");
     }
 }

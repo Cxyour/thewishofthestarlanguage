@@ -12,6 +12,7 @@ public interface IFollowContract {
 
     interface IFollowView {
         void showFollowBean(List<FollowBean.DataBean.ListBean> listBeans);
+
     }
 
     interface IFollowPresenter {

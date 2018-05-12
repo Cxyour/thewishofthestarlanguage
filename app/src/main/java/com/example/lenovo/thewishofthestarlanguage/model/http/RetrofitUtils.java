@@ -8,6 +8,7 @@ import android.support.v4.app.ActivityCompat;
 import android.text.TextUtils;
 
 import com.example.lenovo.thewishofthestarlanguage.model.biz.AppTokenService;
+import com.example.lenovo.thewishofthestarlanguage.model.biz.CurriculumService;
 import com.example.lenovo.thewishofthestarlanguage.model.biz.FamousTeacherService;
 import com.example.lenovo.thewishofthestarlanguage.model.biz.FansService;
 import com.example.lenovo.thewishofthestarlanguage.model.biz.FindPassWordService;
@@ -26,7 +27,10 @@ import com.example.lenovo.thewishofthestarlanguage.model.biz.PersonalService;
 import com.example.lenovo.thewishofthestarlanguage.model.biz.PrevieDetailsService;
 import com.example.lenovo.thewishofthestarlanguage.model.biz.PreviewService;
 import com.example.lenovo.thewishofthestarlanguage.model.biz.RegisterService;
+import com.example.lenovo.thewishofthestarlanguage.model.biz.ReplyService;
 import com.example.lenovo.thewishofthestarlanguage.model.biz.ResetPassWordService;
+import com.example.lenovo.thewishofthestarlanguage.model.biz.TaskService;
+import com.example.lenovo.thewishofthestarlanguage.model.biz.TeacherFensiService;
 import com.example.lenovo.thewishofthestarlanguage.model.biz.TreaSureService;
 import com.example.lenovo.thewishofthestarlanguage.model.biz.TreasureDetailsServiece;
 import com.example.lenovo.thewishofthestarlanguage.model.config.App;
@@ -264,5 +268,17 @@ public class RetrofitUtils {
 
     public OperationService getOperationService() {
         return retrofit.create(OperationService.class);
+    }
+    public TaskService getTaskService() {
+        return retrofit.create(TaskService.class);
+    }
+    public CurriculumService getCurriculumService() {
+        return retrofit.create(CurriculumService.class);
+    }
+    public TeacherFensiService getTeacherFensiService() {
+        return retrofit.create(TeacherFensiService.class);
+    }
+    public ReplyService getReplyService() {
+        return retrofit.create(ReplyService.class);
     }
 }

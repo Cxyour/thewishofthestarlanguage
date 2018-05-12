@@ -113,6 +113,7 @@ public class TreasureAdapter extends RecyclerView.Adapter<TreasureAdapter.Holder
                 }
             }
         });
+
         zan(holder,position);
         shoucang(holder,position);
 
@@ -134,10 +135,13 @@ public class TreasureAdapter extends RecyclerView.Adapter<TreasureAdapter.Holder
                     if (isChecked==true) {
                         treaSurePresenter.Collection(parmas);
                         holder.home_valuable_list_item_collect_cb.setText(listBean.getPraiseNum()+1+"");
+
                     }else {
                         treaSurePresenter.CancelTheCollection(parmas);
+
                         if (listBean.getPraiseNum()!=0) {
-                            holder.home_valuable_list_item_collect_cb.setText("");
+                            holder.home_valuable_list_item_collect_cb.setText(listBean.getPraiseNum()+"");
+
                         }
                     }
                 }else {
@@ -148,6 +152,7 @@ public class TreasureAdapter extends RecyclerView.Adapter<TreasureAdapter.Holder
         });
     }
     private void zan( final Holder holder,final int position){
+
         holder.home_valuable_list_item_praise_cb.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -168,9 +173,10 @@ public class TreasureAdapter extends RecyclerView.Adapter<TreasureAdapter.Holder
                     if (isChecked==true) {
                         treaSurePresenter.loadGoodBean(parmas);
                         holder.home_valuable_list_item_praise_cb.setText(listBean.getPraiseNum()+1+"");
+
                     }else {
                         treaSurePresenter.CancelthePraise(parmas);
-                        holder.home_valuable_list_item_praise_cb.setText(listBean.getPraiseNum()+"");
+                        SharedPreferences.Editor edit = sp.edit();
                     }
                 }else {
                     Intent intent = new Intent(context, LoginActivity.class);

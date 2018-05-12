@@ -1,5 +1,6 @@
 package com.example.lenovo.thewishofthestarlanguage.view.famousteacher.fragment;
 
+import android.support.v4.app.FragmentManager;
 import android.view.View;
 import android.widget.Toast;
 
@@ -22,6 +23,7 @@ public class FamousTeacherFragment extends BaseFragment implements IFamousTeache
 
     private ArrayList<Object> mRecycleaArray;
     private FamousTeacherPresenterImp famousTeacherPresenter;
+    private FragmentManager supportFragmentManager;
 
 
     @Override
@@ -48,7 +50,7 @@ public class FamousTeacherFragment extends BaseFragment implements IFamousTeache
                 pullLoadMoreRecyclerView.setPullLoadMoreCompleted();
             }
         });
-
+        supportFragmentManager = getActivity().getSupportFragmentManager();
     }
 
     @Override
@@ -68,7 +70,7 @@ public class FamousTeacherFragment extends BaseFragment implements IFamousTeache
         mRecycleaArray.add(liveCourses);
         List<FamousTeacherBean.DataBean.HomewoksBean> homewoks = data.getHomewoks();
         mRecycleaArray.add(homewoks);
-        FamousTecherAdapter famousTecherAdapter = new FamousTecherAdapter(famousTeacherPresenter, data);
+        FamousTecherAdapter famousTecherAdapter = new FamousTecherAdapter(famousTeacherPresenter, data,supportFragmentManager);
         pullLoadMoreRecyclerView.setAdapter(famousTecherAdapter);
     }
 

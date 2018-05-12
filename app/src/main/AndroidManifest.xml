@@ -42,12 +42,17 @@
         <activity android:name=".view.personal.activity.PostActivity" />
         <activity android:name=".view.personal.activity.FollowActivity" />
         <activity android:name=".view.personal.activity.FansActivity" />
-        <activity android:name=".view.personal.activity.MyOrderActivity"></activity>
-        <activity android:name=".view.famousteacher.activity.MasterDetailActivity"/>
-        <activity android:name=".view.famousteacher.activity.LiveDetailsActivity"/>
-        <activity android:name=".view.famousteacher.activity.FamousTeacherActivity"/>
-        <activity android:name=".view.famousteacher.activity.LiveingActivity"/>
-        <activity android:name=".view.famousteacher.activity.OperationDetailsActivity"/>
+        <activity android:name=".view.personal.activity.MyOrderActivity" />
+        <activity android:name=".view.famousteacher.activity.MasterDetailActivity" />
+        <activity android:name=".view.famousteacher.activity.LiveDetailsActivity" />
+        <activity android:name=".view.famousteacher.activity.FamousTeacherActivity" />
+        <activity android:name=".view.famousteacher.activity.LiveingActivity" />
+        <activity android:name=".view.famousteacher.activity.OperationDetailsActivity" />
+        <activity android:name=".view.famousteacher.activity.TaskActivity" />
+        <activity android:name=".view.famousteacher.activity.CurriculumActivity" />
+        <activity android:name=".view.famousteacher.activity.TeachersfanSiActivity" />
+        <activity android:name=".view.famousteacher.activity.ReplyActivity" />
+        <activity android:name=".view.ui.WorkWorkActivityActivity"></activity>
     </application>
 
 </manifest>

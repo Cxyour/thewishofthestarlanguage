@@ -2,6 +2,8 @@ package com.example.lenovo.thewishofthestarlanguage.view.famousteacher.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -38,10 +40,12 @@ public class FamousTecherAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     private final int USERS = 1;
     private Context context;
     FamousTeacherBean.DataBean data;
+    private FragmentManager supportFragmentManager;
 
-    public FamousTecherAdapter(FamousTeacherPresenterImp famousTeacherPresenter, FamousTeacherBean.DataBean data) {
+    public FamousTecherAdapter(FamousTeacherPresenterImp famousTeacherPresenter, FamousTeacherBean.DataBean data, FragmentManager supportFragmentManager) {
         this.famousTeacherPresenter = famousTeacherPresenter;
         this.data = data;
+        this.supportFragmentManager = supportFragmentManager;
     }
 
     @Override
@@ -184,7 +188,10 @@ public class FamousTecherAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             ((HomeWorkHolder) holder).gengduo.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    App.context.setContentView(R.id.home_lay, HomeWorkFragment.class, null);
+                   // App.context.setContentView(R.id.home_lay, HomeWorkFragment.class, null);
+                    FragmentTransaction transaction = supportFragmentManager.beginTransaction();
+                    transaction.replace(R.id.home_lay, new HomeWorkFragment());
+                    transaction.commit();
                 }
             });
 

@@ -20,6 +20,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.BitmapImageViewTarget;
 import com.example.lenovo.thewishofthestarlanguage.R;
 import com.example.lenovo.thewishofthestarlanguage.model.entity.OperationBean;
+import com.example.lenovo.thewishofthestarlanguage.presenter.OperationPresenterImp;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -32,13 +33,15 @@ import java.util.List;
 public class OPerationAdapter extends RecyclerView.Adapter<OPerationAdapter.ViewHolder> {
     OperationBean.DataBean data;
     Context context;
-
-    public OPerationAdapter(OperationBean.DataBean data) {
+    OperationPresenterImp operationPresenterImp;
+    String refId;
+    int idd;
+    public OPerationAdapter(OperationBean.DataBean data, OperationPresenterImp operationPresenterImp, String refId, int id) {
         this.data = data;
+        this.operationPresenterImp = operationPresenterImp;
+        this.idd=id;
+        this.refId=refId;
     }
-
-
-
 
     @NonNull
     @Override
@@ -57,7 +60,7 @@ public class OPerationAdapter extends RecyclerView.Adapter<OPerationAdapter.View
         List<OperationBean.DataBean.CommentsBean.ListBean> list = comments.getList();
         if (list.size()!=0){
             holder.shafa.setVisibility(View.GONE);
-            OPerationItemAdapter oPerationItemAdapter = new OPerationItemAdapter(list);
+            OPerationItemAdapter oPerationItemAdapter = new OPerationItemAdapter(list,operationPresenterImp,homewoks.getId(),refId);
             holder.opera_item1_recycle.setLayoutManager(new LinearLayoutManager(context));
             holder.opera_item1_recycle.setAdapter(oPerationItemAdapter);
         }else {
@@ -82,7 +85,7 @@ public class OPerationAdapter extends RecyclerView.Adapter<OPerationAdapter.View
         holder.work_time.setText(format);
         holder.work_content.setText(homewoks.getContent());
         Glide.with(context).load(homewoks.getCoverImg()).into(holder.word_image);
-       // FamousTeacherBean.DataBean.HomewoksBean homewoksBean = homewoks.get(position);
+
         String tPhoto = (String) homewoks.getTPhoto();
         String tRealname = (String) homewoks.getTRealname();
         String tIntro = (String) homewoks.getTIntro();

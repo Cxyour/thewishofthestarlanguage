@@ -1,5 +1,6 @@
 package com.example.lenovo.thewishofthestarlanguage.view.homework.fragment;
 
+import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -10,8 +11,8 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 
 import com.example.lenovo.thewishofthestarlanguage.R;
-import com.example.lenovo.thewishofthestarlanguage.model.config.App;
 import com.example.lenovo.thewishofthestarlanguage.view.base.BaseFragment;
+import com.example.lenovo.thewishofthestarlanguage.view.ui.WorkWorkActivityActivity;
 
 
 public class HomeWorkFragment extends BaseFragment implements View.OnClickListener {
@@ -28,7 +29,7 @@ public class HomeWorkFragment extends BaseFragment implements View.OnClickListen
     private TextView home_work_fragment_capacity_line3;
     private FrameLayout homework_frame;
     private FragmentTransaction transaction;
-
+    private  TextView release;
     @Override
     protected int getLayoutId() {
         return R.layout.fragment_home_work;
@@ -37,6 +38,7 @@ public class HomeWorkFragment extends BaseFragment implements View.OnClickListen
     @Override
     protected void init(View view) {
         intelig_But = view.findViewById(R.id.intelig_But);
+        release=view.findViewById(R.id.release);
         mostEave_But = view.findViewById(R.id.mostEave_But);
         theLatesr_But = view.findViewById(R.id.theLatesr_But);
         home_work_fragment_capacity_line = view.findViewById(R.id.home_work_fragment_capacity_line);
@@ -77,12 +79,16 @@ public class HomeWorkFragment extends BaseFragment implements View.OnClickListen
                 home_work_fragment_capacity_line2.setVisibility(View.GONE);
                 home_work_fragment_capacity_line3.setVisibility(View.VISIBLE);
                 break;
+            case  R.id.release:
+                Intent intent = new Intent(getContext(),WorkWorkActivityActivity.class);
+                startActivity(intent);
+                break;
         }
     }
 
     private void changeFragment(Fragment fragment) {
         transaction = supportFragmentManager.beginTransaction();
-        transaction.add(R.id.homework_frame, fragment);
+        transaction.replace(R.id.homework_frame, fragment);
         transaction.commit();
     }
 

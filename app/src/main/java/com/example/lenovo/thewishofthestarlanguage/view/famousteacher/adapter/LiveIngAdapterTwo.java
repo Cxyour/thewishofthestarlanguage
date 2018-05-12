@@ -1,27 +1,39 @@
 package com.example.lenovo.thewishofthestarlanguage.view.famousteacher.adapter;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.support.annotation.NonNull;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.BitmapImageViewTarget;
 import com.example.lenovo.thewishofthestarlanguage.R;
+import com.example.lenovo.thewishofthestarlanguage.model.config.Constant;
 import com.example.lenovo.thewishofthestarlanguage.model.entity.LivePurchaseBean;
+import com.example.lenovo.thewishofthestarlanguage.model.entity.SaveBean;
+import com.example.lenovo.thewishofthestarlanguage.model.http.RetrofitUtils;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
 
 /**
  * Created by 陈伟霆 on 2018/5/9.
@@ -44,6 +56,74 @@ public class LiveIngAdapterTwo extends RecyclerView.Adapter<LiveIngAdapterTwo.Ho
         context = parent.getContext();
         View inflate = LayoutInflater.from(context).inflate(R.layout.live_item2, parent,false);
         return new Holder(inflate);
+    }
+
+    private  void guanzhu(final Holder holder){
+        SharedPreferences sp = context.getSharedPreferences(Constant.CookieSP, Context.MODE_PRIVATE);
+        boolean isLogin = sp.getBoolean("isLogin", false);
+        final int xyxy_user_id = sp.getInt("xyxy_user_id", 0);
+        holder.guan.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    holder.guan.setText("已关注");
+
+                    RetrofitUtils.getInstance().getFollowService().follow(data.getId(),xyxy_user_id)
+                            .subscribeOn(Schedulers.newThread())
+                            .observeOn(AndroidSchedulers.mainThread())
+                            .subscribe(new Observer<SaveBean>() {
+                                @Override
+                                public void onSubscribe(Disposable d) {
+                                    Log.e("-------------------", d.toString());
+                                }
+
+                                @Override
+                                public void onNext(SaveBean saveBean) {
+                                    Log.e("-------------------", saveBean.getMessage());
+                                }
+
+                                @Override
+                                public void onError(Throwable e) {
+                                    Log.e("-------------------", e.getMessage().toString());
+                                }
+
+                                @Override
+                                public void onComplete() {
+
+                                }
+                            });
+
+                } else {
+                    holder.guan.setText("关注");
+                    RetrofitUtils.getInstance().getFollowService().abolishConcern(data.getId(),xyxy_user_id)
+                            .subscribeOn(Schedulers.newThread())
+                            .observeOn(AndroidSchedulers.mainThread())
+                            .subscribe(new Observer<SaveBean>() {
+                                @Override
+                                public void onSubscribe(Disposable d) {
+                                    Log.e("-------------------", d.toString());
+                                }
+
+                                @Override
+                                public void onNext(SaveBean saveBean) {
+                                    Log.e("-------------------", saveBean.getMessage());
+
+                                }
+
+                                @Override
+                                public void onError(Throwable e) {
+                                    Log.e("-------------------", e.getMessage().toString());
+                                }
+
+                                @Override
+                                public void onComplete() {
+
+                                }
+                            });
+
+                }
+            }
+        });
     }
 
     @Override
@@ -83,6 +163,7 @@ public class LiveIngAdapterTwo extends RecyclerView.Adapter<LiveIngAdapterTwo.Ho
         webSettings.setDefaultTextEncodingName("utf-8");//设置编码格式
         holder.live_webview.setWebViewClient(new WebViewClient());
         holder.live_webview.loadUrl("http://share.univstar.com/view/live.html?id="+index);
+        guanzhu(holder);
     }
 
 
@@ -92,6 +173,7 @@ public class LiveIngAdapterTwo extends RecyclerView.Adapter<LiveIngAdapterTwo.Ho
     }
 
  class Holder extends RecyclerView.ViewHolder {
+        public CheckBox guan;
         public View rootView;
         public ImageView coverImg;
         public TextView startDate;
@@ -114,6 +196,7 @@ public class LiveIngAdapterTwo extends RecyclerView.Adapter<LiveIngAdapterTwo.Ho
             this.vvv = (ImageView) rootView.findViewById(R.id.vvv);
             this.live_webview = (WebView) rootView.findViewById(R.id.live_webview);
             this.type=rootView.findViewById(R.id.teachettype);
+            this.guan=rootView.findViewById(R.id.guan);
         }
 
     }

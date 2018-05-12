@@ -2,8 +2,6 @@ package com.example.lenovo.thewishofthestarlanguage.view.personal.activity;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -11,6 +9,7 @@ import android.widget.TextView;
 
 import com.example.lenovo.thewishofthestarlanguage.R;
 import com.example.lenovo.thewishofthestarlanguage.model.config.Constant;
+import com.example.lenovo.thewishofthestarlanguage.model.http.DataCleanManager;
 import com.example.lenovo.thewishofthestarlanguage.view.base.BaseActivity;
 
 public class SetActivity extends BaseActivity implements View.OnClickListener {
@@ -48,6 +47,25 @@ public class SetActivity extends BaseActivity implements View.OnClickListener {
         set_about_UnivStar.setOnClickListener(this);
         set_exit_login.setOnClickListener(this);
         set_close.setOnClickListener(this);
+        try {
+            String totalCacheSize = DataCleanManager.getTotalCacheSize(this);
+            set_close_catch.setText(totalCacheSize);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        set_close_catch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DataCleanManager.clearAllCache(SetActivity.this);
+                String totalCacheSize = null;
+                try {
+                    totalCacheSize = DataCleanManager.getTotalCacheSize(SetActivity.this);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                set_close_catch.setText(totalCacheSize);
+            }
+        });
     }
 
     @Override

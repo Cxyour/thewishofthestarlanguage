@@ -27,6 +27,8 @@ public class TreasureTwoFragment extends Fragment implements ITreasureContact.vi
 
     private PullLoadMoreRecyclerView treasure_two_fly;
     private TreaSurePresenterImp treaSurePresenter;
+    private TreaSureBean.DataBean.ArtcircleListBean artcircleList;
+    private Bundle arguments;
 
     public TreasureTwoFragment() {
         // Required empty public constructor
@@ -40,7 +42,8 @@ public class TreasureTwoFragment extends Fragment implements ITreasureContact.vi
         View inflate = inflater.inflate(R.layout.fragment_treasure_two, container, false);
         initView(inflate);
         treaSurePresenter = new TreaSurePresenterImp(this);
-        Bundle arguments = getArguments();
+
+        arguments = getArguments();
         if (arguments != null) {
             int id = arguments.getInt("id");
             if (id<3){
@@ -70,7 +73,7 @@ public class TreasureTwoFragment extends Fragment implements ITreasureContact.vi
 
     @Override
     public void showTreSure(TreaSureBean treaSure) {
-        TreaSureBean.DataBean.ArtcircleListBean artcircleList = treaSure.getData().getArtcircleList();
+        artcircleList = treaSure.getData().getArtcircleList();
         List<TreaSureBean.DataBean.ArtcircleListBean.ListBean> list = artcircleList.getList();
         TreasureAdapter treasureAdapter = new TreasureAdapter(list,treaSurePresenter);
         treasure_two_fly.setAdapter(treasureAdapter);
@@ -79,15 +82,20 @@ public class TreasureTwoFragment extends Fragment implements ITreasureContact.vi
     @Override
     public void showLunbotu(TreaSureLunBoTuBean treaSureLunBoTu) {
 
+        List<TreaSureBean.DataBean.ArtcircleListBean.ListBean> list = artcircleList.getList();
+        TreasureAdapter treasureAdapter = new TreasureAdapter(list,treaSurePresenter);
+        treasure_two_fly.setAdapter(treasureAdapter);
     }
 
     @Override
     public void showGoodBean(GoodOnClickBean goodOnClickBean) {
-     //  Toast.makeText(getContext(), goodOnClickBean.getMessage(), Toast.LENGTH_SHORT).show();
+
+        Toast.makeText(getContext(), "点赞"+goodOnClickBean.getMessage(), Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void showCancelthePraise(GoodOnClickBean goodOnClickBean) {
-        Toast.makeText(getContext(), goodOnClickBean.getMessage(), Toast.LENGTH_SHORT).show();
+
+       Toast.makeText(getContext(), "取消"+goodOnClickBean.getMessage(), Toast.LENGTH_SHORT).show();
     }
 }

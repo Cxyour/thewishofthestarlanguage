@@ -2,7 +2,6 @@ package com.example.lenovo.thewishofthestarlanguage.view.preview.fragment;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
-import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.view.View;
@@ -135,9 +134,11 @@ public class PreviewFragment extends BaseFragment implements IPreviewContract.vi
 
     @Override
     public void showPreview(PreviewBean preview) {
-        List<PreviewBean.DataBean.ListBean> list = preview.getData().getList();
-        PreviewAdapter previewAdapter = new PreviewAdapter(list);
-        preview_recycle.setAdapter(previewAdapter);
+        if(preview!=null) {
+            List<PreviewBean.DataBean.ListBean> list = preview.getData().getList();
+            PreviewAdapter previewAdapter = new PreviewAdapter(list);
+            preview_recycle.setAdapter(previewAdapter);
+        }
     }
 
     private void showDatePickDlg(final TextView textView) {

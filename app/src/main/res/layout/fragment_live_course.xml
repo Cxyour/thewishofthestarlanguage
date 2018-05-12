@@ -1,21 +1,23 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.example.lenovo.thewishofthestarlanguage.view.personal.fragment.AllFragment">
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    tools:context="com.example.lenovo.thewishofthestarlanguage.view.personal.fragment.LiveCourseFragment">
 
     <ListView
-        android:id="@+id/all_list"
+        android:id="@+id/live_course_fragment_list"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"></ListView>
+        android:layout_height="match_parent">
+
+    </ListView>
 
     <LinearLayout
-        android:id="@+id/all_nothing"
-        android:visibility="gone"
+        android:id="@+id/live_course_fragment_nothing"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:visibility="gone">
 
         <ImageView
             android:layout_width="wrap_content"
@@ -35,4 +37,4 @@
 
     </LinearLayout>
 
-</RelativeLayout>
+</LinearLayout>

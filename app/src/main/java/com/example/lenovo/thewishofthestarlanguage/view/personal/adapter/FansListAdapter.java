@@ -13,6 +13,7 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.ImageViewTarget;
@@ -29,6 +30,7 @@ import java.util.List;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
 /**
@@ -84,29 +86,13 @@ public class FansListAdapter extends BaseAdapter {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     finalHolder.follow_item_btn.setText("已关注");
-
                     followService.follow(listBeans.get(position).getFansId(), user.getInt("user_id", 0))
                             .subscribeOn(Schedulers.newThread())
                             .observeOn(AndroidSchedulers.mainThread())
-                            .subscribe(new Observer<SaveBean>() {
+                            .subscribe(new Consumer<SaveBean>() {
                                 @Override
-                                public void onSubscribe(Disposable d) {
-                                    Log.e("-------------------", d.toString());
-                                }
-
-                                @Override
-                                public void onNext(SaveBean saveBean) {
-                                    Log.e("-------------------", saveBean.getMessage());
-                                }
-
-                                @Override
-                                public void onError(Throwable e) {
-                                    Log.e("-------------------", e.getMessage().toString());
-                                }
-
-                                @Override
-                                public void onComplete() {
-
+                                public void accept(SaveBean saveBean) throws Exception {
+                                    Toast.makeText(App.context, saveBean.getMessage(), Toast.LENGTH_SHORT).show();
                                 }
                             });
 
@@ -115,26 +101,10 @@ public class FansListAdapter extends BaseAdapter {
                     followService.abolishConcern(listBeans.get(position).getFansId(), user.getInt("user_id", 0))
                             .subscribeOn(Schedulers.newThread())
                             .observeOn(AndroidSchedulers.mainThread())
-                            .subscribe(new Observer<SaveBean>() {
+                            .subscribe(new Consumer<SaveBean>() {
                                 @Override
-                                public void onSubscribe(Disposable d) {
-                                    Log.e("-------------------", d.toString());
-                                }
-
-                                @Override
-                                public void onNext(SaveBean saveBean) {
-                                    Log.e("-------------------", saveBean.getMessage());
-
-                                }
-
-                                @Override
-                                public void onError(Throwable e) {
-                                    Log.e("-------------------", e.getMessage().toString());
-                                }
-
-                                @Override
-                                public void onComplete() {
-
+                                public void accept(SaveBean saveBean) throws Exception {
+                                    Toast.makeText(App.context, saveBean.getMessage(), Toast.LENGTH_SHORT).show();
                                 }
                             });
                 }

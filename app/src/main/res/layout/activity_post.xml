@@ -35,20 +35,34 @@
         android:layout_height="10dp"
         android:background="#eeeeee" />
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="100dp"
-        android:background="@mipmap/empty_content" />
-
-    <TextView
+    <ListView
+        android:id="@+id/post_list"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:gravity="center"
-        android:text="暂无内容"
-        android:textColor="#000000"
-        android:textSize="20sp" />
+        android:layout_height="match_parent"></ListView>
+
+    <LinearLayout
+        android:id="@+id/post_nothing"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="100dp"
+            android:background="@mipmap/empty_content" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:gravity="center"
+            android:text="暂无内容"
+            android:textColor="#000000"
+            android:textSize="20sp" />
+
+    </LinearLayout>
 
 </LinearLayout>

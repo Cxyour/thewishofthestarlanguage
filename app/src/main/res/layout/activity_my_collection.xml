@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.lenovo.thewishofthestarlanguage.view.personal.activity.MyCollectionActivity">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="25dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="明细"
+            android:textColor="#2222ff"
+            android:textSize="20sp" />
+
+        <ImageView
+            android:id="@+id/voucher_center_return"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:background="@mipmap/activity_return" />
+
+    </RelativeLayout>
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#eeeeee"
+        android:orientation="horizontal"
+        android:paddingTop="10dp"
+        android:weightSum="4">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <RadioButton
+                android:id="@+id/my_collection_live_course"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:button="@null"
+                android:gravity="center"
+                android:text="直播课程" />
+
+            <TextView
+                android:id="@+id/my_collection_live_course_x"
+                android:layout_width="20dp"
+                android:layout_height="2dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="2dp"
+                android:background="@color/yellow_arlt" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <RadioButton
+                android:id="@+id/my_collection_experience_course"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:button="@null"
+                android:gravity="center"
+                android:text="体验课程" />
+
+            <TextView
+                android:id="@+id/my_collection_experience_course_x"
+                android:layout_width="20dp"
+                android:layout_height="2dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="2dp"
+                android:background="@color/yellow_arlt"
+                android:visibility="gone" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <RadioButton
+                android:id="@+id/my_collection_eavesdropping_homework"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:button="@null"
+                android:gravity="center"
+                android:text="偷听作业" />
+
+            <TextView
+                android:id="@+id/my_collection_eavesdropping_homework_x"
+                android:layout_width="20dp"
+                android:layout_height="2dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="2dp"
+                android:background="@color/yellow_arlt"
+                android:visibility="gone" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <RadioButton
+                android:id="@+id/my_collection_post"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:button="@null"
+                android:gravity="center"
+                android:text="帖子" />
+
+            <TextView
+                android:id="@+id/my_collection_post_x"
+                android:layout_width="20dp"
+                android:layout_height="2dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="2dp"
+                android:background="@color/yellow_arlt"
+                android:visibility="gone" />
+
+        </LinearLayout>
+
+    </RadioGroup>
+
+    <FrameLayout
+        android:id="@+id/my_collection_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></FrameLayout>
+</LinearLayout>

@@ -4,10 +4,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.support.annotation.NonNull;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v7.widget.RecyclerView;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,12 +18,14 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
+import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.BitmapImageViewTarget;
 import com.example.lenovo.thewishofthestarlanguage.R;
+import com.example.lenovo.thewishofthestarlanguage.model.config.App;
 import com.example.lenovo.thewishofthestarlanguage.model.config.Constant;
 import com.example.lenovo.thewishofthestarlanguage.model.entity.FamousTeacherBean;
 import com.example.lenovo.thewishofthestarlanguage.presenter.FamousTeacherPresenterImp;
@@ -125,6 +130,26 @@ public class Item4TeacherAdapter extends RecyclerView.Adapter<Item4TeacherAdapte
                 context.startActivity(intent);
             }
         });
+        View inflate = LayoutInflater.from(context).inflate(R.layout.toukan_item, null);
+        final PopupWindow popupWindow = new PopupWindow(inflate, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT, true);
+        popupWindow.setOutsideTouchable(true);
+        popupWindow.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#ffffff")));
+        holder.toukan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                popupWindow.showAtLocation(App.context.getLayoutInflater().inflate(R.layout.fragment_famous_teacher,null), Gravity.BOTTOM,0,0);
+            }
+        });
+        holder.work_shang.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, OperationDetailsActivity.class);
+                intent.putExtra("id",homewoksBean.getId());
+                context.startActivity(intent);
+            }
+        });
+
+
     }
     private void zan(final ViewHolder holder, final int position){
         holder.work_zan.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {

@@ -1,14 +1,7 @@
 apply plugin: 'com.android.application'
 
 android {
-    signingConfigs {
-        config {
-            keyAlias 'xyxy'
-            keyPassword '123456'
-            storeFile file('F:/xyxy.jks')
-            storePassword '123456'
-        }
-    }
+
     compileSdkVersion 26
     defaultConfig {
         applicationId "com.example.lenovo.thewishofthestarlanguage"
@@ -17,12 +10,10 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-        signingConfig signingConfigs.config
+
     }
     buildTypes {
-        debug {
-            signingConfig signingConfigs.config
-        }
+
     }
     productFlavors {
     }

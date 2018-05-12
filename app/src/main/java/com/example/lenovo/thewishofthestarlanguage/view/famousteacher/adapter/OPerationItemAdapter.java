@@ -1,6 +1,8 @@
 package com.example.lenovo.thewishofthestarlanguage.view.famousteacher.adapter;
 
 import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.support.annotation.NonNull;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
@@ -10,15 +12,21 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.BitmapImageViewTarget;
 import com.example.lenovo.thewishofthestarlanguage.R;
+import com.example.lenovo.thewishofthestarlanguage.model.config.Constant;
 import com.example.lenovo.thewishofthestarlanguage.model.entity.OperationBean;
+import com.example.lenovo.thewishofthestarlanguage.presenter.OperationPresenterImp;
+import com.example.lenovo.thewishofthestarlanguage.view.famousteacher.activity.ReplyActivity;
+import com.example.lenovo.thewishofthestarlanguage.view.personal.activity.LoginActivity;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -32,12 +40,18 @@ public class OPerationItemAdapter extends RecyclerView.Adapter<OPerationItemAdap
     private final static long hour = 60 * minute;// 1小时
     private final static long day = 24 * hour;// 1天
     private final static long month = 31 * day;// 月
+    private final static long year = 12 * month;// 年
+    OperationPresenterImp operationPresenterImp;
+    String refId;
+    int index;
 
-    public OPerationItemAdapter(List<OperationBean.DataBean.CommentsBean.ListBean> list) {
+    public OPerationItemAdapter(List<OperationBean.DataBean.CommentsBean.ListBean> list, OperationPresenterImp operationPresenterImp, int index, String refId) {
         this.list = list;
+        this.operationPresenterImp = operationPresenterImp;
+        this.index = index;
+        this.refId=refId;
     }
 
-    private final static long year = 12 * month;// 年
     @NonNull
     @Override
     public Holder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -50,7 +64,7 @@ public class OPerationItemAdapter extends RecyclerView.Adapter<OPerationItemAdap
 
     @Override
     public void onBindViewHolder(@NonNull final Holder holder, int position) {
-        OperationBean.DataBean.CommentsBean.ListBean listBean = list.get(position);
+        final OperationBean.DataBean.CommentsBean.ListBean listBean = list.get(position);
         holder.contentMeg.setText(listBean.getContent());
         holder.name.setText(listBean.getNickname());
         holder.opera_zan.setText(listBean.getIsPraise()+"");
@@ -66,9 +80,54 @@ public class OPerationItemAdapter extends RecyclerView.Adapter<OPerationItemAdap
         Date date = new Date(listBean.getCreateDate());
         String timeFormatText = getTimeFormatText(date);
         holder.sj.setText(timeFormatText);
+        zan(holder,position);
+        holder.huifu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, ReplyActivity.class);
+                    intent.putExtra("index",index);
+                     int id = listBean.getId();
+                intent.putExtra("id",id);
+                context.startActivity(intent);
+            }
+        });
     }
 
+    private void zan(final Holder holder, final int position){
 
+        holder.opera_zan.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+
+                SharedPreferences sp = context.getSharedPreferences(Constant.CookieSP, Context.MODE_PRIVATE);
+                boolean isLogin = sp.getBoolean("isLogin", false);
+                OperationBean.DataBean.CommentsBean.ListBean listBean = list.get(position);
+                int userId = listBean.getUserId();
+                int id = listBean.getId();
+
+                int user_id = sp.getInt("user_id", 0);
+                HashMap<String, String> parmas = new HashMap<>();
+                parmas.put("userId", String.valueOf(userId));
+                parmas.put("id", String.valueOf(id));
+                parmas.put("loginUserId", String.valueOf(user_id));
+                parmas.put("type", "艺考圈作品");
+                if (isLogin==true){
+                    if (isChecked==true) {
+                        operationPresenterImp.loadGoodBean(parmas);
+                        holder.opera_zan.setText(listBean.getPraiseNum()+1+"");
+
+                    }else {
+                        operationPresenterImp.CancelthePraise(parmas);
+                        SharedPreferences.Editor edit = sp.edit();
+                    }
+                }else {
+                    Intent intent = new Intent(context, LoginActivity.class);
+                    context.startActivity(intent);
+                }
+
+            }
+        });
+    }
     @Override
     public int getItemCount() {
         return list.size();

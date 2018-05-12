@@ -93,7 +93,8 @@
             android:layout_below="@+id/realname"
             android:text="台词讲师" />
 
-        <Button
+        <CheckBox
+            android:button="@null"
             android:layout_width="60dp"
             android:layout_height="30dp"
             android:layout_alignParentRight="true"
@@ -102,6 +103,7 @@
             android:background="#2183f4"
             android:gravity="center"
             android:text="关注"
+            android:id="@+id/guan"
             android:textColor="#fff" />
     </RelativeLayout>
 

@@ -26,12 +26,16 @@ import com.example.lenovo.thewishofthestarlanguage.model.biz.MyOrderService;
 import com.example.lenovo.thewishofthestarlanguage.model.biz.PersonalMessageService;
 import com.example.lenovo.thewishofthestarlanguage.model.biz.OperationService;
 import com.example.lenovo.thewishofthestarlanguage.model.biz.PerFectInforService;
+import com.example.lenovo.thewishofthestarlanguage.model.biz.PersonalMessageService;
 import com.example.lenovo.thewishofthestarlanguage.model.biz.PersonalService;
 import com.example.lenovo.thewishofthestarlanguage.model.biz.PostService;
 import com.example.lenovo.thewishofthestarlanguage.model.biz.PrevieDetailsService;
 import com.example.lenovo.thewishofthestarlanguage.model.biz.PreviewService;
 import com.example.lenovo.thewishofthestarlanguage.model.biz.RegisterService;
+import com.example.lenovo.thewishofthestarlanguage.model.biz.ReplyService;
 import com.example.lenovo.thewishofthestarlanguage.model.biz.ResetPassWordService;
+import com.example.lenovo.thewishofthestarlanguage.model.biz.TaskService;
+import com.example.lenovo.thewishofthestarlanguage.model.biz.TeacherFensiService;
 import com.example.lenovo.thewishofthestarlanguage.model.biz.TreaSureService;
 import com.example.lenovo.thewishofthestarlanguage.model.biz.TreasureDetailsServiece;
 import com.example.lenovo.thewishofthestarlanguage.model.biz.VoucherCenterService;
@@ -280,6 +284,20 @@ public class RetrofitUtils {
         return retrofit.create(PersonalMessageService.class);
     }
 
+    public PostService getPostService() {
+        return retrofit.create(PostService.class);
+    }
+
+    public ReplyService getReplyService() {
+        return retrofit.create(ReplyService.class);
+    }
+    public TaskService getTaskService() {
+        return retrofit.create(TaskService.class);
+    }
+
+    public TeacherFensiService getTeacherFensiService() {
+        return retrofit.create(TeacherFensiService.class);
+    }
     public VoucherCenterService getVoucherCenterService() {
         return retrofit.create(VoucherCenterService.class);
     }

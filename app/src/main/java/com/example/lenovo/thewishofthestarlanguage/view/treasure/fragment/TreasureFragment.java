@@ -64,26 +64,28 @@ public class TreasureFragment extends BaseFragment implements ITreasureContact.v
         title.add("智能筛选");
         title.add("赞数最多");
         title.add("最新评论");
-        List<TreaSureBean.DataBean.ArtcircleCategoriesBean> artcircleCategories = data.getArtcircleCategories();
-        for (TreaSureBean.DataBean.ArtcircleCategoriesBean artcircleCategory : artcircleCategories) {
-            String name = artcircleCategory.getName();
-            title.add(name);
+        if (data!=null) {
+            List<TreaSureBean.DataBean.ArtcircleCategoriesBean> artcircleCategories = data.getArtcircleCategories();
+            if (artcircleCategories!=null) {
+                for (TreaSureBean.DataBean.ArtcircleCategoriesBean artcircleCategory : artcircleCategories) {
+                    String name = artcircleCategory.getName();
+                    title.add(name);
+                }
+                for (int i = 0; i < title.size(); i++) {
+                    TreasureTwoFragment treasureTwoFragment = new TreasureTwoFragment();
+                    mFragment.add(treasureTwoFragment);
+                    Bundle bundle = new Bundle();
+                    bundle.putInt("id", i);
+                    treasureTwoFragment.setArguments(bundle);
+
+
+                }
+                TreaFragmentAdapter treaFragmentAdapter = new TreaFragmentAdapter(getActivity().getSupportFragmentManager(), title, mFragment);
+                treasure_viewpager.setAdapter(treaFragmentAdapter);
+                tres_tabla.setupWithViewPager(treasure_viewpager);
+                reflex(tres_tabla);
+            }
         }
-        for (int i = 0; i <title.size() ; i++) {
-            TreasureTwoFragment treasureTwoFragment = new TreasureTwoFragment();
-            mFragment.add(treasureTwoFragment);
-            Bundle bundle = new Bundle();
-            bundle.putInt("id",i);
-            treasureTwoFragment.setArguments(bundle);
-
-
-        }
-       TreaFragmentAdapter treaFragmentAdapter = new TreaFragmentAdapter(getActivity().getSupportFragmentManager(), title, mFragment);
-        treasure_viewpager.setAdapter(treaFragmentAdapter);
-        tres_tabla.setupWithViewPager(treasure_viewpager);
-        reflex(tres_tabla);
-
-
     }
     public void reflex(final TabLayout tabLayout){
         //了解源码得知 线的宽度是根据 tabView的宽度来设置的

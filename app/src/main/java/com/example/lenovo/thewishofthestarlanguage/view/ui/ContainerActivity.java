@@ -4,13 +4,11 @@ import android.app.FragmentManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import com.example.lenovo.thewishofthestarlanguage.R;
 import com.example.lenovo.thewishofthestarlanguage.model.config.Constant;
@@ -81,6 +79,7 @@ public class ContainerActivity extends BaseActivity implements View.OnClickListe
         setContentView(R.id.home_lay, FamousTeacherFragment.class, null);
         user = getSharedPreferences(Constant.CookieSP, Context.MODE_PRIVATE);
         edit = user.edit();
+
     }
 
     /**
@@ -106,6 +105,7 @@ public class ContainerActivity extends BaseActivity implements View.OnClickListe
                 break;
             case R.id.home_valuable_tab:
                 //宝典
+
                 home_title.setVisibility(View.VISIBLE);
                 home_publish_valuable.setVisibility(View.VISIBLE);
                 setContentView(R.id.home_lay, TreasureFragment.class, null);

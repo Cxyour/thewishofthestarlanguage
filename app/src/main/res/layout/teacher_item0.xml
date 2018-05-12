@@ -7,7 +7,7 @@
     <com.recker.flybanner.FlyBanner
         android:id="@+id/teacher_fly"
         android:layout_width="match_parent"
-        android:layout_height="250dp"></com.recker.flybanner.FlyBanner>
+        android:layout_height="200dp"></com.recker.flybanner.FlyBanner>
 
     <LinearLayout
         android:layout_marginTop="10dp"

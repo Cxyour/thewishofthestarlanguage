@@ -104,6 +104,14 @@ public class MostEavedroppingAdapter extends RecyclerView.Adapter<MostEavedroppi
         });
        // shoucang(holder,position);
 
+        holder.work_shang.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, OperationDetailsActivity.class);
+                intent.putExtra("id",homewoksBean.getId());
+                context.startActivity(intent);
+            }
+        });
 
     }
     private void zan(final Holder holder, final int position){
@@ -216,6 +224,7 @@ class Holder extends RecyclerView.ViewHolder {
                 Intent intent = new Intent(context, OperationDetailsActivity.class);
                 int id = list.get(tag).getId();
                 intent.putExtra("id", id);
+                intent.putExtra("refId", list.get(tag).getId()+"");
                 context.startActivity(intent);
             }
         });

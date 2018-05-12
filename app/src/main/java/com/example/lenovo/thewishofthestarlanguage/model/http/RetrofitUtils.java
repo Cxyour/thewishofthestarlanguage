@@ -22,9 +22,9 @@ import com.example.lenovo.thewishofthestarlanguage.model.biz.MasterService;
 import com.example.lenovo.thewishofthestarlanguage.model.biz.MostEaveService;
 import com.example.lenovo.thewishofthestarlanguage.model.biz.MyCollectionService;
 import com.example.lenovo.thewishofthestarlanguage.model.biz.MyOrderService;
-import com.example.lenovo.thewishofthestarlanguage.model.biz.PersonalMessageService;
 import com.example.lenovo.thewishofthestarlanguage.model.biz.OperationService;
 import com.example.lenovo.thewishofthestarlanguage.model.biz.PerFectInforService;
+import com.example.lenovo.thewishofthestarlanguage.model.biz.PersonalMessageService;
 import com.example.lenovo.thewishofthestarlanguage.model.biz.PersonalService;
 import com.example.lenovo.thewishofthestarlanguage.model.biz.PostService;
 import com.example.lenovo.thewishofthestarlanguage.model.biz.PrevieDetailsService;
@@ -273,4 +273,33 @@ public class RetrofitUtils {
     public OperationService getOperationService() {
         return retrofit.create(OperationService.class);
     }
+    public CurriculumService getCurriculumService() {
+        return retrofit.create(CurriculumService.class);
+    }
+    public MyCollectionService getMyCollectionService() {
+        return retrofit.create(MyCollectionService.class);
+    }
+
+    public PersonalMessageService getMyPersonalMessageService() {
+        return retrofit.create(PersonalMessageService.class);
+    }
+
+    public PostService getPostService() {
+        return retrofit.create(PostService.class);
+    }
+
+    public ReplyService getReplyService() {
+        return retrofit.create(ReplyService.class);
+    }
+    public TaskService getTaskService() {
+        return retrofit.create(TaskService.class);
+    }
+
+    public TeacherFensiService getTeacherFensiService() {
+        return retrofit.create(TeacherFensiService.class);
+    }
+    public VoucherCenterService getVoucherCenterService() {
+        return retrofit.create(VoucherCenterService.class);
+    }
+
 }

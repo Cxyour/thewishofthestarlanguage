@@ -15,6 +15,7 @@ import com.example.lenovo.thewishofthestarlanguage.model.entity.MasterHomeBean;
 import com.example.lenovo.thewishofthestarlanguage.presenter.MoasterHomePresenterImp;
 import com.example.lenovo.thewishofthestarlanguage.view.base.BaseActivity;
 import com.example.lenovo.thewishofthestarlanguage.view.famousteacher.adapter.MasterHomeAdapter;
+import com.example.lenovo.thewishofthestarlanguage.view.ui.WorkWorkActivityActivity;
 
 public class MasterDetailActivity extends BaseActivity implements MasterHomeContract.view {
 
@@ -52,6 +53,13 @@ public class MasterDetailActivity extends BaseActivity implements MasterHomeCont
             @Override
             public void onClick(View v) {
                 finish();
+            }
+        });
+        masterdetail_coachbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MasterDetailActivity.this, WorkWorkActivityActivity.class);
+                startActivity(intent);
             }
         });
     }

@@ -51,6 +51,7 @@ public class HomeWorkFragment extends BaseFragment implements View.OnClickListen
         home_work_fragment_capacity_line2.setOnClickListener(this);
         home_work_fragment_capacity_line.setOnClickListener(this);
         supportFragmentManager = getActivity().getSupportFragmentManager();
+
     }
 
     @Override

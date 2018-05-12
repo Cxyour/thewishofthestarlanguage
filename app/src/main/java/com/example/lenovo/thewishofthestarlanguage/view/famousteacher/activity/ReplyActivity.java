@@ -11,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -124,9 +125,12 @@ public class ReplyActivity extends AppCompatActivity implements  IReplyContract.
 
     @Override
     public void
-    showReplyTwoBean(ReplyTwoBean replyTwoBean) {
+    showReplyTwoBean(final ReplyTwoBean replyTwoBean) {
         Toast.makeText(this, replyTwoBean.getMessage(), Toast.LENGTH_SHORT).show();
         list = replyTwoBean.getData().getComments().getList();
+        int size = list.size();
+        Log.e("ReplyActivity", "size:" + size);
+
         replyAdapter = new ReplyAdapter(list);
         reply_recycle.setAdapter(replyAdapter);
         ReplyTwoBean.DataBean.CommentBean comment = replyTwoBean.getData().getComment();
@@ -153,13 +157,16 @@ public class ReplyActivity extends AppCompatActivity implements  IReplyContract.
                     SharedPreferences sp = getSharedPreferences(Constant.CookieSP, Context.MODE_PRIVATE);
                     int user_id = sp.getInt("user_id", 0);
                     HashMap<String, String> map2 = new HashMap<>();
-                    map.put("pid", pid + "");
-                    map.put("userId", user_id + "");
-                    map.put("content", pinglun.getText().toString());
-                    map.put("refId", index + "");
-                    map.put("status", 0 + "");
+                    map2.put("pid", pid + "");
+                    map2.put("userId", user_id + "");
+                    map2.put("content", pinglun.getText().toString());
+                    map2.put("refId", index + "");
+                    map2.put("status", 0 + "");
                     replyPresenterImg.loadReplyBean(map2);
                     replyPresenterImg.loadReplyTwoBean(map);
+                    List<ReplyTwoBean.DataBean.CommentsBean.ListBean> list = replyTwoBean.getData().getComments().getList();
+                    int size = list.size();
+                    Log.e("ReplyActivity", "size2222:" + size);
                     replyAdapter.notifyDataSetChanged();
                     pinglun.setText("");
                 }

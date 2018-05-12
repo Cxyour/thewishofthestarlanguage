@@ -15,7 +15,6 @@ import com.example.lenovo.thewishofthestarlanguage.view.base.BaseActivity;
 
 public class SetActivity extends BaseActivity implements View.OnClickListener {
 
-
     private TextView set_phone_number;
     private RelativeLayout set_change_phone;
     private RelativeLayout set_change_id;
@@ -90,6 +89,7 @@ public class SetActivity extends BaseActivity implements View.OnClickListener {
                 break;
 
             case R.id.set_change_id:
+
                 break;
 
             case R.id.set_change_pass:

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    android:orientation="vertical"
+    tools:context="com.example.lenovo.thewishofthestarlanguage.view.personal.activity.UnivStarIntroduceActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="25dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="关于UnivStar"
+            android:textColor="#2222ff"
+            android:textSize="20sp" />
+
+        <ImageView
+            android:id="@+id/UnivStar_introduce_return"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:background="@mipmap/activity_return" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#eeeeee" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="150dp">
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_centerInParent="true"
+            android:background="@mipmap/about_log" />
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:text="北京星语心愿教育科技有限公司是一家专注于艺考教育和企业艺培的互联网与体验课相结合的科技型公司，致力于为怀有艺术梦想的学生们提供名师指导的教育机会，助理备战考生合理运用时间、轻松迎战艺考的教育机构。"
+        android:textSize="15sp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:text="我公司合作伙伴主要有北京电影学院、中央戏剧学院、北京舞蹈学院、上海戏剧学院、中国传媒大学、中国音乐学院、中央美术学院、清华美术学院、中国戏曲学院、南方航空、东方航空及国外众多家知名艺术院校合作，以卓越的实力助你走入海内外艺术院校的殿堂。"
+        android:textSize="15sp" />
+</LinearLayout>

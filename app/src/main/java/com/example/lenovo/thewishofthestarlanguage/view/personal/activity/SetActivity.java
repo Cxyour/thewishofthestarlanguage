@@ -1,6 +1,7 @@
 package com.example.lenovo.thewishofthestarlanguage.view.personal.activity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -24,6 +25,8 @@ public class SetActivity extends BaseActivity implements View.OnClickListener {
     private RelativeLayout set_about_UnivStar;
     private RelativeLayout set_exit_login;
     private ImageView set_close;
+    private Intent intent;
+    private String mobile;
 
     @Override
     protected int getLayoutId() {
@@ -52,7 +55,9 @@ public class SetActivity extends BaseActivity implements View.OnClickListener {
 
     @Override
     protected void loadData() {
-
+        Intent intent = getIntent();
+        mobile = intent.getStringExtra("mobile");
+        set_phone_number.setText(mobile);
     }
 
     @Override
@@ -65,14 +70,18 @@ public class SetActivity extends BaseActivity implements View.OnClickListener {
                 break;
 
             case R.id.set_change_pass:
+                intent = new Intent(this, ChangePasswordActivity.class);
+                intent.putExtra("mobile", mobile);
+                startActivity(intent);
+                finish();
                 break;
-
             case R.id.set_close_catch:
-                break;
 
+                break;
             case R.id.set_about_UnivStar:
+                intent = new Intent(this, AboutUnivStarActivity.class);
+                startActivity(intent);
                 break;
-
             case R.id.set_exit_login:
                 SharedPreferences sharedPreferences = getSharedPreferences(Constant.CookieSP, Context.MODE_PRIVATE);
                 SharedPreferences.Editor edit = sharedPreferences.edit();

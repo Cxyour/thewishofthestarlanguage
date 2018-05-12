@@ -7,7 +7,9 @@ import android.os.Build;
 import android.support.v4.app.ActivityCompat;
 import android.text.TextUtils;
 
+import com.example.lenovo.thewishofthestarlanguage.model.biz.AboutUnivStarService;
 import com.example.lenovo.thewishofthestarlanguage.model.biz.AppTokenService;
+import com.example.lenovo.thewishofthestarlanguage.model.biz.ChangePasswordService;
 import com.example.lenovo.thewishofthestarlanguage.model.biz.FamousTeacherService;
 import com.example.lenovo.thewishofthestarlanguage.model.biz.FansService;
 import com.example.lenovo.thewishofthestarlanguage.model.biz.FindPassWordService;
@@ -283,5 +285,12 @@ public class RetrofitUtils {
     }
     public MyCollectionService getMyCollectionService() {
         return retrofit.create(MyCollectionService.class);
+    }
+    public AboutUnivStarService getAboutUnivStarService() {
+        return retrofit.create(AboutUnivStarService.class);
+    }
+
+    public ChangePasswordService getChangePasswordService() {
+        return retrofit.create(ChangePasswordService.class);
     }
 }

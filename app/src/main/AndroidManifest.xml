@@ -52,7 +52,10 @@
         <activity android:name=".view.personal.activity.VoucherCenterActivity" />
         <activity android:name=".view.personal.activity.GiftCenterActivity" />
         <activity android:name=".view.personal.activity.MyCollectionActivity" />
-        <activity android:name=".view.personal.activity.CertifiedActivity"></activity>
+        <activity android:name=".view.personal.activity.CertifiedActivity" />
+        <activity android:name=".view.personal.activity.AboutUnivStarActivity" />
+        <activity android:name=".view.personal.activity.UnivStarIntroduceActivity" />
+        <activity android:name=".view.personal.activity.ChangePasswordActivity"></activity>
     </application>
 
 </manifest>

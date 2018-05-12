@@ -65,7 +65,6 @@
             android:layout_toLeftOf="@+id/set_go_change_phone"
             android:layout_toRightOf="@+id/set_change_phone_text"
             android:gravity="center_vertical|right"
-            android:text="17639267987"
             android:textSize="12sp" />
 
     </RelativeLayout>

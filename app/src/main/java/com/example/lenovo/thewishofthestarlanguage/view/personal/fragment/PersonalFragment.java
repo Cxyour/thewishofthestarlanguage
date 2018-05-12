@@ -82,6 +82,7 @@ public class PersonalFragment extends BaseFragment implements View.OnClickListen
     private SharedPreferences preferences;
     private int id;
     private SharedPreferences.Editor edit;
+    private String mobile;
 
     @Override
     protected int getLayoutId() {
@@ -171,6 +172,7 @@ public class PersonalFragment extends BaseFragment implements View.OnClickListen
             case R.id.home_myselft_fragment_setting:
                 if (preferences.getBoolean("isLogin", false)) {
                     intent = new Intent(getContext(), SetActivity.class);
+                    intent.putExtra("mobile", mobile);
                     startActivity(intent);
                 } else {
                     intent = new Intent(getContext(), LoginActivity.class);
@@ -292,5 +294,6 @@ public class PersonalFragment extends BaseFragment implements View.OnClickListen
         });
         personal_myself_nickName.setText(myBean.getData().getNickname());
         personal_myself_gold_bean_count.setText(myBean.getData().getBeanAmount() + "");
+        this.mobile = myBean.getData().getMobile();
     }
 }

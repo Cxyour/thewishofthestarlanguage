@@ -111,7 +111,7 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="30dp"
-            android:background="@mipmap/ic_launcher" />
+            android:background="@mipmap/approve_message" />
 
         <TextView
             android:id="@+id/certified_certified"

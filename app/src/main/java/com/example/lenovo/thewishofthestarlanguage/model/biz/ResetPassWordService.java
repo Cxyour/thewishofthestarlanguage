@@ -6,6 +6,7 @@ import java.util.Map;
 
 import io.reactivex.Observable;
 import okhttp3.ResponseBody;
+import retrofit2.http.Field;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.POST;
@@ -18,5 +19,5 @@ public interface ResetPassWordService {
 
     @FormUrlEncoded
     @POST("/v1/m/user/save/password")
-    Observable<UserBean> resetPassWord(@FieldMap Map<String, String> paramsMap);
+    Observable<UserBean> resetPassWord(@Field("mobile") String mobile, @Field("password") String password);
 }

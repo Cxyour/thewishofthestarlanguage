@@ -24,6 +24,7 @@ public class FamousTeacherFragment extends BaseFragment implements IFamousTeache
     private ArrayList<Object> mRecycleaArray;
     private FamousTeacherPresenterImp famousTeacherPresenter;
     private FragmentManager supportFragmentManager;
+    private FamousTeacherPresenterImp famousTeacherPresenterImp;
 
 
     @Override
@@ -70,7 +71,7 @@ public class FamousTeacherFragment extends BaseFragment implements IFamousTeache
         mRecycleaArray.add(liveCourses);
         List<FamousTeacherBean.DataBean.HomewoksBean> homewoks = data.getHomewoks();
         mRecycleaArray.add(homewoks);
-        FamousTecherAdapter famousTecherAdapter = new FamousTecherAdapter(famousTeacherPresenter, data,supportFragmentManager);
+        FamousTecherAdapter famousTecherAdapter = new FamousTecherAdapter(famousTeacherPresenter, data, supportFragmentManager);
         pullLoadMoreRecyclerView.setAdapter(famousTecherAdapter);
     }
 

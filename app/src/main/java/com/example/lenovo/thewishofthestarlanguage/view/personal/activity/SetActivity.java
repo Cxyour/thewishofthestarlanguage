@@ -82,6 +82,11 @@ public class SetActivity extends BaseActivity implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.set_change_phone:
+                intent = new Intent(this, ChangePasswordActivity.class);
+                intent.putExtra("mobile", mobile);
+                intent.putExtra("tag", 1);
+                startActivity(intent);
+                finish();
                 break;
 
             case R.id.set_change_id:
@@ -90,6 +95,7 @@ public class SetActivity extends BaseActivity implements View.OnClickListener {
             case R.id.set_change_pass:
                 intent = new Intent(this, ChangePasswordActivity.class);
                 intent.putExtra("mobile", mobile);
+                intent.putExtra("tag", 2);
                 startActivity(intent);
                 finish();
                 break;

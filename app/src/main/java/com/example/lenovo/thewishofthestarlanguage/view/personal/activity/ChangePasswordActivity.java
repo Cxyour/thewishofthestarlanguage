@@ -47,6 +47,7 @@ public class ChangePasswordActivity extends BaseActivity implements View.OnClick
     private int count = 60;
     private Runnable runnable;
     private ChangePasswordPresenterImp changePasswordPresenterImp;
+    private int tag;
 
     @Override
     protected int getLayoutId() {
@@ -71,6 +72,7 @@ public class ChangePasswordActivity extends BaseActivity implements View.OnClick
         Intent intent = getIntent();
         mobile = intent.getStringExtra("mobile");
         change_pass_phone.setText(mobile);
+        tag = intent.getIntExtra("tag", 0);
         registerPresenter = new RegisterPresenterImp(this);
         changePasswordPresenterImp = new ChangePasswordPresenterImp(this);
     }
@@ -100,11 +102,18 @@ public class ChangePasswordActivity extends BaseActivity implements View.OnClick
                 handler.postDelayed(runnable, 1000);
                 break;
             case R.id.change_pass_next:
-                changePasswordPresenterImp.loadCodeMessage(mobile, change_pass_code.getText().toString().trim());
-                Intent intent = new Intent(this, ResetPassWordActivity.class);
-                intent.putExtra("mobile", mobile);
-                startActivity(intent);
-                finish();
+                if (tag == 1) {
+                    changePasswordPresenterImp.loadCodeMessage(mobile, change_pass_code.getText().toString().trim());
+                    Intent intent = new Intent(this, ChangeMobileActivity.class);
+                    startActivity(intent);
+                    finish();
+                } else {
+                    changePasswordPresenterImp.loadCodeMessage(mobile, change_pass_code.getText().toString().trim());
+                    Intent intent = new Intent(this, ResetPassWordActivity.class);
+                    intent.putExtra("mobile", mobile);
+                    startActivity(intent);
+                    finish();
+                }
                 break;
         }
     }

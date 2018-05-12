@@ -9,7 +9,9 @@ import android.text.TextUtils;
 
 import com.example.lenovo.thewishofthestarlanguage.model.biz.AboutUnivStarService;
 import com.example.lenovo.thewishofthestarlanguage.model.biz.AppTokenService;
+import com.example.lenovo.thewishofthestarlanguage.model.biz.ChangeMobileService;
 import com.example.lenovo.thewishofthestarlanguage.model.biz.ChangePasswordService;
+import com.example.lenovo.thewishofthestarlanguage.model.biz.CurriculumService;
 import com.example.lenovo.thewishofthestarlanguage.model.biz.FamousTeacherService;
 import com.example.lenovo.thewishofthestarlanguage.model.biz.FansService;
 import com.example.lenovo.thewishofthestarlanguage.model.biz.FindPassWordService;
@@ -276,10 +278,6 @@ public class RetrofitUtils {
         return retrofit.create(OperationService.class);
     }
 
-    public PostService getPostService() {
-        return retrofit.create(PostService.class);
-    }
-
     public PersonalMessageService getMyPersonalMessageService() {
         return retrofit.create(PersonalMessageService.class);
     }
@@ -291,6 +289,7 @@ public class RetrofitUtils {
     public ReplyService getReplyService() {
         return retrofit.create(ReplyService.class);
     }
+
     public TaskService getTaskService() {
         return retrofit.create(TaskService.class);
     }
@@ -298,17 +297,28 @@ public class RetrofitUtils {
     public TeacherFensiService getTeacherFensiService() {
         return retrofit.create(TeacherFensiService.class);
     }
+
     public VoucherCenterService getVoucherCenterService() {
         return retrofit.create(VoucherCenterService.class);
     }
+
     public MyCollectionService getMyCollectionService() {
         return retrofit.create(MyCollectionService.class);
     }
+
     public AboutUnivStarService getAboutUnivStarService() {
         return retrofit.create(AboutUnivStarService.class);
     }
 
     public ChangePasswordService getChangePasswordService() {
         return retrofit.create(ChangePasswordService.class);
+    }
+
+    public CurriculumService getCurriculumService() {
+        return retrofit.create(CurriculumService.class);
+    }
+
+    public ChangeMobileService getChangeMobileService() {
+        return retrofit.create(ChangeMobileService.class);
     }
 }

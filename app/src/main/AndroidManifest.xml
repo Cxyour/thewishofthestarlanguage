@@ -52,8 +52,7 @@
         <activity android:name=".view.famousteacher.activity.CurriculumActivity" />
         <activity android:name=".view.famousteacher.activity.TeachersfanSiActivity" />
         <activity android:name=".view.famousteacher.activity.ReplyActivity" />
-        <activity android:name=".view.ui.WorkWorkActivityActivity"></activity>
-
+        <activity android:name=".view.ui.WorkWorkActivityActivity" />
         <activity android:name=".view.personal.activity.PersonalMessageActivity" />
         <activity android:name=".view.personal.activity.VoucherCenterActivity" />
         <activity android:name=".view.personal.activity.GiftCenterActivity" />
@@ -61,7 +60,8 @@
         <activity android:name=".view.personal.activity.CertifiedActivity" />
         <activity android:name=".view.personal.activity.AboutUnivStarActivity" />
         <activity android:name=".view.personal.activity.UnivStarIntroduceActivity" />
-        <activity android:name=".view.personal.activity.ChangePasswordActivity"></activity>
+        <activity android:name=".view.personal.activity.ChangePasswordActivity" />
+        <activity android:name=".view.personal.activity.ChangeMobileActivity"></activity>
     </application>
 
 </manifest>

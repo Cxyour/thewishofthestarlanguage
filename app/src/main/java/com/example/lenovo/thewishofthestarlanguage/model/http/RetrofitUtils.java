@@ -7,7 +7,10 @@ import android.os.Build;
 import android.support.v4.app.ActivityCompat;
 import android.text.TextUtils;
 
+import com.example.lenovo.thewishofthestarlanguage.model.biz.AboutUnivStarService;
 import com.example.lenovo.thewishofthestarlanguage.model.biz.AppTokenService;
+import com.example.lenovo.thewishofthestarlanguage.model.biz.ChangeMobileService;
+import com.example.lenovo.thewishofthestarlanguage.model.biz.ChangePasswordService;
 import com.example.lenovo.thewishofthestarlanguage.model.biz.CurriculumService;
 import com.example.lenovo.thewishofthestarlanguage.model.biz.FamousTeacherService;
 import com.example.lenovo.thewishofthestarlanguage.model.biz.FansService;
@@ -22,6 +25,7 @@ import com.example.lenovo.thewishofthestarlanguage.model.biz.MasterService;
 import com.example.lenovo.thewishofthestarlanguage.model.biz.MostEaveService;
 import com.example.lenovo.thewishofthestarlanguage.model.biz.MyCollectionService;
 import com.example.lenovo.thewishofthestarlanguage.model.biz.MyOrderService;
+import com.example.lenovo.thewishofthestarlanguage.model.biz.PersonalMessageService;
 import com.example.lenovo.thewishofthestarlanguage.model.biz.OperationService;
 import com.example.lenovo.thewishofthestarlanguage.model.biz.PerFectInforService;
 import com.example.lenovo.thewishofthestarlanguage.model.biz.PersonalMessageService;
@@ -273,12 +277,6 @@ public class RetrofitUtils {
     public OperationService getOperationService() {
         return retrofit.create(OperationService.class);
     }
-    public CurriculumService getCurriculumService() {
-        return retrofit.create(CurriculumService.class);
-    }
-    public MyCollectionService getMyCollectionService() {
-        return retrofit.create(MyCollectionService.class);
-    }
 
     public PersonalMessageService getMyPersonalMessageService() {
         return retrofit.create(PersonalMessageService.class);
@@ -291,6 +289,7 @@ public class RetrofitUtils {
     public ReplyService getReplyService() {
         return retrofit.create(ReplyService.class);
     }
+
     public TaskService getTaskService() {
         return retrofit.create(TaskService.class);
     }
@@ -298,8 +297,28 @@ public class RetrofitUtils {
     public TeacherFensiService getTeacherFensiService() {
         return retrofit.create(TeacherFensiService.class);
     }
+
     public VoucherCenterService getVoucherCenterService() {
         return retrofit.create(VoucherCenterService.class);
     }
 
+    public MyCollectionService getMyCollectionService() {
+        return retrofit.create(MyCollectionService.class);
+    }
+
+    public AboutUnivStarService getAboutUnivStarService() {
+        return retrofit.create(AboutUnivStarService.class);
+    }
+
+    public ChangePasswordService getChangePasswordService() {
+        return retrofit.create(ChangePasswordService.class);
+    }
+
+    public CurriculumService getCurriculumService() {
+        return retrofit.create(CurriculumService.class);
+    }
+
+    public ChangeMobileService getChangeMobileService() {
+        return retrofit.create(ChangeMobileService.class);
+    }
 }

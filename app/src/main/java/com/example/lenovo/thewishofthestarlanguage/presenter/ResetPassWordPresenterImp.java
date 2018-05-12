@@ -43,10 +43,7 @@ public class ResetPassWordPresenterImp implements IResetPassWordContract.IResetP
     public void resetPassWord(String phoneNumber, String newPassWord, String newPassWordAgain) {
         if (!isPassWordSame(newPassWord, newPassWordAgain))
             return;
-        Map<String, String> paramsMap = new HashMap<>();
-        paramsMap.put("mobile", phoneNumber);
-        paramsMap.put("password", newPassWord);
-        Observable<UserBean> responseBodyObservable = resetPassWordService.resetPassWord(paramsMap);
+        Observable<UserBean> responseBodyObservable = resetPassWordService.resetPassWord(phoneNumber,newPassWord);
         responseBodyObservable.subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<UserBean>() {

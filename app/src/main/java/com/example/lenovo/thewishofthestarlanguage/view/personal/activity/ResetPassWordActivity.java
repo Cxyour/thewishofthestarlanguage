@@ -29,7 +29,7 @@ public class ResetPassWordActivity extends BaseActivity implements View.OnClickL
     protected int getLayoutId() {
         return R.layout.activity_reset;
     }
-    
+
     @Override
     protected void init() {
         reset_password_close = (ImageView) findViewById(R.id.reset_password_close);
@@ -54,10 +54,11 @@ public class ResetPassWordActivity extends BaseActivity implements View.OnClickL
                 if (!resetPassWordPresenter.isPassWordSame(reset_password_new_password.getText().toString().trim(), reset_password_new_password_again.getText().toString().trim()))
                     return;
                 resetPassWordPresenter.resetPassWord(mobile, reset_password_new_password.getText().toString().trim(), reset_password_new_password_again.getText().toString().trim());
-
-
-                Intent intent = new Intent(this, LoginActivity.class);
-                startActivity(intent);
+                SharedPreferences user = getSharedPreferences(Constant.CookieSP, Context.MODE_PRIVATE);
+                SharedPreferences.Editor edit = user.edit();
+                edit.putBoolean("isLogin", false);
+                edit.commit();
+                finish();
                 break;
         }
     }

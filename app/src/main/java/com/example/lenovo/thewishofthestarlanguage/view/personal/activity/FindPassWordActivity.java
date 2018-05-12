@@ -57,11 +57,11 @@ public class FindPassWordActivity extends BaseActivity implements View.OnClickLi
                 Intent intent = new Intent(this, ResetPassWordActivity.class);
                 intent.putExtra(Constant.User_mobile, find_password_ed_phone_number.getText().toString().trim());
                 startActivity(intent);
+                finish();
                 break;
             case R.id.find_password_getPhoneCode:
                 findPassWordPresenter.loadPhoneMsg(find_password_ed_phone_number.getText().toString().trim());
                 break;
-
             case R.id.find_password_close:
                 finish();
                 break;

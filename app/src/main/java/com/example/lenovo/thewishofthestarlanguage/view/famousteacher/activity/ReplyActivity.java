@@ -36,7 +36,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
-public class ReplyActivity extends AppCompatActivity implements View.OnClickListener, IReplyContract.view {
+public class ReplyActivity extends AppCompatActivity implements  IReplyContract.view {
 
     private EditText pinglun;
     private Button fa;
@@ -61,7 +61,7 @@ public class ReplyActivity extends AppCompatActivity implements View.OnClickList
     private ReplyPresenterImg replyPresenterImg;
 
     private HashMap<String, String> map;
-    private ReplyAdapter replyAdapter1;
+
     private List<ReplyTwoBean.DataBean.CommentsBean.ListBean> list;
     private int pid;
 
@@ -87,46 +87,26 @@ public class ReplyActivity extends AppCompatActivity implements View.OnClickList
         fa = (Button) findViewById(R.id.fa);
         linlin = (LinearLayout) findViewById(R.id.linlin);
 
-        fa.setOnClickListener(this);
+
         reply_recycle = (RecyclerView) findViewById(R.id.reply_recycle);
         reply_recycle.setLayoutManager(new LinearLayoutManager(this));
-        reply_recycle.setOnClickListener(this);
+
         pohot = (ImageView) findViewById(R.id.pohot);
-        pohot.setOnClickListener(this);
+
         name = (TextView) findViewById(R.id.name);
-        name.setOnClickListener(this);
+
         contentMeg = (TextView) findViewById(R.id.contentMeg);
-        contentMeg.setOnClickListener(this);
+
         sj = (TextView) findViewById(R.id.sj);
-        sj.setOnClickListener(this);
+
         opera_zan = (CheckBox) findViewById(R.id.opera_zan);
-        opera_zan.setOnClickListener(this);
+
         huifu = (TextView) findViewById(R.id.huifu);
-        huifu.setOnClickListener(this);
+
         replay_title = (RelativeLayout) findViewById(R.id.replay_title);
-        replay_title.setOnClickListener(this);
+
     }
 
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.fa:
-
-                if (pinglun.getText().toString() != "") {
-                    SharedPreferences sp = getSharedPreferences(Constant.CookieSP, Context.MODE_PRIVATE);
-                    int user_id = sp.getInt("user_id", 0);
-                    HashMap<String, String> map = new HashMap<>();
-                    map.put("pid",pid+"");
-                    map.put("userId",user_id+"");
-                    map.put("content",pinglun.getText().toString());
-                    map.put("refId",index+"");
-                    map.put("status",0+"");
-                //    list.get(0).
-                   replyPresenterImg.loadReplyBean(map);
-                }
-                break;
-        }
-    }
 
     private void submit() {
         // validate
@@ -147,8 +127,8 @@ public class ReplyActivity extends AppCompatActivity implements View.OnClickList
     showReplyTwoBean(ReplyTwoBean replyTwoBean) {
         Toast.makeText(this, replyTwoBean.getMessage(), Toast.LENGTH_SHORT).show();
         list = replyTwoBean.getData().getComments().getList();
-        replyAdapter1 = new ReplyAdapter(list);
-        reply_recycle.setAdapter(replyAdapter1);
+        replyAdapter = new ReplyAdapter(list);
+        reply_recycle.setAdapter(replyAdapter);
         ReplyTwoBean.DataBean.CommentBean comment = replyTwoBean.getData().getComment();
    //     refId = comment.getUserId();
         contentMeg.setText(comment.getContent());
@@ -166,13 +146,31 @@ public class ReplyActivity extends AppCompatActivity implements View.OnClickList
         Date date = new Date(comment.getCreateDate());
         String timeFormatText = getTimeFormatText(date);
         sj.setText(timeFormatText);
+        fa.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (pinglun.getText().toString() != "") {
+                    SharedPreferences sp = getSharedPreferences(Constant.CookieSP, Context.MODE_PRIVATE);
+                    int user_id = sp.getInt("user_id", 0);
+                    HashMap<String, String> map2 = new HashMap<>();
+                    map.put("pid", pid + "");
+                    map.put("userId", user_id + "");
+                    map.put("content", pinglun.getText().toString());
+                    map.put("refId", index + "");
+                    map.put("status", 0 + "");
+                    replyPresenterImg.loadReplyBean(map2);
+                    replyPresenterImg.loadReplyTwoBean(map);
+                    replyAdapter.notifyDataSetChanged();
+                    pinglun.setText("");
+                }
+            }
+        });
     }
 
     @Override
     public void showReplyBean(ReplyBean replyBean) {
         Toast.makeText(this, replyBean.getMessage(), Toast.LENGTH_SHORT).show();
-        replyPresenterImg.loadReplyTwoBean(map);
-        replyAdapter.notifyDataSetChanged();
+
     }
 
     public static String getTimeFormatText(Date date) {

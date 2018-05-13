@@ -1,0 +1,460 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:id="@+id/publishredactwok_detail_group"
+    tools:context="com.example.administrator.xinyuan.view.teather.ZhaoQingTa_FuDaoActivity">
+    <RelativeLayout
+        android:id="@+id/publishredacthwok_detail_title_group"
+        android:layout_width="match_parent"
+        android:layout_marginTop="26dp"
+        android:layout_alignParentTop="true"
+        android:layout_height="44dp">
+
+        <TextView
+            android:id="@+id/publishredactwokdetail_cancle"
+            android:layout_width="wrap_content"
+            android:text="取消"
+            android:layout_marginLeft="12dp"
+            android:gravity="center"
+            android:textSize="16dp"
+            android:layout_height="match_parent" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:text="发布课程作业"
+            style="@style/listui_title_style"
+            android:layout_height="wrap_content" />
+
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:layout_width="22dp"
+                    android:layout_marginRight="12dp"
+                    android:visibility="gone"
+                    android:background="@mipmap/home_master_search"
+                    android:layout_height="22dp" />
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+
+            android:layout_alignParentBottom="true"
+            android:layout_height="1dp" />
+    </RelativeLayout>
+
+
+    <TextView
+        android:id="@+id/publishredactwok_detail_coachbtn"
+        android:layout_width="match_parent"
+        android:background="#54e1d3"
+        android:layout_alignParentBottom="true"
+        android:text="提交"
+        android:textColor="@color/white"
+        android:textSize="14dp"
+        android:gravity="center"
+        android:layout_height="48dp" />
+
+    <com.example.lenovo.thewishofthestarlanguage.model.http.MyScrollView
+        android:layout_width="match_parent"
+        android:scrollbars="none"
+        android:layout_below="@id/publishredacthwok_detail_title_group"
+        android:layout_above="@id/publishredactwok_detail_coachbtn"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:background="#F6F6F6"
+                android:layout_height="10dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:layout_height="84dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginRight="12dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:text="专业 : "
+                        android:textColor="#080808"
+                        android:textSize="16dp"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/publishredactwok_detail_recyclerview"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginLeft="12dp"
+                    android:layout_height="wrap_content"
+                    ></android.support.v7.widget.RecyclerView>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:background="#F6F6F6"
+                android:layout_height="10dp" />
+
+
+            <RelativeLayout
+                android:id="@+id/publishredacetwok_detail_select_teacher"
+                android:layout_width="match_parent"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                android:layout_height="54dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_centerVertical="true"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:textSize="16dp"
+                        android:text="名师 :"
+                        android:textColor="#080808"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:id="@+id/publishredactwok_detail_teahcername_tv"
+                        android:layout_width="wrap_content"
+                        android:textSize="16dp"
+                        android:textColor="#ff5e5e"
+                        android:layout_marginLeft="12dp"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_alignParentRight="true"
+                    android:gravity="center_vertical"
+                    android:layout_centerVertical="true"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/publishredactwok_detail_teahcerhint_tv"
+                        android:layout_width="wrap_content"
+                        android:text="不指定"
+                        android:textColor="#8888"
+                        android:layout_height="wrap_content" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_marginLeft="12dp"
+                        android:src="@mipmap/redactwok_right_arrow"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:background="#F6F6F6"
+                android:layout_height="10dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                android:layout_height="172dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:text="作品 :"
+                    android:textSize="16dp"
+                    android:textColor="#080808"
+                    android:layout_height="wrap_content" />
+
+                <RelativeLayout
+                    android:id="@+id/publishredactwok_detail_add_group"
+                    android:layout_width="250dp"
+                    android:layout_marginLeft="10dp"
+                    android:background="@drawable/button_gray_bg"
+                    android:layout_height="140dp">
+
+                    <ImageView
+                        android:id="@+id/publishredactwok_detail_img"
+                        android:layout_width="250dp"
+                        android:scaleType="centerCrop"
+                        android:layout_height="140dp" />
+
+
+                    <LinearLayout
+                        android:id="@+id/publishredactwok_detail_genghuan_group"
+                        android:layout_width="match_parent"
+                        android:background="#66000000"
+                        android:orientation="vertical"
+                        android:visibility="gone"
+                        android:gravity="bottom"
+                        android:layout_height="match_parent">
+
+                        <LinearLayout
+                            android:id="@+id/publishredactwok_detail_genghuan_btn"
+                            android:layout_width="wrap_content"
+                            android:layout_gravity="right"
+                            android:orientation="horizontal"
+                            android:padding="8dp"
+                            android:visibility="gone"
+                            android:background="@drawable/button_black_bg"
+                            android:gravity="center_vertical"
+                            android:layout_marginRight="12dp"
+                            android:layout_height="wrap_content">
+
+                            <ImageView
+                                android:layout_width="14dp"
+                                android:src="@mipmap/genghuan_label"
+                                android:layout_height="14dp" />
+
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:text="更换"
+                                android:layout_marginLeft="8dp"
+                                android:textColor="@color/white"
+                                android:textSize="12dp"
+                                android:layout_height="wrap_content" />
+
+                        </LinearLayout>
+
+
+                        <ProgressBar
+                            android:id="@+id/publishredact_progressBar"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            style="?android:attr/progressBarStyleHorizontal"
+                            android:layout_gravity="center"
+                            android:visibility="visible"
+                            android:maxHeight="5dp"
+                            android:minHeight="5dp"
+                            android:max="100"
+                            android:progress="100"
+                            android:progressDrawable="@drawable/progress_bar_bg"/>
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:id="@+id/publishredactwok_detail_play_music_group"
+                        android:layout_width="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_centerInParent="true"
+                        android:gravity="center"
+                        android:paddingTop="78dp"
+                        android:visibility="gone"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:id="@+id/publishredactwok_detail_play_music"
+                            android:layout_width="20dp"
+                            android:src="@drawable/play_music_bg"
+                            android:visibility="visible"
+                            android:layout_height="20dp" />
+
+                        <TextView
+                            android:id="@+id/publishredactwok_detail_play_music_time"
+                            android:layout_width="wrap_content"
+                            android:textColor="#7ff5ea"
+                            android:textSize="12dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/publishredactwok_detail_play_video_group"
+                        android:layout_width="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_centerInParent="true"
+                        android:gravity="center"
+                        android:visibility="gone"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:layout_width="38dp"
+                            android:src="@mipmap/play"
+                            android:layout_height="38dp" />
+
+
+                        <TextView
+                            android:id="@+id/publishredactwok_detail_play_video_time"
+                            android:layout_width="wrap_content"
+                            android:textColor="#7ff5ea"
+                            android:textSize="12dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
+
+
+
+                    <LinearLayout
+                        android:id="@+id/publishredactwok_detail_add_btn"
+                        android:layout_width="wrap_content"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:visibility="visible"
+                        android:layout_centerInParent="true"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:layout_width="38dp"
+                            android:src="@mipmap/publishwok_add"
+                            android:layout_height="38dp" />
+
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:text="添加视频/音频/图片"
+                            android:layout_marginTop="10dp"
+                            android:textColor="#8888"
+                            android:textSize="14dp"
+                            android:layout_height="wrap_content" />
+
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:background="#F6F6F6"
+                android:layout_height="10dp" />
+
+
+            <EditText
+                android:id="@+id/publishredactwok_detail_input"
+                android:layout_width="match_parent"
+                android:background="@color/white"
+                android:minLines="5"
+                android:textSize="14dp"
+                android:textColor="#8888"
+                android:gravity="top"
+                android:hint="请输入作业内容"
+                android:layout_margin="12dp"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:background="#F6F6F6"
+                android:layout_height="10dp" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                android:layout_height="69dp">
+
+                <LinearLayout
+                    android:id="@+id/publishredactwok_detail_selecttype"
+                    android:layout_width="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:gravity="center_vertical"
+                    android:paddingTop="4dp"
+                    android:paddingBottom="4dp"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
+                    android:background="@drawable/select_type_blue_bg_active"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/publishredactwok_detail_select_tv"
+                        android:layout_width="wrap_content"
+                        android:text="对所有人公开"
+                        android:textSize="14dp"
+                        android:textColor="#68edeb"
+                        android:layout_height="wrap_content" />
+
+                    <ImageView
+                        android:layout_width="12dp"
+                        android:layout_marginLeft="8dp"
+                        android:src="@mipmap/publishwok_up_arrow"
+                        android:layout_height="7dp" />
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:textColor="#e7dc46"
+                        android:textSize="14dp"
+                        android:text="费用  ￥"
+                        android:layout_height="wrap_content" />
+
+
+                    <TextView
+                        android:id="@+id/publishredactwok_detail_price"
+                        android:layout_width="wrap_content"
+                        android:textColor="#e7dc46"
+                        android:textSize="16dp"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </com.example.lenovo.thewishofthestarlanguage.model.http.MyScrollView>
+
+    <RelativeLayout
+        android:id="@+id/publishredactwok_detail_pushload"
+        android:layout_width="match_parent"
+        android:background="#99333333"
+        android:visibility="gone"
+        android:layout_height="match_parent">
+
+        <ProgressBar
+            android:layout_width="35dp"
+            android:layout_gravity="center"
+            android:layout_centerInParent="true"
+            android:layout_height="35dp" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

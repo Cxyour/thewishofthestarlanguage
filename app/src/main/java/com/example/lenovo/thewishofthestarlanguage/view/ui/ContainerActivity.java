@@ -134,7 +134,8 @@ public class ContainerActivity extends BaseActivity implements View.OnClickListe
                 break;
 
             case R.id.home_publish_valuable:
-
+                Intent intent = new Intent(this, WorkWorkActivityActivity.class);
+                startActivity(intent);
                 break;
         }
     }

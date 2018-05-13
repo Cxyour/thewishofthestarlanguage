@@ -22,6 +22,7 @@ import com.example.lenovo.thewishofthestarlanguage.model.biz.LoginService;
 import com.example.lenovo.thewishofthestarlanguage.model.biz.LovesService;
 import com.example.lenovo.thewishofthestarlanguage.model.biz.MasterHomeService;
 import com.example.lenovo.thewishofthestarlanguage.model.biz.MasterService;
+import com.example.lenovo.thewishofthestarlanguage.model.biz.MessageChangeService;
 import com.example.lenovo.thewishofthestarlanguage.model.biz.MostEaveService;
 import com.example.lenovo.thewishofthestarlanguage.model.biz.MyCollectionService;
 import com.example.lenovo.thewishofthestarlanguage.model.biz.MyOrderService;
@@ -320,5 +321,9 @@ public class RetrofitUtils {
 
     public ChangeMobileService getChangeMobileService() {
         return retrofit.create(ChangeMobileService.class);
+    }
+
+    public MessageChangeService getMessageChangeService() {
+        return retrofit.create(MessageChangeService.class);
     }
 }

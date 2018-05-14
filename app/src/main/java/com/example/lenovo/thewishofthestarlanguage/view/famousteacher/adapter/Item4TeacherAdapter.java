@@ -29,6 +29,7 @@ import com.example.lenovo.thewishofthestarlanguage.model.config.App;
 import com.example.lenovo.thewishofthestarlanguage.model.config.Constant;
 import com.example.lenovo.thewishofthestarlanguage.model.entity.FamousTeacherBean;
 import com.example.lenovo.thewishofthestarlanguage.presenter.FamousTeacherPresenterImp;
+import com.example.lenovo.thewishofthestarlanguage.view.famousteacher.activity.MasterDetailActivity;
 import com.example.lenovo.thewishofthestarlanguage.view.famousteacher.activity.OperationDetailsActivity;
 import com.example.lenovo.thewishofthestarlanguage.view.personal.activity.LoginActivity;
 
@@ -36,6 +37,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+
+import fm.jiecao.jcvideoplayer_lib.JCVideoPlayerStandard;
 
 /**
  * Created by 陈伟霆 on 2018/5/5.
@@ -82,7 +85,7 @@ public class Item4TeacherAdapter extends RecyclerView.Adapter<Item4TeacherAdapte
         String format = simpleDateFormat.format(date);
         holder.work_time.setText(format);
         holder.work_content.setText(homewoks.get(position).getContent());
-        Glide.with(context).load(homewoks.get(position).getCoverImg()).into(holder.word_image);
+
         final FamousTeacherBean.DataBean.HomewoksBean homewoksBean = homewoks.get(position);
         String tPhoto = (String) homewoksBean.getTPhoto();
         String tRealname = (String) homewoksBean.getTRealname();
@@ -148,7 +151,19 @@ public class Item4TeacherAdapter extends RecyclerView.Adapter<Item4TeacherAdapte
                 context.startActivity(intent);
             }
         });
+            holder.word_image.setVisibility(View.VISIBLE);
+        Glide.with(context).load(homewoks.get(position).getCoverImg()).into(holder.word_image);
+        holder.photo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int tUserId = homewoksBean.getTUserId();
+                Intent intent = new Intent(context, MasterDetailActivity.class);
+                intent.putExtra("teacherId",tUserId);
+                context.startActivity(intent);
+            }
+        });
 
+//        holder.jcVideoPlayerStandard.setVisibility(View.GONE);
 
     }
     private void zan(final ViewHolder holder, final int position){
@@ -214,6 +229,8 @@ public class Item4TeacherAdapter extends RecyclerView.Adapter<Item4TeacherAdapte
                 }
             }
         });
+
+
     }
 
     @Override
@@ -251,8 +268,8 @@ public class Item4TeacherAdapter extends RecyclerView.Adapter<Item4TeacherAdapte
         public Button toukan;
         public TextView  daren;
         private RelativeLayout renwu_rela;
-
-        public ViewHolder(View rootView) {
+      JCVideoPlayerStandard jcVideoPlayerStandard;
+      public ViewHolder(View rootView) {
             super(rootView);
             this.rootView = rootView;
             this.work_img = (ImageView) rootView.findViewById(R.id.work_img);
@@ -261,7 +278,7 @@ public class Item4TeacherAdapter extends RecyclerView.Adapter<Item4TeacherAdapte
             this.laizi = (TextView) rootView.findViewById(R.id.laizi);
             this.work_from = (TextView) rootView.findViewById(R.id.work_from);
             this.work_content = (TextView) rootView.findViewById(R.id.work_content);
-            this.word_image = (ImageView) rootView.findViewById(R.id.word_image);
+         this.word_image = (ImageView) rootView.findViewById(R.id.word_image);
             this.work_comment = (CheckBox) rootView.findViewById(R.id.work_comment);
             this.work_zan = (CheckBox) rootView.findViewById(R.id.work_zan);
             this.work_shang = (CheckBox) rootView.findViewById(R.id.work_shang);
@@ -271,6 +288,7 @@ public class Item4TeacherAdapter extends RecyclerView.Adapter<Item4TeacherAdapte
             this.toukan = (Button) rootView.findViewById(R.id.toukan);
             this.renwu_rela=rootView.findViewById(R.id.renwu_rela);
             this.daren=rootView.findViewById(R.id.daren);
+
             rootView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -281,6 +299,7 @@ public class Item4TeacherAdapter extends RecyclerView.Adapter<Item4TeacherAdapte
                     context.startActivity(intent);
                 }
             });
+
         }
 
     }

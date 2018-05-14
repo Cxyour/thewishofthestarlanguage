@@ -3,6 +3,7 @@ apply plugin: 'com.android.application'
 android {
 
     compileSdkVersion 26
+
     defaultConfig {
         applicationId "com.example.lenovo.thewishofthestarlanguage"
         minSdkVersion 16
@@ -16,6 +17,13 @@ android {
 
     }
     productFlavors {
+    }
+
+
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
     }
 }
 
@@ -39,4 +47,7 @@ dependencies {
     implementation 'com.android.support:recyclerview-v7:26+'
     //noinspection GradleCompatible
     implementation 'com.android.support:design:27.+'
+
+
+    compile 'fm.jiecao:jiecaovideoplayer:3.6.1'
 }

@@ -132,21 +132,21 @@ public class FamousTecherAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             ((SYSCHolder) holder).jiaowork.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    App.context.setContentView(R.id.home_lay, HomeWorkFragment.class, null);
+                    App.context.setContentView(R.id.home_lay, HomeWorkFragment.class);
 
                 }
         });
             ((SYSCHolder) holder).liaoYK.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    App.context.setContentView(R.id.home_lay, TreasureFragment.class, null);
+                    App.context.setContentView(R.id.home_lay, TreasureFragment.class);
 
                 }
             });
             ((SYSCHolder) holder).xianXK.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    App.context.setContentView(R.id.home_lay, PreviewFragment.class, null);
+                    App.context.setContentView(R.id.home_lay, PreviewFragment.class);
                 }
             });
 

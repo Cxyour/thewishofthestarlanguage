@@ -134,7 +134,8 @@
             android:layout_height="100dp"
             android:layout_below="@+id/vieww"
             android:gravity="center"
-            android:orientation="horizontal">
+
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/wok_detail_aty_dashang"
@@ -146,6 +147,17 @@
                 android:text="赞赏"
                 android:textColor="@color/white"
                 android:textSize="@dimen/ts_14" />
+
+            <android.support.v7.widget.RecyclerView
+                android:layout_gravity="center"
+
+                android:id="@+id/wok_detail_aty_dashangRecy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">\</android.support.v7.widget.RecyclerView>
+
+
+
+
         </LinearLayout>
 
         <View
@@ -208,6 +220,7 @@
             android:text="还没有人发言呢"/>
     </LinearLayout>
     <android.support.v7.widget.RecyclerView
+        android:layout_marginTop="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/opera_item1_recycle"></android.support.v7.widget.RecyclerView>

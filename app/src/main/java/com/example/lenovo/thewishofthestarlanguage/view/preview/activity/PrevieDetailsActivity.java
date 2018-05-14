@@ -1,8 +1,6 @@
 package com.example.lenovo.thewishofthestarlanguage.view.preview.activity;
 
 import android.content.Intent;
-import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -15,9 +13,10 @@ import com.example.lenovo.thewishofthestarlanguage.R;
 import com.example.lenovo.thewishofthestarlanguage.contact.IPreviewDetailsContact;
 import com.example.lenovo.thewishofthestarlanguage.model.entity.PreviewActivityBean;
 import com.example.lenovo.thewishofthestarlanguage.presenter.PreviewActivityPresenterImp;
+import com.example.lenovo.thewishofthestarlanguage.view.base.BaseActivity;
 import com.example.lenovo.thewishofthestarlanguage.view.preview.adapter.PreviewListViewAdapter;
 
-public class PrevieDetailsActivity extends AppCompatActivity implements IPreviewDetailsContact.view {
+public class PrevieDetailsActivity extends BaseActivity implements IPreviewDetailsContact.view {
 
     private ImageView shoucang;
     private TextView yuyue;
@@ -29,15 +28,23 @@ public class PrevieDetailsActivity extends AppCompatActivity implements IPreview
     private RelativeLayout titlelan;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_previe_details);
+    protected int getLayoutId() {
+        return R.layout.activity_previe_details;
+    }
+
+    @Override
+    protected void init() {
         initView();
         Intent intent = getIntent();
         id = intent.getIntExtra("id", 0);
 
         PreviewActivityPresenterImp previewActivityPresenterImg = new PreviewActivityPresenterImp(this);
         previewActivityPresenterImg.loadPreviewActivityBean(id);
+    }
+
+    @Override
+    protected void loadData() {
+
     }
 
     @Override

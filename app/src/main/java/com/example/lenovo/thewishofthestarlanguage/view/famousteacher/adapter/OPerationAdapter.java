@@ -2,6 +2,7 @@ package com.example.lenovo.thewishofthestarlanguage.view.famousteacher.adapter;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.Rect;
 import android.support.annotation.NonNull;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
@@ -36,6 +37,8 @@ public class OPerationAdapter extends RecyclerView.Adapter<OPerationAdapter.View
     OperationPresenterImp operationPresenterImp;
     String refId;
     int idd;
+    private View inflate;
+
     public OPerationAdapter(OperationBean.DataBean data, OperationPresenterImp operationPresenterImp, String refId, int id) {
         this.data = data;
         this.operationPresenterImp = operationPresenterImp;
@@ -47,7 +50,7 @@ public class OPerationAdapter extends RecyclerView.Adapter<OPerationAdapter.View
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         context=parent.getContext();
-        View inflate = LayoutInflater.from(context).inflate(R.layout.operation_item1, parent, false);
+        inflate = LayoutInflater.from(context).inflate(R.layout.operation_item1, parent, false);
         ViewHolder viewHolder = new ViewHolder(inflate);
         return viewHolder;
     }
@@ -57,7 +60,31 @@ public class OPerationAdapter extends RecyclerView.Adapter<OPerationAdapter.View
     public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
         OperationBean.DataBean.HomewokBean homewoks = data.getHomewok();
         OperationBean.DataBean.CommentsBean comments = data.getComments();
+        final List<OperationBean.DataBean.RewardUserListBean> rewardUserList = data.getRewardUserList();
+
+        PhotoImgAdapter photoImgAdapter = new PhotoImgAdapter(rewardUserList);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context);
+        linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+        holder.wok_detail_aty_dashangRecy.setLayoutManager(linearLayoutManager);
+        holder.wok_detail_aty_dashangRecy.setAdapter(photoImgAdapter);
+
+        final View view = LayoutInflater.from(context).inflate(R.layout.activity_operation_details,null);
+
+        holder.wok_detail_aty_dashangRecy.addItemDecoration(new RecyclerView.ItemDecoration() {
+            @Override
+            public void getItemOffsets(Rect outRect, int itemPosition, RecyclerView parent) {
+                super.getItemOffsets(outRect, itemPosition, parent);
+                if (parent.getChildLayoutPosition(inflate)
+                        != (rewardUserList
+                        .size() - 1)){
+                    outRect.right = -30;
+                }
+            }
+        });
+
         List<OperationBean.DataBean.CommentsBean.ListBean> list = comments.getList();
+
+
         if (list.size()!=0){
             holder.shafa.setVisibility(View.GONE);
             OPerationItemAdapter oPerationItemAdapter = new OPerationItemAdapter(list,operationPresenterImp,homewoks.getId(),refId);
@@ -72,6 +99,7 @@ public class OPerationAdapter extends RecyclerView.Adapter<OPerationAdapter.View
                     @Override
                     protected void setResource(Bitmap resource) {
                         super.setResource(resource);
+
                         RoundedBitmapDrawable roundedBitmapDrawable = RoundedBitmapDrawableFactory.create(context.getResources(), resource);
                         roundedBitmapDrawable.setCircular(true);
                         holder.work_img.setImageDrawable(roundedBitmapDrawable);
@@ -118,6 +146,7 @@ public class OPerationAdapter extends RecyclerView.Adapter<OPerationAdapter.View
 
 
     class ViewHolder extends RecyclerView.ViewHolder {
+        private  RecyclerView wok_detail_aty_dashangRecy;
         public View rootView;
         public ImageView work_img;
         public TextView work_name;
@@ -156,6 +185,7 @@ public class OPerationAdapter extends RecyclerView.Adapter<OPerationAdapter.View
             this.chieck_layout = (LinearLayout) rootView.findViewById(R.id.chieck_layout);
             this.opera_item1_recycle = (RecyclerView) rootView.findViewById(R.id.opera_item1_recycle);
             this.shafa=rootView.findViewById(R.id.shafa);
+            this.wok_detail_aty_dashangRecy=rootView.findViewById(R.id.wok_detail_aty_dashangRecy);
         }
 
     }

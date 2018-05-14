@@ -46,6 +46,7 @@ public class ContainerActivity extends BaseActivity implements View.OnClickListe
     @Override
     protected int getLayoutId() {
         return R.layout.activity_home;
+
     }
 
     @Override
@@ -76,7 +77,7 @@ public class ContainerActivity extends BaseActivity implements View.OnClickListe
     @Override
     protected void loadData() {
         home_publish_valuable.setVisibility(View.GONE);
-        setContentView(R.id.home_lay, FamousTeacherFragment.class, null);
+        setContentView(R.id.home_lay, FamousTeacherFragment.class);
         user = getSharedPreferences(Constant.CookieSP, Context.MODE_PRIVATE);
         edit = user.edit();
 
@@ -94,32 +95,32 @@ public class ContainerActivity extends BaseActivity implements View.OnClickListe
                 //名师
                 home_title.setVisibility(View.VISIBLE);
                 home_publish_valuable.setVisibility(View.GONE);
-                setContentView(R.id.home_lay, HomeWorkFragment.class, null);
-                setContentView(R.id.home_lay, FamousTeacherFragment.class, null);
+              //  setContentView(R.id.home_lay, HomeWorkFragment.class);
+                setContentView(R.id.home_lay, FamousTeacherFragment.class);
                 break;
             case R.id.home_work_tab:
                 //作业
                 home_title.setVisibility(View.VISIBLE);
                 home_publish_valuable.setVisibility(View.GONE);
-                setContentView(R.id.home_lay, HomeWorkFragment.class, null);
+                setContentView(R.id.home_lay, HomeWorkFragment.class);
                 break;
             case R.id.home_valuable_tab:
                 //宝典
 
                 home_title.setVisibility(View.VISIBLE);
                 home_publish_valuable.setVisibility(View.VISIBLE);
-                setContentView(R.id.home_lay, TreasureFragment.class, null);
+                setContentView(R.id.home_lay, TreasureFragment.class);
                 break;
             case R.id.home_notice_tab:
                 //预告
                 home_title.setVisibility(View.VISIBLE);
                 home_publish_valuable.setVisibility(View.GONE);
-                setContentView(R.id.home_lay, PreviewFragment.class, null);
+                setContentView(R.id.home_lay, PreviewFragment.class);
                 break;
             case R.id.home_myself_tab:
                 //我的
                 home_title.setVisibility(View.GONE);
-                setContentView(R.id.home_lay, PersonalFragment.class, null);
+                setContentView(R.id.home_lay, PersonalFragment.class);
                 break;
 
             case R.id.home_master_shape:
@@ -139,5 +140,6 @@ public class ContainerActivity extends BaseActivity implements View.OnClickListe
                 break;
         }
     }
+
 
 }

@@ -171,6 +171,7 @@ public class OPerationItemAdapter extends RecyclerView.Adapter<OPerationItemAdap
         public CheckBox opera_zan;
         public TextView huifu;
 
+
         public Holder(View rootView) {
             super(rootView);
             this.rootView = rootView;

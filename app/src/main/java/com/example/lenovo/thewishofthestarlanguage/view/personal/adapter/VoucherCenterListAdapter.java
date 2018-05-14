@@ -1,8 +1,13 @@
 package com.example.lenovo.thewishofthestarlanguage.view.personal.adapter;
 
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.example.lenovo.thewishofthestarlanguage.R;
@@ -52,6 +57,16 @@ public class VoucherCenterListAdapter extends BaseAdapter {
         }
         holder.voucher_list_item_jindou_count.setText(listBeans.get(position).getAmountAndroid() + "");
         holder.voucher_list_item_jindou_price.setText("¥ " + listBeans.get(position).getPriceAndroid() + ".0");
+        View inflate = LayoutInflater.from(App.context).inflate(R.layout.toukan_item, null);
+        final PopupWindow popupWindow = new PopupWindow(inflate, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT, true);
+        popupWindow.setOutsideTouchable(true);
+        popupWindow.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#ffffff")));
+        convertView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                popupWindow.showAtLocation(App.context.getLayoutInflater().inflate(R.layout.fragment_famous_teacher, null), Gravity.BOTTOM, 0, 0);
+            }
+        });
         return convertView;
     }
 

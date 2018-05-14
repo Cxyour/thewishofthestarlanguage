@@ -88,6 +88,7 @@ public class MyselfMessageActivity extends BaseActivity implements View.OnClickL
         dialog = new Dialog(this);
         dialog.setContentView(inflate);
         dialog.setTitle("请选择");
+
     }
 
     @Override

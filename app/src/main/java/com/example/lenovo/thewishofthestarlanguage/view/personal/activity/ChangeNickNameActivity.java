@@ -1,6 +1,8 @@
 package com.example.lenovo.thewishofthestarlanguage.view.personal.activity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
@@ -11,13 +13,22 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.lenovo.thewishofthestarlanguage.R;
+import com.example.lenovo.thewishofthestarlanguage.contact.IMessageChangeContract;
+import com.example.lenovo.thewishofthestarlanguage.model.config.Constant;
+import com.example.lenovo.thewishofthestarlanguage.presenter.MessageChangePresenterImp;
 import com.example.lenovo.thewishofthestarlanguage.view.base.BaseActivity;
 
-public class ChangeNickNameActivity extends BaseActivity implements View.OnClickListener {
+import java.util.HashMap;
+import java.util.Map;
+
+public class ChangeNickNameActivity extends BaseActivity implements View.OnClickListener, IMessageChangeContract.IMessageChangeView {
 
     private ImageView change_nickname_return;
     private Button change_nickname_save;
     private EditText change_nickname_editText;
+    private MessageChangePresenterImp messageChangePresenterImp;
+    private SharedPreferences user;
+    private SharedPreferences.Editor edit;
 
     @Override
     protected int getLayoutId() {
@@ -36,7 +47,10 @@ public class ChangeNickNameActivity extends BaseActivity implements View.OnClick
 
     @Override
     protected void loadData() {
+        user = getSharedPreferences(Constant.CookieSP, Context.MODE_PRIVATE);
+        edit = user.edit();
         change_nickname_editText.setText(getIntent().getStringExtra("nickname"));
+        messageChangePresenterImp = new MessageChangePresenterImp(this);
     }
 
     @Override
@@ -45,6 +59,9 @@ public class ChangeNickNameActivity extends BaseActivity implements View.OnClick
             case R.id.change_nickname_save:
                 Intent intent = new Intent();
                 intent.putExtra("newNickName", change_nickname_editText.getText().toString().trim());
+                Map<String, String> paramsMap = new HashMap<>();
+                paramsMap.put("nickname", change_nickname_editText.getText().toString().trim());
+                messageChangePresenterImp.messageChange(user.getInt("user_id", 0), paramsMap);
                 setResult(2, intent);
                 finish();
                 break;
@@ -54,4 +71,8 @@ public class ChangeNickNameActivity extends BaseActivity implements View.OnClick
         }
     }
 
+    @Override
+    public void showMessageChangeMessage(String string) {
+        Toast.makeText(this, string, Toast.LENGTH_SHORT).show();
+    }
 }

@@ -1,6 +1,7 @@
 package com.example.lenovo.thewishofthestarlanguage.view.base;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -25,6 +26,11 @@ public abstract class BaseFragment extends Fragment {
         init(view);
 
         loadData();
+    }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
     }
 
     protected abstract int getLayoutId();

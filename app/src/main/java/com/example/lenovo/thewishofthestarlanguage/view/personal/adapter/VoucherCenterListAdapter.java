@@ -7,13 +7,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.example.lenovo.thewishofthestarlanguage.R;
 import com.example.lenovo.thewishofthestarlanguage.model.config.App;
 import com.example.lenovo.thewishofthestarlanguage.model.entity.VoucherBean;
+import com.example.lenovo.thewishofthestarlanguage.presenter.VoucherCenterPresenterImp;
 
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -23,9 +26,11 @@ import java.util.List;
 public class VoucherCenterListAdapter extends BaseAdapter {
 
     private List<VoucherBean.DataBean.ListBean> listBeans;
+    private VoucherCenterPresenterImp voucherCenterPresenterImp;
 
-    public VoucherCenterListAdapter(List<VoucherBean.DataBean.ListBean> listBeans) {
+    public VoucherCenterListAdapter(List<VoucherBean.DataBean.ListBean> listBeans, VoucherCenterPresenterImp voucherCenterPresenterImp) {
         this.listBeans = listBeans;
+        this.voucherCenterPresenterImp = voucherCenterPresenterImp;
     }
 
     @Override
@@ -44,7 +49,7 @@ public class VoucherCenterListAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         ViewHolder holder = null;
         if (convertView == null) {
             holder = new ViewHolder();
@@ -58,6 +63,7 @@ public class VoucherCenterListAdapter extends BaseAdapter {
         holder.voucher_list_item_jindou_count.setText(listBeans.get(position).getAmountAndroid() + "");
         holder.voucher_list_item_jindou_price.setText("¥ " + listBeans.get(position).getPriceAndroid() + ".0");
         View inflate = LayoutInflater.from(App.context).inflate(R.layout.toukan_item, null);
+        LinearLayout zhifubao=inflate.findViewById(R.id.zhifubao);
         final PopupWindow popupWindow = new PopupWindow(inflate, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT, true);
         popupWindow.setOutsideTouchable(true);
         popupWindow.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#ffffff")));
@@ -65,6 +71,16 @@ public class VoucherCenterListAdapter extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 popupWindow.showAtLocation(App.context.getLayoutInflater().inflate(R.layout.fragment_famous_teacher, null), Gravity.BOTTOM, 0, 0);
+            }
+        });
+        zhifubao.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                HashMap<String, String> map = new HashMap<>();
+                map.put("buyerId","664");
+                map.put("price",listBeans.get(position).getPriceAndroid()+"");
+                map.put("amount",listBeans.get(position).getAmountAndroid()+"");
+                voucherCenterPresenterImp.loadDouDou(map);
             }
         });
         return convertView;
